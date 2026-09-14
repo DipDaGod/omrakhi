@@ -193,12 +193,10 @@ Size, page count and date are shown before the link, deliberately.
 
 ## 10. Web3Forms key
 
-Set `PUBLIC_WEB3FORMS_KEY` in the build environment — on Vercel, in the project's
-Environment Variables. Without it the contact and custom forms post to a
-placeholder key and enquiries are lost silently.
-
-The key is public by design: it appears in the HTML of the form that posts with
-it. `.env.example` lists it alongside the two optional measurement flags.
+The access key lives in `src/config/site.ts` as `SITE.web3formsKey`, not in an
+env var — it's public by design (it appears in the HTML of the form that posts
+with it) and Web3Forms does its own spam/domain checks server-side, so an env
+var buys no secrecy. To rotate it, edit that one line and redeploy.
 
 ---
 

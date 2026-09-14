@@ -2,8 +2,6 @@
  * Fixed facts. Every page reads the firm's details from here.
  * Nothing in a component hardcodes an address, a number, or a year.
  */
-import { ENV } from './env.ts';
-
 export const SITE = {
   origin: 'https://omrakhi.vercel.app',
   name: 'Om Rakhi Udyog',
@@ -36,8 +34,12 @@ export const SITE = {
     indiamart: 'https://indiamart.com/om-rakhi-udyog',
   },
 
-  /** Set PUBLIC_WEB3FORMS_KEY in the build environment. See .env.example. */
-  web3formsKey: ENV.web3formsKey ?? 'WEB3FORMS-KEY-NOT-SET',
+  /**
+   * Web3Forms access key. Public by design — it ends up in the HTML of the
+   * form that posts with it, and Web3Forms does its own spam/domain checks
+   * server-side, so there is nothing to gain by hiding it behind an env var.
+   */
+  web3formsKey: 'b56bc06f-8b2d-4bb6-8cd4-e0d62853513d',
 
   hours: {
     season: [

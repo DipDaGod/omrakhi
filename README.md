@@ -127,9 +127,15 @@ static output — there is no server to read them at runtime. See `.env.example`
 
 | Variable | Effect if unset |
 |---|---|
-| `PUBLIC_WEB3FORMS_KEY` | The contact and custom forms post to a placeholder and enquiries are lost silently. **Set this before launch.** |
 | `PUBLIC_SPEED_INSIGHTS` | No Speed Insights. Set to `1` for field LCP and CLS. |
 | `PUBLIC_WEB_ANALYTICS` | No Web Analytics. Set to `1` for page views and referrers. |
+
+The Web3Forms access key (contact and custom forms) is hardcoded in
+`src/config/site.ts` rather than read from an env var — it's public by
+design (it appears in the form's HTML) and Web3Forms does its own
+spam/domain checks server-side, so there's no secrecy to gain from an
+env var, and hardcoding it means a key rotation is a one-line code
+change rather than a dashboard trip.
 
 Both measurement tools are off by default, are served from this origin under
 `/_vercel/`, set no cookies and identify nobody — and the privacy page reads the

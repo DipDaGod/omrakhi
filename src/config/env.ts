@@ -42,13 +42,6 @@ export const ENV = {
   isPreview: vercelEnv !== undefined && vercelEnv !== 'production',
 
   /**
-   * Web3Forms access keys are public by design — the key ends up in the HTML
-   * of the form that posts with it. PUBLIC_ is the honest prefix; the
-   * unprefixed name is accepted so an existing project variable still works.
-   */
-  web3formsKey: read('PUBLIC_WEB3FORMS_KEY', 'WEB3FORMS_KEY'),
-
-  /**
    * Vercel Speed Insights closes the one gap in the A9 enforcement story: LCP
    * and CLS cannot be measured in a build, and these are field measurements
    * from real dealers on real phones rather than a lab run. Off unless
