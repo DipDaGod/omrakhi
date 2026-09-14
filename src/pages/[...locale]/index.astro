@@ -256,23 +256,44 @@ const localBusiness = {
      nothing by the time it reaches the rakhi on the right. Stops are in the
      ground colour rather than white so it dissolves into the page instead of
      ending at a visible seam. */
+  /* Only the blend into the page below. The readability wash is not here: a
+     percentage stop is measured against the viewport, but the text sits in a
+     centred container, so on a wide screen the two drift apart and the wash
+     clears while the copy is still over the photograph. */
   .hero__media::after {
     content: '';
     position: absolute;
     inset: 0;
-    background:
-      linear-gradient(96deg,
-        #fdf3e2 0%,
-        rgb(253 243 226 / 0.97) 24%,
-        rgb(252 238 216 / 0.80) 42%,
-        rgb(251 234 212 / 0.30) 58%,
-        rgb(251 234 212 / 0) 76%),
-      linear-gradient(0deg, rgb(253 247 237 / 0.55) 0%, rgb(253 247 237 / 0) 38%);
+    background: linear-gradient(0deg, rgb(253 247 237 / 0.45) 0%, rgb(253 247 237 / 0) 26%);
   }
 
-  .hero__inner { display: grid; align-items: center; min-height: clamp(24rem, 46vw, 33rem); }
-  .hero__text { display: grid; gap: var(--space-s); max-width: 34rem; padding-block: var(--space-2xl); animation: rise var(--dur-base) var(--ease) both; }
-  .hero__text h1 { max-width: 15ch; color: var(--accent); }
+  .hero__inner { display: grid; align-items: center; min-height: clamp(26rem, 50vw, 38rem); }
+  /* The column is kept deliberately narrow. The gradient can only clear the
+     motif if the text stops short of it, so the copy owns the left third and
+     the photograph owns the rest. */
+  .hero__text { position: relative; display: grid; gap: var(--space-s); max-width: 29rem; padding-block: var(--space-2xl); animation: rise var(--dur-base) var(--ease) both; }
+  .hero__text > * { position: relative; z-index: 1; }
+  .hero__text h1 { max-width: 13ch; color: var(--accent); }
+  .hero__text .lede { max-width: 27rem; }
+
+  /* The wash is anchored to the copy, not the viewport: opaque everywhere the
+     text is, then dissolved within a fixed distance past its right edge. It
+     reaches off-screen to the left so the page edge stays cream at any width,
+     and because the fade is measured in rem from the text's own edge, the
+     motif clears at every viewport instead of only the one it was tuned on.
+     Exactly 90deg: any tilt and the last stop stops being parallel to the
+     box's right edge, which leaves a visible seam down the photograph. */
+  .hero__text::before {
+    content: '';
+    position: absolute;
+    inset: -2.5rem -11rem -2.5rem -100vw;
+    background: linear-gradient(90deg,
+      #fdf3e2 0,
+      #fdf3e2 calc(100% - 13rem),
+      rgb(253 243 226 / 0.86) calc(100% - 8.5rem),
+      rgb(252 238 216 / 0.34) calc(100% - 4.5rem),
+      rgb(251 234 212 / 0) 100%);
+  }
   .hero__eyebrow {
     font-size: var(--step--1);
     letter-spacing: 0.16em;
@@ -317,6 +338,12 @@ const localBusiness = {
        legible at the foot of the band. */
     .hero__inner { min-height: 0; }
     .hero__text { padding-block: var(--space-xl) 15rem; max-width: none; }
+    .hero__text::before { display: none; }
+    /* The desktop caps exist to keep the copy clear of the motif. There is no
+       beside on a phone, so they only cost lines — and every line pushes the
+       photograph further down the band. */
+    .hero__text h1 { max-width: none; }
+    .hero__text .lede { max-width: none; }
     .hero__media img { object-position: 62% 72%; }
     /* Holds near-opaque past the address line — the last and faintest thing in
        the column — and only clears in the padding below it. Clearing earlier
