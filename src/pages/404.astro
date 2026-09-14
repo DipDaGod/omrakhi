@@ -15,6 +15,9 @@ import { allCategories, categoryCounts } from '../lib/catalogue.ts';
 const locale = DEFAULT_LOCALE;
 const t = useTranslations(locale);
 const [categories, counts] = await Promise.all([allCategories(), categoryCounts()]);
+const biggest = [...categories]
+  .sort((a, b) => (counts.get(b.id) ?? 0) - (counts.get(a.id) ?? 0))
+  .slice(0, 6);
 ---
 
 <Base locale={locale} noindex locales={['en']}
@@ -26,22 +29,38 @@ const [categories, counts] = await Promise.all([allCategories(), categoryCounts(
       lede="Most links that land here are old ones from a WhatsApp thread. Everything below still works."
     />
 
-    {/* Filled in client-side when the URL looks like an article number. */}
+    {/* Both filled in client-side: the first when the URL carries an article
+        number, the second when it carries something that reads like a
+        collection. Either one turns a dead end into the page they wanted. */}
     <div class="nf__retired" data-retired hidden></div>
+    <div class="nf__guess" data-guess hidden></div>
+
+    {/* The field is here rather than behind the header's search button: on a
+        404 the next thing the visitor does is look something up, and making
+        them find a control first is one step too many. Typing hands off to the
+        real search overlay, so there is one search on this site, not two. */}
+    <form class="nf__search" action={href(ROUTES.collections, locale)} method="get" data-nf-search>
+      <label class="visually-hidden" for="nf-q">Search the catalogue</label>
+      <Icon name="search" />
+      <input id="nf-q" name="q" type="search" autocomplete="off" spellcheck="false"
+        placeholder="Article number or design — OM-1042, kundan" />
+      <button class="btn btn--primary" type="submit">Search</button>
+    </form>
 
     <div class="nf__actions">
-      <button class="btn btn--primary" type="button" data-search-open>
-        <Icon name="search" /> Search the catalogue
-      </button>
       <a class="btn btn--secondary" href={whatsappHref('I followed a link that no longer works')} rel="noopener">
         <Icon name="whatsapp" /> {t('action.whatsappUs')}
       </a>
       <a class="btn btn--quiet" href={telHref}><Icon name="phone" /> {SITE.phone.display}</a>
     </div>
 
-    <h2 class="nf__h2">Every collection</h2>
+    {/* Six, not twelve: the footer below already carries every collection, and
+        printing the same twelve links twice on one short page is filler. These
+        are the largest, which is the most useful order for someone who has no
+        idea where to start. */}
+    <h2 class="nf__h2">Biggest collections</h2>
     <ul class="nf__cats">
-      {categories.map((c) => (
+      {biggest.map((c) => (
         <li>
           <a href={href(ROUTES.category(c.id), locale)}>
             {c.data.name.en}
@@ -50,10 +69,8 @@ const [categories, counts] = await Promise.all([allCategories(), categoryCounts(
         </li>
       ))}
     </ul>
-
     <p class="nf__links">
-      <a href={href(ROUTES.home, locale)}>{t('nav.home')}</a>
-      <a href={href(ROUTES.collections, locale)}>{t('nav.collection')}</a>
+      <a href={href(ROUTES.collections, locale)}>All {categories.length} collections →</a>
       <a href={href(ROUTES.howToOrder, locale)}>{t('nav.order')}</a>
       <a href={href(ROUTES.contact, locale)}>{t('nav.contact')}</a>
     </p>
@@ -74,7 +91,30 @@ const [categories, counts] = await Promise.all([allCategories(), categoryCounts(
     max-width: var(--measure);
     margin-bottom: var(--space-m);
   }
-  .nf__retired[hidden] { display: none; }
+  .nf__guess {
+    padding: var(--space-s);
+    background: var(--plinth);
+    border-left: 3px solid var(--gold);
+    max-width: var(--measure);
+    margin-bottom: var(--space-m);
+  }
+
+  .nf__search {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    max-width: 34rem;
+    padding: var(--space-3xs) var(--space-3xs) var(--space-3xs) var(--space-xs);
+    border: var(--hairline) solid var(--ink);
+    border-radius: var(--radius);
+    background: var(--ground-raised);
+    margin-bottom: var(--space-s);
+  }
+  .nf__search:focus-within { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .nf__search input { flex: 1; min-width: 0; border: 0; background: none; padding: 0.5em 0; }
+  .nf__search input:focus { outline: none; }
+  .nf__search svg { color: var(--ink-muted); flex: none; }
+
   .nf__actions { display: flex; gap: var(--space-2xs); flex-wrap: wrap; margin-bottom: var(--space-2xl); }
   .nf__h2 { font-size: var(--step-2); margin-bottom: var(--space-s); }
   .nf__cats { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-3xs) var(--space-s); }

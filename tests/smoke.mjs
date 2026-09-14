@@ -233,7 +233,7 @@ await cspPage.close();
    things this site must never ship: an image without alt text, a form field
    without a real label, text below 4.5:1, a control with no accessible name. */
 const axe = readFileSync(new URL('../node_modules/axe-core/axe.min.js', import.meta.url), 'utf8');
-const A11Y_PAGES = ['/', '/collections', '/collections/ad-rakhi', '/how-to-order', '/contact', '/shortlist', '/visit', '/hi/'];
+const A11Y_PAGES = ['/', '/collections', '/collections/ad-rakhi', '/how-to-order', '/contact', '/shortlist', '/visit', '/hi/', '/no-such-page'];
 
 for (const route of A11Y_PAGES) {
   const a11y = await browser.newPage({ viewport: { width: 1280, height: 900 } });

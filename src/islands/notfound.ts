@@ -7,8 +7,59 @@
  * small kindness that reads as competence; a bare 404 reads as a dead firm.
  */
 import { loadCatalogue, catName, href, locale } from './catalogue-client.ts';
+import { loadSearch } from './header.ts';
 
 const slot = document.querySelector<HTMLElement>('[data-retired]');
+
+/* The field hands the first keystroke to the real search overlay rather than
+   running a second, weaker search of its own. Submitting without JS falls
+   through to the form's own action, which is the collections page. */
+const form = document.querySelector<HTMLFormElement>('[data-nf-search]');
+const field = form?.querySelector<HTMLInputElement>('input');
+if (form && field) {
+  let handed = false;
+  const hand = () => {
+    if (handed) return;
+    handed = true;
+    void loadSearch().then((m) => m.open(field.value));
+  };
+  field.addEventListener('input', hand);
+  form.addEventListener('submit', (e) => { e.preventDefault(); handed = false; hand(); });
+}
+
+/**
+ * When the path is not an article number it is usually still a word: a stale
+ * /kundan-rakhis, a hand-typed /collections/pearl, a link that lost a segment.
+ * Matching those words against the collection names turns most of them into
+ * the page the visitor was actually asking for.
+ */
+const guessSlot = document.querySelector<HTMLElement>('[data-guess]');
+if (guessSlot && !/\b(OM)[-_ ]?\d{4}\b/i.test(decodeURIComponent(location.pathname))) {
+  const words = decodeURIComponent(location.pathname)
+    .toLowerCase()
+    .split(/[^a-z]+/)
+    .filter((w) => w.length > 2 && w !== 'collections' && w !== 'rakhi');
+
+  if (words.length) {
+    loadCatalogue()
+      .then((cat) => {
+        const hit = cat.categories.find((c) => {
+          const name = `${c.g} ${c.ne}`.toLowerCase();
+          return words.some((w) => name.includes(w) || w.includes(c.g.split('-')[0]));
+        });
+        if (!hit) return;
+        const L = locale();
+        const label = catName(hit);
+        const link = href('/collections/' + hit.g);
+        guessSlot.innerHTML =
+          L === 'hi'
+            ? `<p>क्या आप <a href="${link}"><strong>${label}</strong></a> ढूँढ रहे थे? उसमें ${hit.n} डिज़ाइन हैं।</p>`
+            : `<p>Were you looking for <a href="${link}"><strong>${label}</strong></a>? It has ${hit.n} designs.</p>`;
+        guessSlot.hidden = false;
+      })
+      .catch(() => { /* the routes below are still a way forward */ });
+  }
+}
 
 if (slot) {
   const url = new URL(location.href);

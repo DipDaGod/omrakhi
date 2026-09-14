@@ -48,7 +48,7 @@ function card(row: Row): string {
   </a>`;
 }
 
-export async function open() {
+export async function open(initial = '') {
   const L = locale();
   const t = T[L];
 
@@ -124,5 +124,13 @@ export async function open() {
     cancelAnimationFrame(frame);
     frame = requestAnimationFrame(() => render(input.value));
   });
+  /* Carried in from a page that had its own field — the 404's, so far. The
+     caret goes to the end rather than selecting, because the visitor is
+     mid-word and the next keystroke should extend it, not replace it. */
+  if (initial) {
+    input.value = initial;
+    render(initial);
+  }
   input.focus();
+  input.setSelectionRange(input.value.length, input.value.length);
 }

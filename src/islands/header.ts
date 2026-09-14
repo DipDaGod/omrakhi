@@ -76,8 +76,8 @@ if (menu && menuOpen && menuClose) {
 /* --- Search overlay: code-split, loaded on first open ---------------------- */
 /* Most visitors never search on a sixty-item site, so nothing search-related
    is downloaded until someone asks for it. */
-let searchLoading: Promise<{ open: () => void }> | null = null;
-function loadSearch() {
+let searchLoading: Promise<{ open: (initial?: string) => void }> | null = null;
+export function loadSearch() {
   if (!searchLoading) searchLoading = import('./search-overlay.ts').then((m) => ({ open: m.open }));
   return searchLoading;
 }
