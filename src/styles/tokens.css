@@ -3,28 +3,40 @@
    Every value on the site lives here. Nothing in a component hardcodes a
    colour, a font size, or a spacing value.
 
-   [ART] direction chosen: "ledger".
-   Warm paper ground, near-black ink, one deep vermilion accent, square corners,
-   hairline rules. The reference object is a wholesale order book, not a
-   consumer store: the goods supply all the colour a page needs, so the
-   furniture around them stays quiet.
+   [ART] direction chosen: "festive ledger".
+   Warm cream ground, deep maroon accent, brass for ornament, soft corners,
+   hairline rules. The reference object is still a wholesale order book rather
+   than a consumer store — the goods supply the colour, the furniture stays
+   quiet — but the ground and the brass carry the festival the goods are for.
    ========================================================================== */
 
 :root {
   /* --- Colour -------------------------------------------------------------
      Role names, not colour names, so the direction can change without
      renaming a single class. */
-  --ink: #1b1714;             /* primary text, headings */
-  --ink-muted: #6b625a;       /* secondary text, captions, article numbers */
-  --ground: #faf7f2;          /* page background */
+  --ink: #2a211c;             /* primary text, headings */
+  --ink-muted: #6e5f52;       /* secondary text, captions, article numbers */
+  --ground: #fdf7ed;          /* page background */
   --ground-raised: #ffffff;   /* cards, drawers, anything above the page */
-  --accent: #a8261c;          /* the one loud colour: CTAs, active states, tags */
+  --accent: #9c1f26;          /* the one loud colour: CTAs, active states, tags */
   --accent-ink: #ffffff;      /* text on --accent */
-  --accent-quiet: #e8d3cf;    /* accent at low emphasis: hairlines, underlines */
-  --plinth: #efe8dc;          /* the surface product photos sit on */
-  --line: #e2dad0;            /* hairlines and dividers */
+  --accent-quiet: #ecd9c6;    /* accent at low emphasis: hairlines, underlines */
+  --plinth: #f6e9d7;          /* the surface product photos sit on */
+  --line: #e8dac6;            /* hairlines and dividers */
   --ok: #2f6b45;              /* status only: in stock */
   --warn: #8a5a12;            /* status only: low stock */
+
+  /* Brass. The festive register the palette needs and the maroon cannot give.
+     Two values because one of them has to carry text: --gold is for ornament
+     (rules, dividers, the ring around a motif) and fails contrast on purpose;
+     --gold-ink is the darkened form, 4.7:1 on --ground, for eyebrows and
+     labels. Never set text in --gold. */
+  --gold: #c19a4b;
+  --gold-ink: #8a6a24;
+
+  /* The warm wash under every page header and the hero. Declared once so the
+     hero and the eleven interior pages cannot drift apart. */
+  --wash: linear-gradient(180deg, #fdf3e2 0%, #fbead4 44%, var(--ground) 100%);
 
   /* --- Type ---------------------------------------------------------------
      One display family, one text family. Never three.
@@ -59,7 +71,7 @@
   --space-3xl: 6rem;
 
   /* --- Structure ---------------------------------------------------------- */
-  --radius: 0px;              /* one value for the whole site */
+  --radius: 3px;              /* one value for the whole site */
   --hairline: 1px;
   --measure: 66ch;            /* max line length for body copy */
   --container: 76rem;         /* max content width */

@@ -69,7 +69,11 @@
 }
 .chip:hover { border-color: var(--ink); }
 .chip.is-on { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
-.chip__n { font-variant-numeric: tabular-nums; opacity: 0.6; font-size: 0.85em; }
+/* Opacity rather than a colour because the count has to recede against both
+   chip states — ink on white when resting, white on accent when selected — and
+   a fixed colour can only serve one. It is the lowest value that still clears
+   4.5:1 in both: 7.0:1 resting, 5.1:1 selected. Lowering it fails contrast. */
+.chip__n { font-variant-numeric: tabular-nums; opacity: 0.75; font-size: 0.85em; }
 
 .fg { display: flex; align-items: center; gap: var(--space-2xs); flex-wrap: wrap; }
 .fg__label { flex: none; }
