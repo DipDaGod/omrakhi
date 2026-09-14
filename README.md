@@ -253,6 +253,29 @@ Both measurement tools are off by default, are served from this origin under
 same flags, so it describes whichever of them is actually running rather than
 what someone meant to enable.
 
+### The map
+
+`/visit` and `/about` show a static image by default and load an interactive
+Leaflet map only when someone presses **Explore the map**. Leaflet is ~42KB
+gzipped — larger than the whole `/visit` budget — so it sits behind a dynamic
+import and is excluded from the budget the same way the search overlay is. A
+visitor who never opens it never downloads it, and without JavaScript the
+still image and its Google Maps link are all that ever existed.
+
+Two things this depends on, both easy to break silently:
+
+- **Leaflet is a dependency, not a CDN script.** `script-src` is `'self'`, so a
+  CDN tag would be blocked outright.
+- **`img-src` names the tile host.** Tiles come from `tile.openstreetmap.org`
+  and the CSP lists it explicitly; tighten that back and the map renders as a
+  grey box with no error anyone will notice. The smoke suite replays the real
+  policy and asserts tiles pass it.
+
+OpenStreetMap attribution is required by their terms and is rendered by the
+map itself. Their [tile usage policy](https://operations.osmfoundation.org/policies/tiles/)
+covers a site this size, but it is a volunteer service — if traffic grows,
+move to a paid tile provider rather than leaning on it.
+
 ### What `vercel.json` sets
 
 - **Immutable caching for `/_a/*`.** Astro content-hashes everything there, so a

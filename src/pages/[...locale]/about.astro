@@ -5,6 +5,7 @@ import Base from '../../layouts/Base.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import CtaBlock from '../../components/CtaBlock.astro';
 import StatBar from '../../components/StatBar.astro';
+import StaticMap from '../../components/StaticMap.astro';
 
 import { SITE, PROOF } from '../../config/site.ts';
 import { STORY } from '../../config/about.ts';
@@ -158,10 +159,24 @@ const facts = [
           : 'In season, coming here is the best way to see the range in the hand. Send a message before you set out.'}
         context={hi ? 'मैं दुकान आना चाहता हूँ' : 'I would like to visit the shop'}
       />
-      <p class="link-row">
-        <a href={href(ROUTES.visit, locale)}>{t('nav.visit')}</a>
-        <a href={href(ROUTES.collections, locale)}>{t('nav.collection')}</a>
-      </p>
+      {/* The page has spent nine paragraphs on a street most buyers have never
+          walked down; the least it can do at the end is show where it is. */}
+      <div class="ab__where">
+        <StaticMap locale={locale} />
+        <div>
+          <h2 class="ab__wherehead">{hi ? 'पता' : 'The address'}</h2>
+          <address class="ab__addr">
+            {SITE.address.line1}<br />
+            {SITE.address.line2}<br />
+            {SITE.address.city} {SITE.address.postalCode}<br />
+            <strong>{SITE.address.landmark}</strong>
+          </address>
+          <p class="link-row">
+            <a href={href(ROUTES.visit, locale)}>{hi ? 'पूरा रास्ता देखिए' : 'Full directions'}</a>
+            <a href={href(ROUTES.collections, locale)}>{t('nav.collection')}</a>
+          </p>
+        </div>
+      </div>
     </div>
   </article>
 </Base>
@@ -194,6 +209,10 @@ const facts = [
   .ab__pair { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-m); margin-block: var(--space-2xl); }
   .ab__pair figure { margin: 0; }
   .ab__pair figcaption { padding-inline: 0; }
+  .ab__where { display: grid; grid-template-columns: 1.2fr 1fr; gap: var(--space-l); margin-top: var(--space-l); align-items: start; }
+  .ab__wherehead { font-size: var(--step-1); margin-bottom: var(--space-2xs); }
+  .ab__addr { font-style: normal; line-height: 1.7; }
+  @media (max-width: 60rem) { .ab__where { grid-template-columns: 1fr; } }
   .ab__team { list-style: none; padding: 0; display: grid; gap: var(--space-2xs); }
   .link-row { display: flex; gap: var(--space-m); margin-top: var(--space-s); font-size: var(--step--1); }
   @media (max-width: 60rem) { .ab__pair { grid-template-columns: 1fr; } }

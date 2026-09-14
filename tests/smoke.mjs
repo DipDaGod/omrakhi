@@ -258,6 +258,44 @@ for (const route of A11Y_PAGES) {
   await a11y.close();
 }
 
+/* --- Interactive map ------------------------------------------------------
+   Leaflet is behind a dynamic import so it stays outside /visit's budget, and
+   its tiles come from a host the CSP has to name explicitly. Both are easy to
+   break without noticing: a stricter img-src silently leaves a grey box, and a
+   static import would blow the budget. Tiles are stubbed because CI has no
+   route to openstreetmap.org — what is under test is that the request is made
+   and the policy permits it, not that the internet works. */
+const TILE_PNG = Buffer.from(
+  'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==',
+  'base64',
+);
+const mapPage = await browser.newPage({ viewport: { width: 1280, height: 900 } });
+await mapPage.route('**/*', async (r) => {
+  if (r.request().resourceType() !== 'document') return r.continue();
+  const res = await r.fetch();
+  await r.fulfill({ response: res, headers: { ...res.headers(), 'content-security-policy': csp } });
+});
+/* Registered after the catch-all on purpose: Playwright gives priority to the
+   most recently added route, so this is what makes tiles reach the stub. */
+let tilesServed = 0;
+await mapPage.route('**/tile.openstreetmap.org/**', (r) => {
+  tilesServed++;
+  r.fulfill({ status: 200, contentType: 'image/png', body: TILE_PNG });
+});
+const mapViolations = [];
+mapPage.on('console', (m) => { if (/Content Security Policy/i.test(m.text())) mapViolations.push(m.text()); });
+await mapPage.goto(`${BASE}/visit`, { waitUntil: 'networkidle' });
+ok('map: still image is what loads with the page', await mapPage.locator('.map__still').count() === 1);
+ok('map: no Leaflet until asked', await mapPage.locator('.leaflet-container').count() === 0);
+await mapPage.locator('[data-map-open]').click();
+await mapPage.waitForSelector('.leaflet-container', { timeout: 15000 });
+await mapPage.waitForTimeout(1500);
+ok('map: Leaflet mounts on request', await mapPage.locator('.leaflet-container').count() === 1);
+ok(`map: tiles pass the CSP (${tilesServed} served)`, tilesServed > 0 && await mapPage.locator('.leaflet-tile-loaded').count() > 0);
+ok('map: OpenStreetMap is credited', (await mapPage.locator('.leaflet-control-attribution').innerText()).includes('OpenStreetMap'));
+ok('map: no CSP violation opening it', mapViolations.length === 0);
+await mapPage.close();
+
 /* --- Reduced motion -------------------------------------------------------
    The overlay exit is driven by a timer that reduced motion skips entirely.
    If that path ever stops firing, the overlay is never removed from the DOM

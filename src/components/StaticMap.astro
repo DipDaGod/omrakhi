@@ -6,9 +6,17 @@ import { siteImage } from '../lib/images.ts';
 import Icon from './Icon.astro';
 
 /**
- * A static image, never an embedded iframe. A Google Maps embed costs roughly
- * half a megabyte and a third-party connection on the most important page of
- * the site, to display something the visitor will open in the Maps app anyway.
+ * A static image by default, never an embedded iframe. A Google Maps embed
+ * costs roughly half a megabyte and a third-party connection on the most
+ * important page of the site, to display something the visitor will open in
+ * the Maps app anyway.
+ *
+ * An interactive Leaflet map is available on request. It is behind a button
+ * rather than loaded with the page because Leaflet is larger than this page's
+ * entire JavaScript budget, and because for most visitors the useful action is
+ * "open this in the app I already navigate with", not panning a map in a tab.
+ * Without JavaScript the whole thing stays exactly what it was: a photograph
+ * of the location that links to Maps.
  */
 interface Props { locale: Locale; class?: string }
 const { locale, class: className } = Astro.props;
@@ -18,15 +26,84 @@ const q = encodeURIComponent(
   `${SITE.address.line1}, ${SITE.address.line2}, ${SITE.address.city} ${SITE.address.postalCode}`,
 );
 const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${q}`;
+const label = `${SITE.name}, ${SITE.address.line1}`;
 ---
-<a class:list={['map', className]} href={mapsUrl} rel="noopener" target="_blank">
-  {img && <Image src={img} alt={`${SITE.name}, ${SITE.address.line1}`} widths={[480, 768, 1200]}
-    sizes="(max-width: 40rem) 100vw, 36rem" loading="lazy" />}
-  <span class="map__cta btn btn--secondary">
-    <Icon name="mapPin" /> {t('action.openInMaps')}
-  </span>
-</a>
+<div class:list={['mapwrap', className]}>
+  <div class="map" data-map
+    data-lat={String(SITE.address.geo.lat)}
+    data-lng={String(SITE.address.geo.lng)}
+    data-label={label}>
+    <a class="map__still" href={mapsUrl} rel="noopener" target="_blank">
+      {img && <Image src={img} alt={label} widths={[480, 768, 1200]}
+        sizes="(max-width: 40rem) 100vw, 36rem" loading="lazy" />}
+      <span class="map__cta btn btn--secondary">
+        <Icon name="mapPin" /> {t('action.openInMaps')}
+      </span>
+    </a>
+  </div>
+
+  {/* Hidden until the script runs, so a no-JS visitor is never shown a button
+      that cannot do anything. */}
+  <p class="map__actions" data-map-actions hidden>
+    <button class="btn btn--quiet" type="button" data-map-open>
+      {t('action.exploreMap')}
+    </button>
+    <a class="btn btn--quiet" href={mapsUrl} rel="noopener" target="_blank">
+      {t('action.openInMaps')}
+    </a>
+  </p>
+</div>
+
 <style>
-  .map { position: relative; display: block; background: var(--plinth); }
+  .mapwrap { display: grid; gap: var(--space-2xs); }
+  .map { position: relative; background: var(--plinth); min-height: 12rem; }
+  .map__still { display: block; }
   .map__cta { position: absolute; left: var(--space-s); bottom: var(--space-s); }
+  .map__actions { display: flex; gap: var(--space-2xs); flex-wrap: wrap; }
+
+  /* Once live the still is gone and Leaflet owns the box, so it needs a height
+     of its own — a Leaflet container with no height renders nothing at all. */
+  .map[data-live] { min-height: 0; }
+  .map :global(.lmap__canvas) { height: clamp(16rem, 38vw, 24rem); }
+  .map :global(.leaflet-container) { background: var(--plinth); font: inherit; }
+
+  /* The default marker is a PNG that does not survive bundling; this is a
+     plain element instead. */
+  .map :global(.lmap__pin span) {
+    display: block;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 3px var(--ground-raised), 0 1px 4px rgb(27 23 20 / 0.4);
+  }
 </style>
+
+<script>
+  import { mount } from '../islands/map.ts';
+
+  for (const wrap of document.querySelectorAll<HTMLElement>('.mapwrap')) {
+    const root = wrap.querySelector<HTMLElement>('[data-map]');
+    const actions = wrap.querySelector<HTMLElement>('[data-map-actions]');
+    const button = wrap.querySelector<HTMLButtonElement>('[data-map-open]');
+    if (!root || !actions || !button) continue;
+
+    actions.hidden = false;
+    let loading = false;
+
+    button.addEventListener('click', async () => {
+      if (loading || root.dataset.live !== undefined) return;
+      loading = true;
+      button.disabled = true;
+      try {
+        await mount(root);
+        button.remove();
+      } catch {
+        /* Leaving the still in place is the correct failure: it is a picture
+           of the same location and the Maps link beside it still works. */
+        button.disabled = false;
+        loading = false;
+      }
+    });
+  }
+</script>
