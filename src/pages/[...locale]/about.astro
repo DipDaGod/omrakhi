@@ -4,13 +4,15 @@ import { Image } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import CtaBlock from '../../components/CtaBlock.astro';
+import StatBar from '../../components/StatBar.astro';
 
-import { SITE } from '../../config/site.ts';
+import { SITE, PROOF } from '../../config/site.ts';
 import { STORY } from '../../config/about.ts';
 import { useTranslations, LOCALES, DEFAULT_LOCALE, type Locale } from '../../i18n/ui.ts';
 import { href, ROUTES, localeFromParam } from '../../lib/routes.ts';
 import { allProducts, allCategories } from '../../lib/catalogue.ts';
 import { siteImage } from '../../lib/images.ts';
+import { num } from '../../lib/format.ts';
 
 export const getStaticPaths: GetStaticPaths = () =>
   LOCALES.map((locale) => ({ params: { locale: locale === DEFAULT_LOCALE ? undefined : locale } }));
@@ -24,6 +26,22 @@ const street = siteImage('street');
 const workshop = siteImage('workshop');
 const hands = siteImage('hands');
 const packing = siteImage('packing-table');
+
+/* A reader who will not get through nine paragraphs should still leave with
+   something concrete. Every figure here is counted from the catalogue or read
+   from PROOF/STORY — nothing is asserted that is not already true elsewhere on
+   the site, and anything still null simply does not appear. */
+const materials = new Set(categories.flatMap((c) => c.data.materials));
+const facts = [
+  { value: num(products.length, locale), label: hi ? 'डिज़ाइन, सब प्रकाशित' : 'designs, all published' },
+  { value: num(categories.length, locale), label: hi ? 'श्रेणियाँ' : 'collections' },
+  { value: num(materials.size, locale), label: hi ? 'सामग्री के प्रकार' : 'materials worked' },
+  ...(STORY.foundedYear ? [{ value: String(STORY.foundedYear), label: hi ? 'से' : 'making rakhi since' }] : []),
+  ...(STORY.generations ? [{ value: num(STORY.generations, locale), label: hi ? 'पीढ़ियाँ' : 'generations' }] : []),
+  ...(PROOF.dealers && PROOF.states
+    ? [{ value: num(PROOF.dealers, locale), label: hi ? `डीलर, ${num(PROOF.states, locale)} राज्यों में` : `dealers across ${PROOF.states} states` }]
+    : []),
+];
 ---
 
 <Base locale={locale}
@@ -46,6 +64,10 @@ const packing = siteImage('packing-table');
         ? 'बड़ाबाज़ार की एक गली में, आईसीआईसीआई बैंक के पास, एक सीढ़ी चढ़कर। यहीं राखी बनती है, यहीं पैक होती है, और यहीं से पूरे भारत में जाती है।'
         : 'A lane in Burrabazar, near the ICICI Bank, up one flight of stairs. This is where the rakhi is made, packed and sent from.'}</p>
     </header>
+
+    <div class="container container--prose ab__facts">
+      <StatBar stats={facts} />
+    </div>
 
     {street && (
       <figure class="ab__bleed">
@@ -145,10 +167,23 @@ const packing = siteImage('packing-table');
 </Base>
 
 <style>
-  .ab header { margin-bottom: var(--space-l); }
+  .ab header { margin-bottom: var(--space-m); }
+  .ab__facts { margin-bottom: var(--space-l); }
   .ab header h1 { margin-bottom: var(--space-2xs); }
+  /* A 3:2 photograph run to the full width of a desktop window is a thousand
+     pixels of wall between two paragraphs — the reader loses the thread of the
+     page scrolling past it. Cropping to a banner keeps the photograph
+     full-bleed without letting it take over, and the ratio narrows on a phone
+     where a wide strip would show nothing legible. */
   .ab__bleed { margin: var(--space-2xl) 0; }
-  .ab__bleed :global(img) { width: 100%; }
+  .ab__bleed :global(img) {
+    width: 100%;
+    aspect-ratio: 21 / 8;
+    object-fit: cover;
+  }
+  @media (max-width: 60rem) {
+    .ab__bleed :global(img) { aspect-ratio: 16 / 10; }
+  }
   .ab__bleed figcaption, .ab__pair figcaption {
     max-width: var(--container);
     margin: var(--space-2xs) auto 0;

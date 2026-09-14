@@ -24,7 +24,17 @@ body {
   flex-direction: column;
 }
 
+/* height: auto is load-bearing, not tidiness. Astro's <Image> writes real
+   width and height attributes so the browser can reserve the right box before
+   the file arrives — good for CLS, but max-width alone then scales the width
+   down and leaves the attribute height standing. Every editorial photograph on
+   /about, /visit and /how-to-order was rendering at its full intrinsic height
+   inside a narrower column: a 1600x1067 source in a 572px figure came out
+   572x1067. The rule below is what makes those attributes behave as a ratio.
+   .plinth img overrides it, and is more specific, so the catalogue is
+   unaffected. */
 img, picture, svg, video { display: block; max-width: 100%; }
+img { height: auto; }
 
 /* The `hidden` attribute is only `display: none` in the UA stylesheet, so any
    author rule that sets display beats it — silently, because the markup still
