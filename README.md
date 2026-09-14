@@ -10,9 +10,13 @@ brief; this file is how to run what was built from it.
 npm install
 npm run dev          # prepares images, then starts the dev server
 npm run build        # images & OG cards → astro build → budget check → link check
-npm test             # build, link check, then the browser smoke + a11y suite
+npm test             # typecheck, build, then the browser smoke + a11y suite
 npm run check        # astro check (TypeScript across .astro, .ts and .tsx)
 ```
+
+`npm test` needs a Chromium for Playwright. `npx playwright install chromium`
+fetches one; if the machine already has a suitable binary, point at it with
+`CHROMIUM_PATH=/path/to/chrome npm test` instead.
 
 ## What this is
 
