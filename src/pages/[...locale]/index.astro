@@ -249,8 +249,14 @@ const localBusiness = {
   /* The photograph is the hero's ground, not a figure beside it. It carries no
      information the text does not, so it is aria-hidden with an empty alt
      rather than described twice. */
-  .hero__media { position: absolute; inset: 0; z-index: -1; }
-  .hero__media img { width: 100%; height: 100%; object-fit: cover; object-position: 72% center; }
+  /* The photograph occupies the right four-fifths rather than the full width.
+     Full-bleed left the frame wider than the image, which meant cover scaled
+     by width and threw away nearly half the scene vertically — and gave no
+     horizontal room to place the motif. A narrower frame crops less and lets
+     the Om rakhi sit centred in the part of the band the photograph actually
+     owns. Its left edge falls under the opaque part of the wash. */
+  .hero__media { position: absolute; inset: 0 0 0 auto; width: 80%; z-index: -1; }
+  .hero__media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 38%; }
 
   /* The gradient is the whole trick: opaque cream under the text, clearing to
      nothing by the time it reaches the rakhi on the right. Stops are in the
@@ -267,13 +273,22 @@ const localBusiness = {
     background: linear-gradient(0deg, rgb(253 247 237 / 0.45) 0%, rgb(253 247 237 / 0) 26%);
   }
 
-  .hero__inner { display: grid; align-items: center; min-height: clamp(26rem, 50vw, 38rem); }
+  /* 45vw is the photograph's own proportions seen through an 80%-wide frame
+     (0.8 / 1.78). Holding near it keeps cover scaling by width at every size,
+     so the crop stays vertical and the arrangement keeps its shape. Taller
+     than this and cover flips to scaling by height, which crops the sides and
+     cuts the tray and the marigolds out of the composition. */
+  .hero__inner { display: grid; align-items: center; min-height: clamp(24rem, 45vw, 46rem); }
   /* The column is kept deliberately narrow. The gradient can only clear the
      motif if the text stops short of it, so the copy owns the left third and
      the photograph owns the rest. */
-  .hero__text { position: relative; display: grid; gap: var(--space-s); max-width: 29rem; padding-block: var(--space-2xl); animation: rise var(--dur-base) var(--ease) both; }
+  .hero__text { position: relative; display: grid; gap: var(--space-s); max-width: 29rem; padding-block: var(--space-xl); animation: rise var(--dur-base) var(--ease) both; }
   .hero__text > * { position: relative; z-index: 1; }
-  .hero__text h1 { max-width: 13ch; color: var(--accent); }
+  /* Wider than it looks: the cap only decides how many lines the headline
+     takes, since the block's own max-width is what keeps the copy clear of the
+     motif. Fewer lines means a shorter block, and a block shorter than the
+     band is what lets the photograph keep its proportions. */
+  .hero__text h1 { max-width: 16ch; color: var(--accent); }
   .hero__text .lede { max-width: 27rem; }
 
   /* The wash is anchored to the copy, not the viewport: opaque everywhere the
@@ -336,25 +351,21 @@ const localBusiness = {
     /* On a phone there is no room beside the photograph, so the wash turns
        vertical: cream under the text, clearing downward to leave the rakhi
        legible at the foot of the band. */
+    /* A phone has no beside, so the photograph stops being a background and
+       becomes its own band under the copy. Behind the text it was unreadable
+       without a wash, and a wash heavy enough to carry the text buried the
+       motif — the arrangement sat in the opaque part and all that showed was
+       a corner of the pearls. Given its own band it needs no wash at all. */
+    .hero { padding-bottom: 17rem; }
     .hero__inner { min-height: 0; }
-    .hero__text { padding-block: var(--space-xl) 15rem; max-width: none; }
+    .hero__text { padding-block: var(--space-xl) var(--space-m); max-width: none; }
     .hero__text::before { display: none; }
-    /* The desktop caps exist to keep the copy clear of the motif. There is no
-       beside on a phone, so they only cost lines — and every line pushes the
-       photograph further down the band. */
     .hero__text h1 { max-width: none; }
     .hero__text .lede { max-width: none; }
-    .hero__media img { object-position: 62% 72%; }
-    /* Holds near-opaque past the address line — the last and faintest thing in
-       the column — and only clears in the padding below it. Clearing earlier
-       puts --ink-muted over the lit part of the photograph, which is the one
-       place on a phone where the wash stops being decoration. */
+    .hero__media { inset: auto 0 0 0; width: 100%; height: 17rem; }
+    .hero__media img { object-position: 46% 46%; }
     .hero__media::after {
-      background: linear-gradient(180deg,
-        #fdf3e2 0%,
-        rgb(253 243 226 / 0.94) 62%,
-        rgb(252 238 216 / 0.55) 78%,
-        rgb(251 234 212 / 0.04) 94%);
+      background: linear-gradient(180deg, var(--ground) 0%, rgb(253 247 237 / 0) 20%);
     }
     .visit { grid-template-columns: 1fr; gap: var(--space-l); }
     .cx__grid { grid-template-columns: repeat(3, 1fr); }
