@@ -5,7 +5,7 @@
 import { ENV } from './env.ts';
 
 export const SITE = {
-  origin: 'https://omrakhiudyog.com',
+  origin: 'https://omrakhi.vercel.app',
   name: 'Om Rakhi Udyog',
   legalName: 'Om Rakhi Udyog',
   shortDescription: 'Rakhi manufacturer and wholesale supplier, Burrabazar, Kolkata',
