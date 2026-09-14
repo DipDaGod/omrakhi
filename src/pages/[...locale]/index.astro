@@ -316,14 +316,18 @@ const localBusiness = {
        vertical: cream under the text, clearing downward to leave the rakhi
        legible at the foot of the band. */
     .hero__inner { min-height: 0; }
-    .hero__text { padding-block: var(--space-xl) 13rem; max-width: none; }
+    .hero__text { padding-block: var(--space-xl) 15rem; max-width: none; }
     .hero__media img { object-position: 62% 72%; }
+    /* Holds near-opaque past the address line — the last and faintest thing in
+       the column — and only clears in the padding below it. Clearing earlier
+       puts --ink-muted over the lit part of the photograph, which is the one
+       place on a phone where the wash stops being decoration. */
     .hero__media::after {
       background: linear-gradient(180deg,
         #fdf3e2 0%,
-        rgb(253 243 226 / 0.95) 34%,
-        rgb(252 238 216 / 0.58) 56%,
-        rgb(251 234 212 / 0.08) 78%);
+        rgb(253 243 226 / 0.94) 62%,
+        rgb(252 238 216 / 0.55) 78%,
+        rgb(251 234 212 / 0.04) 94%);
     }
     .visit { grid-template-columns: 1fr; gap: var(--space-l); }
     .cx__grid { grid-template-columns: repeat(3, 1fr); }
