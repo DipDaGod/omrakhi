@@ -12,8 +12,15 @@ Work down this list and the site goes from complete to true.
 ## 1. Photography — the largest job
 
 Every product photograph on the site right now is a generated stand-in: a flat
-coloured shape with the article number under it. They exist so the layout,
-the grid, the drawer and the budgets could be built and reviewed.
+coloured shape reading "photograph to be supplied", with the article number on
+the card beneath it. They exist so the layout, the grid, the drawer and the
+budgets could be built and reviewed.
+
+There are only three stand-in files for the whole catalogue, shared out by a
+hash of the article number. Astro turns every distinct source image into a
+dozen variants, so one stand-in per article meant close to 4,000 emitted files
+and a three-and-a-half minute build; three means 110 and fifteen seconds. This
+affects nothing about real photography — each article still gets its own.
 
 **To replace one:** put the real file at
 
