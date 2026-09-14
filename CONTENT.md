@@ -193,8 +193,12 @@ Size, page count and date are shown before the link, deliberately.
 
 ## 10. Web3Forms key
 
-Set `WEB3FORMS_KEY` in the build environment. Without it the contact and custom
-forms post to a placeholder key and enquiries are lost silently.
+Set `PUBLIC_WEB3FORMS_KEY` in the build environment — on Vercel, in the project's
+Environment Variables. Without it the contact and custom forms post to a
+placeholder key and enquiries are lost silently.
+
+The key is public by design: it appears in the HTML of the form that posts with
+it. `.env.example` lists it alongside the two optional measurement flags.
 
 ---
 

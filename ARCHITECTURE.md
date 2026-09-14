@@ -166,7 +166,65 @@ This is the same instinct as the empty `testimonials.json`: rather than inventin
 a plausible quote, the home page omits the section entirely, which is what P1's
 edge states require.
 
-## 9. Checks that run on every build
+## 9. Vercel: what is used, and what is deliberately not
+
+The site deploys to Vercel as plain static output. Two of Vercel's headline
+features were considered and rejected, and the reasons matter more than the
+configuration.
+
+**No `@astrojs/vercel` adapter.** The adapter exists to enable server rendering,
+ISR, edge middleware and Vercel's image service. The brief locks in "No backend.
+Static build, deployed to a CDN", so the first three have nothing to do here, and
+the fourth is rejected on its own merits below. Adding the adapter would move the
+output into `.vercel/output` and add a dependency in exchange for nothing. Vercel
+serves `dist/` directly and the framework preset handles it.
+
+**No Vercel Image Optimization.** This is the tempting one, and it is wrong here.
+A10 caps public delivery at 1400px — enough to judge a piece, weak as a
+manufacturing reference. Vercel's image service resolves sizes from a URL
+parameter at request time, which moves that cap from a build-time guarantee into
+a query string anyone can edit. The build already emits AVIF and WebP at fixed
+widths through sharp, which is both cheaper and actually enforceable.
+
+**Speed Insights is used, because it closes a real gap.** A9 sets an LCP target
+of 2.0s on a mid-tier Android over 4G and a CLS target of 0.05, and
+`scripts/check-budgets.mjs` says plainly that it cannot measure either. Speed
+Insights measures both from real dealers on real phones. It is off unless
+`PUBLIC_SPEED_INSIGHTS=1`, served from this origin so it needs no CSP exception
+and opens no third-party connection, and the privacy page reads the same flag so
+it can never claim there is no analytics while analytics is running.
+
+### The content security policy, and its one compromise
+
+`vercel.json` sends a policy that allows no external script, font, stylesheet or
+connection, and exactly one external `form-action` — the Web3Forms endpoint the
+contact and custom forms post to.
+
+`script-src` includes `'unsafe-inline'`. That is a compromise and it is worth
+being clear about. Three scripts are deliberately inline — the season strip, the
+contact dock's out-of-hours label and the hours table's today marker — because
+they correct build-time output in the visitor's present and must run before
+paint. A hash-based policy would need Astro's `experimental.csp` flag; it was
+rejected because an experimental flag that silently blocks scripts on a minor
+version bump is a bad trade for a site nobody is watching day to day.
+
+The residual risk is low and bounded: a fully static site with no server-rendered
+user input has no XSS sink for `'unsafe-inline'` to be exploited through, and the
+three places where client code writes to `innerHTML` — the search overlay, the
+shortlist drawer and page, and the 404's retired-article lookup — escape their
+input or constrain it to a regex that admits only letters and digits. What the
+policy does block is the realistic threat for a site like this: an injected
+third-party pixel, a hijacked form target, clickjacking, and mixed content.
+
+To tighten it later, convert those three scripts to bundled modules (accepting a
+possible flash of stale text) and drop `'unsafe-inline'`.
+
+The policy is verified rather than assumed: `npm test` reads it back out of
+`vercel.json`, replays it as a real response header against the pages that run
+the most JavaScript, and fails on any `securitypolicyviolation` the browser
+reports. That is how the blob-URL PDF download is known to survive it.
+
+## 10. Checks that run on every build
 
 - `scripts/check-budgets.mjs` — JavaScript per page type, gzipped, following
   static imports only. Dynamically imported chunks (search, the shortlist
@@ -177,5 +235,6 @@ edge states require.
 - `tests/smoke.mjs` (`npm test`) — drives a real browser: island handover,
   filters, the drawer and its URL, the shortlist across four islands, search
   ranking, the shared-shortlist link, the retired-article 404, the mobile menu
-  and bottom sheet, horizontal-scroll checks at 390px, the no-JS path, and an
-  axe-core pass on eight pages for the A8 floor.
+  and bottom sheet, horizontal-scroll checks at 390px, the no-JS path, the
+  production CSP replayed from `vercel.json`, and an axe-core pass on eight
+  pages for the A8 floor.

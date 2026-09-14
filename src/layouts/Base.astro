@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import { SITE } from '../config/site.ts';
+import { ENV } from '../config/env.ts';
 import { HTML_LANG, type Locale } from '../i18n/ui.ts';
 import { alternateHref, pathWithoutLocale } from '../lib/routes.ts';
 import SeasonStrip from '../components/SeasonStrip.astro';
@@ -63,7 +64,7 @@ const schemas = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
 
-    {noindex && <meta name="robots" content="noindex, follow" />}
+    {(noindex || ENV.isPreview) && <meta name="robots" content="noindex, follow" />}
 
     {/* A6 — hreflang both ways, x-default to English. Only for pages that
         genuinely exist in both languages. */}
@@ -93,6 +94,16 @@ const schemas = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
     {schemas.map((s) => (
       <script type="application/ld+json" set:html={JSON.stringify(s)} />
     ))}
+
+    {/*
+      Vercel Speed Insights and Web Analytics, both off unless switched on in
+      the build environment. Served from this origin under /_vercel/, so they
+      need no CSP exception and no third-party connection. Neither sets a
+      cookie or identifies a visitor; the privacy page states whichever of
+      them is actually running.
+    */}
+    {ENV.speedInsights && <script defer src="/_vercel/speed-insights/script.js"></script>}
+    {ENV.webAnalytics && <script defer src="/_vercel/insights/script.js"></script>}
   </head>
 
   <body class={bodyClass}>

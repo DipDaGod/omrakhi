@@ -102,16 +102,75 @@ which compress far better than real ones. Re-run `npm run budgets` after the
 first batch of real photography lands; that is when the image budget is actually
 tested.
 
-## Deployment
+## Deployment — Vercel
 
-The build output in `dist/` is static files. Any CDN will serve it. Two things
-to set:
+The repository is configured for Vercel and needs no dashboard setup beyond
+importing it. `vercel.json` pins the build command, the output directory and the
+headers, so a deploy is reproducible from the repo rather than from settings
+someone changed six months ago.
 
-- `WEB3FORMS_KEY` in the build environment, or the contact and custom forms post
-  to a placeholder key and silently fail.
-- `SITE.origin` in `src/config/site.ts` if the domain is ever not
-  `omrakhiudyog.com` — canonical URLs, `hreflang` and the sitemap all derive
-  from it.
+```
+Framework      Astro (static)
+Install        npm ci
+Build          npm run build
+Output         dist/
+```
+
+`npm run build` is the same command CI runs: it prepares images, builds, then
+**fails on a page over its A9 budget or a broken internal link**. A deploy that
+would regress performance does not reach production.
+
+### Environment variables
+
+Set these in the Vercel project. All are read at build time and baked into the
+static output — there is no server to read them at runtime. See `.env.example`.
+
+| Variable | Effect if unset |
+|---|---|
+| `PUBLIC_WEB3FORMS_KEY` | The contact and custom forms post to a placeholder and enquiries are lost silently. **Set this before launch.** |
+| `PUBLIC_SPEED_INSIGHTS` | No Speed Insights. Set to `1` for field LCP and CLS. |
+| `PUBLIC_WEB_ANALYTICS` | No Web Analytics. Set to `1` for page views and referrers. |
+
+Both measurement tools are off by default, are served from this origin under
+`/_vercel/`, set no cookies and identify nobody — and the privacy page reads the
+same flags, so it describes whichever of them is actually running rather than
+what someone meant to enable.
+
+### What `vercel.json` sets
+
+- **Immutable caching for `/_a/*`.** Astro content-hashes everything there, so a
+  year-long `immutable` header is safe and is the single biggest win for repeat
+  visitors. `/catalogue.json` and `/og/*` are *not* hashed and are set to
+  revalidate — a stale catalogue would show a dealer products that no longer
+  exist.
+- **`trailingSlash: false`.** Canonical URLs and `hreflang` are built without a
+  trailing slash, so the server now redirects `/x/` to `/x` and agrees with them.
+- **A content security policy**, plus HSTS, `nosniff`, `frame-ancestors: none`,
+  a referrer policy and a permissions policy. `form-action` allows exactly one
+  external origin: the Web3Forms endpoint the two forms post to. Nothing else
+  external is permitted, which is accurate — the site loads no third-party
+  script, font, or stylesheet.
+
+The CSP is not taken on trust. `npm test` reads it back out of `vercel.json`,
+replays it against the pages that run the most JavaScript, and fails on any
+violation the browser reports — so a policy that would break the grid island or
+the shortlist PDF is caught before it ships, not after.
+
+### Preview deployments
+
+Preview and branch deployments render a `noindex` meta tag and serve a
+`robots.txt` that disallows everything, on top of the `X-Robots-Tag` Vercel
+already sends for non-production deployments. Canonical URLs are built from
+`SITE.origin` regardless of which deployment served the page, which is the
+stronger guarantee of the four.
+
+### Deploying anywhere else
+
+Nothing here is Vercel-only. `dist/` is plain static files and any CDN will
+serve them; the Vercel-specific parts are the headers in `vercel.json` and the
+two optional measurement scripts, which simply do not render when their flags
+are unset. If you move, port the headers — particularly the immutable `/_a/*`
+rule, which the performance budget assumes.
 
 ## What was deliberately not built
 

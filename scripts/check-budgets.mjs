@@ -219,6 +219,21 @@ if (failed) {
   process.exit(1);
 }
 console.log('All pages within budget.\n');
+
+/* The Vercel measurement scripts are served from /_vercel/ by the platform,
+   not emitted into dist/, so they cannot be weighed here. Say so rather than
+   let the figures above read as the whole story. */
+const analytics = [
+  process.env.PUBLIC_SPEED_INSIGHTS,
+  process.env.PUBLIC_WEB_ANALYTICS,
+].filter((v) => v === '1' || v?.toLowerCase() === 'true').length;
+if (analytics) {
+  console.log(
+    `  Note: ${analytics} Vercel measurement script(s) are enabled. They are served from\n` +
+      '  /_vercel/ by the platform and add roughly 1KB gzipped each on top of the figures\n' +
+      '  above, which are measured from dist/ alone.\n',
+  );
+}
 for (const r of results) {
   if (r.desktop) console.log(`  ${r.name}: ${r.desktop.toFixed(1)}KB first paint on a 4-up desktop grid (informational).`);
 }

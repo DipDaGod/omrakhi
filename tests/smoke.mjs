@@ -165,6 +165,69 @@ ok('no-JS: article numbers are readable', (await np.locator('.pc__code').first()
 await np.goto(`${BASE}/contact`, { waitUntil: 'domcontentloaded' });
 ok('no-JS: contact form posts to Web3Forms', (await np.locator('form.fm').getAttribute('action'))?.includes('web3forms'));
 
+// --- The production CSP ----------------------------------------------------
+/* vercel.json sends a Content-Security-Policy that the preview server does
+   not, so without this the policy is unverified until it is live — and a CSP
+   that blocks the grid island or the shortlist PDF is an outage, not a
+   warning. This replays the real policy from vercel.json against the pages
+   that run the most JavaScript, and fails on any violation the browser
+   reports.
+
+   `upgrade-insecure-requests` is dropped because the preview server is http;
+   it is the one directive that cannot be exercised locally. */
+const csp = JSON.parse(readFileSync(new URL('../vercel.json', import.meta.url), 'utf8'))
+  .headers.flatMap((h) => h.headers)
+  .find((h) => h.key === 'Content-Security-Policy').value
+  .split(';')
+  .map((d) => d.trim())
+  .filter((d) => d && d !== 'upgrade-insecure-requests')
+  .join('; ');
+
+const cspPage = await browser.newPage({ viewport: { width: 1280, height: 900 } });
+await cspPage.addInitScript(() => {
+  window.__csp = [];
+  addEventListener('securitypolicyviolation', (e) =>
+    window.__csp.push(`${e.effectiveDirective} blocked ${e.blockedURI}`),
+  );
+});
+await cspPage.route('**/*', async (route) => {
+  if (route.request().resourceType() !== 'document') return route.continue();
+  const res = await route.fetch();
+  await route.fulfill({ response: res, headers: { ...res.headers(), 'content-security-policy': csp } });
+});
+
+await cspPage.goto(`${BASE}/collections/ad-rakhi`, { waitUntil: 'networkidle' });
+await cspPage.waitForSelector('astro-island .pc__heart', { timeout: 10000 });
+ok('csp: the grid island still hydrates', await cspPage.locator('astro-island .pc__heart').count() > 0);
+await cspPage.locator('astro-island .pc__hit').first().click();
+await cspPage.waitForSelector('.dd__panel', { timeout: 5000 });
+ok('csp: the drawer still opens', await cspPage.locator('.dd__code').isVisible());
+await cspPage.keyboard.press('Escape');
+await cspPage.locator('astro-island .pc__heart').first().click();
+await cspPage.locator('[data-search-open]').first().click();
+await cspPage.waitForSelector('.so__panel', { timeout: 5000 });
+await cspPage.locator('.so__input').fill('OM-1003');
+await cspPage.waitForTimeout(400);
+ok('csp: search still loads and ranks', (await cspPage.locator('.sr__code').first().textContent()) === 'OM-1003');
+await cspPage.keyboard.press('Escape');
+
+await cspPage.goto(`${BASE}/shortlist`, { waitUntil: 'networkidle' });
+await cspPage.waitForSelector('.sl__row', { timeout: 8000 });
+ok('csp: /catalogue.json is still fetchable', await cspPage.locator('.sl__row').count() === 1);
+const cspDl = cspPage.waitForEvent('download', { timeout: 20000 }).catch(() => null);
+await cspPage.locator('[data-pdf]').click();
+ok('csp: the shortlist PDF still downloads', !!(await cspDl));
+
+await cspPage.goto(`${BASE}/contact`, { waitUntil: 'networkidle' });
+await cspPage.waitForTimeout(300);
+
+const violations = await cspPage.evaluate(() => window.__csp ?? []);
+ok(
+  `csp: nothing blocked${violations.length ? ` (${[...new Set(violations)].join('; ')})` : ''}`,
+  violations.length === 0,
+);
+await cspPage.close();
+
 // --- A8: accessibility floor ----------------------------------------------
 /* Automated checks cannot prove a page is accessible, but they do catch the
    things this site must never ship: an image without alt text, a form field

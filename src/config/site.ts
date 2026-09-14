@@ -2,6 +2,7 @@
  * Fixed facts. Every page reads the firm's details from here.
  * Nothing in a component hardcodes an address, a number, or a year.
  */
+import { ENV } from './env.ts';
 
 export const SITE = {
   origin: 'https://omrakhiudyog.com',
@@ -35,8 +36,8 @@ export const SITE = {
     indiamart: 'https://indiamart.com/om-rakhi-udyog',
   },
 
-  /** Web3Forms access key. Set WEB3FORMS_KEY in the build environment. */
-  web3formsKey: import.meta.env?.WEB3FORMS_KEY ?? 'PUBLIC-WEB3FORMS-KEY-NOT-SET',
+  /** Set PUBLIC_WEB3FORMS_KEY in the build environment. See .env.example. */
+  web3formsKey: ENV.web3formsKey ?? 'WEB3FORMS-KEY-NOT-SET',
 
   hours: {
     season: [

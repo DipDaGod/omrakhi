@@ -3,6 +3,7 @@ import type { GetStaticPaths } from 'astro';
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import { SITE } from '../../config/site.ts';
+import { ENV, ANALYTICS_ON } from '../../config/env.ts';
 import { STORAGE_KEY } from '../../islands/shortlist-store.ts';
 import { LOCALES, DEFAULT_LOCALE, type Locale } from '../../i18n/ui.ts';
 import { href, ROUTES, localeFromParam } from '../../lib/routes.ts';
@@ -12,6 +13,15 @@ export const getStaticPaths: GetStaticPaths = () =>
 
 const locale = localeFromParam(Astro.params.locale) as Locale;
 const hi = locale === 'hi';
+
+/* This section describes what is actually running on the build that produced
+   this page, not what someone intended. Both measurement tools are switched on
+   with a build-time flag, and this text reads the same flag. */
+const running = [
+  ENV.speedInsights ? (hi ? 'वर्सेल स्पीड इनसाइट्स' : 'Vercel Speed Insights') : null,
+  ENV.webAnalytics ? (hi ? 'वर्सेल वेब एनालिटिक्स' : 'Vercel Web Analytics') : null,
+].filter(Boolean) as string[];
+const runningList = running.join(hi ? ' और ' : ' and ');
 ---
 
 <Base locale={locale}
@@ -43,9 +53,20 @@ const hi = locale === 'hi';
         : 'Tapping a WhatsApp button here opens the message in your own WhatsApp with the text prefilled. Nothing is sent until you send it, and that conversation then sits under WhatsApp’s terms, not ours.'}</p>
 
       <h2>{hi ? 'एनालिटिक्स' : 'Analytics'}</h2>
-      <p>{hi
-        ? 'फ़िलहाल इस साइट पर कोई एनालिटिक्स नहीं चल रहा और कोई ट्रैकिंग कुकी नहीं है। अगर आगे जोड़ा गया तो वह ऐसा होगा जो व्यक्तिगत पहचान नहीं करता और क्रॉस-साइट ट्रैकिंग नहीं करता, और यह पेज उसी दिन अपडेट होगा।'
-        : 'There is no analytics on this site at present and no tracking cookies. If analytics is added it will be a measurement tool that does not identify individuals or track people across sites, and this page will be updated the same day.'}</p>
+      {ANALYTICS_ON ? (
+        <>
+          <p>{hi
+            ? `इस साइट पर ${runningList} चलता है। यह इस साइट के अपने पते से चलता है, किसी बाहरी सर्वर से नहीं।`
+            : `This site runs ${runningList}. It is served from this site's own domain, not from a third-party server.`}</p>
+          <p>{hi
+            ? 'यह कोई कुकी नहीं रखता, आपकी पहचान नहीं करता, और आपको दूसरी वेबसाइटों पर ट्रैक नहीं करता। यह सिर्फ़ यह मापता है कि पेज कितनी तेज़ी से खुले और कौन-से पेज देखे गए — ताकि हमें पता चले कि साइट धीमे कनेक्शन पर ठीक चल रही है या नहीं।'
+            : 'It sets no cookies, does not identify you, and does not follow you to other sites. It measures how quickly pages loaded and which pages were viewed, so we can tell whether the site is holding up on a slow connection.'}</p>
+        </>
+      ) : (
+        <p>{hi
+          ? 'फ़िलहाल इस साइट पर कोई एनालिटिक्स नहीं चल रहा और कोई ट्रैकिंग कुकी नहीं है। अगर आगे जोड़ा गया तो वह ऐसा होगा जो व्यक्तिगत पहचान नहीं करता और क्रॉस-साइट ट्रैकिंग नहीं करता, और यह पेज उसी दिन अपडेट होगा।'
+          : 'There is no analytics on this site at present and no tracking cookies. If analytics is added it will be a measurement tool that does not identify individuals or track people across sites, and this page will be updated the same day.'}</p>
+      )}
 
       <h2>{hi ? 'सवाल हो तो' : 'If you have a question'}</h2>
       <p>{hi ? 'हमें लिखिए: ' : 'Write to us: '}<a href={`mailto:${SITE.email}`}>{SITE.email}</a>, {hi ? 'या फ़ोन ' : 'or call '}{SITE.phone.display}.</p>
