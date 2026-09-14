@@ -5,9 +5,10 @@
  *   node tests/smoke.mjs
  *
  * It exercises the things that only exist once JavaScript runs — the grid
- * island taking over, filters, the drawer, the shortlist across four separate
- * islands, search ranking, the mobile menu and bottom sheet — plus the two
- * states that matter most and are easiest to break: no-JS and narrow screens.
+ * island taking over, filters, sort, the drawer, the shortlist across four
+ * separate islands, search ranking, the mobile menu and bottom sheet — plus
+ * the states that matter most and are easiest to break: no-JS, narrow screens,
+ * the deployed CSP, and reduced motion.
  */
 import { chromium } from 'playwright';
 import { readFileSync } from 'node:fs';
@@ -256,6 +257,32 @@ for (const route of A11Y_PAGES) {
   );
   await a11y.close();
 }
+
+/* --- Reduced motion -------------------------------------------------------
+   The overlay exit is driven by a timer that reduced motion skips entirely.
+   If that path ever stops firing, the overlay is never removed from the DOM
+   and the scroll lock is never released — the page simply locks up, for
+   exactly the users least able to work around it. */
+const rm = await browser.newPage({ viewport: { width: 1280, height: 900 }, reducedMotion: 'reduce' });
+await rm.goto(`${BASE}/collections/ad-rakhi`, { waitUntil: 'networkidle' });
+await rm.waitForSelector('astro-island .pc__heart', { timeout: 10000 });
+await rm.locator('[data-search-open]').first().click();
+await rm.waitForSelector('.so__panel', { timeout: 5000 });
+ok('reduced motion: overlay still opens', await rm.locator('.so__panel').count() === 1);
+await rm.keyboard.press('Escape');
+await rm.waitForTimeout(60);
+ok('reduced motion: overlay is removed, not stranded', await rm.locator('.so__panel').count() === 0);
+ok('reduced motion: scroll lock released', await rm.evaluate(() => !document.documentElement.style.overflow));
+await rm.close();
+
+const rmMob = await browser.newPage({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, reducedMotion: 'reduce' });
+await rmMob.goto(`${BASE}/`, { waitUntil: 'networkidle' });
+await rmMob.locator('[data-menu-open]').click();
+await rmMob.waitForTimeout(150);
+await rmMob.locator('[data-menu-close]').click();
+await rmMob.waitForTimeout(60);
+ok('reduced motion: mobile menu closes without waiting', await rmMob.locator('#mobile-menu[hidden]').count() === 1);
+await rmMob.close();
 
 await browser.close();
 
