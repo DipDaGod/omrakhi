@@ -249,14 +249,12 @@ const localBusiness = {
   /* The photograph is the hero's ground, not a figure beside it. It carries no
      information the text does not, so it is aria-hidden with an empty alt
      rather than described twice. */
-  /* The photograph occupies the right four-fifths rather than the full width.
-     Full-bleed left the frame wider than the image, which meant cover scaled
-     by width and threw away nearly half the scene vertically — and gave no
-     horizontal room to place the motif. A narrower frame crops less and lets
-     the Om rakhi sit centred in the part of the band the photograph actually
-     owns. Its left edge falls under the opaque part of the wash. */
-  .hero__media { position: absolute; inset: 0 0 0 auto; width: 80%; z-index: -1; }
-  .hero__media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 38%; }
+  /* Full-bleed, because this photograph is composed for it: a 2.39 banner with
+     the left half left empty for exactly this copy. The earlier crop-and-frame
+     work existed to manufacture that space out of a squarer image; it is not
+     needed against one that already has it. */
+  .hero__media { position: absolute; inset: 0; z-index: -1; }
+  .hero__media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; }
 
   /* The gradient is the whole trick: opaque cream under the text, clearing to
      nothing by the time it reaches the rakhi on the right. Stops are in the
@@ -273,16 +271,14 @@ const localBusiness = {
     background: linear-gradient(0deg, rgb(253 247 237 / 0.45) 0%, rgb(253 247 237 / 0) 26%);
   }
 
-  /* 45vw is the photograph's own proportions seen through an 80%-wide frame
-     (0.8 / 1.78). Holding near it keeps cover scaling by width at every size,
-     so the crop stays vertical and the arrangement keeps its shape. Taller
-     than this and cover flips to scaling by height, which crops the sides and
-     cuts the tray and the marigolds out of the composition. */
-  .hero__inner { display: grid; align-items: center; min-height: clamp(24rem, 45vw, 46rem); }
+  /* 42vw is the photograph's own aspect (1 / 2.39). Holding to it means the
+     band is the shape of the image, so at most sizes nothing is cropped at
+     all; only past the cap does it start trimming top and bottom. */
+  .hero__inner { display: grid; align-items: center; min-height: clamp(22rem, 42vw, 44rem); }
   /* The column is kept deliberately narrow. The gradient can only clear the
      motif if the text stops short of it, so the copy owns the left third and
      the photograph owns the rest. */
-  .hero__text { position: relative; display: grid; gap: var(--space-s); max-width: 29rem; padding-block: var(--space-xl); animation: rise var(--dur-base) var(--ease) both; }
+  .hero__text { position: relative; display: grid; gap: var(--space-s); max-width: 30rem; padding-block: var(--space-xl); animation: rise var(--dur-base) var(--ease) both; }
   .hero__text > * { position: relative; z-index: 1; }
   /* Wider than it looks: the cap only decides how many lines the headline
      takes, since the block's own max-width is what keeps the copy clear of the
@@ -301,12 +297,12 @@ const localBusiness = {
   .hero__text::before {
     content: '';
     position: absolute;
-    inset: -2.5rem -11rem -2.5rem -100vw;
+    inset: -2.5rem -16rem -2.5rem -100vw;
     background: linear-gradient(90deg,
       #fdf3e2 0,
-      #fdf3e2 calc(100% - 13rem),
-      rgb(253 243 226 / 0.86) calc(100% - 8.5rem),
-      rgb(252 238 216 / 0.34) calc(100% - 4.5rem),
+      #fdf3e2 calc(100% - 19rem),
+      rgb(253 243 226 / 0.80) calc(100% - 12rem),
+      rgb(252 238 216 / 0.30) calc(100% - 6rem),
       rgb(251 234 212 / 0) 100%);
   }
   .hero__eyebrow {
@@ -363,7 +359,7 @@ const localBusiness = {
     .hero__text h1 { max-width: none; }
     .hero__text .lede { max-width: none; }
     .hero__media { inset: auto 0 0 0; width: 100%; height: 17rem; }
-    .hero__media img { object-position: 46% 46%; }
+    .hero__media img { object-position: 70% 50%; }
     .hero__media::after {
       background: linear-gradient(180deg, var(--ground) 0%, rgb(253 247 237 / 0) 20%);
     }
