@@ -49,13 +49,13 @@ Set `detailPhoto: true` on that article in `src/content/products.json`.
   is capped at 1400px.
 - JPEG. The build produces AVIF and WebP from it.
 
-There are also eleven editorial photographs in `src/assets/site/`, currently
-stand-ins, that carry `/about`, `/visit` and the pack explainer on
-`/how-to-order`:
+There are also eleven editorial photographs in `src/assets/site/` that carry
+the home page, `/about`, `/visit` and the pack explainer on `/how-to-order`.
+The hero is supplied; the other ten are still stand-ins:
 
 | File | What it is | Where it appears |
 |---|---|---|
-| `hero.jpg` | the hero photograph | `/` |
+| `hero.png` | the hero photograph — **supplied** | `/` |
 | `street.jpg` | Kalakar Street | `/about` |
 | `workshop.jpg` | the workshop | `/about` |
 | `hands.jpg` | setting work, hands | `/about` |
