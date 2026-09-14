@@ -115,7 +115,9 @@ const en = {
   'shortlist.confirmClear': 'Remove all designs from your shortlist?',
   'shortlist.loading': 'Loading your shortlist…',
 
-  'dock.outOfHours': 'Message us — we reply from 10am',
+  /* {time} is filled from the season's own opening hour — naming it here
+     would be wrong for the three off-season months. */
+  'dock.outOfHours': 'Message us — we reply from {time}',
   'dock.enquiry': 'Enquiry',
 
   'form.name': 'Your name',
@@ -250,7 +252,7 @@ const hi: Record<UIKey, string> = {
   'shortlist.confirmClear': 'शॉर्टलिस्ट से सभी डिज़ाइन हटा दें?',
   'shortlist.loading': 'आपकी शॉर्टलिस्ट खुल रही है…',
 
-  'dock.outOfHours': 'संदेश भेजिए — हम सुबह 10 बजे से जवाब देते हैं',
+  'dock.outOfHours': 'संदेश भेजिए — हम {time} से जवाब देते हैं',
   'dock.enquiry': 'पूछताछ',
 
   'form.name': 'आपका नाम',

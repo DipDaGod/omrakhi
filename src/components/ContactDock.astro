@@ -2,6 +2,7 @@
 import { SITE } from '../config/site.ts';
 import { useTranslations, type Locale } from '../i18n/ui.ts';
 import { telHref, whatsappHref, isOpenNow } from '../lib/whatsapp.ts';
+import { openCloseForNow, hoursForNow } from '../lib/season.ts';
 import Icon from './Icon.astro';
 
 /**
@@ -18,12 +19,17 @@ const message = context
   ? `${SITE.name} — ${context}`
   : `${SITE.name} — ${t('dock.enquiry')}`;
 const open = isOpenNow();
+const hours = openCloseForNow();
+/* The out-of-hours line names the time the shop opens, so it has to come from
+   the season's hours rather than being written into the string. */
+const opensAt = hoursForNow().find((h) => h.open)?.open ?? '';
+const shutLabel = t('dock.outOfHours').replace('{time}', opensAt);
 ---
 <div class="dock" data-dock data-open={open ? '' : undefined}>
   <a class="dock__wa btn btn--primary" href={whatsappHref(message)} rel="noopener">
     <Icon name="whatsapp" />
     <span class="dock__label" data-dock-label>
-      {open ? t('action.whatsappUs') : t('dock.outOfHours')}
+      {open ? t('action.whatsappUs') : shutLabel}
     </span>
   </a>
   <a class="dock__call btn btn--secondary" href={telHref} aria-label={`${t('action.call')} ${SITE.phone.display}`}>
@@ -57,15 +63,30 @@ const open = isOpenNow();
   }
 </style>
 
-<script is:inline define:vars={{ openLabel: t('action.whatsappUs'), shutLabel: t('dock.outOfHours') }}>
+<script is:inline define:vars={{ openLabel: t('action.whatsappUs'), shutLabel, hours }}>
   (function () {
     // Rendered at build time, corrected in the visitor's present: a buyer at
-    // 11pm should not conclude he is being ignored.
+    // 11pm should not conclude he is being ignored. The hours come from the
+    // same seasonal table the footer prints, so the two cannot disagree.
     var label = document.querySelector('[data-dock-label]');
+    var dock = document.querySelector('[data-dock]');
     if (!label) return;
-    var ist = new Date(Date.now() + (5 * 60 + 30) * 60000);
-    var h = ist.getUTCHours() + ist.getUTCMinutes() / 60;
-    var openNow = ist.getUTCDay() !== 0 && h >= 10 && h < 19;
-    label.textContent = openNow ? openLabel : shutLabel;
+    function tick() {
+      var ist = new Date(Date.now() + (5 * 60 + 30) * 60000);
+      var h = ist.getUTCHours() + ist.getUTCMinutes() / 60;
+      var shut = hours.closedWeekdays.indexOf(ist.getUTCDay()) !== -1;
+      var openNow = !shut && h >= hours.openHour && h < hours.closeHour;
+      label.textContent = openNow ? openLabel : shutLabel;
+      if (dock) dock.toggleAttribute('data-open', openNow);
+      var status = document.querySelectorAll('[data-hours-status]');
+      for (var i = 0; i < status.length; i++) {
+        var el = status[i];
+        el.textContent = openNow ? el.dataset.open : el.dataset.closed;
+        el.classList.toggle('is-open', openNow);
+      }
+    }
+    tick();
+    // A tab left open across closing time should not keep saying "open".
+    setInterval(tick, 60000);
   })();
 </script>

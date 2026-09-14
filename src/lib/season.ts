@@ -122,3 +122,24 @@ export function seasonCalendar(locale: Locale) {
 export function hoursForNow(date = new Date()) {
   return currentPhase(date) === 'development' ? SITE.hours.offSeason : SITE.hours.season;
 }
+
+/**
+ * The same hours as a pair of numbers, for "are we open right now?".
+ *
+ * Parsed from the rows above rather than stored separately. They used to be a
+ * third hardcoded pair that matched the in-season hours only, so through the
+ * off-season the footer table said 11:00–18:00 while the dock counted 10:00
+ * as open — the site contradicted itself for three months of every year.
+ */
+export function openCloseForNow(date = new Date()) {
+  const row = hoursForNow(date).find((h) => h.open && h.close);
+  const hour = (t: string) => {
+    const [h, m] = t.split(':').map(Number);
+    return h + m / 60;
+  };
+  return {
+    openHour: row?.open ? hour(row.open) : 0,
+    closeHour: row?.close ? hour(row.close) : 0,
+    closedWeekdays: SITE.hours.closedWeekdays as readonly number[],
+  };
+}

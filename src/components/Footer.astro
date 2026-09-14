@@ -2,10 +2,10 @@
 import { SITE } from '../config/site.ts';
 import { useTranslations, type Locale } from '../i18n/ui.ts';
 import { href, ROUTES } from '../lib/routes.ts';
-import { telHref, whatsappHref } from '../lib/whatsapp.ts';
+import { telHref, whatsappHref, isOpenNow } from '../lib/whatsapp.ts';
 import { getCollection } from 'astro:content';
 import { allCategories } from '../lib/catalogue.ts';
-import { hoursForNow } from '../lib/season.ts';
+import { hoursForNow, openCloseForNow } from '../lib/season.ts';
 import Wordmark from './Wordmark.astro';
 
 interface Props { locale: Locale }
@@ -13,6 +13,7 @@ const { locale } = Astro.props;
 const t = useTranslations(locale);
 const categories = await allCategories();
 const hours = hoursForNow();
+const openNow = isOpenNow();
 /* City pages are English-only for now, so they are only linked from English
    footers — but they are linked, because nothing on this site is an orphan. */
 const cities = locale === 'en' ? (await getCollection('cities')).sort((a, b) => a.data.name.localeCompare(b.data.name)) : [];
@@ -37,6 +38,9 @@ const buying = [
     <div class="ft__col">
       <Wordmark />
       <p class="ft__desc">{tagline}</p>
+      <p class="ft__desc ft__desc--quiet">{locale === 'hi'
+        ? `${categories.length} श्रेणियाँ, हर डिज़ाइन आर्टिकल नंबर, पैक और प्राइस बैंड के साथ इसी साइट पर।`
+        : `${categories.length} collections, every design published here with its article number, pack and price band.`}</p>
       <ul class="ft__links">
         <li><a href={SITE.social.instagram} rel="noopener">Instagram {SITE.social.instagramHandle}</a></li>
         <li><a href={SITE.social.indiamart} rel="noopener">IndiaMART</a></li>
@@ -47,7 +51,7 @@ const buying = [
         and the fastest navigation on the site. */}
     <nav class="ft__col" aria-label={t('nav.collection')}>
       <h2 class="ft__head">{t('nav.collection')}</h2>
-      <ul class="ft__links">
+      <ul class="ft__links ft__links--cols">
         {categories.map((c) => (
           <li><a href={href(ROUTES.category(c.id), locale)}>{c.data.name[locale]}</a></li>
         ))}
@@ -97,15 +101,27 @@ const buying = [
           ))}
         </tbody>
       </table>
+      {/* Built with the build machine's clock, corrected on load by the dock's
+          script — which reads the same hours this table prints. */}
+      <p class="ft__status" data-hours-status
+        data-open={locale === 'hi' ? 'अभी खुले हैं' : 'Open now'}
+        data-closed={locale === 'hi' ? 'अभी बंद है' : 'Closed right now'}>
+        {openNow
+          ? (locale === 'hi' ? 'अभी खुले हैं' : 'Open now')
+          : (locale === 'hi' ? 'अभी बंद है' : 'Closed right now')}
+      </p>
     </div>
   </div>
 
   {/* No newsletter signup. This is a B2B catalogue site, there is no
       newsletter, and an inert signup box is the clearest sign of a template
       nobody finished. */}
+  {/* Everything sits left. The contact dock is fixed to the bottom-right
+      corner, so anything placed on that side is under it on every desktop
+      page — which is where Privacy and Terms used to be. */}
   <div class="ft__bottom container">
-    <p>© {year} {SITE.name}</p>
-    <p>
+    <p>© {year} {SITE.legalName} · {SITE.address.city} {SITE.address.postalCode} · {locale === 'hi' ? 'भारत' : 'India'}</p>
+    <p class="ft__legal">
       <a href={href(ROUTES.privacy, locale)}>{locale === 'hi' ? 'गोपनीयता' : 'Privacy'}</a>
       <a href={href(ROUTES.terms, locale)}>{locale === 'hi' ? 'शर्तें' : 'Terms'}</a>
     </p>
@@ -121,14 +137,33 @@ const buying = [
   }
   .ft__inner {
     display: grid;
-    grid-template-columns: 1.2fr 1fr 1fr 1.2fr;
-    gap: var(--space-l);
+    grid-template-columns: 1.15fr 1.35fr 1fr 1.15fr;
+    gap: var(--space-l) var(--space-xl);
     padding-block: var(--space-2xl);
   }
   .ft__col { display: grid; gap: var(--space-2xs); align-content: start; }
   .ft__head { font-family: var(--font-text); font-size: var(--step--1); text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-muted); }
   .ft__desc { max-width: 22ch; }
   .ft__links { list-style: none; padding: 0; display: grid; gap: var(--space-3xs); }
+  /* Twelve collections as one column left the first and last columns with a
+     quarter-page of nothing under them. Two columns evens the footer out and
+     costs no height. */
+  /* Multicolumn rather than a two-column grid: "Bhaiya Bhabhi Rakhi" wraps to
+     two lines, and a grid makes every cell in that row as tall as the tallest,
+     leaving a visible hole beside it. Columns just flow. */
+  .ft__links--cols {
+    display: block;
+    column-count: 2;
+    column-gap: var(--space-m);
+  }
+  .ft__links--cols li { break-inside: avoid; margin-bottom: var(--space-3xs); }
+  .ft__desc--quiet { color: var(--ink-muted); margin-top: var(--space-2xs); }
+  .ft__status {
+    margin-top: var(--space-2xs);
+    font-weight: 600;
+    color: var(--ink-muted);
+  }
+  .ft__status.is-open { color: var(--ok); }
   .ft__head--sub { margin-top: var(--space-s); }
   .ft__links--wrap { grid-template-columns: 1fr 1fr; }
   .ft__links a { text-decoration: none; }
@@ -138,20 +173,25 @@ const buying = [
   .ft__hours { font-size: var(--step--1); margin-top: var(--space-2xs); }
   .ft__hours th, .ft__hours td { padding: 0.1rem 0; border: 0; }
   .ft__hours th { font-weight: 400; color: var(--ink-muted); padding-right: var(--space-s); }
+  /* The contact dock is fixed to the bottom-right corner, which is exactly
+     where these links were: on every desktop page the dock sat on top of
+     Privacy and Terms. The gutter is the dock's width plus its offset. */
   .ft__bottom {
     display: flex;
-    justify-content: space-between;
-    gap: var(--space-s);
+    justify-content: flex-start;
+    gap: var(--space-s) var(--space-m);
     flex-wrap: wrap;
     padding-block: var(--space-s);
+    padding-right: min(22rem, 35%);
     border-top: var(--hairline) solid var(--line);
     color: var(--ink-muted);
   }
-  .ft__bottom a { margin-left: var(--space-s); }
+  .ft__legal { display: flex; gap: var(--space-m); }
   @media (max-width: 60rem) { .ft__inner { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 40rem) {
     .ft__inner { grid-template-columns: 1fr; gap: var(--space-m); }
-    /* The dock occupies the bottom of a phone screen. */
-    .ft__bottom { padding-bottom: 4rem; }
+    /* The dock becomes a full-width bar on a phone, so the clearance it needs
+       is below rather than beside. */
+    .ft__bottom { padding-right: 0; padding-bottom: 4rem; }
   }
 </style>

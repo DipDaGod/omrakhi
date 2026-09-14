@@ -50,8 +50,9 @@ export const SITE = {
       { days: 'Monday – Saturday', open: '11:00', close: '18:00' },
       { days: 'Sunday', open: null, close: null },
     ],
-    /** Numeric form, for the "are we open right now?" check in the contact dock. */
-    weekday: { openHour: 10, closeHour: 19 },
+    /* No numeric pair here. "Are we open right now?" is derived from the rows
+       above by openCloseForNow() in lib/season.ts, so it follows the season
+       instead of needing to be kept in step with it by hand. */
     closedWeekdays: [0], // Sunday
   },
 } as const;
