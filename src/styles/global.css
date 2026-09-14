@@ -25,6 +25,14 @@ body {
 }
 
 img, picture, svg, video { display: block; max-width: 100%; }
+
+/* The `hidden` attribute is only `display: none` in the UA stylesheet, so any
+   author rule that sets display beats it — silently, because the markup still
+   says hidden. That is how the empty state on /collections, Clear filters and
+   all, ended up permanently rendered under a full grid. Nine elements on this
+   site toggle visibility this way; this makes the attribute mean what it
+   says for all of them. Use el.hidden, never a display override, to toggle. */
+[hidden] { display: none !important; }
 input, button, textarea, select { font: inherit; color: inherit; }
 button { background: none; border: 0; cursor: pointer; }
 
