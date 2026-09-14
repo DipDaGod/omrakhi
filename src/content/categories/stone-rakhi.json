@@ -1,0 +1,20 @@
+{
+  "name": { "en": "Stone Rakhi", "hi": "स्टोन राखी" },
+  "order": 4,
+  "summary": {
+    "en": "Coloured stone work across the full price range.",
+    "hi": "पूरी क़ीमत रेंज में रंगीन पत्थर का काम।"
+  },
+  "copy": {
+    "en": "The broadest category we carry, and the one most dealers build a counter around because it covers every price point without a gap. Colour families are kept deliberate — a retailer ordering forty pieces gets a spread that merchandises together rather than forty unrelated stones. Entry pieces use a single stone on thread; the upper end runs multi-stone chain work. If you are placing a first order and are not sure, start here.",
+    "hi": "यह हमारी सबसे बड़ी श्रेणी है, और ज़्यादातर डीलर अपना काउंटर इसी के इर्द-गिर्द बनाते हैं क्योंकि इसमें हर क़ीमत मौजूद है। रंगों के परिवार सोच-समझकर रखे जाते हैं — चालीस पीस मँगाने वाले रिटेलर को ऐसा सेट मिलता है जो साथ में सजता है, न कि चालीस अलग-अलग पत्थर। शुरुआती पीस में धागे पर एक पत्थर; ऊपरी रेंज में मल्टी-स्टोन चेन वर्क। पहला ऑर्डर है और तय नहीं कर पा रहे, तो यहीं से शुरू करें।"
+  },
+  "materials": ["stone", "thread", "metal"],
+  "audience": ["brother", "bhaiya-bhabhi"],
+  "priceBand": { "from": 1, "to": 4 },
+  "moq": 100,
+  "packTypes": ["carded", "loose"],
+  "region": { "en": "Every market. The default counter line", "hi": "हर बाज़ार में। काउंटर की डिफ़ॉल्ट लाइन" },
+  "heroCode": "OM-1601",
+  "related": ["ad-rakhi", "pearl-rakhi", "pendant-rakhi"]
+}

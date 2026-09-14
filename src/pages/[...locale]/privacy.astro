@@ -1,0 +1,55 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import { SITE } from '../../config/site.ts';
+import { STORAGE_KEY } from '../../islands/shortlist-store.ts';
+import { LOCALES, DEFAULT_LOCALE, type Locale } from '../../i18n/ui.ts';
+import { href, ROUTES, localeFromParam } from '../../lib/routes.ts';
+
+export const getStaticPaths: GetStaticPaths = () =>
+  LOCALES.map((locale) => ({ params: { locale: locale === DEFAULT_LOCALE ? undefined : locale } }));
+
+const locale = localeFromParam(Astro.params.locale) as Locale;
+const hi = locale === 'hi';
+---
+
+<Base locale={locale}
+  title={hi ? `गोपनीयता — ${SITE.name}` : `Privacy — ${SITE.name}`}
+  description={hi ? 'यह साइट क्या जानकारी लेती है और क्या नहीं।' : 'What this site collects and what it does not.'}>
+  <div class="container container--prose section--tight">
+    <PageHeader title={hi ? 'गोपनीयता' : 'Privacy'} />
+    <div class="prose">
+      <p>{hi
+        ? 'यह एक स्थिर कैटलॉग साइट है। यहाँ कोई खाता नहीं बनता, कुछ बिकता नहीं, और कोई भुगतान नहीं लिया जाता।'
+        : 'This is a static catalogue site. There are no accounts, nothing is sold here, and no payment is ever taken.'}</p>
+
+      <h2>{hi ? 'संपर्क फ़ॉर्म' : 'The contact form'}</h2>
+      <p>{hi
+        ? `फ़ॉर्म में आप जो लिखते हैं — नाम, फ़र्म, शहर, फ़ोन, ईमेल (अगर दिया हो), आप किस तरह के ख़रीदार हैं, और आपका संदेश — वह Web3Forms नाम की सेवा के ज़रिए हमें ईमेल पर भेजा जाता है। यह जानकारी हमारे ईमेल में रहती है और आपकी पूछताछ का जवाब देने के लिए इस्तेमाल होती है। हम इसे न बेचते हैं, न किसी और को देते हैं।`
+        : `What you type into the form — name, firm, city, phone, email if you give one, your buyer type and your message — is emailed to us through a service called Web3Forms. It lives in our email and is used to answer your enquiry. We do not sell it or pass it to anyone else.`}</p>
+      <p>{hi
+        ? 'फ़ॉर्म भेजने के अलावा हम कुछ भी एकत्र नहीं करते। इस साइट का अपना कोई डेटाबेस नहीं है।'
+        : 'Nothing else is collected. This site has no database of its own.'}</p>
+
+      <h2>{hi ? 'शॉर्टलिस्ट' : 'The shortlist'}</h2>
+      <p>{hi
+        ? `आपकी शॉर्टलिस्ट आपके अपने ब्राउज़र में localStorage में रखी जाती है (की: ${STORAGE_KEY})। वह कभी हम तक नहीं पहुँचती जब तक आप ख़ुद उसे व्हाट्सएप पर न भेजें या पीडीएफ़ न बनाएँ। पीडीएफ़ भी आपके ब्राउज़र में ही बनती है — वह कहीं अपलोड नहीं होती। ब्राउज़र का डेटा साफ़ करने पर शॉर्टलिस्ट मिट जाती है।`
+        : `Your shortlist is kept in your own browser in localStorage (key: ${STORAGE_KEY}). It never reaches us unless you send it on WhatsApp or generate the PDF yourself — and the PDF is built inside your browser, not uploaded anywhere. Clearing your browser data clears the shortlist.`}</p>
+
+      <h2>{hi ? 'व्हाट्सएप और फ़ोन' : 'WhatsApp and phone'}</h2>
+      <p>{hi
+        ? 'जब आप यहाँ से व्हाट्सएप बटन दबाते हैं तो संदेश आपके व्हाट्सएप में खुलता है, पहले से लिखा हुआ। भेजने तक कुछ नहीं जाता, और वह बातचीत फिर व्हाट्सएप की अपनी शर्तों के तहत होती है, हमारी नहीं।'
+        : 'Tapping a WhatsApp button here opens the message in your own WhatsApp with the text prefilled. Nothing is sent until you send it, and that conversation then sits under WhatsApp’s terms, not ours.'}</p>
+
+      <h2>{hi ? 'एनालिटिक्स' : 'Analytics'}</h2>
+      <p>{hi
+        ? 'फ़िलहाल इस साइट पर कोई एनालिटिक्स नहीं चल रहा और कोई ट्रैकिंग कुकी नहीं है। अगर आगे जोड़ा गया तो वह ऐसा होगा जो व्यक्तिगत पहचान नहीं करता और क्रॉस-साइट ट्रैकिंग नहीं करता, और यह पेज उसी दिन अपडेट होगा।'
+        : 'There is no analytics on this site at present and no tracking cookies. If analytics is added it will be a measurement tool that does not identify individuals or track people across sites, and this page will be updated the same day.'}</p>
+
+      <h2>{hi ? 'सवाल हो तो' : 'If you have a question'}</h2>
+      <p>{hi ? 'हमें लिखिए: ' : 'Write to us: '}<a href={`mailto:${SITE.email}`}>{SITE.email}</a>, {hi ? 'या फ़ोन ' : 'or call '}{SITE.phone.display}.</p>
+      <p><a href={href(ROUTES.terms, locale)}>{hi ? 'शर्तें' : 'Terms'}</a></p>
+    </div>
+  </div>
+</Base>

@@ -1,0 +1,20 @@
+{
+  "name": { "en": "Rudraksha Rakhi", "hi": "रुद्राक्ष राखी" },
+  "order": 9,
+  "summary": {
+    "en": "Rudraksha bead with silver-finish caps on cotton dori.",
+    "hi": "सूती डोरी पर चाँदी फ़िनिश कैप के साथ रुद्राक्ष।"
+  },
+  "copy": {
+    "en": "Rudraksha sells to a buyer who wants the rakhi to mean something and does not want stones. It is also the line that holds its price best late in the season, because demand is steady rather than fashion-led. Bead size is graded and stated per article, which matters — a buyer ordering by number expects the same bead he saw last year. Temple towns, Varanasi, Haridwar, and the pooja-samagri trade generally.",
+    "hi": "रुद्राक्ष उस ख़रीदार के लिए है जो चाहता है कि राखी का कोई अर्थ हो और पत्थर न हों। सीज़न के आख़िर में यह लाइन अपनी क़ीमत सबसे अच्छी तरह बनाए रखती है, क्योंकि माँग फ़ैशन से नहीं, स्थिर रहती है। मनके का आकार ग्रेड किया जाता है और हर आर्टिकल पर लिखा जाता है — नंबर से ऑर्डर करने वाला ख़रीदार वही मनका चाहता है जो पिछले साल देखा था। मंदिर नगर, वाराणसी, हरिद्वार और आम पूजा-सामग्री व्यापार।"
+  },
+  "materials": ["rudraksha", "metal", "thread"],
+  "audience": ["brother", "god"],
+  "priceBand": { "from": 1, "to": 3 },
+  "moq": 100,
+  "packTypes": ["carded", "loose"],
+  "region": { "en": "Temple towns, Varanasi, Haridwar, pooja-samagri trade", "hi": "मंदिर नगर, वाराणसी, हरिद्वार, पूजा-सामग्री व्यापार" },
+  "heroCode": "OM-2601",
+  "related": ["thread-rakhi", "metal-rakhi", "stone-rakhi"]
+}

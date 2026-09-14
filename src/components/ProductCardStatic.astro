@@ -1,0 +1,37 @@
+---
+import type { Locale } from '../i18n/ui.ts';
+import { useTranslations } from '../i18n/ui.ts';
+import { band, packLine, productAlt } from '../lib/format.ts';
+import { productImage, GRID_WIDTHS } from '../lib/images.ts';
+import type { Product } from '../lib/catalogue.ts';
+import ProductImage from './ProductImage.astro';
+
+/**
+ * The server-rendered card. The category grid ships complete in the HTML so
+ * the page is indexable and works with JS disabled; the React island replaces
+ * this grid once it hydrates.
+ */
+interface Props { product: Product; locale: Locale; eager?: boolean }
+const { product, locale, eager = false } = Astro.props;
+const p = product.data;
+const t = useTranslations(locale);
+const img = productImage(p.id, p.category.id)!;
+---
+<article class="pc">
+  <a class="pc__hit" href={`?d=${p.id}`}>
+    <span class="plinth pc__plinth">
+      <ProductImage
+        src={img}
+        code={p.id}
+        alt={productAlt(p, locale)}
+        widths={[...GRID_WIDTHS]}
+        sizes="(max-width: 40rem) 45vw, (max-width: 60rem) 30vw, 18rem"
+        eager={eager}
+      />
+    </span>
+    <span class="pc__code code">{p.id}</span>
+    <span class="pc__band">{band(p.priceBand)}</span>
+    <span class="pc__pack">{packLine(p.pack, locale, p.packType)}</span>
+  </a>
+  {p.new && <span class="tag pc__new">{t('label.new')}</span>}
+</article>

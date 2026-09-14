@@ -1,0 +1,20 @@
+{
+  "name": { "en": "Kundan Rakhi", "hi": "कुंदन राखी" },
+  "order": 2,
+  "summary": {
+    "en": "Traditional kundan work with meenakari backing.",
+    "hi": "मीनाकारी बैकिंग के साथ पारंपरिक कुंदन काम।"
+  },
+  "copy": {
+    "en": "Kundan is the category a buyer reaches for when his customer wants something that looks handed down rather than bought. The setting work is done by hand here on Kalakar Street; the meenakari backing is what separates a piece worth stocking from a moulded imitation, and it is visible when the rakhi is turned over. Sizes run larger than AD, so plan card space accordingly. Sells hard in Rajasthan, Gujarat and the Delhi wholesale belt.",
+    "hi": "कुंदन वह श्रेणी है जिसे ग्राहक तब चुनता है जब उसे कुछ ऐसा चाहिए जो विरासत जैसा लगे, खरीदा हुआ नहीं। जड़ाई का काम यहीं कलाकार स्ट्रीट पर हाथ से होता है; मीनाकारी बैकिंग ही असली और ढले हुए नकली टुकड़े में फ़र्क़ है, और राखी पलटने पर दिखती है। साइज़ एडी से बड़ा होता है, कार्ड की जगह उसी हिसाब से रखें। राजस्थान, गुजरात और दिल्ली होलसेल बेल्ट में ख़ूब चलती है।"
+  },
+  "materials": ["stone", "metal", "thread"],
+  "audience": ["brother", "bhaiya-bhabhi"],
+  "priceBand": { "from": 2, "to": 4 },
+  "moq": 100,
+  "packTypes": ["carded", "boxed"],
+  "region": { "en": "Rajasthan, Gujarat, Delhi wholesale belt", "hi": "राजस्थान, गुजरात, दिल्ली होलसेल बेल्ट" },
+  "heroCode": "OM-1201",
+  "related": ["ad-rakhi", "bhaiya-bhabhi-rakhi", "pendant-rakhi"]
+}

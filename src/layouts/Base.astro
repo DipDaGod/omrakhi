@@ -1,0 +1,108 @@
+---
+import '../styles/global.css';
+import { SITE } from '../config/site.ts';
+import { HTML_LANG, type Locale } from '../i18n/ui.ts';
+import { alternateHref, pathWithoutLocale } from '../lib/routes.ts';
+import SeasonStrip from '../components/SeasonStrip.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ContactDock from '../components/ContactDock.astro';
+import { useTranslations } from '../i18n/ui.ts';
+
+interface Props {
+  locale: Locale;
+  title: string;
+  description: string;
+  /** A3 — the dock's WhatsApp prefill, built from this page. */
+  enquiryContext?: string;
+  /** Hidden on /shortlist, where the page's own send button is the action. */
+  hideDock?: boolean;
+  noindex?: boolean;
+  ogImage?: string;
+  schema?: Record<string, unknown> | Record<string, unknown>[];
+  bodyClass?: string;
+  /**
+   * Locales this page actually exists in. City pages (P15) are English only
+   * for now, so they must not advertise a Hindi alternate that 404s, and the
+   * header must not offer a toggle that goes nowhere.
+   */
+  locales?: Locale[];
+}
+
+const {
+  locale,
+  title,
+  description,
+  enquiryContext,
+  hideDock = false,
+  noindex = false,
+  ogImage,
+  schema,
+  bodyClass,
+  locales = ['en', 'hi'],
+} = Astro.props;
+
+const t = useTranslations(locale);
+const path = pathWithoutLocale(Astro.url.pathname);
+/* Normalised through the same helper the alternates use, so canonical and
+   hreflang never disagree about a trailing slash. */
+const canonical = new URL(alternateHref(path, locale), SITE.origin).href;
+const ogUrl = ogImage
+  ? new URL(ogImage, SITE.origin).href
+  : new URL('/og/default.png', SITE.origin).href;
+
+const schemas = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
+---
+
+<!doctype html>
+<html lang={HTML_LANG[locale]}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    {noindex && <meta name="robots" content="noindex, follow" />}
+
+    {/* A6 — hreflang both ways, x-default to English. Only for pages that
+        genuinely exist in both languages. */}
+    {locales.length > 1 && (
+      <>
+        <link rel="alternate" hreflang="en-IN" href={new URL(alternateHref(path, 'en'), SITE.origin).href} />
+        <link rel="alternate" hreflang="hi-IN" href={new URL(alternateHref(path, 'hi'), SITE.origin).href} />
+        <link rel="alternate" hreflang="x-default" href={new URL(alternateHref(path, 'en'), SITE.origin).href} />
+      </>
+    )}
+
+    {/* Nearly all link sharing in this trade happens through WhatsApp, and
+        WhatsApp renders the OG card. */}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogUrl} />
+    <meta property="og:locale" content={locale === 'hi' ? 'hi_IN' : 'en_IN'} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <meta name="theme-color" content="#faf7f2" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    {schemas.map((s) => (
+      <script type="application/ld+json" set:html={JSON.stringify(s)} />
+    ))}
+  </head>
+
+  <body class={bodyClass}>
+    <a class="skip-link" href="#main">{t('meta.skipToContent')}</a>
+    <SeasonStrip locale={locale} />
+    <Header locale={locale} path={path} bilingual={locales.length > 1} />
+    <main id="main" tabindex="-1">
+      <slot />
+    </main>
+    <Footer locale={locale} />
+    {!hideDock && <ContactDock locale={locale} context={enquiryContext} />}
+  </body>
+</html>

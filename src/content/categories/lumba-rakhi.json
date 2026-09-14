@@ -1,0 +1,20 @@
+{
+  "name": { "en": "Lumba Rakhi", "hi": "लुम्बा राखी" },
+  "order": 7,
+  "summary": {
+    "en": "Bangle-tied lumba with hanging latkan.",
+    "hi": "चूड़ी में बाँधने वाली लुम्बा, लटकन के साथ।"
+  },
+  "copy": {
+    "en": "Lumba ties to a bangle rather than a wrist, so the whole design problem is weight and drop — too heavy and it turns the bangle, too short and it disappears into a sleeve. We build to a fixed drop length across the range and keep the latkan beading tight. Sold singly here as well as in the bhaiya-bhabhi pair, because a number of dealers stock the two separately. Rajasthan, Gujarat and Marwari trade everywhere.",
+    "hi": "लुम्बा कलाई पर नहीं, चूड़ी में बाँधी जाती है — इसलिए पूरी डिज़ाइन की बात वज़न और लटकन की लंबाई की है। ज़्यादा भारी हो तो चूड़ी घूम जाती है, छोटी हो तो आस्तीन में छिप जाती है। हम पूरी रेंज में एक तय लंबाई रखते हैं और लटकन की बीडिंग कसी हुई रखते हैं। यहाँ यह अलग से भी मिलती है और भैया-भाभी जोड़ी में भी, क्योंकि कई डीलर दोनों अलग रखते हैं। राजस्थान, गुजरात और हर जगह मारवाड़ी व्यापार में।"
+  },
+  "materials": ["stone", "pearl", "thread", "zari"],
+  "audience": ["lumba", "bhaiya-bhabhi"],
+  "priceBand": { "from": 2, "to": 3 },
+  "moq": 100,
+  "packTypes": ["carded", "loose"],
+  "region": { "en": "Rajasthan, Gujarat, Marwari trade everywhere", "hi": "राजस्थान, गुजरात, हर जगह मारवाड़ी व्यापार" },
+  "heroCode": "OM-2201",
+  "related": ["bhaiya-bhabhi-rakhi", "kundan-rakhi", "handicraft-rakhi"]
+}

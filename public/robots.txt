@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Personal working state, not content.
+Disallow: /shortlist
+Disallow: /hi/shortlist
+Disallow: /thanks
+Disallow: /hi/thanks
+
+Sitemap: https://omrakhiudyog.com/sitemap-index.xml

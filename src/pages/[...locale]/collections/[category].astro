@@ -1,0 +1,287 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Base from '../../../layouts/Base.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
+import ProductCardStatic from '../../../components/ProductCardStatic.astro';
+import CtaBlock from '../../../components/CtaBlock.astro';
+import ProductGrid from '../../../islands/ProductGrid.tsx';
+import '../../../styles/catalogue.css';
+
+import { SITE } from '../../../config/site.ts';
+import { useTranslations, LOCALES, DEFAULT_LOCALE, type Locale } from '../../../i18n/ui.ts';
+import { href, ROUTES, localeFromParam } from '../../../lib/routes.ts';
+import { band, bandRange, packLine, productAlt, num } from '../../../lib/format.ts';
+import { productImage, productDetailImage, GRID_WIDTHS, DRAWER_WIDTHS } from '../../../lib/images.ts';
+import { toImgView } from '../../../lib/imgview.ts';
+import { allCategories, productsInCategory, categoryCounts, LIMITED_RANGE_THRESHOLD } from '../../../lib/catalogue.ts';
+import { whatsappHref } from '../../../lib/whatsapp.ts';
+import type { ProductView } from '../../../islands/types.ts';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const cats = await allCategories();
+  return LOCALES.flatMap((locale) =>
+    cats.map((category) => ({
+      params: { locale: locale === DEFAULT_LOCALE ? undefined : locale, category: category.id },
+      props: { localeKey: locale },
+    })),
+  );
+};
+
+const slug = String(Astro.params.category);
+const locale = localeFromParam(Astro.params.locale) as Locale;
+const t = useTranslations(locale);
+
+const [cats, products, counts] = await Promise.all([
+  allCategories(),
+  productsInCategory(slug),
+  categoryCounts(),
+]);
+const category = cats.find((c) => c.id === slug)!;
+const c = category.data;
+const count = products.length;
+const limited = c.limited || count < LIMITED_RANGE_THRESHOLD;
+const gridDensity = count < 8 ? 'few' : 'many';
+const isEager = (i: number) => i < 4;
+
+const related = c.related
+  .map((r) => cats.find((x) => x.id === r.id))
+  .filter((x): x is NonNullable<typeof x> => !!x);
+
+/* Everything the island renders, prepared at build time. */
+const views: ProductView[] = await Promise.all(
+  products.map(async (p) => {
+    const d = p.data;
+    const main = productImage(d.id, slug)!;
+    const detail = d.detailPhoto ? productDetailImage(d.id, slug) : null;
+    return {
+      code: d.id,
+      name: d.name[locale],
+      alt: productAlt(d, locale),
+      band: band(d.priceBand),
+      bandValue: d.priceBand,
+      moq: d.moq,
+      pack: packLine(d.pack, locale, d.packType),
+      packType: d.packType,
+      materials: d.materials,
+      colours: d.colours,
+      colourFamily: d.colourFamily,
+      sizeMm: d.sizeMm,
+      isNew: d.new,
+      img: await toImgView(main, [...GRID_WIDTHS], '(max-width: 40rem) 45vw, (max-width: 60rem) 30vw, 18rem', d.id),
+      detail: detail ? await toImgView(detail, [...DRAWER_WIDTHS], '(max-width: 60rem) 100vw, 32rem') : undefined,
+      detailAlt: detail ? `${productAlt(d, locale)} — ${locale === 'hi' ? 'नज़दीक से' : 'detail'}` : undefined,
+    };
+  }),
+);
+
+const labels = {
+  new: t('label.new'),
+  newOnly: t('label.newOnly'),
+  addToShortlist: t('action.addToShortlist'),
+  removeFromShortlist: t('action.removeFromShortlist'),
+  reviewShortlist: t('action.reviewShortlist'),
+  shortlistCount: t('shortlist.count'),
+  shortlistHref: href(ROUTES.shortlist, locale),
+  filter: t('action.filter'),
+  filterPrice: t('filter.price'),
+  filterColour: t('filter.colour'),
+  filterPack: t('filter.packType'),
+  clearFilters: t('action.clearFilters'),
+  apply: t('action.apply'),
+  close: t('nav.close'),
+  inCategory: t('label.inCategory'),
+  designs: t('label.designs'),
+  design: t('label.design'),
+  noResults: t('empty.noResults'),
+  noResultsHelp: t('empty.noResultsHelp'),
+  previous: t('action.previous'),
+  next: t('action.next'),
+  photo: locale === 'hi' ? 'तस्वीर' : 'Photograph',
+  category: t('label.category'),
+  materials: t('label.materials'),
+  colours: t('label.colours'),
+  size: t('label.size'),
+  pack: t('label.pack'),
+  moq: t('label.moq'),
+  pieces: t('label.pieces'),
+  priceBand: t('label.priceBand'),
+  askAbout: t('action.askAbout'),
+  copyLink: t('action.copyLink'),
+  copied: t('action.copied'),
+  ratesPlease: locale === 'hi' ? 'कृपया दाम और उपलब्धता बताइए।' : 'Please send rates and availability.',
+};
+
+const COLOUR_LABELS: Record<string, Record<Locale, string>> = {
+  red: { en: 'Red', hi: 'लाल' },
+  maroon: { en: 'Maroon', hi: 'मैरून' },
+  gold: { en: 'Gold', hi: 'सुनहरा' },
+  silver: { en: 'Silver', hi: 'चाँदी' },
+  green: { en: 'Green', hi: 'हरा' },
+  blue: { en: 'Blue', hi: 'नीला' },
+  pastel: { en: 'Pastel', hi: 'हल्के रंग' },
+  multi: { en: 'Multicolour', hi: 'मल्टीकलर' },
+};
+const PACK_LABELS: Record<string, Record<Locale, string>> = {
+  carded: { en: 'Carded', hi: 'कार्ड वाली' },
+  loose: { en: 'Loose', hi: 'खुली' },
+  boxed: { en: 'Boxed', hi: 'बॉक्स' },
+};
+const colourLabels = Object.fromEntries(Object.entries(COLOUR_LABELS).map(([k, v]) => [k, v[locale]]));
+const packLabels = Object.fromEntries(Object.entries(PACK_LABELS).map(([k, v]) => [k, v[locale]]));
+
+const title = `${c.name[locale]} — ${locale === 'hi' ? 'थोक राखी निर्माता' : 'Wholesale Rakhi Manufacturer'} | ${SITE.name}`;
+const description = c.copy[locale].replace(/\s+/g, ' ').slice(0, 152).trim() + '…';
+const pageUrl = new URL(Astro.url.pathname, SITE.origin).href;
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: c.name[locale],
+    url: pageUrl,
+    description,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: t('nav.home'), item: new URL(href(ROUTES.home, locale), SITE.origin).href },
+      { '@type': 'ListItem', position: 2, name: t('nav.collection'), item: new URL(href(ROUTES.collections, locale), SITE.origin).href },
+      { '@type': 'ListItem', position: 3, name: c.name[locale], item: pageUrl },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    numberOfItems: count,
+    itemListElement: products.slice(0, 50).map((p, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      item: {
+        '@type': 'Product',
+        name: `${p.data.name[locale]} ${p.data.id}`,
+        sku: p.data.id,
+        brand: { '@type': 'Brand', name: SITE.name },
+        category: c.name[locale],
+        url: `${pageUrl}?d=${p.data.id}`,
+        /* No offers: rates in this trade are negotiated and are not public. */
+      },
+    })),
+  },
+];
+---
+
+<Base
+  locale={locale}
+  title={title}
+  description={description}
+  ogImage={`/og/collections/${slug}.png`}
+  enquiryContext={`${locale === 'hi' ? 'पूछताछ' : 'Enquiry about your'} ${c.name[locale]} ${locale === 'hi' ? 'संग्रह के बारे में' : 'collection'}`}
+  schema={schema}
+>
+  <div class="container section--tight">
+    <Breadcrumb
+      locale={locale}
+      items={[
+        { label: t('nav.collection'), href: href(ROUTES.collections, locale) },
+        { label: c.name[locale] },
+      ]}
+    />
+
+    <header class="cat__head">
+      <div class="cat__title">
+        <h1>{c.name[locale]}</h1>
+        <p class="cat__figures">
+          {limited ? t('label.limitedRange') : `${num(count, locale)} ${t('label.designs')}`}
+          <span aria-hidden="true"> · </span>
+          {bandRange(c.priceBand.from, c.priceBand.to)}
+        </p>
+      </div>
+
+      {/* Eighty words that tell a dealer where this category sells and why
+          yours is worth stocking. Not a 600-word SEO essay repeated verbatim
+          across twenty pages — that reads as machine-made, it pushes the
+          products below the fold, and modern search does not reward it. */}
+      <p class="cat__copy">{c.copy[locale]}</p>
+
+      <p class="cat__terms">
+        {t('label.moqShort')} {num(c.moq, locale)} {t('label.pieces')} {locale === 'hi' ? 'प्रति डिज़ाइन' : 'per design'}
+        <span aria-hidden="true"> · </span>
+        {c.packTypes.map((p) => PACK_LABELS[p][locale]).join(locale === 'hi' ? ' और ' : ' and ')}
+      </p>
+    </header>
+
+    {/* The grid ships complete in the HTML. The island hides this copy when it
+        hydrates; with JS off or still loading, the page is whole. */}
+    <div data-static-grid>
+      <div class="grid" data-count={gridDensity}>
+        {products.map((p, i) => (
+          <ProductCardStatic product={p} locale={locale} eager={isEager(i)} />
+        ))}
+      </div>
+    </div>
+
+    <ProductGrid
+      client:load
+      products={views}
+      labels={labels}
+      categoryName={c.name[locale]}
+      whatsappBase={`${whatsappHref()}?text=`}
+      colourLabels={colourLabels}
+      packLabels={packLabels}
+    />
+
+    {related.length > 0 && (
+      <nav class="cat__related" aria-label={t('label.related')}>
+        <span class="eyebrow">{t('label.related')}</span>
+        <ul>
+          {related.map((r) => (
+            <li>
+              <a href={href(ROUTES.category(r.id), locale)}>
+                {r.data.name[locale]}
+                <span class="cat__relcount">{counts.get(r.id) ?? 0}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    )}
+
+    <div class="cat__cta">
+      <CtaBlock
+        locale={locale}
+        title={locale === 'hi' ? 'दाम और उपलब्धता चाहिए?' : 'Want rates and availability?'}
+        body={locale === 'hi'
+          ? 'आर्टिकल नंबर भेजिए — उसी कार्यदिवस में दाम मिल जाएँगे। पहली बार ख़रीद रहे हैं तो पहले ऑर्डर कैसे दें, वह पढ़ लीजिए।'
+          : 'Send us the article numbers and you will have rates the same working day. If this is your first order, read how ordering works first.'}
+        context={`${c.name[locale]} — ${locale === 'hi' ? 'दाम चाहिए' : 'rates please'}`}
+      />
+      <p class="cat__ctalink">
+        <a href={href(ROUTES.howToOrder, locale)}>{t('nav.order')}</a>
+        <a href={href(ROUTES.catalogue, locale)}>{t('nav.catalogue')}</a>
+      </p>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .cat__head { max-width: var(--measure); margin-block: var(--space-m) var(--space-s); }
+  .cat__title { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-m); flex-wrap: wrap; }
+  .cat__figures { color: var(--ink-muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .cat__copy { margin-top: var(--space-s); }
+  .cat__terms { margin-top: var(--space-2xs); font-size: var(--step--1); color: var(--ink-muted); }
+  .cat__related { margin-top: var(--space-2xl); padding-top: var(--space-m); border-top: var(--hairline) solid var(--line); }
+  .cat__related ul { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-2xs); margin-top: var(--space-2xs); }
+  .cat__related a {
+    display: inline-flex;
+    gap: 0.4em;
+    align-items: baseline;
+    padding: 0.35em 0.75em;
+    border: var(--hairline) solid var(--line);
+    text-decoration: none;
+  }
+  .cat__related a:hover { border-color: var(--accent); color: var(--accent); }
+  .cat__relcount { color: var(--ink-muted); font-size: var(--step--1); font-variant-numeric: tabular-nums; }
+  .cat__cta { margin-top: var(--space-2xl); }
+  .cat__ctalink { margin-top: var(--space-s); display: flex; gap: var(--space-m); font-size: var(--step--1); }
+</style>

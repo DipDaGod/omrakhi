@@ -1,0 +1,130 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import PageHeader from '../../../components/PageHeader.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
+import CategoryCard from '../../../components/CategoryCard.astro';
+import CtaBlock from '../../../components/CtaBlock.astro';
+import SpecTable from '../../../components/SpecTable.astro';
+
+import { SITE } from '../../../config/site.ts';
+import { useTranslations, LOCALES, DEFAULT_LOCALE, type Locale } from '../../../i18n/ui.ts';
+import { href, ROUTES, localeFromParam } from '../../../lib/routes.ts';
+import { inr } from '../../../lib/format.ts';
+import { allCategories, categoryCounts } from '../../../lib/catalogue.ts';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const countries = await getCollection('countries');
+  return LOCALES.flatMap((locale) =>
+    countries.map((c) => ({
+      params: { locale: locale === DEFAULT_LOCALE ? undefined : locale, country: c.id },
+    })),
+  );
+};
+
+const locale = localeFromParam(Astro.params.locale) as Locale;
+const t = useTranslations(locale);
+const hi = locale === 'hi';
+
+const countries = await getCollection('countries');
+const country = countries.find((c) => c.id === Astro.params.country)!;
+const d = country.data;
+
+const [cats, counts] = await Promise.all([allCategories(), categoryCounts()]);
+const picked = d.categories
+  .map((r) => cats.find((c) => c.id === r.id))
+  .filter((c): c is NonNullable<typeof c> => !!c);
+
+const title = hi
+  ? `${d.name.hi} में राखी आयात करें — भारत से थोक | ${SITE.name}`
+  : `Import rakhi to ${d.name.en} from India — wholesale | ${SITE.name}`;
+const description = d.intro[locale].replace(/\s+/g, ' ').slice(0, 152).trim() + '…';
+---
+
+<Base locale={locale} title={title} description={description} noindex={d.draft}
+  enquiryContext={hi ? `${d.name.hi} में निर्यात के बारे में` : `Export enquiry — ${d.name.en}`}>
+  <div class="container section--tight">
+    <Breadcrumb locale={locale} items={[
+      { label: t('nav.home'), href: href(ROUTES.home, locale) },
+      { label: t('nav.export'), href: href(ROUTES.exportHub, locale) },
+      { label: d.name[locale] },
+    ]} />
+
+    {d.draft && (
+      <p class="draft">{hi
+        ? 'इस पेज की जानकारी अभी फ़र्म से पुष्ट होनी बाक़ी है। पुष्टि होने तक यह सर्च इंजन से बाहर रखा गया है।'
+        : 'The facts on this page are still to be confirmed with the firm. It is kept out of search until they are.'}</p>
+    )}
+
+    <PageHeader
+      eyebrow={t('nav.export')}
+      title={hi ? `${d.name.hi} में राखी भेजना` : `Shipping rakhi to ${d.name.en}`}
+      lede={d.intro[locale]}
+    />
+
+    <section class="section--tight">
+      <h2>{hi ? 'इस बाज़ार में क्या बिकता है' : 'What sells in this market'}</h2>
+      <p class="co__lead">{d.whyThese[locale]}</p>
+      <div class="co__cats">
+        {picked.map((c) => <CategoryCard category={c} count={counts.get(c.id) ?? 0} locale={locale} />)}
+      </div>
+    </section>
+
+    <section class="section--tight">
+      <h2>{hi ? 'शिपिंग' : 'Shipping'}</h2>
+      <SpecTable
+        rows={[
+          [hi ? 'तरीक़ा' : 'Mode', d.shipping.mode[locale]],
+          [hi ? 'ट्रांज़िट' : 'Transit', d.shipping.transit[locale]],
+          [hi ? 'रूट' : 'Route', d.shipping.port],
+          [hi ? 'न्यूनतम ऑर्डर मूल्य' : 'Minimum order value', inr(d.minOrderValueInr, locale)],
+        ]}
+      />
+    </section>
+
+    <section class="section--tight prose">
+      <h2>{hi ? 'सीमा शुल्क और काग़ज़ात' : 'Customs and paperwork'}</h2>
+      <p>{d.customs[locale]}</p>
+      <p>{hi
+        ? 'गंतव्य देश में आयात क्लीयरेंस और शुल्क आपकी ज़िम्मेदारी है; भेजने की ओर के दस्तावेज़ हम बनाते हैं।'
+        : 'Import clearance and duty at your end are yours; the dispatch-side documents are ours.'}
+        {' '}
+        <a href={href(ROUTES.exportHub, locale)}>{hi ? 'पूरी सूची निर्यात पेज पर है।' : 'The full split is on the export page.'}</a>
+      </p>
+    </section>
+
+    {d.dealerReference && (
+      <section class="section--tight prose">
+        <h2>{hi ? 'संदर्भ' : 'Reference'}</h2>
+        <p>{d.dealerReference}</p>
+      </section>
+    )}
+
+    <div class="section--tight">
+      <CtaBlock
+        locale={locale}
+        title={hi ? `${d.name.hi} के लिए दाम चाहिए?` : `Want rates for ${d.name.en}?`}
+        body={hi
+          ? 'आर्टिकल नंबर और अंदाज़न मात्रा भेजिए। हम एफ़ओबी कोलकाता भाव और एक असली डिस्पैच सप्ताह बताएँगे।'
+          : 'Send the article numbers and a rough quantity. You will get an FOB Kolkata rate and a dispatch week we can actually hold.'}
+        context={hi ? `${d.name.hi} — निर्यात पूछताछ` : `${d.name.en} — export enquiry`}
+      />
+    </div>
+  </div>
+</Base>
+
+<style>
+  h2 { margin-bottom: var(--space-s); }
+  .draft {
+    padding: var(--space-2xs) var(--space-s);
+    background: var(--plinth);
+    border-left: 3px solid var(--warn);
+    font-size: var(--step--1);
+    color: var(--ink-muted);
+    margin-bottom: var(--space-m);
+  }
+  .co__lead { max-width: var(--measure); margin-bottom: var(--space-m); }
+  .co__cats { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-l) var(--grid-gutter); }
+  @media (max-width: 40rem) { .co__cats { grid-template-columns: repeat(2, 1fr); } }
+</style>

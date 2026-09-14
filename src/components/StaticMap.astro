@@ -1,0 +1,32 @@
+---
+import { Image } from 'astro:assets';
+import { SITE } from '../config/site.ts';
+import { useTranslations, type Locale } from '../i18n/ui.ts';
+import { siteImage } from '../lib/images.ts';
+import Icon from './Icon.astro';
+
+/**
+ * A static image, never an embedded iframe. A Google Maps embed costs roughly
+ * half a megabyte and a third-party connection on the most important page of
+ * the site, to display something the visitor will open in the Maps app anyway.
+ */
+interface Props { locale: Locale; class?: string }
+const { locale, class: className } = Astro.props;
+const t = useTranslations(locale);
+const img = siteImage('map');
+const q = encodeURIComponent(
+  `${SITE.address.line1}, ${SITE.address.line2}, ${SITE.address.city} ${SITE.address.postalCode}`,
+);
+const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${q}`;
+---
+<a class:list={['map', className]} href={mapsUrl} rel="noopener" target="_blank">
+  {img && <Image src={img} alt={`${SITE.name}, ${SITE.address.line1}`} widths={[480, 768, 1200]}
+    sizes="(max-width: 40rem) 100vw, 36rem" loading="lazy" />}
+  <span class="map__cta btn btn--secondary">
+    <Icon name="mapPin" /> {t('action.openInMaps')}
+  </span>
+</a>
+<style>
+  .map { position: relative; display: block; background: var(--plinth); }
+  .map__cta { position: absolute; left: var(--space-s); bottom: var(--space-s); }
+</style>

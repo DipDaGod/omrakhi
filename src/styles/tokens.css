@@ -1,0 +1,102 @@
+/* =============================================================================
+   A0 — Design tokens.
+   Every value on the site lives here. Nothing in a component hardcodes a
+   colour, a font size, or a spacing value.
+
+   [ART] direction chosen: "ledger".
+   Warm paper ground, near-black ink, one deep vermilion accent, square corners,
+   hairline rules. The reference object is a wholesale order book, not a
+   consumer store: the goods supply all the colour a page needs, so the
+   furniture around them stays quiet.
+   ========================================================================== */
+
+:root {
+  /* --- Colour -------------------------------------------------------------
+     Role names, not colour names, so the direction can change without
+     renaming a single class. */
+  --ink: #1b1714;             /* primary text, headings */
+  --ink-muted: #6b625a;       /* secondary text, captions, article numbers */
+  --ground: #faf7f2;          /* page background */
+  --ground-raised: #ffffff;   /* cards, drawers, anything above the page */
+  --accent: #a8261c;          /* the one loud colour: CTAs, active states, tags */
+  --accent-ink: #ffffff;      /* text on --accent */
+  --accent-quiet: #e8d3cf;    /* accent at low emphasis: hairlines, underlines */
+  --plinth: #efe8dc;          /* the surface product photos sit on */
+  --line: #e2dad0;            /* hairlines and dividers */
+  --ok: #2f6b45;              /* status only: in stock */
+  --warn: #8a5a12;            /* status only: low stock */
+
+  /* --- Type ---------------------------------------------------------------
+     One display family, one text family. Never three.
+     Both are system stacks: zero network requests, zero layout shift, and no
+     part of the performance budget (A9) spent on webfonts. To swap in a
+     self-hosted family later, change these three lines and nothing else. */
+  --font-display: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua',
+    Georgia, 'Noto Serif', serif;
+  --font-text: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, 'Noto Sans', sans-serif;
+  --font-deva: 'Noto Sans Devanagari', 'Nirmala UI', 'Mangal', system-ui, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace;
+
+  /* --- Type scale ---------------------------------------------------------
+     Modular, ratio 1.2, fluid between 380px and 1280px viewports. */
+  --step--1: clamp(0.79rem, 0.77rem + 0.10vw, 0.84rem);
+  --step-0:  clamp(0.95rem, 0.92rem + 0.15vw, 1.05rem);
+  --step-1:  clamp(1.14rem, 1.08rem + 0.28vw, 1.31rem);
+  --step-2:  clamp(1.37rem, 1.27rem + 0.48vw, 1.64rem);
+  --step-3:  clamp(1.64rem, 1.48rem + 0.78vw, 2.05rem);
+  --step-4:  clamp(1.97rem, 1.71rem + 1.22vw, 2.56rem);
+
+  /* --- Spacing — one scale, used everywhere ------------------------------ */
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs:  0.75rem;
+  --space-s:   1rem;
+  --space-m:   1.5rem;
+  --space-l:   2rem;
+  --space-xl:  3rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+
+  /* --- Structure ---------------------------------------------------------- */
+  --radius: 0px;              /* one value for the whole site */
+  --hairline: 1px;
+  --measure: 66ch;            /* max line length for body copy */
+  --container: 76rem;         /* max content width */
+  --container-prose: 42rem;
+  --grid-gutter: var(--space-m);
+
+  /* The one shadow on the site. Used only where something genuinely floats:
+     drawer, sticky bar, mobile menu. Never as decoration. */
+  --shadow-float: 0 1px 2px rgb(27 23 20 / 0.06), 0 12px 32px rgb(27 23 20 / 0.14);
+
+  /* --- Motion — one curve, two durations, that's all --------------------- */
+  --ease: cubic-bezier(0.2, 0, 0.13, 1);
+  --dur-fast: 120ms;
+  --dur-base: 240ms;
+
+  /* --- Layering ----------------------------------------------------------- */
+  --z-strip: 20;
+  --z-header: 30;
+  --z-dock: 40;
+  --z-sticky: 45;
+  --z-overlay: 60;
+}
+
+/* A0 / A8 — non-negotiable. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Dark mode is deliberately not built. A product catalogue photographed on a
+   fixed plinth has one correct presentation; a dark mode would need a second
+   set of product photography. Declaring the scheme stops the browser
+   force-inverting form controls. */
+:root { color-scheme: light; }

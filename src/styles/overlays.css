@@ -1,0 +1,120 @@
+/* Styles for overlays injected by plain-TS modules (search, shortlist drawer).
+   They live here rather than in a component because the markup is created at
+   runtime and never passes through Astro's scoped-style pass. */
+
+.so, .sd {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-overlay);
+  display: flex;
+}
+.so__scrim, .sd__scrim {
+  position: absolute;
+  inset: 0;
+  background: rgb(27 23 20 / 0.4);
+}
+
+/* --- Search overlay -------------------------------------------------------- */
+.so { align-items: flex-start; justify-content: center; }
+.so__panel {
+  position: relative;
+  width: min(42rem, 100%);
+  margin-top: min(12vh, var(--space-2xl));
+  max-height: min(70vh, 40rem);
+  display: flex;
+  flex-direction: column;
+  background: var(--ground-raised);
+  border: var(--hairline) solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-float);
+}
+.so__head { display: flex; align-items: center; border-bottom: var(--hairline) solid var(--line); }
+.so__input {
+  flex: 1;
+  padding: var(--space-s);
+  border: 0;
+  background: transparent;
+  font-size: var(--step-1);
+}
+.so__input:focus { outline: none; }
+.so__close, .sd__close {
+  font-size: 1.5rem;
+  line-height: 1;
+  padding: var(--space-2xs) var(--space-s);
+  color: var(--ink-muted);
+}
+.so__close:hover, .sd__close:hover { color: var(--ink); }
+.so__results { overflow-y: auto; padding: var(--space-2xs); }
+.so__label { padding: var(--space-2xs) var(--space-xs); }
+.so__sep { border-top: var(--hairline) solid var(--line); margin-top: var(--space-2xs); }
+.so__note { padding: var(--space-m); color: var(--ink-muted); }
+.so__cats { list-style: none; padding: 0; margin: 0; }
+.so__cats a {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--space-2xs) var(--space-xs);
+  text-decoration: none;
+}
+.so__cats a:hover { background: var(--plinth); }
+.so__n { color: var(--ink-muted); font-variant-numeric: tabular-nums; }
+
+.sr {
+  display: flex;
+  gap: var(--space-s);
+  align-items: center;
+  padding: var(--space-2xs) var(--space-xs);
+  text-decoration: none;
+}
+.sr:hover { background: var(--plinth); }
+.sr__img { width: 3rem; height: 3rem; object-fit: cover; background: var(--plinth); }
+.sr__body { display: flex; flex-direction: column; min-width: 0; }
+.sr__code { font-weight: 700; }
+.sr__name { font-size: var(--step--1); }
+.sr__meta { font-size: var(--step--1); color: var(--ink-muted); }
+
+/* --- Shortlist drawer ------------------------------------------------------ */
+.sd { justify-content: flex-end; }
+.sd__panel {
+  position: relative;
+  width: min(24rem, 100%);
+  display: flex;
+  flex-direction: column;
+  background: var(--ground-raised);
+  box-shadow: var(--shadow-float);
+}
+.sd__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: var(--space-s);
+  border-bottom: var(--hairline) solid var(--line);
+}
+.sd__title { font-size: var(--step-1); }
+.sd__list { flex: 1; overflow-y: auto; padding: var(--space-2xs); }
+.sd__empty { padding: var(--space-m); color: var(--ink-muted); }
+.sd__row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  padding: var(--space-2xs);
+  border-bottom: var(--hairline) solid var(--line);
+}
+.sd__row--gone { opacity: 0.55; }
+.sd__img { width: 3rem; height: 3rem; object-fit: cover; background: var(--plinth); }
+.sd__body { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+.sd__code { font-weight: 700; }
+.sd__meta { font-size: var(--step--1); color: var(--ink-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sd__qty input {
+  width: 4.25rem;
+  padding: var(--space-3xs);
+  border: var(--hairline) solid var(--line);
+  text-align: right;
+}
+.sd__x { font-size: 1.25rem; line-height: 1; padding: var(--space-3xs) var(--space-2xs); color: var(--ink-muted); }
+.sd__x:hover { color: var(--accent); }
+.sd__foot { padding: var(--space-s); border-top: var(--hairline) solid var(--line); }
+
+@media (max-width: 40rem) {
+  .so__panel { margin-top: 0; max-height: 100%; height: 100%; width: 100%; }
+  .sd__panel { width: 100%; }
+}

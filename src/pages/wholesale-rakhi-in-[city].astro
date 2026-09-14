@@ -1,0 +1,119 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import CategoryCard from '../components/CategoryCard.astro';
+import CtaBlock from '../components/CtaBlock.astro';
+import SpecTable from '../components/SpecTable.astro';
+
+import { SITE } from '../config/site.ts';
+import { useTranslations, DEFAULT_LOCALE } from '../i18n/ui.ts';
+import { href, ROUTES } from '../lib/routes.ts';
+import { allCategories, categoryCounts } from '../lib/catalogue.ts';
+
+/**
+ * P15 — city pages. English only for now, as specified.
+ *
+ * Each page must carry content that is actually specific to that market. A
+ * page built by swapping the city name into a template is a ranking liability
+ * and it is obvious to a human reader — so a city without something true and
+ * specific to say does not get a page at all.
+ */
+export const getStaticPaths: GetStaticPaths = async () => {
+  const cities = await getCollection('cities');
+  return cities.map((c) => ({ params: { city: c.id } }));
+};
+
+const locale = DEFAULT_LOCALE;
+const t = useTranslations(locale);
+
+const cities = await getCollection('cities');
+const city = cities.find((c) => c.id === Astro.params.city)!;
+const d = city.data;
+
+const [cats, counts] = await Promise.all([allCategories(), categoryCounts()]);
+const picked = d.categories
+  .map((r) => cats.find((c) => c.id === r.id))
+  .filter((c): c is NonNullable<typeof c> => !!c);
+
+const title = `Wholesale rakhi supplier for ${d.name} — direct from Kolkata | ${SITE.name}`;
+const description = `${d.intro.replace(/\s+/g, ' ').slice(0, 150).trim()}…`;
+---
+
+<Base locale={locale} title={title} description={description} noindex={d.draft} locales={['en']}
+  enquiryContext={`Enquiry from ${d.name}`}>
+  <div class="container section--tight">
+    <Breadcrumb locale={locale} items={[
+      { label: t('nav.home'), href: href(ROUTES.home, locale) },
+      { label: t('nav.collection'), href: href(ROUTES.collections, locale) },
+      { label: d.name },
+    ]} />
+
+    {d.draft && (
+      <p class="draft">The market notes on this page are still to be confirmed with the firm. It is kept out of search until they are.</p>
+    )}
+
+    <PageHeader
+      eyebrow={`${d.name}, ${d.state}`}
+      title={`Wholesale rakhi for ${d.name}`}
+      lede={d.intro}
+    />
+
+    <section class="section--tight">
+      <h2>What sells in {d.name}</h2>
+      <p class="ci__lead">{d.whyThese}</p>
+      <div class="ci__cats">
+        {picked.map((c) => <CategoryCard category={c} count={counts.get(c.id) ?? 0} locale={locale} detailed />)}
+      </div>
+    </section>
+
+    <section class="section--tight">
+      <h2>Getting goods to {d.name}</h2>
+      <SpecTable
+        rows={[
+          ['Transport', d.transport.mode],
+          ['Typical transit', `${d.transport.transitDays} from dispatch`],
+          ...(d.market ? [['Local wholesale market', d.market]] : []),
+          ...(d.dealerCount > 0 ? [['Dealers we supply here', String(d.dealerCount)]] : []),
+        ]}
+      />
+      <p class="ci__note">
+        Freight is to your account and paid at the transport godown in {d.name}. We send the bilty number
+        on WhatsApp the day goods leave Kolkata. <a href={href(ROUTES.howToOrder, locale)}>Full dispatch terms</a>.
+      </p>
+    </section>
+
+    <div class="section--tight">
+      <CtaBlock
+        locale={locale}
+        title={`Buying for a counter in ${d.name}?`}
+        body="Send the article numbers you want and we will come back with rates and a dispatch week the same working day. If this is a first order, say so — the advice is different."
+        context={`Enquiry from ${d.name}`}
+      />
+      <p class="link-row">
+        <a href={href(ROUTES.collections, locale)}>{t('nav.collection')}</a>
+        <a href={href(ROUTES.howToOrder, locale)}>{t('nav.order')}</a>
+        <a href={href(ROUTES.contact, locale)}>{t('nav.contact')}</a>
+      </p>
+    </div>
+  </div>
+</Base>
+
+<style>
+  h2 { margin-bottom: var(--space-s); }
+  .draft {
+    padding: var(--space-2xs) var(--space-s);
+    background: var(--plinth);
+    border-left: 3px solid var(--warn);
+    font-size: var(--step--1);
+    color: var(--ink-muted);
+    margin-bottom: var(--space-m);
+  }
+  .ci__lead { max-width: var(--measure); margin-bottom: var(--space-m); }
+  .ci__cats { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-l) var(--grid-gutter); }
+  .ci__note { margin-top: var(--space-s); max-width: var(--measure); font-size: var(--step--1); color: var(--ink-muted); }
+  .link-row { display: flex; gap: var(--space-m); margin-top: var(--space-s); font-size: var(--step--1); }
+  @media (max-width: 40rem) { .ci__cats { grid-template-columns: 1fr; } }
+</style>

@@ -1,0 +1,20 @@
+{
+  "name": { "en": "Handicraft Rakhi", "hi": "हस्तशिल्प राखी" },
+  "order": 12,
+  "summary": {
+    "en": "Terracotta, wood and hand-wound thread work.",
+    "hi": "टेराकोटा, लकड़ी और हाथ से लपेटा धागा।"
+  },
+  "copy": {
+    "en": "Handicraft is the slowest line to make and the easiest to sell to the right buyer — eco-conscious retail, museum and craft shops, corporate orders that want an India story on the card. Every piece is wound by hand by artisans working from home in and around Burrabazar, so batch variation is real and we state it rather than hide it. Order early; this range cannot be pulled forward. Strongest in South India and export.",
+    "hi": "हस्तशिल्प सबसे धीमी बनने वाली लाइन है और सही ख़रीदार को सबसे आसानी से बिकने वाली — पर्यावरण-सजग रिटेल, म्यूज़ियम और क्राफ़्ट शॉप, और वे कॉर्पोरेट ऑर्डर जिन्हें कार्ड पर भारत की कहानी चाहिए। हर पीस बड़ाबाज़ार और आसपास घर से काम करने वाले कारीगर हाथ से लपेटते हैं, इसलिए बैच में थोड़ा फ़र्क़ आता है — हम इसे छिपाते नहीं, बता देते हैं। जल्दी ऑर्डर करें; यह रेंज आगे नहीं खींची जा सकती। दक्षिण भारत और निर्यात में सबसे मज़बूत।"
+  },
+  "materials": ["terracotta", "wood", "thread"],
+  "audience": ["brother", "bhaiya-bhabhi"],
+  "priceBand": { "from": 1, "to": 3 },
+  "moq": 100,
+  "packTypes": ["carded", "loose"],
+  "region": { "en": "Strongest in South India and export", "hi": "दक्षिण भारत और निर्यात में सबसे मज़बूत" },
+  "heroCode": "OM-3201",
+  "related": ["thread-rakhi", "rudraksha-rakhi", "kids-rakhi"]
+}

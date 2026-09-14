@@ -1,0 +1,126 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import DownloadRow from '../../components/DownloadRow.astro';
+import CtaBlock from '../../components/CtaBlock.astro';
+
+import { SITE, SEASON } from '../../config/site.ts';
+import { CATALOGUE } from '../../config/trade.ts';
+import { useTranslations, LOCALES, DEFAULT_LOCALE, type Locale } from '../../i18n/ui.ts';
+import { href, ROUTES, localeFromParam } from '../../lib/routes.ts';
+import { allCategories, categoryCounts, allProducts } from '../../lib/catalogue.ts';
+import { num } from '../../lib/format.ts';
+
+export const getStaticPaths: GetStaticPaths = () =>
+  LOCALES.map((locale) => ({ params: { locale: locale === DEFAULT_LOCALE ? undefined : locale } }));
+
+const locale = localeFromParam(Astro.params.locale) as Locale;
+const t = useTranslations(locale);
+const hi = locale === 'hi';
+
+const [categories, counts, products] = await Promise.all([allCategories(), categoryCounts(), allProducts()]);
+const pending = hi ? 'तैयार हो रहा है' : 'Being prepared';
+---
+
+<Base locale={locale}
+  title={hi ? `कैटलॉग और डाउनलोड — ${SITE.name}` : `Catalogue & downloads — ${SITE.name}`}
+  description={hi
+    ? `${SEASON.year} के राखी कैटलॉग की पीडीएफ़, श्रेणीवार फ़ाइलें, और रेट लिस्ट के बारे में साफ़ जानकारी।`
+    : `The ${SEASON.year} rakhi catalogue as a PDF, per-collection files, and a plain answer about the rate list.`}
+  enquiryContext={hi ? 'कैटलॉग भेजिए' : 'Please send the catalogue'}
+>
+  <div class="container section--tight">
+    <Breadcrumb locale={locale} items={[{ label: t('nav.home'), href: href(ROUTES.home, locale) }, { label: t('nav.catalogue') }]} />
+
+    <PageHeader
+      title={hi ? 'कैटलॉग और डाउनलोड' : 'Catalogue & downloads'}
+      lede={hi
+        ? `पूरी रेंज इसी साइट पर है और हमेशा यही सबसे ताज़ा रहती है। पीडीएफ़ उनके लिए है जिन्हें एक फ़ाइल में सब चाहिए — साझेदार को भेजने के लिए, या ऐसी जगह के लिए जहाँ नेटवर्क नहीं है।`
+        : `The whole range is on this site and that is always the most current version. The PDFs are for buyers who want it in one file — to forward to a partner, or to read somewhere without a signal.`}
+    />
+
+    <section class="section--tight">
+      <h2>{hi ? 'पूरा कैटलॉग' : 'Full catalogue'}</h2>
+      <DownloadRow
+        title={hi ? `${SEASON.year} पूरा कैटलॉग` : `${SEASON.year} full catalogue`}
+        meta={CATALOGUE.full.file
+          ? `PDF · ${CATALOGUE.full.sizeMb} MB · ${CATALOGUE.full.pages} ${hi ? 'पृष्ठ' : 'pages'} · ${CATALOGUE.full.updated}`
+          : hi
+            ? `${num(products.length, locale)} डिज़ाइन, ${categories.length} श्रेणियाँ — फ़ोटोग्राफ़ी पूरी होने पर पीडीएफ़ बनेगी`
+            : `${products.length} designs across ${categories.length} collections — the PDF is built once photography is complete`}
+        href={CATALOGUE.full.file}
+        unavailable={pending}
+      />
+      <p class="ct__note">{hi
+        ? 'फ़ाइल का आकार और तारीख़ लिंक से पहले लिखी जाती है। मोबाइल डेटा पर बिना बताए 40 एमबी की फ़ाइल थमा देना बदतमीज़ी है।'
+        : 'File size and date are shown before the link. Handing someone a 40MB download on mobile data without warning is a hostile act.'}</p>
+    </section>
+
+    <section class="section--tight">
+      <h2>{hi ? 'श्रेणीवार' : 'By collection'}</h2>
+      <p class="ct__note">{hi
+        ? 'ज़्यादातर ख़रीदारों को एक श्रेणी चाहिए, बीस नहीं।'
+        : 'Most buyers want one collection, not all twenty.'}</p>
+      <div class="ct__rows">
+        {categories.map((c) => (
+          <DownloadRow
+            title={c.data.name[locale]}
+            meta={`${num(counts.get(c.id) ?? 0, locale)} ${t('label.designs')} · ${hi ? 'वेब पर अभी देखिए' : 'available on the site now'}`}
+            unavailable={pending}
+          />
+        ))}
+      </div>
+      <p class="ct__linknote">
+        {hi ? 'जब तक पीडीएफ़ तैयार नहीं हैं, ' : 'Until the PDFs are ready, '}
+        <a href={href(ROUTES.collections, locale)}>{hi ? 'पूरा संग्रह साइट पर देखिए' : 'the full collection is on the site'}</a>
+        {hi ? ' — और वहाँ हर डिज़ाइन का आर्टिकल नंबर मौजूद है।' : ', with every article number on it.'}
+      </p>
+    </section>
+
+    {/* Saying nothing about rates looks evasive; this is honest and standard
+        practice in the trade. */}
+    <section class="section--tight prose">
+      <h2>{hi ? 'रेट लिस्ट' : 'Rate list'}</h2>
+      <p>{hi
+        ? 'रेट लिस्ट प्रकाशित नहीं की जाती। दाम सीज़न के दौरान सामग्री की लागत के साथ बदलते हैं और प्रति डिज़ाइन मात्रा पर निर्भर करते हैं, इसलिए छपी हुई सूची कुछ हफ़्तों में ग़लत हो जाएगी।'
+        : 'The rate list is not published. Rates move with material cost through the season and depend on quantity per design, so a printed list would be wrong within weeks.'}</p>
+      <p>{hi
+        ? 'आर्टिकल नंबर भेजिए और उसी कार्यदिवस में दाम मिल जाएँगे। हर डिज़ाइन पर दिया ₹ बैंड इस बीच अंदाज़ा देने के लिए काफ़ी है।'
+        : 'Send the article numbers and you will have rates the same working day. The ₹ band on every design is there to give you the shape of it in the meantime.'}</p>
+    </section>
+
+    {CATALOGUE.printedAvailable && (
+      <section class="section--tight prose">
+        <h2>{hi ? 'छपा हुआ कैटलॉग' : 'Printed catalogue'}</h2>
+        <p>{hi
+          ? 'जिन डीलरों के साथ हम पहले काम कर चुके हैं, उन्हें छपा कैटलॉग डाक से भेजा जा सकता है। पता और फ़र्म का नाम व्हाट्सएप कर दीजिए।'
+          : 'We can post a printed catalogue to dealers we have worked with before. Send your address and firm name on WhatsApp.'}</p>
+      </section>
+    )}
+
+    <div class="section--tight">
+      <CtaBlock
+        locale={locale}
+        title={hi ? 'कैटलॉग व्हाट्सएप पर मँगाइए' : 'Ask for the catalogue on WhatsApp'}
+        body={hi
+          ? 'बता दीजिए कि कौन-सी श्रेणियाँ चाहिए और आप किस शहर में बेचते हैं — हम वही भेजेंगे जो आपके काम का है, पूरी फ़ाइल नहीं।'
+          : 'Tell us which collections you want and where you sell, and we will send what is relevant rather than the whole file.'}
+        context={hi ? 'कैटलॉग भेजिए' : 'Please send the catalogue'}
+      />
+      <p class="link-row">
+        <a href={href(ROUTES.howToOrder, locale)}>{t('nav.order')}</a>
+        <a href={href(ROUTES.collections, locale)}>{t('nav.collection')}</a>
+      </p>
+    </div>
+  </div>
+</Base>
+
+<style>
+  h2 { margin-bottom: var(--space-2xs); }
+  .ct__note { font-size: var(--step--1); color: var(--ink-muted); max-width: var(--measure); margin-top: var(--space-2xs); }
+  .ct__rows { margin-top: var(--space-s); }
+  .ct__linknote { margin-top: var(--space-s); font-size: var(--step--1); max-width: var(--measure); }
+  .link-row { display: flex; gap: var(--space-m); margin-top: var(--space-s); font-size: var(--step--1); }
+</style>

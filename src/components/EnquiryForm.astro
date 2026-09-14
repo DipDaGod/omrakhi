@@ -1,0 +1,105 @@
+---
+import { SITE } from '../config/site.ts';
+import { useTranslations, type Locale } from '../i18n/ui.ts';
+import { href, ROUTES } from '../lib/routes.ts';
+
+/**
+ * Real HTML, posting to Web3Forms with a redirect to /thanks. No backend, and
+ * no JavaScript required to submit — src/islands/forms.ts only adds inline
+ * validation on top.
+ */
+type Field =
+  | { kind: 'text' | 'tel' | 'email' | 'date'; name: string; label: string; required?: boolean; autocomplete?: string; placeholder?: string }
+  | { kind: 'select'; name: string; label: string; required?: boolean; options: { value: string; label: string }[] }
+  | { kind: 'textarea'; name: string; label: string; required?: boolean; rows?: number };
+
+interface Props { locale: Locale; subject: string; fields: Field[]; submitLabel?: string }
+const { locale, subject, fields, submitLabel } = Astro.props;
+const t = useTranslations(locale);
+
+const messages = {
+  required: t('form.required'),
+  phone: t('form.errorPhone'),
+  email: locale === 'hi' ? 'यह ईमेल पता अधूरा लग रहा है।' : 'That email address looks incomplete.',
+  sending: t('form.sending'),
+};
+const redirect = new URL(href(ROUTES.thanks, locale), SITE.origin).href;
+---
+<form
+  class="fm"
+  data-form
+  data-messages={JSON.stringify(messages)}
+  action="https://api.web3forms.com/submit"
+  method="POST"
+>
+  <input type="hidden" name="access_key" value={SITE.web3formsKey} />
+  <input type="hidden" name="subject" value={subject} />
+  <input type="hidden" name="from_name" value={SITE.name} />
+  <input type="hidden" name="redirect" value={redirect} />
+  {/* Honeypot. Hidden from people, irresistible to bots. Kept out of the
+      accessibility tree entirely with display:none rather than clipped, so it
+      is never announced to a screen reader or reachable by keyboard. */}
+  <div style="display:none" aria-hidden="true">
+    <label for="botcheck">Leave this field empty</label>
+    <input type="checkbox" id="botcheck" name="botcheck" tabindex="-1" autocomplete="off" />
+  </div>
+
+  {fields.map((f) => (
+    <div class="fm__field">
+      <label for={`f-${f.name}`}>
+        {f.label}
+        {!f.required && <span class="fm__opt">{locale === 'hi' ? '(वैकल्पिक)' : '(optional)'}</span>}
+      </label>
+      {f.kind === 'select' ? (
+        <select id={`f-${f.name}`} name={f.name} required={f.required}>
+          <option value="">{locale === 'hi' ? 'चुनिए…' : 'Choose…'}</option>
+          {f.options.map((o) => <option value={o.value}>{o.label}</option>)}
+        </select>
+      ) : f.kind === 'textarea' ? (
+        <textarea id={`f-${f.name}`} name={f.name} rows={f.rows ?? 4} required={f.required}></textarea>
+      ) : (
+        <input
+          id={`f-${f.name}`}
+          name={f.name}
+          type={f.kind}
+          required={f.required}
+          autocomplete={f.autocomplete}
+          placeholder={f.placeholder}
+        />
+      )}
+      <p class="fm__error" data-error-for={f.name} aria-live="polite"></p>
+    </div>
+  ))}
+
+  <button class="btn btn--primary" type="submit">{submitLabel ?? t('form.send')}</button>
+  <p class="fm__note">
+    {locale === 'hi'
+      ? 'भेजने पर यह जानकारी ईमेल से हम तक पहुँचती है। कोई खाता नहीं बनता।'
+      : 'Sending this emails it to us. No account is created and nothing is stored on this site.'}
+    <a href={href(ROUTES.privacy, locale)}>{locale === 'hi' ? 'गोपनीयता' : 'Privacy'}</a>
+  </p>
+</form>
+
+<script>
+  import '../islands/forms.ts';
+</script>
+
+<style>
+  .fm { display: grid; gap: var(--space-s); max-width: 34rem; }
+  .fm__field { display: grid; gap: var(--space-3xs); }
+  .fm__field label { font-size: var(--step--1); font-weight: 600; }
+  .fm__opt { font-weight: 400; color: var(--ink-muted); margin-left: 0.35em; }
+  .fm input, .fm select, .fm textarea {
+    padding: 0.6em 0.7em;
+    border: var(--hairline) solid var(--line);
+    background: var(--ground-raised);
+    border-radius: var(--radius);
+    width: 100%;
+  }
+  .fm input:focus, .fm select:focus, .fm textarea:focus { border-color: var(--ink); }
+  .fm [aria-invalid='true'] { border-color: var(--accent); }
+  .fm__error:empty { display: none; }
+  .fm__error { font-size: var(--step--1); color: var(--accent); }
+  .fm__note { font-size: var(--step--1); color: var(--ink-muted); }
+  .fm button { justify-self: start; }
+</style>

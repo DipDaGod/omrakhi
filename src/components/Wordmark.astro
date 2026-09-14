@@ -1,0 +1,18 @@
+---
+interface Props { class?: string }
+const { class: className } = Astro.props;
+---
+<span class:list={['wordmark', className]}>
+  <span class="wordmark__om">Om</span> Rakhi Udyog
+</span>
+<style>
+  .wordmark {
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .wordmark__om { color: var(--accent); }
+</style>

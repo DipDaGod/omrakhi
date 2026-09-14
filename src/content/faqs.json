@@ -1,0 +1,62 @@
+[
+  {
+    "id": "minimum-first-order",
+    "question": { "en": "What is the smallest order you will take?", "hi": "आप कम से कम कितना ऑर्डर लेते हैं?" },
+    "answer": { "en": "The minimum is per design, not per order. Most categories start at 100 pieces of a design; pendant and bhaiya-bhabhi start at 50, plain thread at 500. So a first order of eight designs across two categories is entirely normal. There is no minimum order value.", "hi": "न्यूनतम प्रति ऑर्डर नहीं, प्रति डिज़ाइन है। ज़्यादातर श्रेणियाँ 100 पीस प्रति डिज़ाइन से शुरू होती हैं; पेंडेंट और भैया-भाभी 50 से, सादा धागा 500 से। यानी दो श्रेणियों के आठ डिज़ाइन का पहला ऑर्डर बिल्कुल सामान्य है। कोई न्यूनतम ऑर्डर मूल्य नहीं है।" }
+  },
+  {
+    "id": "rates-not-on-site",
+    "question": { "en": "Why are rates not shown on the website?", "hi": "वेबसाइट पर दाम क्यों नहीं दिए गए?" },
+    "answer": { "en": "Because a published rate would be wrong within weeks. Material cost moves through the season, and the rate depends on quantity per design. The price bands on every article tell you which range a design sits in; send us the article numbers and you will have exact rates the same working day.", "hi": "क्योंकि छपा हुआ दाम कुछ ही हफ़्तों में ग़लत हो जाएगा। सीज़न के दौरान सामग्री की लागत बदलती है, और दाम प्रति डिज़ाइन मात्रा पर निर्भर करता है। हर आर्टिकल पर दिया प्राइस बैंड बताता है कि डिज़ाइन किस रेंज में है; आर्टिकल नंबर भेजिए, उसी कार्यदिवस में सही दाम मिल जाएँगे।" }
+  },
+  {
+    "id": "carded-or-loose",
+    "question": { "en": "Should I buy carded or loose?", "hi": "कार्ड वाली लें या खुली?" },
+    "answer": { "en": "Carded if you are selling to a walk-in retail customer — the card holds the piece flat, carries the price, and hangs on a display. Loose if you are re-packing, selling by weight, or supplying a community or temple order in bulk. Loose is cheaper per piece; carded sells faster.", "hi": "अगर आप सीधे ग्राहक को बेच रहे हैं तो कार्ड वाली — कार्ड पीस को सीधा रखता है, दाम दिखाता है और डिस्प्ले पर टँगता है। अगर आप दोबारा पैक कर रहे हैं, वज़न से बेच रहे हैं, या सामुदायिक/मंदिर का थोक ऑर्डर पूरा कर रहे हैं तो खुली। खुली प्रति पीस सस्ती पड़ती है; कार्ड वाली जल्दी बिकती है।" }
+  },
+  {
+    "id": "how-to-order-first-time",
+    "question": { "en": "I have never bought rakhi wholesale before. How do I start?", "hi": "मैंने पहले कभी थोक में राखी नहीं ख़रीदी। शुरुआत कैसे करूँ?" },
+    "answer": { "en": "Shortlist designs on this site, send us the list on WhatsApp, and we will come back with rates and what is available. If you would rather see the goods first, ask for a sample box. Most first counters are built from twelve to twenty designs across three categories, in the middle price bands.", "hi": "इस साइट पर डिज़ाइन शॉर्टलिस्ट कीजिए, सूची व्हाट्सएप पर भेजिए, हम दाम और उपलब्धता बता देंगे। पहले माल देखना हो तो सैंपल बॉक्स मँगाइए। ज़्यादातर पहले काउंटर तीन श्रेणियों के बारह से बीस डिज़ाइन से, बीच के प्राइस बैंड में बनते हैं।" }
+  },
+  {
+    "id": "gst-bill",
+    "question": { "en": "Do you give a GST bill?", "hi": "क्या आप जीएसटी बिल देते हैं?" },
+    "answer": { "en": "Yes. Every order is invoiced with GST. Rates quoted are net and exclusive of GST, which is added on the invoice at the applicable rate. Send your GSTIN when you confirm an order.", "hi": "हाँ। हर ऑर्डर का जीएसटी सहित बिल बनता है। बताए गए दाम नेट और जीएसटी रहित होते हैं; बिल पर लागू दर से जीएसटी जोड़ा जाता है। ऑर्डर पक्का करते समय अपना जीएसटीआईएन भेज दें।" }
+  },
+  {
+    "id": "mix-designs-in-moq",
+    "question": { "en": "Can I mix designs to reach the minimum?", "hi": "क्या न्यूनतम पूरा करने के लिए डिज़ाइन मिला सकते हैं?" },
+    "answer": { "en": "No — the minimum is per design because each design is a separate production run. What you can mix freely is colours within a design, where a design is made in more than one colour. Tell us the split when you book.", "hi": "नहीं — न्यूनतम प्रति डिज़ाइन है क्योंकि हर डिज़ाइन अलग प्रोडक्शन रन है। हाँ, एक ही डिज़ाइन के भीतर रंग आज़ादी से मिला सकते हैं, जहाँ डिज़ाइन एक से ज़्यादा रंगों में बनता है। बुकिंग के समय बँटवारा बता दीजिए।" }
+  },
+  {
+    "id": "when-to-book",
+    "question": { "en": "When should I place my order?", "hi": "ऑर्डर कब देना चाहिए?" },
+    "answer": { "en": "December to April is the right window. Booking in that period gets you your choice of designs and a dispatch date you can plan around. From May the range narrows to what is already in production, and by July we are dispatching rather than making. The calendar at the top of this page shows the whole year.", "hi": "दिसंबर से अप्रैल सही समय है। इस दौरान बुकिंग करने पर आपको डिज़ाइन की पसंद और भरोसेमंद डिस्पैच तारीख़ दोनों मिलती हैं। मई से रेंज उतनी ही रह जाती है जो पहले से बन रही है, और जुलाई तक हम बनाते नहीं, भेजते हैं। इस पेज के ऊपर दिया कैलेंडर पूरा साल दिखाता है।" }
+  },
+  {
+    "id": "reorder-mid-season",
+    "question": { "en": "Can I reorder in the middle of the season?", "hi": "क्या सीज़न के बीच दोबारा ऑर्डर कर सकते हैं?" },
+    "answer": { "en": "Usually yes, from stock, but not on every design. Call before you commit to a customer — we will tell you honestly what is left rather than take the order and short-ship it. Pendant and metal lines hold stock better than kundan and handicraft.", "hi": "आम तौर पर हाँ, स्टॉक से — पर हर डिज़ाइन पर नहीं। ग्राहक को वादा करने से पहले फ़ोन कर लीजिए; हम साफ़ बता देंगे कि क्या बचा है, ऑर्डर लेकर अधूरा माल नहीं भेजेंगे। पेंडेंट और मेटल लाइन में स्टॉक कुंदन और हस्तशिल्प से बेहतर रहता है।" }
+  },
+  {
+    "id": "transport-or-courier",
+    "question": { "en": "How will the goods reach me?", "hi": "माल मुझ तक कैसे पहुँचेगा?" },
+    "answer": { "en": "By road transport for anything above a few cartons. We book it to a transport company and send you the bilty (LR) number; you collect from their godown in your city and pay freight there. Courier is available for samples and small top-ups — faster, and noticeably dearer per kilo.", "hi": "कुछ कार्टन से ज़्यादा माल सड़क ट्रांसपोर्ट से जाता है। हम ट्रांसपोर्ट कंपनी में बुक करके आपको बिल्टी (एलआर) नंबर भेजते हैं; आप अपने शहर के गोदाम से माल लेकर वहीं भाड़ा देते हैं। सैंपल और छोटे टॉप-अप के लिए कूरियर उपलब्ध है — तेज़, पर प्रति किलो काफ़ी महँगा।" }
+  },
+  {
+    "id": "what-is-bilty",
+    "question": { "en": "What is a bilty or LR?", "hi": "बिल्टी या एलआर क्या होता है?" },
+    "answer": { "en": "It is the transport company's receipt for your consignment — lorry receipt. It carries the number of cartons, the destination godown and a docket number. You need it to take delivery. We send it by WhatsApp the day the goods leave.", "hi": "यह आपकी खेप के लिए ट्रांसपोर्ट कंपनी की रसीद है — लॉरी रसीद। इसमें कार्टन की संख्या, गंतव्य गोदाम और डॉकेट नंबर होता है। माल छुड़ाने के लिए यह ज़रूरी है। जिस दिन माल निकलता है, हम इसे व्हाट्सएप पर भेज देते हैं।" }
+  },
+  {
+    "id": "custom-logo",
+    "question": { "en": "Can you put my shop's name on the card?", "hi": "क्या कार्ड पर मेरी दुकान का नाम छप सकता है?" },
+    "answer": { "en": "Yes, on a printed card, from 2,000 pieces. Below that the printing setup costs more than the order is worth and we will tell you so rather than take it. Full details are on the custom and private label page.", "hi": "हाँ, छपे हुए कार्ड पर, 2,000 पीस से। इससे कम में छपाई की सेटअप लागत ऑर्डर से ज़्यादा पड़ती है — हम ऑर्डर लेने के बजाय यह बता देंगे। पूरी जानकारी कस्टम और प्राइवेट लेबल पेज पर है।" }
+  },
+  {
+    "id": "visit-without-appointment",
+    "question": { "en": "Can I come to the shop without telling you first?", "hi": "क्या बिना बताए दुकान आ सकते हैं?" },
+    "answer": { "en": "You can, during working hours. But message first — in season the samples you want to see may be with a buyer, and off season one of us may be at the workshop rather than upstairs. A message the day before means everything is laid out when you arrive.", "hi": "हाँ, कामकाजी घंटों में। पर पहले संदेश भेज दें — सीज़न में जो सैंपल आप देखना चाहते हैं वे किसी ख़रीदार के पास हो सकते हैं, और ऑफ़ सीज़न में हममें से कोई ऊपर के बजाय वर्कशॉप में हो सकता है। एक दिन पहले संदेश भेजने पर आपके पहुँचते ही सब तैयार मिलेगा।" }
+  }
+]

@@ -1,0 +1,20 @@
+{
+  "name": { "en": "Pearl Rakhi", "hi": "मोती राखी" },
+  "order": 3,
+  "summary": {
+    "en": "Moti clusters and single-pearl centres, light on the wrist.",
+    "hi": "मोती क्लस्टर और सिंगल मोती सेंटर, कलाई पर हल्की।"
+  },
+  "copy": {
+    "en": "Pearl moves every year regardless of what else is fashionable, which makes it the safest line to open a new counter with. We use graded shell pearl, not coated plastic, so the surface does not scuff in a box between Kolkata and a shop in Nagpur. Cluster designs sit high and photograph well; single-pearl centres sell to the buyer who wants something restrained. Even demand nationally, with a bias toward the South.",
+    "hi": "मोती हर साल चलता है, फ़ैशन कुछ भी हो — इसलिए नया काउंटर शुरू करने के लिए यह सबसे सुरक्षित लाइन है। हम ग्रेडेड शेल पर्ल इस्तेमाल करते हैं, कोटेड प्लास्टिक नहीं, इसलिए कोलकाता से नागपुर तक डिब्बे में सतह नहीं छिलती। क्लस्टर डिज़ाइन ऊँचे बैठते हैं और फ़ोटो में अच्छे लगते हैं; सिंगल मोती सेंटर उन ग्राहकों के लिए है जिन्हें सादगी चाहिए। पूरे देश में समान माँग, दक्षिण भारत में थोड़ी ज़्यादा।"
+  },
+  "materials": ["pearl", "thread", "metal"],
+  "audience": ["brother", "bhaiya-bhabhi"],
+  "priceBand": { "from": 1, "to": 3 },
+  "moq": 100,
+  "packTypes": ["carded", "loose"],
+  "region": { "en": "Even nationally, with a bias toward the South", "hi": "पूरे देश में समान, दक्षिण में थोड़ी ज़्यादा" },
+  "heroCode": "OM-1401",
+  "related": ["stone-rakhi", "thread-rakhi", "ad-rakhi"]
+}

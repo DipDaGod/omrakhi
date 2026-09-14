@@ -1,0 +1,58 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Icon from '../../components/Icon.astro';
+
+import { SITE } from '../../config/site.ts';
+import { useTranslations, LOCALES, DEFAULT_LOCALE, type Locale } from '../../i18n/ui.ts';
+import { href, ROUTES, localeFromParam } from '../../lib/routes.ts';
+import { telHref, whatsappHref } from '../../lib/whatsapp.ts';
+
+export const getStaticPaths: GetStaticPaths = () =>
+  LOCALES.map((locale) => ({ params: { locale: locale === DEFAULT_LOCALE ? undefined : locale } }));
+
+const locale = localeFromParam(Astro.params.locale) as Locale;
+const t = useTranslations(locale);
+const hi = locale === 'hi';
+---
+
+<Base locale={locale} noindex
+  title={`${hi ? 'पूछताछ मिल गई' : 'Enquiry received'} — ${SITE.name}`}
+  description={hi ? 'आपकी पूछताछ हम तक पहुँच गई है।' : 'Your enquiry has reached us.'}>
+  <div class="container container--prose section">
+    <PageHeader
+      title={hi ? 'आपकी पूछताछ मिल गई' : 'Your enquiry has reached us'}
+      lede={hi
+        ? 'हम एक कार्यदिवस के भीतर दाम और उपलब्धता के साथ जवाब देते हैं। अगर आज रविवार है या शाम सात बजे के बाद है, तो जवाब अगली सुबह मिलेगा।'
+        : 'We come back within one working day with rates and availability. If it is Sunday or after seven in the evening, that means tomorrow morning.'}
+    />
+
+    <p>{hi
+      ? 'इंतज़ार नहीं करना चाहते तो सीधे व्हाट्सएप कर दीजिए — वही सबसे तेज़ रास्ता है।'
+      : 'If you would rather not wait, message us directly. It is the fastest route there is.'}</p>
+
+    <div class="tk__actions">
+      <a class="btn btn--primary" href={whatsappHref(hi ? 'मैंने अभी वेबसाइट से फ़ॉर्म भेजा है' : 'I have just sent the form on your website')} rel="noopener">
+        <Icon name="whatsapp" /> {SITE.phone.display}
+      </a>
+      <a class="btn btn--secondary" href={telHref}><Icon name="phone" /> {t('action.call')}</a>
+    </div>
+
+    {/* Not a dead end — this is the moment the buyer is most engaged. */}
+    <h2 class="tk__h2">{hi ? 'इस बीच' : 'In the meantime'}</h2>
+    <ul class="tk__links">
+      <li><a href={href(ROUTES.collections, locale)}>{t('action.browse')}</a></li>
+      <li><a href={href(ROUTES.howToOrder, locale)}>{hi ? 'ऑर्डर कैसे काम करता है' : 'How ordering works'}</a></li>
+      <li><a href={href(ROUTES.catalogue, locale)}>{t('nav.catalogue')}</a></li>
+    </ul>
+  </div>
+</Base>
+
+<style>
+  .tk__actions { display: flex; gap: var(--space-2xs); flex-wrap: wrap; margin-block: var(--space-m); }
+  .tk__h2 { font-size: var(--step-2); margin-top: var(--space-xl); }
+  .tk__links { list-style: none; padding: 0; display: grid; gap: var(--space-2xs); margin-top: var(--space-s); }
+  .tk__links a { display: block; padding: var(--space-2xs) 0; border-bottom: var(--hairline) solid var(--line); text-decoration: none; }
+  .tk__links a:hover { color: var(--accent); }
+</style>

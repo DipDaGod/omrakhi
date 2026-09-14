@@ -1,0 +1,35 @@
+---
+import { Picture } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import { lqip } from '../lib/images.ts';
+
+/**
+ * A10 — every product photograph goes through here.
+ * AVIF + WebP, explicit width and height, an inlined LQIP behind it so nothing
+ * shifts, and a hard cap on delivered width.
+ */
+interface Props {
+  src: ImageMetadata;
+  alt: string;
+  code?: string;
+  widths: number[];
+  sizes: string;
+  eager?: boolean;
+  class?: string;
+}
+const { src, alt, code, widths, sizes, eager = false, class: className } = Astro.props;
+const placeholder = code ? lqip(code) : undefined;
+---
+<Picture
+  src={src}
+  alt={alt}
+  widths={widths}
+  sizes={sizes}
+  formats={['avif', 'webp']}
+  fallbackFormat="jpeg"
+  loading={eager ? 'eager' : 'lazy'}
+  decoding={eager ? 'sync' : 'async'}
+  fetchpriority={eager ? 'high' : undefined}
+  class={className}
+  style={placeholder ? `background-image:url(${placeholder});background-size:cover;background-position:center` : undefined}
+/>

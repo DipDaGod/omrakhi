@@ -1,0 +1,74 @@
+---
+import { PHASES, currentPhase, strapline } from '../lib/season.ts';
+import type { Locale } from '../i18n/ui.ts';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+
+const phase = currentPhase();
+/* Rendered at build time, then corrected in the browser. A static site built
+   in April and still serving in June would otherwise be telling a dealer the
+   wrong thing about the season, which is exactly what this strip exists to
+   prevent. All five lines are inlined; the script picks one. */
+const lines = Object.fromEntries(PHASES.map((p) => [p, strapline(p, locale)]));
+---
+
+<div class="strip" id="season-strip" data-lines={JSON.stringify(lines)} hidden={false}>
+  <div class="strip__inner container">
+    <p class="strip__text" id="season-strip-text">{strapline(phase, locale)}</p>
+    <button class="strip__close" type="button" data-strip-close aria-label="Dismiss">&times;</button>
+  </div>
+</div>
+
+<style>
+  .strip {
+    background: var(--ink);
+    color: var(--ground);
+    font-size: var(--step--1);
+  }
+  .strip[hidden] { display: none; }
+  .strip__inner {
+    display: flex;
+    align-items: center;
+    gap: var(--space-s);
+    padding-block: var(--space-3xs);
+  }
+  .strip__text { flex: 1; margin: 0; }
+  .strip__close {
+    color: inherit;
+    font-size: 1.25rem;
+    line-height: 1;
+    padding: 0 var(--space-2xs);
+    opacity: 0.7;
+  }
+  .strip__close:hover { opacity: 1; }
+</style>
+
+<script is:inline>
+  (function () {
+    var el = document.getElementById('season-strip');
+    if (!el) return;
+    var KEY = 'orru:strip-dismissed:v1';
+    var text = document.getElementById('season-strip-text');
+    var lines = JSON.parse(el.dataset.lines || '{}');
+
+    // Re-evaluate the phase in the visitor's present, not the build's.
+    var m = new Date().getUTCMonth() + 1;
+    var phase =
+      m >= 9 && m <= 11 ? 'development'
+      : m === 12 || m === 1 ? 'launch'
+      : m >= 2 && m <= 4 ? 'booking'
+      : m >= 5 && m <= 7 ? 'dispatch'
+      : 'festival';
+    if (lines[phase] && text && text.textContent !== lines[phase]) text.textContent = lines[phase];
+
+    try {
+      if (localStorage.getItem(KEY) === phase) el.hidden = true;
+    } catch (e) {}
+
+    el.querySelector('[data-strip-close]').addEventListener('click', function () {
+      el.hidden = true;
+      try { localStorage.setItem(KEY, phase); } catch (e) {}
+    });
+  })();
+</script>

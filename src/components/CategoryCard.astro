@@ -1,0 +1,69 @@
+---
+import type { Locale } from '../i18n/ui.ts';
+import { useTranslations } from '../i18n/ui.ts';
+import { bandRange } from '../lib/format.ts';
+import { productImage } from '../lib/images.ts';
+import { href, ROUTES } from '../lib/routes.ts';
+import { LIMITED_RANGE_THRESHOLD, type Category } from '../lib/catalogue.ts';
+import ProductImage from './ProductImage.astro';
+
+/**
+ * P2 — photograph-led, never icon-led. Icons for rakhi categories are
+ * meaningless: the difference between kundan and meenakari is entirely visual.
+ * The design count is live from data so it cannot go stale, and a category
+ * below the threshold is labelled rather than shown with a thin number.
+ */
+interface Props { category: Category; count: number; locale: Locale; detailed?: boolean; eager?: boolean }
+const { category, count, locale, detailed = false, eager = false } = Astro.props;
+const c = category.data;
+const t = useTranslations(locale);
+const img = productImage(c.heroCode, category.id);
+const limited = c.limited || count < LIMITED_RANGE_THRESHOLD;
+---
+<a class="cc" href={href(ROUTES.category(category.id), locale)}>
+  <span class="plinth cc__img">
+    {img && (
+      <ProductImage
+        src={img}
+        code={c.heroCode}
+        alt={c.name[locale]}
+        widths={[320, 480, 768]}
+        sizes="(max-width: 40rem) 45vw, (max-width: 60rem) 30vw, 18rem"
+        eager={eager}
+      />
+    )}
+  </span>
+  <span class="cc__body">
+    <span class="cc__name">{c.name[locale]}</span>
+    <span class="cc__count">
+      {limited ? t('label.limitedRange') : `${count} ${count === 1 ? t('label.design') : t('label.designs')}`}
+      <span class="cc__band">{bandRange(c.priceBand.from, c.priceBand.to)}</span>
+    </span>
+    {detailed && (
+      <>
+        <span class="cc__summary">{c.summary[locale]}</span>
+        <span class="cc__region">{t('label.sellsBest')}: {c.region[locale]}</span>
+      </>
+    )}
+  </span>
+</a>
+<style>
+  .cc { display: block; text-decoration: none; color: inherit; }
+  .cc__img { display: block; margin-bottom: var(--space-2xs); }
+  .cc__img :global(img) { transition: transform var(--dur-base) var(--ease); }
+  .cc:hover .cc__img :global(img) { transform: scale(1.03); }
+  .cc:hover .cc__name { color: var(--accent); }
+  .cc__body { display: grid; gap: var(--space-3xs); }
+  .cc__name { font-family: var(--font-display); font-size: var(--step-1); font-weight: 600; line-height: 1.15; }
+  .cc__count {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-2xs);
+    font-size: var(--step--1);
+    color: var(--ink-muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .cc__band { color: var(--ink); }
+  .cc__summary { font-size: var(--step--1); }
+  .cc__region { font-size: var(--step--1); color: var(--ink-muted); border-top: var(--hairline) solid var(--line); padding-top: var(--space-3xs); }
+</style>

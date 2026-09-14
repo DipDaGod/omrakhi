@@ -1,0 +1,168 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { Image } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import StaticMap from '../../components/StaticMap.astro';
+import HoursTable from '../../components/HoursTable.astro';
+import Icon from '../../components/Icon.astro';
+
+import { SITE } from '../../config/site.ts';
+import { useTranslations, LOCALES, DEFAULT_LOCALE, type Locale } from '../../i18n/ui.ts';
+import { href, ROUTES, localeFromParam } from '../../lib/routes.ts';
+import { telHref, whatsappHref } from '../../lib/whatsapp.ts';
+import { siteImage } from '../../lib/images.ts';
+
+export const getStaticPaths: GetStaticPaths = () =>
+  LOCALES.map((locale) => ({ params: { locale: locale === DEFAULT_LOCALE ? undefined : locale } }));
+
+const locale = localeFromParam(Astro.params.locale) as Locale;
+const t = useTranslations(locale);
+const hi = locale === 'hi';
+
+const entrance = siteImage('entrance');
+const stairwell = siteImage('stairwell');
+
+const DIRECTIONS = [
+  {
+    from: { en: 'From Howrah Station', hi: 'हावड़ा स्टेशन से' },
+    body: {
+      en: 'Cross the Howrah Bridge — by taxi it is ten minutes without traffic and forty with it, so in season walk it if you are carrying nothing. On the Kolkata side you are already in Burrabazar. Head for Mahatma Gandhi Road, then ask for Kalakar Street; every hand-cart puller in the lane knows it. P-15 is on the right as you come from the M.G. Road end, with the ICICI Bank on the corner.',
+      hi: 'हावड़ा ब्रिज पार कीजिए — टैक्सी से बिना ट्रैफ़िक दस मिनट, ट्रैफ़िक में चालीस, इसलिए सीज़न में अगर सामान न हो तो पैदल बेहतर है। कोलकाता की तरफ़ उतरते ही आप बड़ाबाज़ार में हैं। महात्मा गांधी रोड की ओर जाइए, फिर कलाकार स्ट्रीट पूछ लीजिए; गली का हर ठेलेवाला जानता है। एम.जी. रोड की तरफ़ से आते हुए पी-15 दाहिनी ओर है, कोने पर आईसीआईसीआई बैंक।',
+    },
+  },
+  {
+    from: { en: 'From Sealdah Station', hi: 'सियालदह स्टेशन से' },
+    body: {
+      en: 'A taxi or auto to Burrabazar takes twenty to thirty minutes depending on the hour. Ask for Kalakar Street rather than for the postal address — building numbers are not how this area is navigated. If the driver stops at the M.G. Road crossing, that is fine; the lane is a two-minute walk.',
+      hi: 'टैक्सी या ऑटो से बड़ाबाज़ार बीस से तीस मिनट, समय पर निर्भर। पते के बजाय कलाकार स्ट्रीट पूछिए — इस इलाक़े में रास्ता इमारत के नंबर से नहीं मिलता। ड्राइवर एम.जी. रोड क्रॉसिंग पर छोड़ दे तो ठीक है; गली दो मिनट की पैदल दूरी पर है।',
+    },
+  },
+  {
+    from: { en: 'From M.G. Road metro', hi: 'एम.जी. रोड मेट्रो से' },
+    body: {
+      en: 'The shortest route there is. Come out of the station and walk west into Burrabazar; Kalakar Street is roughly six or seven minutes on foot. In season the lane is packed and a vehicle will be slower than walking.',
+      hi: 'सबसे छोटा रास्ता यही है। स्टेशन से बाहर निकलकर पश्चिम की ओर बड़ाबाज़ार में चलिए; कलाकार स्ट्रीट लगभग छह-सात मिनट पैदल है। सीज़न में गली भरी रहती है और गाड़ी पैदल से धीमी पड़ेगी।',
+    },
+  },
+] as const;
+---
+
+<Base locale={locale}
+  title={hi ? `हमारा पता — कलाकार स्ट्रीट, बड़ाबाज़ार | ${SITE.name}` : `Visit us — Kalakar Street, Burrabazar | ${SITE.name}`}
+  description={hi
+    ? 'पी-15 कलाकार स्ट्रीट, दूसरी मंज़िल, बड़ाबाज़ार, कोलकाता 700007 — आईसीआईसीआई बैंक के पास। हावड़ा, सियालदह और एम.जी. रोड मेट्रो से रास्ता, प्रवेश द्वार की तस्वीरें और समय।'
+    : 'P-15 Kalakar Street, 2nd Floor, Burrabazar, Kolkata 700007 — near ICICI Bank. Directions from Howrah, Sealdah and M.G. Road metro, photographs of the entrance, and hours.'}
+  enquiryContext={hi ? 'मैं दुकान आना चाहता हूँ' : 'I would like to visit the shop'}
+>
+  <div class="container section--tight">
+    <Breadcrumb locale={locale} items={[{ label: t('nav.home'), href: href(ROUTES.home, locale) }, { label: t('nav.visit') }]} />
+
+    <PageHeader
+      title={hi ? 'हमारे यहाँ आइए' : 'Visit us'}
+      lede={hi
+        ? 'बड़ाबाज़ार में पता इमारत के नंबर से नहीं, निशानी से मिलता है। इसलिए नीचे दरवाज़े की तस्वीर है — तीन पैराग्राफ़ के निर्देश से वह ज़्यादा काम की है।'
+        : 'Addresses in Burrabazar work by landmark, not by building number. So here is a photograph of the door, which is worth three paragraphs of directions.'}
+    />
+
+    <div class="vi">
+      <div class="vi__main">
+        <section>
+          <h2>{hi ? 'पता' : 'The address'}</h2>
+          <address class="vi__addr">
+            {SITE.address.line1}<br />
+            {SITE.address.line2}<br />
+            {SITE.address.city} {SITE.address.postalCode}<br />
+            <strong>{SITE.address.landmark}</strong>
+          </address>
+          <div class="vi__actions">
+            <a class="btn btn--primary" href={whatsappHref(hi ? 'मैं दुकान आना चाहता हूँ। आज आप हैं?' : 'I would like to visit the shop. Are you there today?')} rel="noopener">
+              <Icon name="whatsapp" /> {hi ? 'आने से पहले संदेश भेजिए' : 'Message before you come'}
+            </a>
+            <a class="btn btn--secondary" href={telHref}><Icon name="phone" /> {SITE.phone.display}</a>
+          </div>
+        </section>
+
+        {/* Photographs of the entrance are the point of this page. */}
+        <section class="section--tight">
+          <h2>{hi ? 'इमारत कैसी दिखती है' : 'What the building looks like'}</h2>
+          <div class="vi__shots">
+            {entrance && (
+              <figure>
+                <Image src={entrance} alt={hi ? 'पी-15 का प्रवेश द्वार' : 'The entrance at P-15'}
+                  widths={[320, 480, 768]} sizes="(max-width: 40rem) 100vw, 20rem" loading="lazy" />
+                <figcaption>{hi ? 'दरवाज़ा। आईसीआईसीआई बैंक के ठीक बगल में।' : 'The doorway, immediately beside the ICICI Bank.'}</figcaption>
+              </figure>
+            )}
+            {stairwell && (
+              <figure>
+                <Image src={stairwell} alt={hi ? 'दूसरी मंज़िल की सीढ़ी' : 'The stairs to the second floor'}
+                  widths={[320, 480, 768]} sizes="(max-width: 40rem) 100vw, 20rem" loading="lazy" />
+                <figcaption>{hi ? 'सीढ़ी। दो मंज़िल ऊपर, कोई लिफ़्ट नहीं।' : 'The stairs. Two floors up, and there is no lift.'}</figcaption>
+              </figure>
+            )}
+          </div>
+        </section>
+
+        <section class="section--tight">
+          <h2>{hi ? 'रास्ता' : 'Getting here'}</h2>
+          {DIRECTIONS.map((d) => (
+            <div class="vi__dir">
+              <h3>{d.from[locale]}</h3>
+              <p>{d.body[locale]}</p>
+            </div>
+          ))}
+        </section>
+
+        <section class="section--tight prose">
+          <h2>{hi ? 'पार्किंग' : 'Parking'}</h2>
+          <p>{hi
+            ? 'सीधी बात: कलाकार स्ट्रीट पर पार्किंग नहीं है। सीज़न में गली में ठेले और हाथगाड़ियाँ भरी रहती हैं और कार अंदर आ ही नहीं सकती। गाड़ी से आ रहे हैं तो एम.जी. रोड पर छोड़कर पैदल आइए, या मेट्रो लीजिए — वह सचमुच तेज़ है।'
+            : 'Plainly: there is no parking on Kalakar Street. In season the lane is full of hand-carts and a car cannot get in at all. If you are driving, leave the vehicle on M.G. Road and walk, or take the metro — it is genuinely faster.'}</p>
+        </section>
+
+        <section class="section--tight prose">
+          <h2>{hi ? 'यहाँ आकर क्या मिलेगा' : 'What to expect when you arrive'}</h2>
+          <p>{hi
+            ? 'दूसरी मंज़िल पर एक कमरा है जिसमें सैंपल बोर्ड लगे हैं — पूरी रेंज हाथ में देखी जा सकती है, यही यहाँ आने का असल फ़ायदा है। साथ में एक नोटबुक लाइए और आर्टिकल नंबर लिखते चलिए; बाद में व्हाट्सएप पर ऑर्डर देते समय वही काम आएँगे।'
+            : 'Upstairs is a room with sample boards on the walls — the whole range in the hand, which is the real reason to come. Bring a notebook and write down article numbers as you go; those are what you will send on WhatsApp later.'}</p>
+          <p>{hi
+            ? 'यह शोरूम नहीं है। यह एक कामकाजी दफ़्तर है जिसमें कार्टन रखे रहते हैं। सीज़न में यहाँ भीड़ होती है, इसलिए संदेश भेजकर आना सबसे अच्छा है — हम आपके लिए वक़्त रख लेंगे।'
+            : 'It is not a showroom. It is a working office with cartons in it. In season it is busy, which is why a message beforehand is worth sending — we will keep the time free.'}</p>
+        </section>
+      </div>
+
+      <aside class="vi__aside">
+        <StaticMap locale={locale} />
+        <div>
+          <h2 class="vi__h3">{t('label.hours')}</h2>
+          <HoursTable locale={locale} />
+        </div>
+        <p class="vi__links">
+          <a href={href(ROUTES.contact, locale)}>{t('nav.contact')}</a>
+          <a href={href(ROUTES.about, locale)}>{t('nav.about')}</a>
+          <a href={href(ROUTES.collections, locale)}>{t('nav.collection')}</a>
+        </p>
+      </aside>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .vi { display: grid; grid-template-columns: 1.5fr 1fr; gap: var(--space-2xl); }
+  .vi h2 { font-size: var(--step-2); margin-bottom: var(--space-s); }
+  .vi__h3 { font-size: var(--step-1) !important; }
+  .vi__addr { font-style: normal; font-size: var(--step-1); line-height: 1.6; }
+  .vi__actions { display: flex; gap: var(--space-2xs); flex-wrap: wrap; margin-top: var(--space-s); }
+  .vi__shots { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-m); }
+  .vi__shots figure { margin: 0; }
+  .vi__shots figcaption { margin-top: var(--space-2xs); font-size: var(--step--1); color: var(--ink-muted); }
+  .vi__dir + .vi__dir { margin-top: var(--space-m); }
+  .vi__dir h3 { font-size: var(--step-1); margin-bottom: var(--space-3xs); }
+  .vi__dir p { max-width: var(--measure); }
+  .vi__aside { display: grid; gap: var(--space-m); align-content: start; }
+  .vi__links { display: grid; gap: var(--space-3xs); font-size: var(--step--1); }
+  @media (max-width: 60rem) { .vi { grid-template-columns: 1fr; gap: var(--space-xl); } }
+  @media (max-width: 40rem) { .vi__shots { grid-template-columns: 1fr; } }
+</style>

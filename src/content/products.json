@@ -1,0 +1,7434 @@
+[
+  {
+    "id": "OM-1001",
+    "category": "ad-rakhi",
+    "name": {
+      "en": "American diamond rakhi",
+      "hi": "अमेरिकन डायमंड राखी"
+    },
+    "materials": [
+      "stone",
+      "metal"
+    ],
+    "colours": [
+      "red",
+      "vermilion"
+    ],
+    "colourFamily": "red",
+    "sizeMm": 42,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": true,
+    "priority": 58,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-1002",
+    "category": "ad-rakhi",
+    "name": {
+      "en": "AD stone rakhi",
+      "hi": "एडी स्टोन राखी"
+    },
+    "materials": [
+      "stone",
+      "metal"
+    ],
+    "colours": [
+      "red",
+      "vermilion"
+    ],
+    "colourFamily": "red",
+    "sizeMm": 36,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": true,
+    "priority": 57,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1003",
+    "category": "ad-rakhi",
+    "name": {
+      "en": "Diamond cluster rakhi",
+      "hi": "डायमंड क्लस्टर राखी"
+    },
+    "materials": [
+      "stone",
+      "metal"
+    ],
+    "colours": [
+      "multicolour"
+    ],
+    "colourFamily": "multi",
+    "sizeMm": 39,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 120
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": true,
+    "priority": 56,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1004",
+    "category": "ad-rakhi",
+    "name": {
+      "en": "AD chain rakhi",
+      "hi": "एडी चेन राखी"
+    },
+    "materials": [
+      "stone",
+      "metal",
+      "thread"
+    ],
+    "colours": [
+      "gold",
+      "antique gold"
+    ],
+    "colourFamily": "gold",
+    "sizeMm": 39,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": true,
+    "priority": 45,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-1005",
+    "category": "ad-rakhi",
+    "name": {
+      "en": "American diamond rakhi",
+      "hi": "अमेरिकन डायमंड राखी"
+    },
+    "materials": [
+      "stone"
+    ],
+    "colours": [
+      "blue",
+      "royal blue"
+    ],
+    "colourFamily": "blue",
+    "sizeMm": 32,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": true,
+    "priority": 54,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1006",
+    "category": "ad-rakhi",
+    "name": {
+      "en": "AD stone rakhi",
+      "hi": "एडी स्टोन राखी"
+    },
+    "materials": [
+      "stone",
+      "metal",
+      "thread"
+    ],
+    "colours": [
+      "blue",
+      "royal blue"
+    ],
+    "colourFamily": "blue",
+    "sizeMm": 34,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": true,
+    "priority": 53,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1007",
+    "category": "ad-rakhi",
+    "name": {
+      "en": "Diamond cluster rakhi",
+      "hi": "डायमंड क्लस्टर राखी"
+    },
+    "materials": [
+      "stone"
+    ],
+    "colours": [
+      "red",
+      "vermilion"
+    ],
+    "colourFamily": "red",
+    "sizeMm": 32,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": true,
+    "priority": 42,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-1008",
+    "category": "ad-rakhi",
+    "name": {
+      "en": "AD chain rakhi",
+      "hi": "एडी चेन राखी"
+    },
+    "materials": [
+      "stone",
+      "metal"
+    ],
+    "colours": [
+      "green",
+      "emerald"
+    ],
+    "colourFamily": "green",
+    "sizeMm": 33,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 41,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1009",
+    "category": "ad-rakhi",
+    "name": {
+      "en": "American diamond rakhi",
+      "hi": "अमेरिकन डायमंड राखी"
+    },
+    "materials": [
+      "stone",
+      "metal",
+      "thread"
+    ],
+    "colours": [
+      "maroon",
+      "deep red"
+    ],
+    "colourFamily": "maroon",
+    "sizeMm": 36,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": false,
+    "priority": 50,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1010",
+    "category": "ad-rakhi",
+    "name": {
+      "en": "AD stone rakhi",
+      "hi": "एडी स्टोन राखी"
+    },
+    "materials": [
+      "stone",
+      "metal"
+    ],
+    "colours": [
+      "green",
+      "emerald"
+    ],
+    "colourFamily": "green",
+    "sizeMm": 40,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": false,
+    "priority": 49,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-1011",
+    "category": "ad-rakhi",
+    "name": {
+      "en": "Diamond cluster rakhi",
+      "hi": "डायमंड क्लस्टर राखी"
+    },
+    "materials": [
+      "stone",
+      "metal"
+    ],
+    "colours": [
+      "blue",
+      "royal blue"
+    ],
+    "colourFamily": "blue",
+    "sizeMm": 37,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 38,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1012",
+    "category": "ad-rakhi",
+    "name": {
+      "en": "AD chain rakhi",
+      "hi": "एडी चेन राखी"
+    },
+    "materials": [
+      "stone"
+    ],
+    "colours": [
+      "maroon",
+      "deep red"
+    ],
+    "colourFamily": "maroon",
+    "sizeMm": 42,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 37,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1013",
+    "category": "ad-rakhi",
+    "name": {
+      "en": "American diamond rakhi",
+      "hi": "अमेरिकन डायमंड राखी"
+    },
+    "materials": [
+      "stone",
+      "metal"
+    ],
+    "colours": [
+      "red",
+      "vermilion"
+    ],
+    "colourFamily": "red",
+    "sizeMm": 32,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 36,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-1014",
+    "category": "ad-rakhi",
+    "name": {
+      "en": "AD stone rakhi",
+      "hi": "एडी स्टोन राखी"
+    },
+    "materials": [
+      "stone",
+      "metal"
+    ],
+    "colours": [
+      "ivory",
+      "peach"
+    ],
+    "colourFamily": "pastel",
+    "sizeMm": 37,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 35,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1015",
+    "category": "ad-rakhi",
+    "name": {
+      "en": "Diamond cluster rakhi",
+      "hi": "डायमंड क्लस्टर राखी"
+    },
+    "materials": [
+      "stone",
+      "metal",
+      "thread"
+    ],
+    "colours": [
+      "maroon",
+      "deep red"
+    ],
+    "colourFamily": "maroon",
+    "sizeMm": 40,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": false,
+    "priority": 44,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1016",
+    "category": "ad-rakhi",
+    "name": {
+      "en": "AD chain rakhi",
+      "hi": "एडी चेन राखी"
+    },
+    "materials": [
+      "stone",
+      "metal"
+    ],
+    "colours": [
+      "green",
+      "emerald"
+    ],
+    "colourFamily": "green",
+    "sizeMm": 39,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 33,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-1017",
+    "category": "ad-rakhi",
+    "name": {
+      "en": "American diamond rakhi",
+      "hi": "अमेरिकन डायमंड राखी"
+    },
+    "materials": [
+      "stone"
+    ],
+    "colours": [
+      "red",
+      "vermilion"
+    ],
+    "colourFamily": "red",
+    "sizeMm": 33,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 32,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1018",
+    "category": "ad-rakhi",
+    "name": {
+      "en": "AD stone rakhi",
+      "hi": "एडी स्टोन राखी"
+    },
+    "materials": [
+      "stone"
+    ],
+    "colours": [
+      "blue",
+      "royal blue"
+    ],
+    "colourFamily": "blue",
+    "sizeMm": 34,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 120
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 31,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1019",
+    "category": "ad-rakhi",
+    "name": {
+      "en": "Diamond cluster rakhi",
+      "hi": "डायमंड क्लस्टर राखी"
+    },
+    "materials": [
+      "stone",
+      "metal",
+      "thread"
+    ],
+    "colours": [
+      "gold",
+      "antique gold"
+    ],
+    "colourFamily": "gold",
+    "sizeMm": 36,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": false,
+    "priority": 40,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-1020",
+    "category": "ad-rakhi",
+    "name": {
+      "en": "AD chain rakhi",
+      "hi": "एडी चेन राखी"
+    },
+    "materials": [
+      "stone"
+    ],
+    "colours": [
+      "ivory",
+      "peach"
+    ],
+    "colourFamily": "pastel",
+    "sizeMm": 40,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 120
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": false,
+    "priority": 39,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1021",
+    "category": "ad-rakhi",
+    "name": {
+      "en": "American diamond rakhi",
+      "hi": "अमेरिकन डायमंड राखी"
+    },
+    "materials": [
+      "stone",
+      "metal",
+      "thread"
+    ],
+    "colours": [
+      "red",
+      "vermilion"
+    ],
+    "colourFamily": "red",
+    "sizeMm": 42,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": false,
+    "priority": 38,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1022",
+    "category": "ad-rakhi",
+    "name": {
+      "en": "AD stone rakhi",
+      "hi": "एडी स्टोन राखी"
+    },
+    "materials": [
+      "stone",
+      "metal",
+      "thread"
+    ],
+    "colours": [
+      "red",
+      "vermilion"
+    ],
+    "colourFamily": "red",
+    "sizeMm": 37,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 27,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-1023",
+    "category": "ad-rakhi",
+    "name": {
+      "en": "Diamond cluster rakhi",
+      "hi": "डायमंड क्लस्टर राखी"
+    },
+    "materials": [
+      "stone"
+    ],
+    "colours": [
+      "gold",
+      "antique gold"
+    ],
+    "colourFamily": "gold",
+    "sizeMm": 32,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": false,
+    "priority": 36,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1024",
+    "category": "ad-rakhi",
+    "name": {
+      "en": "AD chain rakhi",
+      "hi": "एडी चेन राखी"
+    },
+    "materials": [
+      "stone"
+    ],
+    "colours": [
+      "maroon",
+      "deep red"
+    ],
+    "colourFamily": "maroon",
+    "sizeMm": 39,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 25,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1025",
+    "category": "ad-rakhi",
+    "name": {
+      "en": "American diamond rakhi",
+      "hi": "अमेरिकन डायमंड राखी"
+    },
+    "materials": [
+      "stone"
+    ],
+    "colours": [
+      "multicolour"
+    ],
+    "colourFamily": "multi",
+    "sizeMm": 41,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 120
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 24,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-1026",
+    "category": "ad-rakhi",
+    "name": {
+      "en": "AD stone rakhi",
+      "hi": "एडी स्टोन राखी"
+    },
+    "materials": [
+      "stone",
+      "metal"
+    ],
+    "colours": [
+      "blue",
+      "royal blue"
+    ],
+    "colourFamily": "blue",
+    "sizeMm": 40,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 23,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1027",
+    "category": "ad-rakhi",
+    "name": {
+      "en": "Diamond cluster rakhi",
+      "hi": "डायमंड क्लस्टर राखी"
+    },
+    "materials": [
+      "stone",
+      "metal"
+    ],
+    "colours": [
+      "multicolour"
+    ],
+    "colourFamily": "multi",
+    "sizeMm": 36,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": false,
+    "priority": 32,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1028",
+    "category": "ad-rakhi",
+    "name": {
+      "en": "AD chain rakhi",
+      "hi": "एडी चेन राखी"
+    },
+    "materials": [
+      "stone",
+      "metal",
+      "thread"
+    ],
+    "colours": [
+      "multicolour"
+    ],
+    "colourFamily": "multi",
+    "sizeMm": 38,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": false,
+    "priority": 31,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-1201",
+    "category": "kundan-rakhi",
+    "name": {
+      "en": "Kundan rakhi",
+      "hi": "कुंदन राखी"
+    },
+    "materials": [
+      "stone"
+    ],
+    "colours": [
+      "multicolour"
+    ],
+    "colourFamily": "multi",
+    "sizeMm": 50,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 120
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": true,
+    "priority": 42,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-1202",
+    "category": "kundan-rakhi",
+    "name": {
+      "en": "Kundan meenakari rakhi",
+      "hi": "कुंदन मीनाकारी राखी"
+    },
+    "materials": [
+      "stone",
+      "metal",
+      "thread"
+    ],
+    "colours": [
+      "silver",
+      "oxidised silver"
+    ],
+    "colourFamily": "silver",
+    "sizeMm": 43,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 4,
+    "new": true,
+    "priority": 61,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1203",
+    "category": "kundan-rakhi",
+    "name": {
+      "en": "Kundan cluster rakhi",
+      "hi": "कुंदन क्लस्टर राखी"
+    },
+    "materials": [
+      "stone",
+      "metal",
+      "thread"
+    ],
+    "colours": [
+      "green",
+      "emerald"
+    ],
+    "colourFamily": "green",
+    "sizeMm": 51,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 4,
+    "new": true,
+    "priority": 60,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1204",
+    "category": "kundan-rakhi",
+    "name": {
+      "en": "Jadau kundan rakhi",
+      "hi": "जड़ाऊ कुंदन राखी"
+    },
+    "materials": [
+      "stone",
+      "metal",
+      "thread"
+    ],
+    "colours": [
+      "blue",
+      "royal blue"
+    ],
+    "colourFamily": "blue",
+    "sizeMm": 40,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 120
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 4,
+    "new": true,
+    "priority": 59,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-1205",
+    "category": "kundan-rakhi",
+    "name": {
+      "en": "Kundan rakhi",
+      "hi": "कुंदन राखी"
+    },
+    "materials": [
+      "stone",
+      "metal",
+      "thread"
+    ],
+    "colours": [
+      "blue",
+      "royal blue"
+    ],
+    "colourFamily": "blue",
+    "sizeMm": 48,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": true,
+    "priority": 48,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1206",
+    "category": "kundan-rakhi",
+    "name": {
+      "en": "Kundan meenakari rakhi",
+      "hi": "कुंदन मीनाकारी राखी"
+    },
+    "materials": [
+      "stone",
+      "metal",
+      "thread"
+    ],
+    "colours": [
+      "blue",
+      "royal blue"
+    ],
+    "colourFamily": "blue",
+    "sizeMm": 49,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 120
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 4,
+    "new": true,
+    "priority": 57,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1207",
+    "category": "kundan-rakhi",
+    "name": {
+      "en": "Kundan cluster rakhi",
+      "hi": "कुंदन क्लस्टर राखी"
+    },
+    "materials": [
+      "stone",
+      "metal",
+      "thread"
+    ],
+    "colours": [
+      "red",
+      "vermilion"
+    ],
+    "colourFamily": "red",
+    "sizeMm": 43,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 4,
+    "new": false,
+    "priority": 56,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-1208",
+    "category": "kundan-rakhi",
+    "name": {
+      "en": "Jadau kundan rakhi",
+      "hi": "जड़ाऊ कुंदन राखी"
+    },
+    "materials": [
+      "stone"
+    ],
+    "colours": [
+      "multicolour"
+    ],
+    "colourFamily": "multi",
+    "sizeMm": 38,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": false,
+    "priority": 45,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1209",
+    "category": "kundan-rakhi",
+    "name": {
+      "en": "Kundan rakhi",
+      "hi": "कुंदन राखी"
+    },
+    "materials": [
+      "stone",
+      "metal"
+    ],
+    "colours": [
+      "multicolour"
+    ],
+    "colourFamily": "multi",
+    "sizeMm": 43,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 4,
+    "new": false,
+    "priority": 54,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1210",
+    "category": "kundan-rakhi",
+    "name": {
+      "en": "Kundan meenakari rakhi",
+      "hi": "कुंदन मीनाकारी राखी"
+    },
+    "materials": [
+      "stone",
+      "metal",
+      "thread"
+    ],
+    "colours": [
+      "multicolour"
+    ],
+    "colourFamily": "multi",
+    "sizeMm": 39,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 33,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-1211",
+    "category": "kundan-rakhi",
+    "name": {
+      "en": "Kundan cluster rakhi",
+      "hi": "कुंदन क्लस्टर राखी"
+    },
+    "materials": [
+      "stone",
+      "metal"
+    ],
+    "colours": [
+      "silver",
+      "oxidised silver"
+    ],
+    "colourFamily": "silver",
+    "sizeMm": 44,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 32,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1212",
+    "category": "kundan-rakhi",
+    "name": {
+      "en": "Jadau kundan rakhi",
+      "hi": "जड़ाऊ कुंदन राखी"
+    },
+    "materials": [
+      "stone"
+    ],
+    "colours": [
+      "gold",
+      "antique gold"
+    ],
+    "colourFamily": "gold",
+    "sizeMm": 48,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 120
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 31,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1213",
+    "category": "kundan-rakhi",
+    "name": {
+      "en": "Kundan rakhi",
+      "hi": "कुंदन राखी"
+    },
+    "materials": [
+      "stone",
+      "metal",
+      "thread"
+    ],
+    "colours": [
+      "red",
+      "vermilion"
+    ],
+    "colourFamily": "red",
+    "sizeMm": 41,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 4,
+    "new": false,
+    "priority": 50,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-1214",
+    "category": "kundan-rakhi",
+    "name": {
+      "en": "Kundan meenakari rakhi",
+      "hi": "कुंदन मीनाकारी राखी"
+    },
+    "materials": [
+      "stone",
+      "metal"
+    ],
+    "colours": [
+      "ivory",
+      "peach"
+    ],
+    "colourFamily": "pastel",
+    "sizeMm": 41,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 4,
+    "new": false,
+    "priority": 49,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1215",
+    "category": "kundan-rakhi",
+    "name": {
+      "en": "Kundan cluster rakhi",
+      "hi": "कुंदन क्लस्टर राखी"
+    },
+    "materials": [
+      "stone"
+    ],
+    "colours": [
+      "red",
+      "vermilion"
+    ],
+    "colourFamily": "red",
+    "sizeMm": 43,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": false,
+    "priority": 38,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1216",
+    "category": "kundan-rakhi",
+    "name": {
+      "en": "Jadau kundan rakhi",
+      "hi": "जड़ाऊ कुंदन राखी"
+    },
+    "materials": [
+      "stone",
+      "metal"
+    ],
+    "colours": [
+      "multicolour"
+    ],
+    "colourFamily": "multi",
+    "sizeMm": 40,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 4,
+    "new": false,
+    "priority": 47,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-1217",
+    "category": "kundan-rakhi",
+    "name": {
+      "en": "Kundan rakhi",
+      "hi": "कुंदन राखी"
+    },
+    "materials": [
+      "stone",
+      "metal",
+      "thread"
+    ],
+    "colours": [
+      "green",
+      "emerald"
+    ],
+    "colourFamily": "green",
+    "sizeMm": 44,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": false,
+    "priority": 36,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1218",
+    "category": "kundan-rakhi",
+    "name": {
+      "en": "Kundan meenakari rakhi",
+      "hi": "कुंदन मीनाकारी राखी"
+    },
+    "materials": [
+      "stone"
+    ],
+    "colours": [
+      "silver",
+      "oxidised silver"
+    ],
+    "colourFamily": "silver",
+    "sizeMm": 48,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 4,
+    "new": false,
+    "priority": 45,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1219",
+    "category": "kundan-rakhi",
+    "name": {
+      "en": "Kundan cluster rakhi",
+      "hi": "कुंदन क्लस्टर राखी"
+    },
+    "materials": [
+      "stone",
+      "metal"
+    ],
+    "colours": [
+      "blue",
+      "royal blue"
+    ],
+    "colourFamily": "blue",
+    "sizeMm": 48,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 4,
+    "new": false,
+    "priority": 44,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-1220",
+    "category": "kundan-rakhi",
+    "name": {
+      "en": "Jadau kundan rakhi",
+      "hi": "जड़ाऊ कुंदन राखी"
+    },
+    "materials": [
+      "stone",
+      "metal",
+      "thread"
+    ],
+    "colours": [
+      "silver",
+      "oxidised silver"
+    ],
+    "colourFamily": "silver",
+    "sizeMm": 42,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 23,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1221",
+    "category": "kundan-rakhi",
+    "name": {
+      "en": "Kundan rakhi",
+      "hi": "कुंदन राखी"
+    },
+    "materials": [
+      "stone",
+      "metal"
+    ],
+    "colours": [
+      "multicolour"
+    ],
+    "colourFamily": "multi",
+    "sizeMm": 39,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 22,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1222",
+    "category": "kundan-rakhi",
+    "name": {
+      "en": "Kundan meenakari rakhi",
+      "hi": "कुंदन मीनाकारी राखी"
+    },
+    "materials": [
+      "stone"
+    ],
+    "colours": [
+      "red",
+      "vermilion"
+    ],
+    "colourFamily": "red",
+    "sizeMm": 48,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": false,
+    "priority": 31,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-1401",
+    "category": "pearl-rakhi",
+    "name": {
+      "en": "Pearl cluster rakhi",
+      "hi": "मोती क्लस्टर राखी"
+    },
+    "materials": [
+      "pearl",
+      "thread",
+      "metal"
+    ],
+    "colours": [
+      "silver",
+      "oxidised silver"
+    ],
+    "colourFamily": "silver",
+    "sizeMm": 30,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 1,
+    "new": true,
+    "priority": 36,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-1402",
+    "category": "pearl-rakhi",
+    "name": {
+      "en": "Single pearl rakhi",
+      "hi": "सिंगल मोती राखी"
+    },
+    "materials": [
+      "pearl",
+      "thread",
+      "metal"
+    ],
+    "colours": [
+      "green",
+      "emerald"
+    ],
+    "colourFamily": "green",
+    "sizeMm": 28,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": true,
+    "priority": 55,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1403",
+    "category": "pearl-rakhi",
+    "name": {
+      "en": "Pearl and stone rakhi",
+      "hi": "मोती और पत्थर राखी"
+    },
+    "materials": [
+      "pearl",
+      "thread",
+      "metal"
+    ],
+    "colours": [
+      "green",
+      "emerald"
+    ],
+    "colourFamily": "green",
+    "sizeMm": 32,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 120
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 1,
+    "new": true,
+    "priority": 34,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1404",
+    "category": "pearl-rakhi",
+    "name": {
+      "en": "Moti drop rakhi",
+      "hi": "मोती ड्रॉप राखी"
+    },
+    "materials": [
+      "pearl"
+    ],
+    "colours": [
+      "maroon",
+      "deep red"
+    ],
+    "colourFamily": "maroon",
+    "sizeMm": 34,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": true,
+    "priority": 53,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-1405",
+    "category": "pearl-rakhi",
+    "name": {
+      "en": "Pearl cluster rakhi",
+      "hi": "मोती क्लस्टर राखी"
+    },
+    "materials": [
+      "pearl",
+      "thread"
+    ],
+    "colours": [
+      "green",
+      "emerald"
+    ],
+    "colourFamily": "green",
+    "sizeMm": 35,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 1,
+    "new": true,
+    "priority": 32,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1406",
+    "category": "pearl-rakhi",
+    "name": {
+      "en": "Single pearl rakhi",
+      "hi": "सिंगल मोती राखी"
+    },
+    "materials": [
+      "pearl"
+    ],
+    "colours": [
+      "silver",
+      "oxidised silver"
+    ],
+    "colourFamily": "silver",
+    "sizeMm": 32,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": true,
+    "priority": 41,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1407",
+    "category": "pearl-rakhi",
+    "name": {
+      "en": "Pearl and stone rakhi",
+      "hi": "मोती और पत्थर राखी"
+    },
+    "materials": [
+      "pearl"
+    ],
+    "colours": [
+      "multicolour"
+    ],
+    "colourFamily": "multi",
+    "sizeMm": 37,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 1,
+    "new": true,
+    "priority": 30,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-1408",
+    "category": "pearl-rakhi",
+    "name": {
+      "en": "Moti drop rakhi",
+      "hi": "मोती ड्रॉप राखी"
+    },
+    "materials": [
+      "pearl"
+    ],
+    "colours": [
+      "silver",
+      "oxidised silver"
+    ],
+    "colourFamily": "silver",
+    "sizeMm": 40,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 120
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 1,
+    "new": false,
+    "priority": 29,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1409",
+    "category": "pearl-rakhi",
+    "name": {
+      "en": "Pearl cluster rakhi",
+      "hi": "मोती क्लस्टर राखी"
+    },
+    "materials": [
+      "pearl"
+    ],
+    "colours": [
+      "maroon",
+      "deep red"
+    ],
+    "colourFamily": "maroon",
+    "sizeMm": 36,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 38,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1410",
+    "category": "pearl-rakhi",
+    "name": {
+      "en": "Single pearl rakhi",
+      "hi": "सिंगल मोती राखी"
+    },
+    "materials": [
+      "pearl",
+      "thread",
+      "metal"
+    ],
+    "colours": [
+      "silver",
+      "oxidised silver"
+    ],
+    "colourFamily": "silver",
+    "sizeMm": 29,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 1,
+    "new": false,
+    "priority": 27,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-1411",
+    "category": "pearl-rakhi",
+    "name": {
+      "en": "Pearl and stone rakhi",
+      "hi": "मोती और पत्थर राखी"
+    },
+    "materials": [
+      "pearl"
+    ],
+    "colours": [
+      "silver",
+      "oxidised silver"
+    ],
+    "colourFamily": "silver",
+    "sizeMm": 33,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 36,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1412",
+    "category": "pearl-rakhi",
+    "name": {
+      "en": "Moti drop rakhi",
+      "hi": "मोती ड्रॉप राखी"
+    },
+    "materials": [
+      "pearl",
+      "thread"
+    ],
+    "colours": [
+      "silver",
+      "oxidised silver"
+    ],
+    "colourFamily": "silver",
+    "sizeMm": 37,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 35,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1413",
+    "category": "pearl-rakhi",
+    "name": {
+      "en": "Pearl cluster rakhi",
+      "hi": "मोती क्लस्टर राखी"
+    },
+    "materials": [
+      "pearl",
+      "thread"
+    ],
+    "colours": [
+      "ivory",
+      "peach"
+    ],
+    "colourFamily": "pastel",
+    "sizeMm": 39,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 120
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 1,
+    "new": false,
+    "priority": 24,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-1414",
+    "category": "pearl-rakhi",
+    "name": {
+      "en": "Single pearl rakhi",
+      "hi": "सिंगल मोती राखी"
+    },
+    "materials": [
+      "pearl"
+    ],
+    "colours": [
+      "maroon",
+      "deep red"
+    ],
+    "colourFamily": "maroon",
+    "sizeMm": 38,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 120
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 1,
+    "new": false,
+    "priority": 23,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1415",
+    "category": "pearl-rakhi",
+    "name": {
+      "en": "Pearl and stone rakhi",
+      "hi": "मोती और पत्थर राखी"
+    },
+    "materials": [
+      "pearl"
+    ],
+    "colours": [
+      "green",
+      "emerald"
+    ],
+    "colourFamily": "green",
+    "sizeMm": 28,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": false,
+    "priority": 42,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1416",
+    "category": "pearl-rakhi",
+    "name": {
+      "en": "Moti drop rakhi",
+      "hi": "मोती ड्रॉप राखी"
+    },
+    "materials": [
+      "pearl",
+      "thread",
+      "metal"
+    ],
+    "colours": [
+      "silver",
+      "oxidised silver"
+    ],
+    "colourFamily": "silver",
+    "sizeMm": 31,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 31,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-1417",
+    "category": "pearl-rakhi",
+    "name": {
+      "en": "Pearl cluster rakhi",
+      "hi": "मोती क्लस्टर राखी"
+    },
+    "materials": [
+      "pearl"
+    ],
+    "colours": [
+      "gold",
+      "antique gold"
+    ],
+    "colourFamily": "gold",
+    "sizeMm": 30,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": false,
+    "priority": 40,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1418",
+    "category": "pearl-rakhi",
+    "name": {
+      "en": "Single pearl rakhi",
+      "hi": "सिंगल मोती राखी"
+    },
+    "materials": [
+      "pearl",
+      "thread",
+      "metal"
+    ],
+    "colours": [
+      "ivory",
+      "peach"
+    ],
+    "colourFamily": "pastel",
+    "sizeMm": 37,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": false,
+    "priority": 39,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1419",
+    "category": "pearl-rakhi",
+    "name": {
+      "en": "Pearl and stone rakhi",
+      "hi": "मोती और पत्थर राखी"
+    },
+    "materials": [
+      "pearl"
+    ],
+    "colours": [
+      "multicolour"
+    ],
+    "colourFamily": "multi",
+    "sizeMm": 32,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": false,
+    "priority": 38,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-1420",
+    "category": "pearl-rakhi",
+    "name": {
+      "en": "Moti drop rakhi",
+      "hi": "मोती ड्रॉप राखी"
+    },
+    "materials": [
+      "pearl",
+      "thread",
+      "metal"
+    ],
+    "colours": [
+      "green",
+      "emerald"
+    ],
+    "colourFamily": "green",
+    "sizeMm": 39,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 1,
+    "new": false,
+    "priority": 17,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1421",
+    "category": "pearl-rakhi",
+    "name": {
+      "en": "Pearl cluster rakhi",
+      "hi": "मोती क्लस्टर राखी"
+    },
+    "materials": [
+      "pearl",
+      "thread",
+      "metal"
+    ],
+    "colours": [
+      "green",
+      "emerald"
+    ],
+    "colourFamily": "green",
+    "sizeMm": 29,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 120
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": false,
+    "priority": 36,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1422",
+    "category": "pearl-rakhi",
+    "name": {
+      "en": "Single pearl rakhi",
+      "hi": "सिंगल मोती राखी"
+    },
+    "materials": [
+      "pearl"
+    ],
+    "colours": [
+      "silver",
+      "oxidised silver"
+    ],
+    "colourFamily": "silver",
+    "sizeMm": 35,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 25,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-1423",
+    "category": "pearl-rakhi",
+    "name": {
+      "en": "Pearl and stone rakhi",
+      "hi": "मोती और पत्थर राखी"
+    },
+    "materials": [
+      "pearl"
+    ],
+    "colours": [
+      "multicolour"
+    ],
+    "colourFamily": "multi",
+    "sizeMm": 37,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 1,
+    "new": false,
+    "priority": 14,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1424",
+    "category": "pearl-rakhi",
+    "name": {
+      "en": "Moti drop rakhi",
+      "hi": "मोती ड्रॉप राखी"
+    },
+    "materials": [
+      "pearl",
+      "thread",
+      "metal"
+    ],
+    "colours": [
+      "red",
+      "vermilion"
+    ],
+    "colourFamily": "red",
+    "sizeMm": 29,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 1,
+    "new": false,
+    "priority": 13,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1425",
+    "category": "pearl-rakhi",
+    "name": {
+      "en": "Pearl cluster rakhi",
+      "hi": "मोती क्लस्टर राखी"
+    },
+    "materials": [
+      "pearl",
+      "thread"
+    ],
+    "colours": [
+      "red",
+      "vermilion"
+    ],
+    "colourFamily": "red",
+    "sizeMm": 30,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 1,
+    "new": false,
+    "priority": 12,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-1426",
+    "category": "pearl-rakhi",
+    "name": {
+      "en": "Single pearl rakhi",
+      "hi": "सिंगल मोती राखी"
+    },
+    "materials": [
+      "pearl",
+      "thread",
+      "metal"
+    ],
+    "colours": [
+      "ivory",
+      "peach"
+    ],
+    "colourFamily": "pastel",
+    "sizeMm": 32,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": false,
+    "priority": 31,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1601",
+    "category": "stone-rakhi",
+    "name": {
+      "en": "Stone cluster rakhi",
+      "hi": "स्टोन क्लस्टर राखी"
+    },
+    "materials": [
+      "stone",
+      "thread"
+    ],
+    "colours": [
+      "silver",
+      "oxidised silver"
+    ],
+    "colourFamily": "silver",
+    "sizeMm": 41,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": true,
+    "priority": 60,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-1602",
+    "category": "stone-rakhi",
+    "name": {
+      "en": "Chain stone rakhi",
+      "hi": "चेन स्टोन राखी"
+    },
+    "materials": [
+      "stone"
+    ],
+    "colours": [
+      "gold",
+      "antique gold"
+    ],
+    "colourFamily": "gold",
+    "sizeMm": 33,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 1,
+    "new": true,
+    "priority": 49,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1603",
+    "category": "stone-rakhi",
+    "name": {
+      "en": "Single stone rakhi",
+      "hi": "सिंगल स्टोन राखी"
+    },
+    "materials": [
+      "stone",
+      "thread"
+    ],
+    "colours": [
+      "multicolour"
+    ],
+    "colourFamily": "multi",
+    "sizeMm": 38,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 1,
+    "new": true,
+    "priority": 48,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1604",
+    "category": "stone-rakhi",
+    "name": {
+      "en": "Multi-stone rakhi",
+      "hi": "मल्टी स्टोन राखी"
+    },
+    "materials": [
+      "stone",
+      "thread",
+      "metal"
+    ],
+    "colours": [
+      "red",
+      "vermilion"
+    ],
+    "colourFamily": "red",
+    "sizeMm": 29,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 4,
+    "new": true,
+    "priority": 77,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-1605",
+    "category": "stone-rakhi",
+    "name": {
+      "en": "Stone cluster rakhi",
+      "hi": "स्टोन क्लस्टर राखी"
+    },
+    "materials": [
+      "stone",
+      "thread"
+    ],
+    "colours": [
+      "red",
+      "vermilion"
+    ],
+    "colourFamily": "red",
+    "sizeMm": 27,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": true,
+    "priority": 66,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1606",
+    "category": "stone-rakhi",
+    "name": {
+      "en": "Chain stone rakhi",
+      "hi": "चेन स्टोन राखी"
+    },
+    "materials": [
+      "stone",
+      "thread"
+    ],
+    "colours": [
+      "multicolour"
+    ],
+    "colourFamily": "multi",
+    "sizeMm": 31,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": true,
+    "priority": 55,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1607",
+    "category": "stone-rakhi",
+    "name": {
+      "en": "Single stone rakhi",
+      "hi": "सिंगल स्टोन राखी"
+    },
+    "materials": [
+      "stone",
+      "thread"
+    ],
+    "colours": [
+      "maroon",
+      "deep red"
+    ],
+    "colourFamily": "maroon",
+    "sizeMm": 37,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 120
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": true,
+    "priority": 64,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-1608",
+    "category": "stone-rakhi",
+    "name": {
+      "en": "Multi-stone rakhi",
+      "hi": "मल्टी स्टोन राखी"
+    },
+    "materials": [
+      "stone"
+    ],
+    "colours": [
+      "ivory",
+      "peach"
+    ],
+    "colourFamily": "pastel",
+    "sizeMm": 30,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 1,
+    "new": true,
+    "priority": 43,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1609",
+    "category": "stone-rakhi",
+    "name": {
+      "en": "Stone cluster rakhi",
+      "hi": "स्टोन क्लस्टर राखी"
+    },
+    "materials": [
+      "stone",
+      "thread",
+      "metal"
+    ],
+    "colours": [
+      "gold",
+      "antique gold"
+    ],
+    "colourFamily": "gold",
+    "sizeMm": 35,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": true,
+    "priority": 52,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1610",
+    "category": "stone-rakhi",
+    "name": {
+      "en": "Chain stone rakhi",
+      "hi": "चेन स्टोन राखी"
+    },
+    "materials": [
+      "stone",
+      "thread"
+    ],
+    "colours": [
+      "silver",
+      "oxidised silver"
+    ],
+    "colourFamily": "silver",
+    "sizeMm": 37,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": true,
+    "priority": 61,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-1611",
+    "category": "stone-rakhi",
+    "name": {
+      "en": "Single stone rakhi",
+      "hi": "सिंगल स्टोन राखी"
+    },
+    "materials": [
+      "stone"
+    ],
+    "colours": [
+      "silver",
+      "oxidised silver"
+    ],
+    "colourFamily": "silver",
+    "sizeMm": 29,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 50,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1612",
+    "category": "stone-rakhi",
+    "name": {
+      "en": "Multi-stone rakhi",
+      "hi": "मल्टी स्टोन राखी"
+    },
+    "materials": [
+      "stone"
+    ],
+    "colours": [
+      "gold",
+      "antique gold"
+    ],
+    "colourFamily": "gold",
+    "sizeMm": 46,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 49,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1613",
+    "category": "stone-rakhi",
+    "name": {
+      "en": "Stone cluster rakhi",
+      "hi": "स्टोन क्लस्टर राखी"
+    },
+    "materials": [
+      "stone",
+      "thread"
+    ],
+    "colours": [
+      "maroon",
+      "deep red"
+    ],
+    "colourFamily": "maroon",
+    "sizeMm": 41,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 120
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 48,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-1614",
+    "category": "stone-rakhi",
+    "name": {
+      "en": "Chain stone rakhi",
+      "hi": "चेन स्टोन राखी"
+    },
+    "materials": [
+      "stone",
+      "thread"
+    ],
+    "colours": [
+      "maroon",
+      "deep red"
+    ],
+    "colourFamily": "maroon",
+    "sizeMm": 34,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 47,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1615",
+    "category": "stone-rakhi",
+    "name": {
+      "en": "Single stone rakhi",
+      "hi": "सिंगल स्टोन राखी"
+    },
+    "materials": [
+      "stone",
+      "thread",
+      "metal"
+    ],
+    "colours": [
+      "gold",
+      "antique gold"
+    ],
+    "colourFamily": "gold",
+    "sizeMm": 43,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 4,
+    "new": false,
+    "priority": 66,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1616",
+    "category": "stone-rakhi",
+    "name": {
+      "en": "Multi-stone rakhi",
+      "hi": "मल्टी स्टोन राखी"
+    },
+    "materials": [
+      "stone"
+    ],
+    "colours": [
+      "red",
+      "vermilion"
+    ],
+    "colourFamily": "red",
+    "sizeMm": 41,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 1,
+    "new": false,
+    "priority": 35,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-1617",
+    "category": "stone-rakhi",
+    "name": {
+      "en": "Stone cluster rakhi",
+      "hi": "स्टोन क्लस्टर राखी"
+    },
+    "materials": [
+      "stone",
+      "thread",
+      "metal"
+    ],
+    "colours": [
+      "blue",
+      "royal blue"
+    ],
+    "colourFamily": "blue",
+    "sizeMm": 29,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 120
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 1,
+    "new": false,
+    "priority": 34,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1618",
+    "category": "stone-rakhi",
+    "name": {
+      "en": "Chain stone rakhi",
+      "hi": "चेन स्टोन राखी"
+    },
+    "materials": [
+      "stone",
+      "thread"
+    ],
+    "colours": [
+      "red",
+      "vermilion"
+    ],
+    "colourFamily": "red",
+    "sizeMm": 39,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 43,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1619",
+    "category": "stone-rakhi",
+    "name": {
+      "en": "Single stone rakhi",
+      "hi": "सिंगल स्टोन राखी"
+    },
+    "materials": [
+      "stone",
+      "thread"
+    ],
+    "colours": [
+      "ivory",
+      "peach"
+    ],
+    "colourFamily": "pastel",
+    "sizeMm": 33,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 42,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-1620",
+    "category": "stone-rakhi",
+    "name": {
+      "en": "Multi-stone rakhi",
+      "hi": "मल्टी स्टोन राखी"
+    },
+    "materials": [
+      "stone",
+      "thread"
+    ],
+    "colours": [
+      "multicolour"
+    ],
+    "colourFamily": "multi",
+    "sizeMm": 39,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 120
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 1,
+    "new": false,
+    "priority": 31,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1621",
+    "category": "stone-rakhi",
+    "name": {
+      "en": "Stone cluster rakhi",
+      "hi": "स्टोन क्लस्टर राखी"
+    },
+    "materials": [
+      "stone",
+      "thread",
+      "metal"
+    ],
+    "colours": [
+      "red",
+      "vermilion"
+    ],
+    "colourFamily": "red",
+    "sizeMm": 46,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 40,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1622",
+    "category": "stone-rakhi",
+    "name": {
+      "en": "Chain stone rakhi",
+      "hi": "चेन स्टोन राखी"
+    },
+    "materials": [
+      "stone",
+      "thread"
+    ],
+    "colours": [
+      "green",
+      "emerald"
+    ],
+    "colourFamily": "green",
+    "sizeMm": 40,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 120
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": false,
+    "priority": 49,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-1623",
+    "category": "stone-rakhi",
+    "name": {
+      "en": "Single stone rakhi",
+      "hi": "सिंगल स्टोन राखी"
+    },
+    "materials": [
+      "stone",
+      "thread",
+      "metal"
+    ],
+    "colours": [
+      "ivory",
+      "peach"
+    ],
+    "colourFamily": "pastel",
+    "sizeMm": 30,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 1,
+    "new": false,
+    "priority": 28,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1624",
+    "category": "stone-rakhi",
+    "name": {
+      "en": "Multi-stone rakhi",
+      "hi": "मल्टी स्टोन राखी"
+    },
+    "materials": [
+      "stone",
+      "thread",
+      "metal"
+    ],
+    "colours": [
+      "gold",
+      "antique gold"
+    ],
+    "colourFamily": "gold",
+    "sizeMm": 43,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 120
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 4,
+    "new": false,
+    "priority": 57,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1625",
+    "category": "stone-rakhi",
+    "name": {
+      "en": "Stone cluster rakhi",
+      "hi": "स्टोन क्लस्टर राखी"
+    },
+    "materials": [
+      "stone",
+      "thread",
+      "metal"
+    ],
+    "colours": [
+      "gold",
+      "antique gold"
+    ],
+    "colourFamily": "gold",
+    "sizeMm": 36,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 1,
+    "new": false,
+    "priority": 26,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-1626",
+    "category": "stone-rakhi",
+    "name": {
+      "en": "Chain stone rakhi",
+      "hi": "चेन स्टोन राखी"
+    },
+    "materials": [
+      "stone",
+      "thread"
+    ],
+    "colours": [
+      "multicolour"
+    ],
+    "colourFamily": "multi",
+    "sizeMm": 41,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 4,
+    "new": false,
+    "priority": 55,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1627",
+    "category": "stone-rakhi",
+    "name": {
+      "en": "Single stone rakhi",
+      "hi": "सिंगल स्टोन राखी"
+    },
+    "materials": [
+      "stone"
+    ],
+    "colours": [
+      "silver",
+      "oxidised silver"
+    ],
+    "colourFamily": "silver",
+    "sizeMm": 29,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 34,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1628",
+    "category": "stone-rakhi",
+    "name": {
+      "en": "Multi-stone rakhi",
+      "hi": "मल्टी स्टोन राखी"
+    },
+    "materials": [
+      "stone",
+      "thread"
+    ],
+    "colours": [
+      "blue",
+      "royal blue"
+    ],
+    "colourFamily": "blue",
+    "sizeMm": 43,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 4,
+    "new": false,
+    "priority": 53,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-1629",
+    "category": "stone-rakhi",
+    "name": {
+      "en": "Stone cluster rakhi",
+      "hi": "स्टोन क्लस्टर राखी"
+    },
+    "materials": [
+      "stone",
+      "thread"
+    ],
+    "colours": [
+      "ivory",
+      "peach"
+    ],
+    "colourFamily": "pastel",
+    "sizeMm": 32,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 4,
+    "new": false,
+    "priority": 52,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1630",
+    "category": "stone-rakhi",
+    "name": {
+      "en": "Chain stone rakhi",
+      "hi": "चेन स्टोन राखी"
+    },
+    "materials": [
+      "stone",
+      "thread",
+      "metal"
+    ],
+    "colours": [
+      "multicolour"
+    ],
+    "colourFamily": "multi",
+    "sizeMm": 46,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 31,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1631",
+    "category": "stone-rakhi",
+    "name": {
+      "en": "Single stone rakhi",
+      "hi": "सिंगल स्टोन राखी"
+    },
+    "materials": [
+      "stone",
+      "thread"
+    ],
+    "colours": [
+      "red",
+      "vermilion"
+    ],
+    "colourFamily": "red",
+    "sizeMm": 30,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": false,
+    "priority": 40,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-1632",
+    "category": "stone-rakhi",
+    "name": {
+      "en": "Multi-stone rakhi",
+      "hi": "मल्टी स्टोन राखी"
+    },
+    "materials": [
+      "stone",
+      "thread"
+    ],
+    "colours": [
+      "blue",
+      "royal blue"
+    ],
+    "colourFamily": "blue",
+    "sizeMm": 36,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 120
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": false,
+    "priority": 39,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1633",
+    "category": "stone-rakhi",
+    "name": {
+      "en": "Stone cluster rakhi",
+      "hi": "स्टोन क्लस्टर राखी"
+    },
+    "materials": [
+      "stone"
+    ],
+    "colours": [
+      "blue",
+      "royal blue"
+    ],
+    "colourFamily": "blue",
+    "sizeMm": 45,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 1,
+    "new": false,
+    "priority": 18,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1634",
+    "category": "stone-rakhi",
+    "name": {
+      "en": "Chain stone rakhi",
+      "hi": "चेन स्टोन राखी"
+    },
+    "materials": [
+      "stone",
+      "thread"
+    ],
+    "colours": [
+      "gold",
+      "antique gold"
+    ],
+    "colourFamily": "gold",
+    "sizeMm": 36,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 120
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": false,
+    "priority": 37,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-1635",
+    "category": "stone-rakhi",
+    "name": {
+      "en": "Single stone rakhi",
+      "hi": "सिंगल स्टोन राखी"
+    },
+    "materials": [
+      "stone",
+      "thread",
+      "metal"
+    ],
+    "colours": [
+      "red",
+      "vermilion"
+    ],
+    "colourFamily": "red",
+    "sizeMm": 46,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 1,
+    "new": false,
+    "priority": 16,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1636",
+    "category": "stone-rakhi",
+    "name": {
+      "en": "Multi-stone rakhi",
+      "hi": "मल्टी स्टोन राखी"
+    },
+    "materials": [
+      "stone",
+      "thread",
+      "metal"
+    ],
+    "colours": [
+      "maroon",
+      "deep red"
+    ],
+    "colourFamily": "maroon",
+    "sizeMm": 29,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 4,
+    "new": false,
+    "priority": 45,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1637",
+    "category": "stone-rakhi",
+    "name": {
+      "en": "Stone cluster rakhi",
+      "hi": "स्टोन क्लस्टर राखी"
+    },
+    "materials": [
+      "stone",
+      "thread"
+    ],
+    "colours": [
+      "multicolour"
+    ],
+    "colourFamily": "multi",
+    "sizeMm": 38,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 4,
+    "new": false,
+    "priority": 44,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-1638",
+    "category": "stone-rakhi",
+    "name": {
+      "en": "Chain stone rakhi",
+      "hi": "चेन स्टोन राखी"
+    },
+    "materials": [
+      "stone"
+    ],
+    "colours": [
+      "maroon",
+      "deep red"
+    ],
+    "colourFamily": "maroon",
+    "sizeMm": 31,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 23,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1639",
+    "category": "stone-rakhi",
+    "name": {
+      "en": "Single stone rakhi",
+      "hi": "सिंगल स्टोन राखी"
+    },
+    "materials": [
+      "stone",
+      "thread"
+    ],
+    "colours": [
+      "maroon",
+      "deep red"
+    ],
+    "colourFamily": "maroon",
+    "sizeMm": 46,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 22,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1640",
+    "category": "stone-rakhi",
+    "name": {
+      "en": "Multi-stone rakhi",
+      "hi": "मल्टी स्टोन राखी"
+    },
+    "materials": [
+      "stone",
+      "thread",
+      "metal"
+    ],
+    "colours": [
+      "silver",
+      "oxidised silver"
+    ],
+    "colourFamily": "silver",
+    "sizeMm": 27,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 4,
+    "new": false,
+    "priority": 41,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-1801",
+    "category": "thread-rakhi",
+    "name": {
+      "en": "Resham dori rakhi",
+      "hi": "रेशम डोरी राखी"
+    },
+    "materials": [
+      "thread"
+    ],
+    "colours": [
+      "ivory",
+      "peach"
+    ],
+    "colourFamily": "pastel",
+    "sizeMm": 20,
+    "pack": {
+      "perCard": 1,
+      "perBox": 100,
+      "perCarton": 2000
+    },
+    "packType": "loose",
+    "moq": 500,
+    "priceBand": 1,
+    "new": true,
+    "priority": 28,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-1802",
+    "category": "thread-rakhi",
+    "name": {
+      "en": "Cotton dori rakhi",
+      "hi": "सूती डोरी राखी"
+    },
+    "materials": [
+      "thread"
+    ],
+    "colours": [
+      "maroon",
+      "deep red"
+    ],
+    "colourFamily": "maroon",
+    "sizeMm": 21,
+    "pack": {
+      "perCard": 1,
+      "perBox": 100,
+      "perCarton": 2000
+    },
+    "packType": "loose",
+    "moq": 500,
+    "priceBand": 1,
+    "new": true,
+    "priority": 27,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1803",
+    "category": "thread-rakhi",
+    "name": {
+      "en": "Beaded thread rakhi",
+      "hi": "मोतीदार धागा राखी"
+    },
+    "materials": [
+      "thread"
+    ],
+    "colours": [
+      "green",
+      "emerald"
+    ],
+    "colourFamily": "green",
+    "sizeMm": 27,
+    "pack": {
+      "perCard": 1,
+      "perBox": 100,
+      "perCarton": 2000
+    },
+    "packType": "loose",
+    "moq": 500,
+    "priceBand": 2,
+    "new": true,
+    "priority": 36,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1804",
+    "category": "thread-rakhi",
+    "name": {
+      "en": "Braided dori rakhi",
+      "hi": "गुँथी डोरी राखी"
+    },
+    "materials": [
+      "thread"
+    ],
+    "colours": [
+      "red",
+      "vermilion"
+    ],
+    "colourFamily": "red",
+    "sizeMm": 25,
+    "pack": {
+      "perCard": 1,
+      "perBox": 100,
+      "perCarton": 2000
+    },
+    "packType": "loose",
+    "moq": 500,
+    "priceBand": 2,
+    "new": true,
+    "priority": 35,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-1805",
+    "category": "thread-rakhi",
+    "name": {
+      "en": "Resham dori rakhi",
+      "hi": "रेशम डोरी राखी"
+    },
+    "materials": [
+      "thread"
+    ],
+    "colours": [
+      "multicolour"
+    ],
+    "colourFamily": "multi",
+    "sizeMm": 27,
+    "pack": {
+      "perCard": 1,
+      "perBox": 100,
+      "perCarton": 2000
+    },
+    "packType": "loose",
+    "moq": 500,
+    "priceBand": 1,
+    "new": true,
+    "priority": 24,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1806",
+    "category": "thread-rakhi",
+    "name": {
+      "en": "Cotton dori rakhi",
+      "hi": "सूती डोरी राखी"
+    },
+    "materials": [
+      "thread"
+    ],
+    "colours": [
+      "green",
+      "emerald"
+    ],
+    "colourFamily": "green",
+    "sizeMm": 28,
+    "pack": {
+      "perCard": 1,
+      "perBox": 100,
+      "perCarton": 2000
+    },
+    "packType": "loose",
+    "moq": 500,
+    "priceBand": 2,
+    "new": false,
+    "priority": 33,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1807",
+    "category": "thread-rakhi",
+    "name": {
+      "en": "Beaded thread rakhi",
+      "hi": "मोतीदार धागा राखी"
+    },
+    "materials": [
+      "thread"
+    ],
+    "colours": [
+      "maroon",
+      "deep red"
+    ],
+    "colourFamily": "maroon",
+    "sizeMm": 28,
+    "pack": {
+      "perCard": 1,
+      "perBox": 100,
+      "perCarton": 2000
+    },
+    "packType": "loose",
+    "moq": 500,
+    "priceBand": 1,
+    "new": false,
+    "priority": 22,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-1808",
+    "category": "thread-rakhi",
+    "name": {
+      "en": "Braided dori rakhi",
+      "hi": "गुँथी डोरी राखी"
+    },
+    "materials": [
+      "thread"
+    ],
+    "colours": [
+      "green",
+      "emerald"
+    ],
+    "colourFamily": "green",
+    "sizeMm": 23,
+    "pack": {
+      "perCard": 1,
+      "perBox": 100,
+      "perCarton": 2000
+    },
+    "packType": "loose",
+    "moq": 500,
+    "priceBand": 2,
+    "new": false,
+    "priority": 31,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1809",
+    "category": "thread-rakhi",
+    "name": {
+      "en": "Resham dori rakhi",
+      "hi": "रेशम डोरी राखी"
+    },
+    "materials": [
+      "thread"
+    ],
+    "colours": [
+      "ivory",
+      "peach"
+    ],
+    "colourFamily": "pastel",
+    "sizeMm": 26,
+    "pack": {
+      "perCard": 1,
+      "perBox": 100,
+      "perCarton": 2000
+    },
+    "packType": "loose",
+    "moq": 500,
+    "priceBand": 2,
+    "new": false,
+    "priority": 30,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1810",
+    "category": "thread-rakhi",
+    "name": {
+      "en": "Cotton dori rakhi",
+      "hi": "सूती डोरी राखी"
+    },
+    "materials": [
+      "thread"
+    ],
+    "colours": [
+      "gold",
+      "antique gold"
+    ],
+    "colourFamily": "gold",
+    "sizeMm": 20,
+    "pack": {
+      "perCard": 1,
+      "perBox": 100,
+      "perCarton": 2000
+    },
+    "packType": "loose",
+    "moq": 500,
+    "priceBand": 2,
+    "new": false,
+    "priority": 29,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-1811",
+    "category": "thread-rakhi",
+    "name": {
+      "en": "Beaded thread rakhi",
+      "hi": "मोतीदार धागा राखी"
+    },
+    "materials": [
+      "thread"
+    ],
+    "colours": [
+      "gold",
+      "antique gold"
+    ],
+    "colourFamily": "gold",
+    "sizeMm": 27,
+    "pack": {
+      "perCard": 1,
+      "perBox": 100,
+      "perCarton": 1000
+    },
+    "packType": "loose",
+    "moq": 500,
+    "priceBand": 1,
+    "new": false,
+    "priority": 18,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1812",
+    "category": "thread-rakhi",
+    "name": {
+      "en": "Braided dori rakhi",
+      "hi": "गुँथी डोरी राखी"
+    },
+    "materials": [
+      "thread"
+    ],
+    "colours": [
+      "gold",
+      "antique gold"
+    ],
+    "colourFamily": "gold",
+    "sizeMm": 26,
+    "pack": {
+      "perCard": 1,
+      "perBox": 100,
+      "perCarton": 2000
+    },
+    "packType": "loose",
+    "moq": 500,
+    "priceBand": 2,
+    "new": false,
+    "priority": 27,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1813",
+    "category": "thread-rakhi",
+    "name": {
+      "en": "Resham dori rakhi",
+      "hi": "रेशम डोरी राखी"
+    },
+    "materials": [
+      "thread"
+    ],
+    "colours": [
+      "red",
+      "vermilion"
+    ],
+    "colourFamily": "red",
+    "sizeMm": 18,
+    "pack": {
+      "perCard": 1,
+      "perBox": 100,
+      "perCarton": 2000
+    },
+    "packType": "loose",
+    "moq": 500,
+    "priceBand": 1,
+    "new": false,
+    "priority": 16,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-1814",
+    "category": "thread-rakhi",
+    "name": {
+      "en": "Cotton dori rakhi",
+      "hi": "सूती डोरी राखी"
+    },
+    "materials": [
+      "thread"
+    ],
+    "colours": [
+      "multicolour"
+    ],
+    "colourFamily": "multi",
+    "sizeMm": 27,
+    "pack": {
+      "perCard": 1,
+      "perBox": 100,
+      "perCarton": 1000
+    },
+    "packType": "loose",
+    "moq": 500,
+    "priceBand": 1,
+    "new": false,
+    "priority": 15,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1815",
+    "category": "thread-rakhi",
+    "name": {
+      "en": "Beaded thread rakhi",
+      "hi": "मोतीदार धागा राखी"
+    },
+    "materials": [
+      "thread"
+    ],
+    "colours": [
+      "gold",
+      "antique gold"
+    ],
+    "colourFamily": "gold",
+    "sizeMm": 21,
+    "pack": {
+      "perCard": 1,
+      "perBox": 100,
+      "perCarton": 2000
+    },
+    "packType": "loose",
+    "moq": 500,
+    "priceBand": 2,
+    "new": false,
+    "priority": 24,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1816",
+    "category": "thread-rakhi",
+    "name": {
+      "en": "Braided dori rakhi",
+      "hi": "गुँथी डोरी राखी"
+    },
+    "materials": [
+      "thread"
+    ],
+    "colours": [
+      "gold",
+      "antique gold"
+    ],
+    "colourFamily": "gold",
+    "sizeMm": 23,
+    "pack": {
+      "perCard": 1,
+      "perBox": 100,
+      "perCarton": 2000
+    },
+    "packType": "loose",
+    "moq": 500,
+    "priceBand": 2,
+    "new": false,
+    "priority": 23,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-1817",
+    "category": "thread-rakhi",
+    "name": {
+      "en": "Resham dori rakhi",
+      "hi": "रेशम डोरी राखी"
+    },
+    "materials": [
+      "thread"
+    ],
+    "colours": [
+      "maroon",
+      "deep red"
+    ],
+    "colourFamily": "maroon",
+    "sizeMm": 21,
+    "pack": {
+      "perCard": 1,
+      "perBox": 100,
+      "perCarton": 1000
+    },
+    "packType": "loose",
+    "moq": 500,
+    "priceBand": 1,
+    "new": false,
+    "priority": 12,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1818",
+    "category": "thread-rakhi",
+    "name": {
+      "en": "Cotton dori rakhi",
+      "hi": "सूती डोरी राखी"
+    },
+    "materials": [
+      "thread"
+    ],
+    "colours": [
+      "gold",
+      "antique gold"
+    ],
+    "colourFamily": "gold",
+    "sizeMm": 23,
+    "pack": {
+      "perCard": 1,
+      "perBox": 100,
+      "perCarton": 2000
+    },
+    "packType": "loose",
+    "moq": 500,
+    "priceBand": 2,
+    "new": false,
+    "priority": 21,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2001",
+    "category": "bhaiya-bhabhi-rakhi",
+    "name": {
+      "en": "Bhaiya bhabhi pair rakhi",
+      "hi": "भैया भाभी जोड़ी राखी"
+    },
+    "materials": [
+      "stone",
+      "pearl",
+      "metal"
+    ],
+    "colours": [
+      "multicolour"
+    ],
+    "colourFamily": "multi",
+    "sizeMm": 44,
+    "pack": {
+      "perCard": 2,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 50,
+    "priceBand": 4,
+    "new": true,
+    "priority": 60,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-2002",
+    "category": "bhaiya-bhabhi-rakhi",
+    "name": {
+      "en": "Paired set rakhi",
+      "hi": "जोड़ी सेट राखी"
+    },
+    "materials": [
+      "stone"
+    ],
+    "colours": [
+      "maroon",
+      "deep red"
+    ],
+    "colourFamily": "maroon",
+    "sizeMm": 46,
+    "pack": {
+      "perCard": 2,
+      "perBox": 12,
+      "perCarton": 120
+    },
+    "packType": "carded",
+    "moq": 50,
+    "priceBand": 4,
+    "new": true,
+    "priority": 59,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2003",
+    "category": "bhaiya-bhabhi-rakhi",
+    "name": {
+      "en": "Couple set rakhi",
+      "hi": "कपल सेट राखी"
+    },
+    "materials": [
+      "stone",
+      "pearl",
+      "metal",
+      "thread"
+    ],
+    "colours": [
+      "maroon",
+      "deep red"
+    ],
+    "colourFamily": "maroon",
+    "sizeMm": 34,
+    "pack": {
+      "perCard": 2,
+      "perBox": 12,
+      "perCarton": 120
+    },
+    "packType": "carded",
+    "moq": 50,
+    "priceBand": 2,
+    "new": true,
+    "priority": 38,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2004",
+    "category": "bhaiya-bhabhi-rakhi",
+    "name": {
+      "en": "Matched pair rakhi",
+      "hi": "मैच्ड जोड़ी राखी"
+    },
+    "materials": [
+      "stone",
+      "pearl",
+      "metal"
+    ],
+    "colours": [
+      "gold",
+      "antique gold"
+    ],
+    "colourFamily": "gold",
+    "sizeMm": 47,
+    "pack": {
+      "perCard": 2,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 50,
+    "priceBand": 2,
+    "new": true,
+    "priority": 37,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-2005",
+    "category": "bhaiya-bhabhi-rakhi",
+    "name": {
+      "en": "Bhaiya bhabhi pair rakhi",
+      "hi": "भैया भाभी जोड़ी राखी"
+    },
+    "materials": [
+      "stone",
+      "pearl"
+    ],
+    "colours": [
+      "multicolour"
+    ],
+    "colourFamily": "multi",
+    "sizeMm": 43,
+    "pack": {
+      "perCard": 2,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 50,
+    "priceBand": 4,
+    "new": true,
+    "priority": 56,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2006",
+    "category": "bhaiya-bhabhi-rakhi",
+    "name": {
+      "en": "Paired set rakhi",
+      "hi": "जोड़ी सेट राखी"
+    },
+    "materials": [
+      "stone",
+      "pearl",
+      "metal"
+    ],
+    "colours": [
+      "red",
+      "vermilion"
+    ],
+    "colourFamily": "red",
+    "sizeMm": 41,
+    "pack": {
+      "perCard": 2,
+      "perBox": 24,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 50,
+    "priceBand": 4,
+    "new": false,
+    "priority": 55,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2007",
+    "category": "bhaiya-bhabhi-rakhi",
+    "name": {
+      "en": "Couple set rakhi",
+      "hi": "कपल सेट राखी"
+    },
+    "materials": [
+      "stone"
+    ],
+    "colours": [
+      "multicolour"
+    ],
+    "colourFamily": "multi",
+    "sizeMm": 42,
+    "pack": {
+      "perCard": 2,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 50,
+    "priceBand": 3,
+    "new": false,
+    "priority": 44,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-2008",
+    "category": "bhaiya-bhabhi-rakhi",
+    "name": {
+      "en": "Matched pair rakhi",
+      "hi": "मैच्ड जोड़ी राखी"
+    },
+    "materials": [
+      "stone",
+      "pearl",
+      "metal"
+    ],
+    "colours": [
+      "multicolour"
+    ],
+    "colourFamily": "multi",
+    "sizeMm": 48,
+    "pack": {
+      "perCard": 2,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 50,
+    "priceBand": 2,
+    "new": false,
+    "priority": 33,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2009",
+    "category": "bhaiya-bhabhi-rakhi",
+    "name": {
+      "en": "Bhaiya bhabhi pair rakhi",
+      "hi": "भैया भाभी जोड़ी राखी"
+    },
+    "materials": [
+      "stone",
+      "pearl",
+      "metal"
+    ],
+    "colours": [
+      "ivory",
+      "peach"
+    ],
+    "colourFamily": "pastel",
+    "sizeMm": 44,
+    "pack": {
+      "perCard": 2,
+      "perBox": 24,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 50,
+    "priceBand": 3,
+    "new": false,
+    "priority": 42,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2010",
+    "category": "bhaiya-bhabhi-rakhi",
+    "name": {
+      "en": "Paired set rakhi",
+      "hi": "जोड़ी सेट राखी"
+    },
+    "materials": [
+      "stone",
+      "pearl"
+    ],
+    "colours": [
+      "green",
+      "emerald"
+    ],
+    "colourFamily": "green",
+    "sizeMm": 36,
+    "pack": {
+      "perCard": 2,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 50,
+    "priceBand": 3,
+    "new": false,
+    "priority": 41,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-2011",
+    "category": "bhaiya-bhabhi-rakhi",
+    "name": {
+      "en": "Couple set rakhi",
+      "hi": "कपल सेट राखी"
+    },
+    "materials": [
+      "stone",
+      "pearl"
+    ],
+    "colours": [
+      "green",
+      "emerald"
+    ],
+    "colourFamily": "green",
+    "sizeMm": 39,
+    "pack": {
+      "perCard": 2,
+      "perBox": 12,
+      "perCarton": 120
+    },
+    "packType": "carded",
+    "moq": 50,
+    "priceBand": 3,
+    "new": false,
+    "priority": 40,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2012",
+    "category": "bhaiya-bhabhi-rakhi",
+    "name": {
+      "en": "Matched pair rakhi",
+      "hi": "मैच्ड जोड़ी राखी"
+    },
+    "materials": [
+      "stone",
+      "pearl",
+      "metal"
+    ],
+    "colours": [
+      "ivory",
+      "peach"
+    ],
+    "colourFamily": "pastel",
+    "sizeMm": 41,
+    "pack": {
+      "perCard": 2,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 50,
+    "priceBand": 2,
+    "new": false,
+    "priority": 29,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2013",
+    "category": "bhaiya-bhabhi-rakhi",
+    "name": {
+      "en": "Bhaiya bhabhi pair rakhi",
+      "hi": "भैया भाभी जोड़ी राखी"
+    },
+    "materials": [
+      "stone"
+    ],
+    "colours": [
+      "blue",
+      "royal blue"
+    ],
+    "colourFamily": "blue",
+    "sizeMm": 38,
+    "pack": {
+      "perCard": 2,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 50,
+    "priceBand": 4,
+    "new": false,
+    "priority": 48,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-2014",
+    "category": "bhaiya-bhabhi-rakhi",
+    "name": {
+      "en": "Paired set rakhi",
+      "hi": "जोड़ी सेट राखी"
+    },
+    "materials": [
+      "stone"
+    ],
+    "colours": [
+      "ivory",
+      "peach"
+    ],
+    "colourFamily": "pastel",
+    "sizeMm": 42,
+    "pack": {
+      "perCard": 2,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 50,
+    "priceBand": 2,
+    "new": false,
+    "priority": 27,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2015",
+    "category": "bhaiya-bhabhi-rakhi",
+    "name": {
+      "en": "Couple set rakhi",
+      "hi": "कपल सेट राखी"
+    },
+    "materials": [
+      "stone",
+      "pearl",
+      "metal"
+    ],
+    "colours": [
+      "red",
+      "vermilion"
+    ],
+    "colourFamily": "red",
+    "sizeMm": 40,
+    "pack": {
+      "perCard": 2,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 50,
+    "priceBand": 4,
+    "new": false,
+    "priority": 46,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2016",
+    "category": "bhaiya-bhabhi-rakhi",
+    "name": {
+      "en": "Matched pair rakhi",
+      "hi": "मैच्ड जोड़ी राखी"
+    },
+    "materials": [
+      "stone",
+      "pearl",
+      "metal",
+      "thread"
+    ],
+    "colours": [
+      "green",
+      "emerald"
+    ],
+    "colourFamily": "green",
+    "sizeMm": 38,
+    "pack": {
+      "perCard": 2,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 50,
+    "priceBand": 3,
+    "new": false,
+    "priority": 35,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-2017",
+    "category": "bhaiya-bhabhi-rakhi",
+    "name": {
+      "en": "Bhaiya bhabhi pair rakhi",
+      "hi": "भैया भाभी जोड़ी राखी"
+    },
+    "materials": [
+      "stone"
+    ],
+    "colours": [
+      "green",
+      "emerald"
+    ],
+    "colourFamily": "green",
+    "sizeMm": 42,
+    "pack": {
+      "perCard": 2,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 50,
+    "priceBand": 4,
+    "new": false,
+    "priority": 44,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2018",
+    "category": "bhaiya-bhabhi-rakhi",
+    "name": {
+      "en": "Paired set rakhi",
+      "hi": "जोड़ी सेट राखी"
+    },
+    "materials": [
+      "stone",
+      "pearl"
+    ],
+    "colours": [
+      "green",
+      "emerald"
+    ],
+    "colourFamily": "green",
+    "sizeMm": 41,
+    "pack": {
+      "perCard": 2,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 50,
+    "priceBand": 3,
+    "new": false,
+    "priority": 33,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2019",
+    "category": "bhaiya-bhabhi-rakhi",
+    "name": {
+      "en": "Couple set rakhi",
+      "hi": "कपल सेट राखी"
+    },
+    "materials": [
+      "stone",
+      "pearl",
+      "metal"
+    ],
+    "colours": [
+      "red",
+      "vermilion"
+    ],
+    "colourFamily": "red",
+    "sizeMm": 39,
+    "pack": {
+      "perCard": 2,
+      "perBox": 12,
+      "perCarton": 120
+    },
+    "packType": "carded",
+    "moq": 50,
+    "priceBand": 4,
+    "new": false,
+    "priority": 42,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-2020",
+    "category": "bhaiya-bhabhi-rakhi",
+    "name": {
+      "en": "Matched pair rakhi",
+      "hi": "मैच्ड जोड़ी राखी"
+    },
+    "materials": [
+      "stone",
+      "pearl",
+      "metal",
+      "thread"
+    ],
+    "colours": [
+      "blue",
+      "royal blue"
+    ],
+    "colourFamily": "blue",
+    "sizeMm": 35,
+    "pack": {
+      "perCard": 2,
+      "perBox": 12,
+      "perCarton": 120
+    },
+    "packType": "carded",
+    "moq": 50,
+    "priceBand": 2,
+    "new": false,
+    "priority": 21,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2201",
+    "category": "lumba-rakhi",
+    "name": {
+      "en": "Lumba latkan rakhi",
+      "hi": "लुम्बा लटकन राखी"
+    },
+    "materials": [
+      "stone",
+      "pearl",
+      "thread",
+      "zari"
+    ],
+    "colours": [
+      "gold",
+      "antique gold"
+    ],
+    "colourFamily": "gold",
+    "sizeMm": 85,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": true,
+    "priority": 36,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-2202",
+    "category": "lumba-rakhi",
+    "name": {
+      "en": "Beaded lumba rakhi",
+      "hi": "मोतीदार लुम्बा राखी"
+    },
+    "materials": [
+      "stone",
+      "pearl"
+    ],
+    "colours": [
+      "maroon",
+      "deep red"
+    ],
+    "colourFamily": "maroon",
+    "sizeMm": 80,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": true,
+    "priority": 35,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2203",
+    "category": "lumba-rakhi",
+    "name": {
+      "en": "Zari lumba rakhi",
+      "hi": "ज़री लुम्बा राखी"
+    },
+    "materials": [
+      "stone",
+      "pearl",
+      "thread",
+      "zari"
+    ],
+    "colours": [
+      "red",
+      "vermilion"
+    ],
+    "colourFamily": "red",
+    "sizeMm": 67,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": true,
+    "priority": 34,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2204",
+    "category": "lumba-rakhi",
+    "name": {
+      "en": "Pearl lumba rakhi",
+      "hi": "मोती लुम्बा राखी"
+    },
+    "materials": [
+      "stone",
+      "pearl"
+    ],
+    "colours": [
+      "maroon",
+      "deep red"
+    ],
+    "colourFamily": "maroon",
+    "sizeMm": 86,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": true,
+    "priority": 43,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-2205",
+    "category": "lumba-rakhi",
+    "name": {
+      "en": "Lumba latkan rakhi",
+      "hi": "लुम्बा लटकन राखी"
+    },
+    "materials": [
+      "stone",
+      "pearl",
+      "thread",
+      "zari"
+    ],
+    "colours": [
+      "blue",
+      "royal blue"
+    ],
+    "colourFamily": "blue",
+    "sizeMm": 78,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 32,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2206",
+    "category": "lumba-rakhi",
+    "name": {
+      "en": "Beaded lumba rakhi",
+      "hi": "मोतीदार लुम्बा राखी"
+    },
+    "materials": [
+      "stone",
+      "pearl",
+      "thread",
+      "zari"
+    ],
+    "colours": [
+      "maroon",
+      "deep red"
+    ],
+    "colourFamily": "maroon",
+    "sizeMm": 61,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 120
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 31,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2207",
+    "category": "lumba-rakhi",
+    "name": {
+      "en": "Zari lumba rakhi",
+      "hi": "ज़री लुम्बा राखी"
+    },
+    "materials": [
+      "stone",
+      "pearl"
+    ],
+    "colours": [
+      "red",
+      "vermilion"
+    ],
+    "colourFamily": "red",
+    "sizeMm": 94,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 120
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": false,
+    "priority": 40,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-2208",
+    "category": "lumba-rakhi",
+    "name": {
+      "en": "Pearl lumba rakhi",
+      "hi": "मोती लुम्बा राखी"
+    },
+    "materials": [
+      "stone"
+    ],
+    "colours": [
+      "red",
+      "vermilion"
+    ],
+    "colourFamily": "red",
+    "sizeMm": 83,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 29,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2209",
+    "category": "lumba-rakhi",
+    "name": {
+      "en": "Lumba latkan rakhi",
+      "hi": "लुम्बा लटकन राखी"
+    },
+    "materials": [
+      "stone"
+    ],
+    "colours": [
+      "ivory",
+      "peach"
+    ],
+    "colourFamily": "pastel",
+    "sizeMm": 69,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": false,
+    "priority": 38,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2210",
+    "category": "lumba-rakhi",
+    "name": {
+      "en": "Beaded lumba rakhi",
+      "hi": "मोतीदार लुम्बा राखी"
+    },
+    "materials": [
+      "stone",
+      "pearl",
+      "thread",
+      "zari"
+    ],
+    "colours": [
+      "silver",
+      "oxidised silver"
+    ],
+    "colourFamily": "silver",
+    "sizeMm": 95,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": false,
+    "priority": 37,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-2211",
+    "category": "lumba-rakhi",
+    "name": {
+      "en": "Zari lumba rakhi",
+      "hi": "ज़री लुम्बा राखी"
+    },
+    "materials": [
+      "stone"
+    ],
+    "colours": [
+      "ivory",
+      "peach"
+    ],
+    "colourFamily": "pastel",
+    "sizeMm": 77,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": false,
+    "priority": 36,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2212",
+    "category": "lumba-rakhi",
+    "name": {
+      "en": "Pearl lumba rakhi",
+      "hi": "मोती लुम्बा राखी"
+    },
+    "materials": [
+      "stone"
+    ],
+    "colours": [
+      "multicolour"
+    ],
+    "colourFamily": "multi",
+    "sizeMm": 81,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 120
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 25,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2213",
+    "category": "lumba-rakhi",
+    "name": {
+      "en": "Lumba latkan rakhi",
+      "hi": "लुम्बा लटकन राखी"
+    },
+    "materials": [
+      "stone"
+    ],
+    "colours": [
+      "gold",
+      "antique gold"
+    ],
+    "colourFamily": "gold",
+    "sizeMm": 91,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 24,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-2214",
+    "category": "lumba-rakhi",
+    "name": {
+      "en": "Beaded lumba rakhi",
+      "hi": "मोतीदार लुम्बा राखी"
+    },
+    "materials": [
+      "stone",
+      "pearl",
+      "thread"
+    ],
+    "colours": [
+      "gold",
+      "antique gold"
+    ],
+    "colourFamily": "gold",
+    "sizeMm": 79,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 23,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2215",
+    "category": "lumba-rakhi",
+    "name": {
+      "en": "Zari lumba rakhi",
+      "hi": "ज़री लुम्बा राखी"
+    },
+    "materials": [
+      "stone",
+      "pearl",
+      "thread",
+      "zari"
+    ],
+    "colours": [
+      "blue",
+      "royal blue"
+    ],
+    "colourFamily": "blue",
+    "sizeMm": 78,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": false,
+    "priority": 32,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2216",
+    "category": "lumba-rakhi",
+    "name": {
+      "en": "Pearl lumba rakhi",
+      "hi": "मोती लुम्बा राखी"
+    },
+    "materials": [
+      "stone",
+      "pearl",
+      "thread",
+      "zari"
+    ],
+    "colours": [
+      "silver",
+      "oxidised silver"
+    ],
+    "colourFamily": "silver",
+    "sizeMm": 61,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": false,
+    "priority": 31,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-2401",
+    "category": "kids-rakhi",
+    "name": {
+      "en": "Kids figure rakhi",
+      "hi": "बच्चों का फ़िगर राखी"
+    },
+    "materials": [
+      "resin"
+    ],
+    "colours": [
+      "gold",
+      "antique gold"
+    ],
+    "colourFamily": "gold",
+    "sizeMm": 30,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 200,
+    "priceBand": 2,
+    "new": true,
+    "priority": 38,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-2402",
+    "category": "kids-rakhi",
+    "name": {
+      "en": "Light-up figure rakhi",
+      "hi": "लाइट वाला फ़िगर राखी"
+    },
+    "materials": [
+      "resin",
+      "thread"
+    ],
+    "colours": [
+      "red",
+      "vermilion"
+    ],
+    "colourFamily": "red",
+    "sizeMm": 25,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 200,
+    "priceBand": 2,
+    "new": true,
+    "priority": 37,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2403",
+    "category": "kids-rakhi",
+    "name": {
+      "en": "Cartoon figure rakhi",
+      "hi": "कार्टून फ़िगर राखी"
+    },
+    "materials": [
+      "resin"
+    ],
+    "colours": [
+      "ivory",
+      "peach"
+    ],
+    "colourFamily": "pastel",
+    "sizeMm": 25,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 120
+    },
+    "packType": "carded",
+    "moq": 200,
+    "priceBand": 2,
+    "new": true,
+    "priority": 36,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2404",
+    "category": "kids-rakhi",
+    "name": {
+      "en": "Elastic figure rakhi",
+      "hi": "इलास्टिक फ़िगर राखी"
+    },
+    "materials": [
+      "resin",
+      "thread"
+    ],
+    "colours": [
+      "blue",
+      "royal blue"
+    ],
+    "colourFamily": "blue",
+    "sizeMm": 25,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 200,
+    "priceBand": 1,
+    "new": true,
+    "priority": 25,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-2405",
+    "category": "kids-rakhi",
+    "name": {
+      "en": "Kids figure rakhi",
+      "hi": "बच्चों का फ़िगर राखी"
+    },
+    "materials": [
+      "resin",
+      "thread"
+    ],
+    "colours": [
+      "multicolour"
+    ],
+    "colourFamily": "multi",
+    "sizeMm": 29,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 200,
+    "priceBand": 2,
+    "new": true,
+    "priority": 34,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2406",
+    "category": "kids-rakhi",
+    "name": {
+      "en": "Light-up figure rakhi",
+      "hi": "लाइट वाला फ़िगर राखी"
+    },
+    "materials": [
+      "resin"
+    ],
+    "colours": [
+      "green",
+      "emerald"
+    ],
+    "colourFamily": "green",
+    "sizeMm": 36,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 200,
+    "priceBand": 2,
+    "new": false,
+    "priority": 33,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2407",
+    "category": "kids-rakhi",
+    "name": {
+      "en": "Cartoon figure rakhi",
+      "hi": "कार्टून फ़िगर राखी"
+    },
+    "materials": [
+      "resin",
+      "thread"
+    ],
+    "colours": [
+      "silver",
+      "oxidised silver"
+    ],
+    "colourFamily": "silver",
+    "sizeMm": 29,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 120
+    },
+    "packType": "carded",
+    "moq": 200,
+    "priceBand": 2,
+    "new": false,
+    "priority": 32,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-2408",
+    "category": "kids-rakhi",
+    "name": {
+      "en": "Elastic figure rakhi",
+      "hi": "इलास्टिक फ़िगर राखी"
+    },
+    "materials": [
+      "resin",
+      "thread"
+    ],
+    "colours": [
+      "green",
+      "emerald"
+    ],
+    "colourFamily": "green",
+    "sizeMm": 25,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 200,
+    "priceBand": 2,
+    "new": false,
+    "priority": 31,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2409",
+    "category": "kids-rakhi",
+    "name": {
+      "en": "Kids figure rakhi",
+      "hi": "बच्चों का फ़िगर राखी"
+    },
+    "materials": [
+      "resin"
+    ],
+    "colours": [
+      "red",
+      "vermilion"
+    ],
+    "colourFamily": "red",
+    "sizeMm": 35,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 200,
+    "priceBand": 1,
+    "new": false,
+    "priority": 20,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2410",
+    "category": "kids-rakhi",
+    "name": {
+      "en": "Light-up figure rakhi",
+      "hi": "लाइट वाला फ़िगर राखी"
+    },
+    "materials": [
+      "resin"
+    ],
+    "colours": [
+      "red",
+      "vermilion"
+    ],
+    "colourFamily": "red",
+    "sizeMm": 25,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 200,
+    "priceBand": 1,
+    "new": false,
+    "priority": 19,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-2411",
+    "category": "kids-rakhi",
+    "name": {
+      "en": "Cartoon figure rakhi",
+      "hi": "कार्टून फ़िगर राखी"
+    },
+    "materials": [
+      "resin"
+    ],
+    "colours": [
+      "multicolour"
+    ],
+    "colourFamily": "multi",
+    "sizeMm": 31,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 200,
+    "priceBand": 1,
+    "new": false,
+    "priority": 18,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2412",
+    "category": "kids-rakhi",
+    "name": {
+      "en": "Elastic figure rakhi",
+      "hi": "इलास्टिक फ़िगर राखी"
+    },
+    "materials": [
+      "resin",
+      "thread"
+    ],
+    "colours": [
+      "ivory",
+      "peach"
+    ],
+    "colourFamily": "pastel",
+    "sizeMm": 31,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 200,
+    "priceBand": 1,
+    "new": false,
+    "priority": 17,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2413",
+    "category": "kids-rakhi",
+    "name": {
+      "en": "Kids figure rakhi",
+      "hi": "बच्चों का फ़िगर राखी"
+    },
+    "materials": [
+      "resin"
+    ],
+    "colours": [
+      "blue",
+      "royal blue"
+    ],
+    "colourFamily": "blue",
+    "sizeMm": 35,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 200,
+    "priceBand": 1,
+    "new": false,
+    "priority": 16,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-2414",
+    "category": "kids-rakhi",
+    "name": {
+      "en": "Light-up figure rakhi",
+      "hi": "लाइट वाला फ़िगर राखी"
+    },
+    "materials": [
+      "resin"
+    ],
+    "colours": [
+      "silver",
+      "oxidised silver"
+    ],
+    "colourFamily": "silver",
+    "sizeMm": 32,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 120
+    },
+    "packType": "carded",
+    "moq": 200,
+    "priceBand": 2,
+    "new": false,
+    "priority": 25,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2415",
+    "category": "kids-rakhi",
+    "name": {
+      "en": "Cartoon figure rakhi",
+      "hi": "कार्टून फ़िगर राखी"
+    },
+    "materials": [
+      "resin",
+      "thread"
+    ],
+    "colours": [
+      "green",
+      "emerald"
+    ],
+    "colourFamily": "green",
+    "sizeMm": 29,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 200,
+    "priceBand": 2,
+    "new": false,
+    "priority": 24,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2416",
+    "category": "kids-rakhi",
+    "name": {
+      "en": "Elastic figure rakhi",
+      "hi": "इलास्टिक फ़िगर राखी"
+    },
+    "materials": [
+      "resin"
+    ],
+    "colours": [
+      "ivory",
+      "peach"
+    ],
+    "colourFamily": "pastel",
+    "sizeMm": 32,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 200,
+    "priceBand": 1,
+    "new": false,
+    "priority": 13,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-2417",
+    "category": "kids-rakhi",
+    "name": {
+      "en": "Kids figure rakhi",
+      "hi": "बच्चों का फ़िगर राखी"
+    },
+    "materials": [
+      "resin",
+      "thread"
+    ],
+    "colours": [
+      "ivory",
+      "peach"
+    ],
+    "colourFamily": "pastel",
+    "sizeMm": 35,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 120
+    },
+    "packType": "carded",
+    "moq": 200,
+    "priceBand": 1,
+    "new": false,
+    "priority": 12,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2418",
+    "category": "kids-rakhi",
+    "name": {
+      "en": "Light-up figure rakhi",
+      "hi": "लाइट वाला फ़िगर राखी"
+    },
+    "materials": [
+      "resin"
+    ],
+    "colours": [
+      "green",
+      "emerald"
+    ],
+    "colourFamily": "green",
+    "sizeMm": 24,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 200,
+    "priceBand": 1,
+    "new": false,
+    "priority": 11,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2601",
+    "category": "rudraksha-rakhi",
+    "name": {
+      "en": "Rudraksha bead rakhi",
+      "hi": "रुद्राक्ष मनका राखी"
+    },
+    "materials": [
+      "rudraksha",
+      "metal"
+    ],
+    "colours": [
+      "blue",
+      "royal blue"
+    ],
+    "colourFamily": "blue",
+    "sizeMm": 30,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": true,
+    "priority": 42,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-2602",
+    "category": "rudraksha-rakhi",
+    "name": {
+      "en": "Capped rudraksha rakhi",
+      "hi": "कैप रुद्राक्ष राखी"
+    },
+    "materials": [
+      "rudraksha",
+      "metal",
+      "thread"
+    ],
+    "colours": [
+      "green",
+      "emerald"
+    ],
+    "colourFamily": "green",
+    "sizeMm": 34,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": true,
+    "priority": 31,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2603",
+    "category": "rudraksha-rakhi",
+    "name": {
+      "en": "Rudraksha and stone rakhi",
+      "hi": "रुद्राक्ष और पत्थर राखी"
+    },
+    "materials": [
+      "rudraksha"
+    ],
+    "colours": [
+      "green",
+      "emerald"
+    ],
+    "colourFamily": "green",
+    "sizeMm": 28,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": true,
+    "priority": 30,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2604",
+    "category": "rudraksha-rakhi",
+    "name": {
+      "en": "Twin rudraksha rakhi",
+      "hi": "जोड़ा रुद्राक्ष राखी"
+    },
+    "materials": [
+      "rudraksha",
+      "metal"
+    ],
+    "colours": [
+      "red",
+      "vermilion"
+    ],
+    "colourFamily": "red",
+    "sizeMm": 23,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": false,
+    "priority": 39,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-2605",
+    "category": "rudraksha-rakhi",
+    "name": {
+      "en": "Rudraksha bead rakhi",
+      "hi": "रुद्राक्ष मनका राखी"
+    },
+    "materials": [
+      "rudraksha",
+      "metal",
+      "thread"
+    ],
+    "colours": [
+      "red",
+      "vermilion"
+    ],
+    "colourFamily": "red",
+    "sizeMm": 26,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 120
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": false,
+    "priority": 38,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2606",
+    "category": "rudraksha-rakhi",
+    "name": {
+      "en": "Capped rudraksha rakhi",
+      "hi": "कैप रुद्राक्ष राखी"
+    },
+    "materials": [
+      "rudraksha",
+      "metal",
+      "thread"
+    ],
+    "colours": [
+      "red",
+      "vermilion"
+    ],
+    "colourFamily": "red",
+    "sizeMm": 25,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 1,
+    "new": false,
+    "priority": 17,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2607",
+    "category": "rudraksha-rakhi",
+    "name": {
+      "en": "Rudraksha and stone rakhi",
+      "hi": "रुद्राक्ष और पत्थर राखी"
+    },
+    "materials": [
+      "rudraksha"
+    ],
+    "colours": [
+      "blue",
+      "royal blue"
+    ],
+    "colourFamily": "blue",
+    "sizeMm": 29,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 120
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 26,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-2608",
+    "category": "rudraksha-rakhi",
+    "name": {
+      "en": "Twin rudraksha rakhi",
+      "hi": "जोड़ा रुद्राक्ष राखी"
+    },
+    "materials": [
+      "rudraksha"
+    ],
+    "colours": [
+      "gold",
+      "antique gold"
+    ],
+    "colourFamily": "gold",
+    "sizeMm": 25,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 1,
+    "new": false,
+    "priority": 15,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2609",
+    "category": "rudraksha-rakhi",
+    "name": {
+      "en": "Rudraksha bead rakhi",
+      "hi": "रुद्राक्ष मनका राखी"
+    },
+    "materials": [
+      "rudraksha",
+      "metal",
+      "thread"
+    ],
+    "colours": [
+      "green",
+      "emerald"
+    ],
+    "colourFamily": "green",
+    "sizeMm": 30,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": false,
+    "priority": 34,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2610",
+    "category": "rudraksha-rakhi",
+    "name": {
+      "en": "Capped rudraksha rakhi",
+      "hi": "कैप रुद्राक्ष राखी"
+    },
+    "materials": [
+      "rudraksha"
+    ],
+    "colours": [
+      "red",
+      "vermilion"
+    ],
+    "colourFamily": "red",
+    "sizeMm": 24,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 1,
+    "new": false,
+    "priority": 13,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-2611",
+    "category": "rudraksha-rakhi",
+    "name": {
+      "en": "Rudraksha and stone rakhi",
+      "hi": "रुद्राक्ष और पत्थर राखी"
+    },
+    "materials": [
+      "rudraksha",
+      "metal"
+    ],
+    "colours": [
+      "silver",
+      "oxidised silver"
+    ],
+    "colourFamily": "silver",
+    "sizeMm": 25,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": false,
+    "priority": 32,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2612",
+    "category": "rudraksha-rakhi",
+    "name": {
+      "en": "Twin rudraksha rakhi",
+      "hi": "जोड़ा रुद्राक्ष राखी"
+    },
+    "materials": [
+      "rudraksha"
+    ],
+    "colours": [
+      "silver",
+      "oxidised silver"
+    ],
+    "colourFamily": "silver",
+    "sizeMm": 34,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 1,
+    "new": false,
+    "priority": 11,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2801",
+    "category": "metal-rakhi",
+    "name": {
+      "en": "Om motif rakhi",
+      "hi": "ॐ मोटिफ़ राखी"
+    },
+    "materials": [
+      "metal"
+    ],
+    "colours": [
+      "green",
+      "emerald"
+    ],
+    "colourFamily": "green",
+    "sizeMm": 30,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": true,
+    "priority": 50,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-2802",
+    "category": "metal-rakhi",
+    "name": {
+      "en": "Swastik motif rakhi",
+      "hi": "स्वस्तिक मोटिफ़ राखी"
+    },
+    "materials": [
+      "metal",
+      "thread",
+      "stone"
+    ],
+    "colours": [
+      "silver",
+      "oxidised silver"
+    ],
+    "colourFamily": "silver",
+    "sizeMm": 35,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": true,
+    "priority": 39,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2803",
+    "category": "metal-rakhi",
+    "name": {
+      "en": "Ganesh motif rakhi",
+      "hi": "गणेश मोटिफ़ राखी"
+    },
+    "materials": [
+      "metal"
+    ],
+    "colours": [
+      "red",
+      "vermilion"
+    ],
+    "colourFamily": "red",
+    "sizeMm": 33,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": true,
+    "priority": 38,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2804",
+    "category": "metal-rakhi",
+    "name": {
+      "en": "Shree motif rakhi",
+      "hi": "श्री मोटिफ़ राखी"
+    },
+    "materials": [
+      "metal",
+      "thread"
+    ],
+    "colours": [
+      "green",
+      "emerald"
+    ],
+    "colourFamily": "green",
+    "sizeMm": 33,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": true,
+    "priority": 37,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-2805",
+    "category": "metal-rakhi",
+    "name": {
+      "en": "Om motif rakhi",
+      "hi": "ॐ मोटिफ़ राखी"
+    },
+    "materials": [
+      "metal"
+    ],
+    "colours": [
+      "gold",
+      "antique gold"
+    ],
+    "colourFamily": "gold",
+    "sizeMm": 41,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 4,
+    "new": true,
+    "priority": 56,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2806",
+    "category": "metal-rakhi",
+    "name": {
+      "en": "Swastik motif rakhi",
+      "hi": "स्वस्तिक मोटिफ़ राखी"
+    },
+    "materials": [
+      "metal",
+      "thread",
+      "stone"
+    ],
+    "colours": [
+      "green",
+      "emerald"
+    ],
+    "colourFamily": "green",
+    "sizeMm": 42,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 120
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 4,
+    "new": false,
+    "priority": 55,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2807",
+    "category": "metal-rakhi",
+    "name": {
+      "en": "Ganesh motif rakhi",
+      "hi": "गणेश मोटिफ़ राखी"
+    },
+    "materials": [
+      "metal",
+      "thread",
+      "stone"
+    ],
+    "colours": [
+      "green",
+      "emerald"
+    ],
+    "colourFamily": "green",
+    "sizeMm": 34,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 4,
+    "new": false,
+    "priority": 54,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-2808",
+    "category": "metal-rakhi",
+    "name": {
+      "en": "Shree motif rakhi",
+      "hi": "श्री मोटिफ़ राखी"
+    },
+    "materials": [
+      "metal"
+    ],
+    "colours": [
+      "gold",
+      "antique gold"
+    ],
+    "colourFamily": "gold",
+    "sizeMm": 31,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": false,
+    "priority": 43,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2809",
+    "category": "metal-rakhi",
+    "name": {
+      "en": "Om motif rakhi",
+      "hi": "ॐ मोटिफ़ राखी"
+    },
+    "materials": [
+      "metal",
+      "thread"
+    ],
+    "colours": [
+      "silver",
+      "oxidised silver"
+    ],
+    "colourFamily": "silver",
+    "sizeMm": 35,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 120
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 4,
+    "new": false,
+    "priority": 52,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2810",
+    "category": "metal-rakhi",
+    "name": {
+      "en": "Swastik motif rakhi",
+      "hi": "स्वस्तिक मोटिफ़ राखी"
+    },
+    "materials": [
+      "metal"
+    ],
+    "colours": [
+      "gold",
+      "antique gold"
+    ],
+    "colourFamily": "gold",
+    "sizeMm": 44,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": false,
+    "priority": 41,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-2811",
+    "category": "metal-rakhi",
+    "name": {
+      "en": "Ganesh motif rakhi",
+      "hi": "गणेश मोटिफ़ राखी"
+    },
+    "materials": [
+      "metal",
+      "thread"
+    ],
+    "colours": [
+      "blue",
+      "royal blue"
+    ],
+    "colourFamily": "blue",
+    "sizeMm": 37,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 30,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2812",
+    "category": "metal-rakhi",
+    "name": {
+      "en": "Shree motif rakhi",
+      "hi": "श्री मोटिफ़ राखी"
+    },
+    "materials": [
+      "metal"
+    ],
+    "colours": [
+      "maroon",
+      "deep red"
+    ],
+    "colourFamily": "maroon",
+    "sizeMm": 40,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 29,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2813",
+    "category": "metal-rakhi",
+    "name": {
+      "en": "Om motif rakhi",
+      "hi": "ॐ मोटिफ़ राखी"
+    },
+    "materials": [
+      "metal",
+      "thread"
+    ],
+    "colours": [
+      "blue",
+      "royal blue"
+    ],
+    "colourFamily": "blue",
+    "sizeMm": 44,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 4,
+    "new": false,
+    "priority": 48,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-2814",
+    "category": "metal-rakhi",
+    "name": {
+      "en": "Swastik motif rakhi",
+      "hi": "स्वस्तिक मोटिफ़ राखी"
+    },
+    "materials": [
+      "metal",
+      "thread"
+    ],
+    "colours": [
+      "green",
+      "emerald"
+    ],
+    "colourFamily": "green",
+    "sizeMm": 33,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 27,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2815",
+    "category": "metal-rakhi",
+    "name": {
+      "en": "Ganesh motif rakhi",
+      "hi": "गणेश मोटिफ़ राखी"
+    },
+    "materials": [
+      "metal"
+    ],
+    "colours": [
+      "red",
+      "vermilion"
+    ],
+    "colourFamily": "red",
+    "sizeMm": 38,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 4,
+    "new": false,
+    "priority": 46,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2816",
+    "category": "metal-rakhi",
+    "name": {
+      "en": "Shree motif rakhi",
+      "hi": "श्री मोटिफ़ राखी"
+    },
+    "materials": [
+      "metal",
+      "thread",
+      "stone"
+    ],
+    "colours": [
+      "gold",
+      "antique gold"
+    ],
+    "colourFamily": "gold",
+    "sizeMm": 34,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 120
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 25,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-2817",
+    "category": "metal-rakhi",
+    "name": {
+      "en": "Om motif rakhi",
+      "hi": "ॐ मोटिफ़ राखी"
+    },
+    "materials": [
+      "metal",
+      "thread"
+    ],
+    "colours": [
+      "ivory",
+      "peach"
+    ],
+    "colourFamily": "pastel",
+    "sizeMm": 33,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": false,
+    "priority": 34,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2818",
+    "category": "metal-rakhi",
+    "name": {
+      "en": "Swastik motif rakhi",
+      "hi": "स्वस्तिक मोटिफ़ राखी"
+    },
+    "materials": [
+      "metal"
+    ],
+    "colours": [
+      "maroon",
+      "deep red"
+    ],
+    "colourFamily": "maroon",
+    "sizeMm": 42,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 23,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2819",
+    "category": "metal-rakhi",
+    "name": {
+      "en": "Ganesh motif rakhi",
+      "hi": "गणेश मोटिफ़ राखी"
+    },
+    "materials": [
+      "metal"
+    ],
+    "colours": [
+      "red",
+      "vermilion"
+    ],
+    "colourFamily": "red",
+    "sizeMm": 43,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 120
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": false,
+    "priority": 32,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-2820",
+    "category": "metal-rakhi",
+    "name": {
+      "en": "Shree motif rakhi",
+      "hi": "श्री मोटिफ़ राखी"
+    },
+    "materials": [
+      "metal",
+      "thread"
+    ],
+    "colours": [
+      "blue",
+      "royal blue"
+    ],
+    "colourFamily": "blue",
+    "sizeMm": 44,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 4,
+    "new": false,
+    "priority": 41,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-3001",
+    "category": "pendant-rakhi",
+    "name": {
+      "en": "Slider bracelet rakhi",
+      "hi": "स्लाइडर ब्रेसलेट राखी"
+    },
+    "materials": [
+      "metal",
+      "stone"
+    ],
+    "colours": [
+      "multicolour"
+    ],
+    "colourFamily": "multi",
+    "sizeMm": 24,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 50,
+    "priceBand": 4,
+    "new": true,
+    "priority": 56,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-3002",
+    "category": "pendant-rakhi",
+    "name": {
+      "en": "Pendant chain rakhi",
+      "hi": "पेंडेंट चेन राखी"
+    },
+    "materials": [
+      "metal",
+      "stone"
+    ],
+    "colours": [
+      "silver",
+      "oxidised silver"
+    ],
+    "colourFamily": "silver",
+    "sizeMm": 18,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 50,
+    "priceBand": 4,
+    "new": true,
+    "priority": 55,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-3003",
+    "category": "pendant-rakhi",
+    "name": {
+      "en": "Adjustable bracelet rakhi",
+      "hi": "एडजस्टेबल ब्रेसलेट राखी"
+    },
+    "materials": [
+      "metal",
+      "stone",
+      "pearl"
+    ],
+    "colours": [
+      "ivory",
+      "peach"
+    ],
+    "colourFamily": "pastel",
+    "sizeMm": 18,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 50,
+    "priceBand": 3,
+    "new": true,
+    "priority": 44,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-3004",
+    "category": "pendant-rakhi",
+    "name": {
+      "en": "Charm bracelet rakhi",
+      "hi": "चार्म ब्रेसलेट राखी"
+    },
+    "materials": [
+      "metal",
+      "stone",
+      "pearl"
+    ],
+    "colours": [
+      "multicolour"
+    ],
+    "colourFamily": "multi",
+    "sizeMm": 19,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 120
+    },
+    "packType": "carded",
+    "moq": 50,
+    "priceBand": 3,
+    "new": true,
+    "priority": 43,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-3005",
+    "category": "pendant-rakhi",
+    "name": {
+      "en": "Slider bracelet rakhi",
+      "hi": "स्लाइडर ब्रेसलेट राखी"
+    },
+    "materials": [
+      "metal"
+    ],
+    "colours": [
+      "silver",
+      "oxidised silver"
+    ],
+    "colourFamily": "silver",
+    "sizeMm": 17,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 50,
+    "priceBand": 2,
+    "new": false,
+    "priority": 32,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-3006",
+    "category": "pendant-rakhi",
+    "name": {
+      "en": "Pendant chain rakhi",
+      "hi": "पेंडेंट चेन राखी"
+    },
+    "materials": [
+      "metal",
+      "stone"
+    ],
+    "colours": [
+      "green",
+      "emerald"
+    ],
+    "colourFamily": "green",
+    "sizeMm": 18,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 50,
+    "priceBand": 2,
+    "new": false,
+    "priority": 31,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-3007",
+    "category": "pendant-rakhi",
+    "name": {
+      "en": "Adjustable bracelet rakhi",
+      "hi": "एडजस्टेबल ब्रेसलेट राखी"
+    },
+    "materials": [
+      "metal",
+      "stone",
+      "pearl"
+    ],
+    "colours": [
+      "multicolour"
+    ],
+    "colourFamily": "multi",
+    "sizeMm": 20,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 120
+    },
+    "packType": "carded",
+    "moq": 50,
+    "priceBand": 3,
+    "new": false,
+    "priority": 40,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-3008",
+    "category": "pendant-rakhi",
+    "name": {
+      "en": "Charm bracelet rakhi",
+      "hi": "चार्म ब्रेसलेट राखी"
+    },
+    "materials": [
+      "metal",
+      "stone",
+      "pearl"
+    ],
+    "colours": [
+      "green",
+      "emerald"
+    ],
+    "colourFamily": "green",
+    "sizeMm": 24,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 50,
+    "priceBand": 3,
+    "new": false,
+    "priority": 39,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-3009",
+    "category": "pendant-rakhi",
+    "name": {
+      "en": "Slider bracelet rakhi",
+      "hi": "स्लाइडर ब्रेसलेट राखी"
+    },
+    "materials": [
+      "metal",
+      "stone",
+      "pearl"
+    ],
+    "colours": [
+      "ivory",
+      "peach"
+    ],
+    "colourFamily": "pastel",
+    "sizeMm": 18,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 120
+    },
+    "packType": "carded",
+    "moq": 50,
+    "priceBand": 2,
+    "new": false,
+    "priority": 28,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-3010",
+    "category": "pendant-rakhi",
+    "name": {
+      "en": "Pendant chain rakhi",
+      "hi": "पेंडेंट चेन राखी"
+    },
+    "materials": [
+      "metal",
+      "stone"
+    ],
+    "colours": [
+      "maroon",
+      "deep red"
+    ],
+    "colourFamily": "maroon",
+    "sizeMm": 18,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 50,
+    "priceBand": 3,
+    "new": false,
+    "priority": 37,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-3011",
+    "category": "pendant-rakhi",
+    "name": {
+      "en": "Adjustable bracelet rakhi",
+      "hi": "एडजस्टेबल ब्रेसलेट राखी"
+    },
+    "materials": [
+      "metal"
+    ],
+    "colours": [
+      "green",
+      "emerald"
+    ],
+    "colourFamily": "green",
+    "sizeMm": 25,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 50,
+    "priceBand": 3,
+    "new": false,
+    "priority": 36,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-3012",
+    "category": "pendant-rakhi",
+    "name": {
+      "en": "Charm bracelet rakhi",
+      "hi": "चार्म ब्रेसलेट राखी"
+    },
+    "materials": [
+      "metal",
+      "stone",
+      "pearl"
+    ],
+    "colours": [
+      "red",
+      "vermilion"
+    ],
+    "colourFamily": "red",
+    "sizeMm": 25,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 50,
+    "priceBand": 2,
+    "new": false,
+    "priority": 25,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-3013",
+    "category": "pendant-rakhi",
+    "name": {
+      "en": "Slider bracelet rakhi",
+      "hi": "स्लाइडर ब्रेसलेट राखी"
+    },
+    "materials": [
+      "metal",
+      "stone",
+      "pearl"
+    ],
+    "colours": [
+      "blue",
+      "royal blue"
+    ],
+    "colourFamily": "blue",
+    "sizeMm": 25,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 120
+    },
+    "packType": "carded",
+    "moq": 50,
+    "priceBand": 2,
+    "new": false,
+    "priority": 24,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-3014",
+    "category": "pendant-rakhi",
+    "name": {
+      "en": "Pendant chain rakhi",
+      "hi": "पेंडेंट चेन राखी"
+    },
+    "materials": [
+      "metal",
+      "stone"
+    ],
+    "colours": [
+      "gold",
+      "antique gold"
+    ],
+    "colourFamily": "gold",
+    "sizeMm": 16,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 50,
+    "priceBand": 2,
+    "new": false,
+    "priority": 23,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-3015",
+    "category": "pendant-rakhi",
+    "name": {
+      "en": "Adjustable bracelet rakhi",
+      "hi": "एडजस्टेबल ब्रेसलेट राखी"
+    },
+    "materials": [
+      "metal",
+      "stone"
+    ],
+    "colours": [
+      "red",
+      "vermilion"
+    ],
+    "colourFamily": "red",
+    "sizeMm": 24,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 50,
+    "priceBand": 3,
+    "new": false,
+    "priority": 32,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-3016",
+    "category": "pendant-rakhi",
+    "name": {
+      "en": "Charm bracelet rakhi",
+      "hi": "चार्म ब्रेसलेट राखी"
+    },
+    "materials": [
+      "metal",
+      "stone",
+      "pearl"
+    ],
+    "colours": [
+      "maroon",
+      "deep red"
+    ],
+    "colourFamily": "maroon",
+    "sizeMm": 18,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 50,
+    "priceBand": 3,
+    "new": false,
+    "priority": 31,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-3201",
+    "category": "handicraft-rakhi",
+    "name": {
+      "en": "Terracotta disc rakhi",
+      "hi": "टेराकोटा डिस्क राखी"
+    },
+    "materials": [
+      "terracotta",
+      "wood",
+      "thread"
+    ],
+    "colours": [
+      "gold",
+      "antique gold"
+    ],
+    "colourFamily": "gold",
+    "sizeMm": 34,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 120
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": true,
+    "priority": 40,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-3202",
+    "category": "handicraft-rakhi",
+    "name": {
+      "en": "Wound thread rakhi",
+      "hi": "लपेटा धागा राखी"
+    },
+    "materials": [
+      "terracotta",
+      "wood",
+      "thread"
+    ],
+    "colours": [
+      "red",
+      "vermilion"
+    ],
+    "colourFamily": "red",
+    "sizeMm": 35,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": true,
+    "priority": 29,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-3203",
+    "category": "handicraft-rakhi",
+    "name": {
+      "en": "Wooden bead rakhi",
+      "hi": "लकड़ी मनका राखी"
+    },
+    "materials": [
+      "terracotta"
+    ],
+    "colours": [
+      "multicolour"
+    ],
+    "colourFamily": "multi",
+    "sizeMm": 33,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": true,
+    "priority": 28,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-3204",
+    "category": "handicraft-rakhi",
+    "name": {
+      "en": "Painted terracotta rakhi",
+      "hi": "रंगी टेराकोटा राखी"
+    },
+    "materials": [
+      "terracotta",
+      "wood",
+      "thread"
+    ],
+    "colours": [
+      "maroon",
+      "deep red"
+    ],
+    "colourFamily": "maroon",
+    "sizeMm": 38,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 27,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-3205",
+    "category": "handicraft-rakhi",
+    "name": {
+      "en": "Terracotta disc rakhi",
+      "hi": "टेराकोटा डिस्क राखी"
+    },
+    "materials": [
+      "terracotta",
+      "wood",
+      "thread"
+    ],
+    "colours": [
+      "silver",
+      "oxidised silver"
+    ],
+    "colourFamily": "silver",
+    "sizeMm": 34,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 26,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-3206",
+    "category": "handicraft-rakhi",
+    "name": {
+      "en": "Wound thread rakhi",
+      "hi": "लपेटा धागा राखी"
+    },
+    "materials": [
+      "terracotta",
+      "wood"
+    ],
+    "colours": [
+      "gold",
+      "antique gold"
+    ],
+    "colourFamily": "gold",
+    "sizeMm": 38,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": false,
+    "priority": 35,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-3207",
+    "category": "handicraft-rakhi",
+    "name": {
+      "en": "Wooden bead rakhi",
+      "hi": "लकड़ी मनका राखी"
+    },
+    "materials": [
+      "terracotta",
+      "wood",
+      "thread"
+    ],
+    "colours": [
+      "blue",
+      "royal blue"
+    ],
+    "colourFamily": "blue",
+    "sizeMm": 46,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 120
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 1,
+    "new": false,
+    "priority": 14,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-3208",
+    "category": "handicraft-rakhi",
+    "name": {
+      "en": "Painted terracotta rakhi",
+      "hi": "रंगी टेराकोटा राखी"
+    },
+    "materials": [
+      "terracotta",
+      "wood"
+    ],
+    "colours": [
+      "blue",
+      "royal blue"
+    ],
+    "colourFamily": "blue",
+    "sizeMm": 44,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 23,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-3209",
+    "category": "handicraft-rakhi",
+    "name": {
+      "en": "Terracotta disc rakhi",
+      "hi": "टेराकोटा डिस्क राखी"
+    },
+    "materials": [
+      "terracotta",
+      "wood",
+      "thread"
+    ],
+    "colours": [
+      "gold",
+      "antique gold"
+    ],
+    "colourFamily": "gold",
+    "sizeMm": 43,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 120
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": false,
+    "priority": 32,
+    "available": true,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-3210",
+    "category": "handicraft-rakhi",
+    "name": {
+      "en": "Wound thread rakhi",
+      "hi": "लपेटा धागा राखी"
+    },
+    "materials": [
+      "terracotta"
+    ],
+    "colours": [
+      "green",
+      "emerald"
+    ],
+    "colourFamily": "green",
+    "sizeMm": 43,
+    "pack": {
+      "perCard": 1,
+      "perBox": 24,
+      "perCarton": 480
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 3,
+    "new": false,
+    "priority": 31,
+    "available": true,
+    "detailPhoto": true
+  },
+  {
+    "id": "OM-1140",
+    "category": "ad-rakhi",
+    "name": {
+      "en": "Retired design",
+      "hi": "बंद डिज़ाइन"
+    },
+    "materials": [
+      "stone"
+    ],
+    "colours": [
+      "maroon"
+    ],
+    "colourFamily": "maroon",
+    "sizeMm": 34,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 0,
+    "available": false,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-1590",
+    "category": "pearl-rakhi",
+    "name": {
+      "en": "Retired design",
+      "hi": "बंद डिज़ाइन"
+    },
+    "materials": [
+      "stone"
+    ],
+    "colours": [
+      "maroon"
+    ],
+    "colourFamily": "maroon",
+    "sizeMm": 34,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 0,
+    "available": false,
+    "detailPhoto": false
+  },
+  {
+    "id": "OM-2390",
+    "category": "lumba-rakhi",
+    "name": {
+      "en": "Retired design",
+      "hi": "बंद डिज़ाइन"
+    },
+    "materials": [
+      "stone"
+    ],
+    "colours": [
+      "maroon"
+    ],
+    "colourFamily": "maroon",
+    "sizeMm": 34,
+    "pack": {
+      "perCard": 1,
+      "perBox": 12,
+      "perCarton": 240
+    },
+    "packType": "carded",
+    "moq": 100,
+    "priceBand": 2,
+    "new": false,
+    "priority": 0,
+    "available": false,
+    "detailPhoto": false
+  }
+]

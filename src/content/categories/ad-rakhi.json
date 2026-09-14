@@ -1,0 +1,20 @@
+{
+  "name": { "en": "AD Rakhi", "hi": "एडी राखी" },
+  "order": 1,
+  "summary": {
+    "en": "American diamond settings in brass cups, on silk dori.",
+    "hi": "ब्रास कप में अमेरिकन डायमंड, सिल्क डोरी के साथ।"
+  },
+  "copy": {
+    "en": "American diamond rakhi is the counter piece that sells itself — it reads as jewellery from three feet away and costs a fraction of it. Ours are set in brass cups rather than glued to a flat base, so the stones hold through a season in a shop drawer and through transit. We keep the dori weight consistent across the range, which matters when a retailer is filling a display card. Strongest in metro retail and modern trade.",
+    "hi": "एडी राखी काउंटर पर अपने आप बिकती है — तीन फुट की दूरी से यह ज्वेलरी जैसी दिखती है। हमारी राखियों में पत्थर ब्रास कप में जड़े जाते हैं, चिपकाए नहीं जाते, इसलिए पूरे सीज़न और ट्रांसपोर्ट में टिके रहते हैं। पूरी रेंज में डोरी का वज़न एक जैसा रखा जाता है, जो डिस्प्ले कार्ड भरते समय ज़रूरी होता है। मेट्रो रिटेल और मॉडर्न ट्रेड में सबसे ज़्यादा चलती है।"
+  },
+  "materials": ["stone", "metal", "thread"],
+  "audience": ["brother"],
+  "priceBand": { "from": 2, "to": 3 },
+  "moq": 100,
+  "packTypes": ["carded", "loose"],
+  "region": { "en": "Strongest in metro retail and modern trade", "hi": "मेट्रो रिटेल और मॉडर्न ट्रेड में सबसे मज़बूत" },
+  "heroCode": "OM-1001",
+  "related": ["kundan-rakhi", "stone-rakhi", "pendant-rakhi"]
+}

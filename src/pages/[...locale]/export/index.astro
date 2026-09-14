@@ -1,0 +1,173 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import PageHeader from '../../../components/PageHeader.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
+import SpecTable from '../../../components/SpecTable.astro';
+import CtaBlock from '../../../components/CtaBlock.astro';
+
+import { SITE, PROOF } from '../../../config/site.ts';
+import { TERMS } from '../../../config/trade.ts';
+import { useTranslations, LOCALES, DEFAULT_LOCALE, type Locale } from '../../../i18n/ui.ts';
+import { href, ROUTES, localeFromParam } from '../../../lib/routes.ts';
+import { inr } from '../../../lib/format.ts';
+
+export const getStaticPaths: GetStaticPaths = () =>
+  LOCALES.map((locale) => ({ params: { locale: locale === DEFAULT_LOCALE ? undefined : locale } }));
+
+const locale = localeFromParam(Astro.params.locale) as Locale;
+const t = useTranslations(locale);
+const hi = locale === 'hi';
+
+const countries = (await getCollection('countries')).sort((a, b) =>
+  a.data.name.en.localeCompare(b.data.name.en),
+);
+const live = countries.filter((c) => !c.data.draft);
+---
+
+<Base locale={locale}
+  title={hi ? `निर्यात — विदेशी ख़रीदारों के लिए | ${SITE.name}` : `Export — for international buyers | ${SITE.name}`}
+  description={hi
+    ? 'भारत से राखी का निर्यात: हम कौन-से दस्तावेज़ संभालते हैं, पैकिंग, न्यूनतम ऑर्डर मूल्य, लीड टाइम और भुगतान की शर्तें।'
+    : 'Importing rakhi from India: which documents we handle, export packing, minimum order value, lead times and payment terms.'}
+  enquiryContext={hi ? 'निर्यात संबंधी पूछताछ' : 'Export enquiry'}
+>
+  <div class="container section--tight">
+    <Breadcrumb locale={locale} items={[{ label: t('nav.home'), href: href(ROUTES.home, locale) }, { label: t('nav.export') }]} />
+
+    <PageHeader
+      title={hi ? 'विदेशी ख़रीदारों के लिए' : 'For international buyers'}
+      lede={hi
+        ? 'यह पेज इसलिए है कि आप कॉल करने से पहले जान लें कि हम आपका काम कर सकते हैं या नहीं। जहाँ हमारा अनुभव सीमित है, वहाँ हम वही लिखेंगे।'
+        : 'This page exists so you can tell, before you spend a call on it, whether we can serve you. Where our experience is limited, it says so.'}
+    />
+
+    {/* Both competitors advertise 20+ countries. An importer who discovers
+        mid-conversation that you have never filed an export document will not
+        come back, so nothing here is claimed until it is true. */}
+    <div class="ex__honest">
+      <h2>{hi ? 'हमने अब तक कहाँ भेजा है' : 'Where we have actually shipped'}</h2>
+      {PROOF.countries
+        ? <p>{hi ? `अब तक ${PROOF.countries} देशों में।` : `${PROOF.countries} countries so far.`}</p>
+        : <p>{hi
+            ? 'हम अपने निर्यात रिकॉर्ड की पुष्टि होने तक यहाँ कोई संख्या नहीं लिख रहे। अपना देश और अंदाज़न मात्रा बताइए — हम साफ़ बता देंगे कि हमने वहाँ पहले भेजा है या नहीं, और अगर नहीं भेजा तो प्रक्रिया कैसी रहेगी।'
+            : 'We are not putting a number here until our export record is confirmed. Tell us your country and rough quantity and we will say plainly whether we have shipped there before — and if we have not, what the process would look like.'}</p>}
+      <p class="ex__note">{hi
+        ? 'सैंपल कूरियर से लगभग कहीं भी भेजे जा सकते हैं। पूरी खेप एक अलग बात है, और उसके लिए शुरुआत में ही ईमानदार बातचीत ज़रूरी है।'
+        : 'Samples can be couriered almost anywhere. A full consignment is a different matter, and it is worth an honest conversation at the start rather than in the middle.'}</p>
+    </div>
+
+    <section class="section--tight">
+      <h2>{hi ? 'दस्तावेज़' : 'Documentation'}</h2>
+      <div class="ex__cols">
+        <div>
+          <h3>{hi ? 'हम संभालते हैं' : 'We handle'}</h3>
+          <ul>{TERMS.export.documentsHandled.map((d) => <li>{d}</li>)}</ul>
+        </div>
+        <div>
+          <h3>{hi ? 'आप संभालते हैं' : 'You handle'}</h3>
+          <ul>{TERMS.export.documentsBuyerHandles.map((d) => <li>{d}</li>)}</ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section--tight prose">
+      <h2>{hi ? 'निर्यात पैकिंग' : 'Export packing'}</h2>
+      <p>{TERMS.export.packing}</p>
+    </section>
+
+    <section class="section--tight">
+      <h2>{hi ? 'न्यूनतम ऑर्डर मूल्य' : 'Minimum order value'}</h2>
+      <p class="ex__lead">{hi
+        ? 'निर्यात का न्यूनतम घरेलू ऑर्डर से काफ़ी ऊपर होता है, क्योंकि दस्तावेज़ और भाड़े की लागत खेप के आकार के साथ नहीं घटती। देश के हिसाब से:'
+        : 'The export minimum sits well above the domestic one, because documentation and freight cost the same whether the consignment is small or large. By country:'}</p>
+      <SpecTable
+        head={[hi ? 'देश' : 'Country', hi ? 'न्यूनतम ऑर्डर मूल्य' : 'Minimum order value', hi ? 'ट्रांज़िट' : 'Transit']}
+        rows={countries.map((c) => [c.data.name[locale], inr(c.data.minOrderValueInr, locale), c.data.shipping.transit[locale]])}
+      />
+    </section>
+
+    {/* An overseas buyer's real question is whether goods land before his
+        selling window, not what they cost. */}
+    <section class="section--tight prose">
+      <h2>{hi ? 'लीड टाइम' : 'Lead times'}</h2>
+      <p>{hi
+        ? 'यही सबसे अहम बात है। माल तब तक बनकर तैयार नहीं होता जब तक उसका प्रोडक्शन रन नहीं चलता, और प्रोडक्शन सीज़न में क़तार में लगता है। निर्यात खेप के लिए उल्टी गिनती यह है: बुकिंग से डिस्पैच तक चार से छह हफ़्ते, फिर आपके देश तक ट्रांज़िट, फिर आपके अपने डिस्ट्रीब्यूशन का समय।'
+        : 'This is the number that matters. Goods do not exist until their production run happens, and production queues through the season. The backward count for an export consignment is: four to six weeks from booking to dispatch, then transit to your country, then your own distribution time.'}</p>
+      <p>{hi
+        ? 'व्यावहारिक रूप से इसका मतलब है कि रक्षाबंधन से कम से कम चार महीने पहले बुकिंग हो जानी चाहिए। इससे देर में हम कोशिश कर सकते हैं, पर तारीख़ का वादा नहीं करेंगे।'
+        : 'In practice that means booking at least four months before Raksha Bandhan. Later than that we can try, but we will not promise a date we cannot hold.'}</p>
+    </section>
+
+    <section class="section--tight prose">
+      <h2>{hi ? 'भुगतान' : 'Payment'}</h2>
+      <p>{TERMS.export.payment}</p>
+      <p>{TERMS.export.currencyNote}</p>
+    </section>
+
+    <section class="section--tight">
+      <h2>{hi ? 'देश' : 'By country'}</h2>
+      <p class="ex__lead">{hi
+        ? 'हर देश के पेज पर उस बाज़ार में क्या बिकता है, शिपिंग का तरीक़ा, ट्रांज़िट और सीमा शुल्क से जुड़ी बातें लिखी हैं।'
+        : 'Each country page covers what sells in that market, the shipping mode, transit and the customs notes that actually come up.'}</p>
+      <ul class="ex__countries">
+        {countries.map((c) => (
+          <li>
+            <a href={href(ROUTES.country(c.id), locale)}>
+              <strong>{c.data.name[locale]}</strong>
+              <span>{c.data.shipping.transit[locale]}</span>
+              {c.data.draft && <span class="tag tag--quiet">{hi ? 'पुष्टि बाक़ी' : 'Unverified'}</span>}
+            </a>
+          </li>
+        ))}
+      </ul>
+      {live.length === 0 && (
+        <p class="ex__note">{hi
+          ? 'इन पेजों की जानकारी अभी फ़र्म से पुष्ट होनी बाक़ी है, इसलिए ये सर्च इंजन से बाहर रखे गए हैं।'
+          : 'The facts on these pages are still to be confirmed with the firm, so they are kept out of search until they are.'}</p>
+      )}
+    </section>
+
+    <div class="section--tight">
+      <CtaBlock
+        locale={locale}
+        title={hi ? 'अपना देश और मात्रा बताइए' : 'Tell us your country and quantity'}
+        body={hi
+          ? 'हम बता देंगे कि क्या संभव है, कितने समय में और किस दस्तावेज़ी प्रक्रिया से। अगर हम सही सप्लायर नहीं हैं, तो वह भी बता देंगे।'
+          : 'We will tell you what is possible, in what time, and through which documentation route. If we are not the right supplier, we will say that too.'}
+        context={hi ? 'निर्यात संबंधी पूछताछ' : 'Export enquiry'}
+      />
+      <p class="link-row">
+        <a href={href(ROUTES.custom, locale)}>{t('nav.custom')}</a>
+        <a href={href(ROUTES.contact, locale)}>{t('nav.contact')}</a>
+      </p>
+    </div>
+  </div>
+</Base>
+
+<style>
+  h2 { margin-bottom: var(--space-s); }
+  .ex__honest { padding: var(--space-m); background: var(--plinth); max-width: 46rem; }
+  .ex__honest p { max-width: var(--measure); }
+  .ex__note { margin-top: var(--space-2xs); font-size: var(--step--1); color: var(--ink-muted); }
+  .ex__lead { max-width: var(--measure); margin-bottom: var(--space-s); }
+  .ex__cols { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-l); max-width: 46rem; }
+  .ex__cols h3 { font-size: var(--step-1); margin-bottom: var(--space-2xs); }
+  .ex__cols ul { padding-left: var(--space-m); display: grid; gap: var(--space-3xs); }
+  .ex__countries { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-2xs); }
+  .ex__countries a {
+    display: grid;
+    gap: 0.15em;
+    padding: var(--space-s);
+    border: var(--hairline) solid var(--line);
+    text-decoration: none;
+    background: var(--ground-raised);
+  }
+  .ex__countries a:hover { border-color: var(--accent); }
+  .ex__countries span { font-size: var(--step--1); color: var(--ink-muted); }
+  .ex__countries .tag { justify-self: start; margin-top: var(--space-3xs); }
+  .link-row { display: flex; gap: var(--space-m); margin-top: var(--space-s); font-size: var(--step--1); }
+  @media (max-width: 60rem) { .ex__countries { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 40rem) { .ex__cols, .ex__countries { grid-template-columns: 1fr; } }
+</style>

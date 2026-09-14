@@ -1,0 +1,283 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import SpecTable from '../../components/SpecTable.astro';
+import FaqList from '../../components/FaqList.astro';
+import CtaBlock from '../../components/CtaBlock.astro';
+
+import { SITE } from '../../config/site.ts';
+import { TERMS } from '../../config/trade.ts';
+import { useTranslations, LOCALES, DEFAULT_LOCALE, type Locale } from '../../i18n/ui.ts';
+import { href, ROUTES, localeFromParam } from '../../lib/routes.ts';
+import { seasonCalendar, currentPhase } from '../../lib/season.ts';
+import { allCategories } from '../../lib/catalogue.ts';
+import { siteImage } from '../../lib/images.ts';
+import { num } from '../../lib/format.ts';
+
+export const getStaticPaths: GetStaticPaths = () =>
+  LOCALES.map((locale) => ({ params: { locale: locale === DEFAULT_LOCALE ? undefined : locale } }));
+
+const locale = localeFromParam(Astro.params.locale) as Locale;
+const t = useTranslations(locale);
+const hi = locale === 'hi';
+
+const [categories, faqs] = await Promise.all([allCategories(), getCollection('faqs')]);
+const calendar = seasonCalendar(locale);
+const now = currentPhase();
+
+const PACK_SHOTS = [
+  { name: 'pack-card', en: 'A carded rakhi', hi: 'कार्ड पर लगी राखी', enBody: 'The unit a retail customer buys. The card holds the piece flat, carries your price, and hangs on a display hook.', hiBody: 'यही वह इकाई है जो ग्राहक ख़रीदता है। कार्ड राखी को सीधा रखता है, दाम दिखाता है और डिस्प्ले हुक पर टँगता है।' },
+  { name: 'pack-box', en: 'A box', hi: 'एक बॉक्स', enBody: 'Twelve or twenty-four cards, depending on the design. This is the unit you count stock in and the unit a counter is refilled from.', hiBody: 'डिज़ाइन के हिसाब से बारह या चौबीस कार्ड। स्टॉक इसी इकाई में गिना जाता है और काउंटर इसी से भरा जाता है।' },
+  { name: 'pack-carton', en: 'A carton', hi: 'एक कार्टन', enBody: 'What actually travels. Ten or twenty boxes, strapped and marked with the article numbers inside, kept under 25 kg so one person can lift it.', hiBody: 'असल में यही सफ़र करता है। दस या बीस बॉक्स, पट्टी बँधे और अंदर के आर्टिकल नंबर लिखे हुए, 25 किलो से कम ताकि एक आदमी उठा सके।' },
+] as const;
+
+const title = hi
+  ? `ऑर्डर कैसे दें — न्यूनतम, दाम, पैकिंग और डिस्पैच | ${SITE.name}`
+  : `How to order — minimums, rates, packing and dispatch | ${SITE.name}`;
+const description = hi
+  ? 'थोक राखी का न्यूनतम ऑर्डर, दाम कैसे तय होते हैं, कार्ड और खुली पैकिंग, बुकिंग की शर्तें, ट्रांसपोर्ट और रिप्लेसमेंट — सब एक जगह लिखा हुआ।'
+  : 'Wholesale rakhi minimums, how rates work, carded versus loose, booking terms, transport and replacement — written out in full, on one page.';
+---
+
+<Base locale={locale} title={title} description={description}
+  enquiryContext={hi ? 'ऑर्डर देने के बारे में सवाल' : 'A question about ordering'}
+  schema={{
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.data.question[locale],
+      acceptedAnswer: { '@type': 'Answer', text: f.data.answer[locale] },
+    })),
+  }}>
+
+  <div class="container section--tight">
+    <Breadcrumb locale={locale} items={[{ label: t('nav.home'), href: href(ROUTES.home, locale) }, { label: t('nav.order') }]} />
+
+    <PageHeader
+      title={hi ? 'ऑर्डर कैसे दें' : 'How to order'}
+      lede={hi
+        ? 'पहली बार ख़रीदने वाले के मन में पंद्रह सवाल होते हैं और अब तक उसे सारे फ़ोन पर पूछने पड़ते थे। यहाँ सबके जवाब लिखे हैं — न्यूनतम, दाम, पैकिंग, बुकिंग, ट्रांसपोर्ट और ख़राब माल की पॉलिसी।'
+        : 'A first-time buyer has about fifteen questions and has always had to ask all of them cold. They are answered here: minimums, rates, packing, booking, transport and what happens when something arrives broken.'}
+    />
+
+    {/* 1 — The calendar. Anchored to Raksha Bandhan and generated from config,
+        so it cannot end up describing last year. */}
+    <section class="section--tight">
+      <h2>{hi ? 'सीज़न का कैलेंडर' : 'The season calendar'}</h2>
+      <ol class="cal">
+        {calendar.map((row) => (
+          <li class:list={['cal__step', row.phase === now && 'is-now']}>
+            <span class="cal__when eyebrow">{row.when}</span>
+            <h3 class="cal__title">{row.title}</h3>
+            <p class="cal__body">{row.body}</p>
+            {row.phase === now && <span class="tag cal__tag">{hi ? 'अभी' : 'Now'}</span>}
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    {/* 2 — Minimums, plainly, in a table. No "contact us for MOQ". */}
+    <section class="section--tight">
+      <h2>{hi ? 'न्यूनतम ऑर्डर' : 'Minimum order'}</h2>
+      <div class="prose">
+        <p>{hi
+          ? 'न्यूनतम प्रति डिज़ाइन है, प्रति ऑर्डर नहीं — हर डिज़ाइन एक अलग प्रोडक्शन रन है। कोई न्यूनतम ऑर्डर मूल्य नहीं है।'
+          : 'The minimum is per design, not per order — each design is a separate production run. There is no minimum order value.'}</p>
+      </div>
+      <SpecTable
+        head={[t('label.category'), hi ? 'न्यूनतम प्रति डिज़ाइन' : 'Minimum per design', t('label.packType')]}
+        rows={categories.map((c) => [
+          c.data.name[locale],
+          `${num(c.data.moq, locale)} ${t('label.pieces')}`,
+          c.data.packTypes.map((p) => (p === 'carded' ? (hi ? 'कार्ड वाली' : 'Carded') : p === 'loose' ? (hi ? 'खुली' : 'Loose') : (hi ? 'बॉक्स' : 'Boxed'))).join(' / '),
+        ])}
+      />
+    </section>
+
+    {/* 3 — How rates work, including why they are not published. Saying
+        nothing here looks evasive. */}
+    <section class="section--tight prose">
+      <h2>{hi ? 'दाम कैसे तय होते हैं' : 'How rates work'}</h2>
+      <p>{TERMS.rates.basis}</p>
+      <p>{TERMS.rates.volume}</p>
+      <p>{TERMS.rates.validity}</p>
+      <p><strong>{hi ? 'इस साइट पर दाम क्यों नहीं छपे हैं:' : 'Why rates are not published here:'}</strong> {TERMS.rates.whyNotPublished}</p>
+      <p>{hi
+        ? 'हर आर्टिकल पर दिया ₹ बैंड बताता है कि डिज़ाइन किस रेंज में है, जिससे आप बिना पूछे अंदाज़ा लगा सकते हैं कि वह आपके काउंटर के लायक़ है या नहीं।'
+        : 'The ₹ band on every article tells you which range a design sits in, so you can work out whether it suits your counter before you ask anyone anything.'}</p>
+    </section>
+
+    {/* 4 — Pack configurations, with photographs. Retailers plan shelf space
+        by this and rarely find it explained anywhere. */}
+    <section class="section--tight">
+      <h2>{hi ? 'पैक कॉन्फ़िगरेशन' : 'Pack configurations'}</h2>
+      <div class="packs">
+        {PACK_SHOTS.map((shot) => {
+          const img = siteImage(shot.name);
+          return (
+            <figure class="pack">
+              {img && <div class="plinth"><Image src={img} alt={hi ? shot.hi : shot.en} widths={[320, 480, 768]} sizes="(max-width: 40rem) 100vw, 20rem" loading="lazy" /></div>}
+              <figcaption>
+                <strong>{hi ? shot.hi : shot.en}</strong>
+                <span>{hi ? shot.hiBody : shot.enBody}</span>
+              </figcaption>
+            </figure>
+          );
+        })}
+      </div>
+      <p class="packs__note">{hi
+        ? 'हर आर्टिकल पर उसका अपना पैक लिखा होता है — जैसे "1 प्रति कार्ड · 12 प्रति बॉक्स · 240 प्रति कार्टन"। एक श्रेणी और हर सीज़न में यह गिनती एक जैसी रहती है।'
+        : 'Every article carries its own pack line — "1 per card · 12 per box · 240 per carton". Those counts hold across a category and across seasons, so last year’s order sheet still works.'}</p>
+    </section>
+
+    {/* 5 — Carded vs loose. Genuinely confusing to newcomers. */}
+    <section class="section--tight prose">
+      <h2>{hi ? 'कार्ड वाली और खुली' : 'Carded and loose'}</h2>
+      <p>{hi
+        ? 'कार्ड वाली राखी एक छपे कार्ड पर लगी होती है जिस पर दाम लिखा जा सकता है और जो डिस्प्ले पर टँगती है। यह सीधे ग्राहक को बेचने के लिए है।'
+        : 'A carded rakhi is mounted on a printed card that can carry a price and hangs on a display. It is what you sell to a walk-in customer.'}</p>
+      <p>{hi
+        ? 'खुली राखी बिना कार्ड के, गिनती या वज़न से आती है। यह उनके लिए है जो ख़ुद दोबारा पैक करते हैं, वज़न से बेचते हैं, या मंदिर और सामुदायिक वितरण के लिए थोक में लेते हैं। प्रति पीस सस्ती पड़ती है, पर काउंटर पर धीमी बिकती है।'
+        : 'Loose rakhi comes without a card, counted or by weight. It is for buyers who repack themselves, sell by weight, or supply temple and community orders in bulk. Cheaper per piece, slower off a retail counter.'}</p>
+      <p>{hi
+        ? 'शक हो तो कार्ड वाली लीजिए। जो रिटेलर पहली बार काउंटर लगा रहे हैं, वे लगभग हमेशा यही चुनते हैं।'
+        : 'If you are unsure, take carded. Retailers setting up a counter for the first time almost always should.'}</p>
+    </section>
+
+    {/* 6 — Booking and payment. A real sequence, so it is numbered. */}
+    <section class="section--tight">
+      <h2>{hi ? 'बुकिंग और भुगतान' : 'Booking and payment'}</h2>
+      <ol class="steps">
+        <li>
+          <h3>{hi ? 'शॉर्टलिस्ट भेजिए' : 'Send the shortlist'}</h3>
+          <p>{hi ? 'आर्टिकल नंबर और अंदाज़न मात्रा व्हाट्सएप पर भेजिए। इस साइट की शॉर्टलिस्ट यह संदेश ख़ुद बना देती है।' : 'Article numbers and rough quantities on WhatsApp. The shortlist on this site composes that message for you.'}</p>
+        </li>
+        <li>
+          <h3>{hi ? 'दाम और उपलब्धता' : 'Rates and availability'}</h3>
+          <p>{hi ? 'हम एक कार्यदिवस के भीतर हर आर्टिकल का दाम और डिस्पैच सप्ताह भेजते हैं।' : 'We come back within one working day with a rate against each article and a dispatch week.'}</p>
+        </li>
+        <li>
+          <h3>{hi ? 'एडवांस' : 'Advance'}</h3>
+          <p>{hi ? `बुकिंग पक्की करने के लिए ${TERMS.booking.advancePercent}% एडवांस।` : `${TERMS.booking.advancePercent}% advance confirms the booking.`} {TERMS.booking.methods.join(' · ')}</p>
+        </li>
+        <li>
+          <h3>{hi ? 'ऑर्डर शीट' : 'The order sheet'}</h3>
+          <p>{TERMS.booking.confirms}</p>
+        </li>
+        <li>
+          <h3>{hi ? 'बैलेंस और डिस्पैच' : 'Balance and dispatch'}</h3>
+          <p>{TERMS.booking.balance}</p>
+        </li>
+      </ol>
+    </section>
+
+    {/* 7 — Dispatch. */}
+    <section class="section--tight">
+      <h2>{hi ? 'डिस्पैच' : 'Dispatch'}</h2>
+      <div class="prose">
+        {TERMS.dispatch.modes.map((m) => (
+          <p><strong>{m.name}.</strong> {m.detail}</p>
+        ))}
+        <p>{TERMS.dispatch.freight}</p>
+      </div>
+      <SpecTable
+        caption={hi ? 'कोलकाता से सामान्य सड़क ट्रांज़िट' : 'Typical road transit from Kolkata'}
+        head={[hi ? 'शहर' : 'City', hi ? 'दिन' : 'Days']}
+        rows={TERMS.dispatch.transitDays.map((r) => [r.to, r.days])}
+      />
+    </section>
+
+    {/* 8 — Damages. Stating a policy at all is a differentiator. */}
+    <section class="section--tight prose">
+      <h2>{hi ? 'टूट-फूट और रिप्लेसमेंट' : 'Damages and replacement'}</h2>
+      <p>{TERMS.damages.policy}</p>
+      <p><strong>{hi ? 'इसमें शामिल नहीं:' : 'Not covered:'}</strong> {TERMS.damages.notCovered}</p>
+    </section>
+
+    {/* 9 — Samples. */}
+    <section class="section--tight prose">
+      <h2>{hi ? 'सैंपल' : 'Samples'}</h2>
+      <p>{TERMS.samples.policy}</p>
+      <p>{TERMS.samples.lead}</p>
+    </section>
+
+    {/* 10 — FAQ. The only accordion on the site, because the question text is
+        itself the scannable index. */}
+    <section class="section--tight">
+      <h2>{hi ? 'अक्सर पूछे जाने वाले सवाल' : 'Questions we are asked'}</h2>
+      <FaqList items={faqs} locale={locale} />
+    </section>
+
+    <div class="section--tight">
+      <CtaBlock
+        locale={locale}
+        title={hi ? 'कुछ और पूछना है?' : 'Something still unanswered?'}
+        body={hi ? 'पूछ लीजिए। जो सवाल बार-बार आते हैं, वे इसी पेज पर जुड़ जाते हैं।' : 'Ask. Questions that come up more than once end up on this page.'}
+        context={hi ? 'ऑर्डर देने के बारे में सवाल' : 'A question about ordering'}
+      />
+      <p class="link-row">
+        <a href={href(ROUTES.catalogue, locale)}>{t('nav.catalogue')}</a>
+        <a href={href(ROUTES.custom, locale)}>{t('nav.custom')}</a>
+        <a href={href(ROUTES.visit, locale)}>{t('nav.visit')}</a>
+        <a href={href(ROUTES.contact, locale)}>{t('nav.contact')}</a>
+      </p>
+    </div>
+  </div>
+</Base>
+
+<style>
+  h2 { margin-bottom: var(--space-s); }
+
+  /* The one place on the site where a custom graphic earns its place: the
+     shape of a year is genuinely spatial information. */
+  .cal { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--space-s); }
+  .cal__step {
+    position: relative;
+    padding-top: var(--space-s);
+    border-top: 3px solid var(--line);
+  }
+  .cal__step.is-now { border-top-color: var(--accent); }
+  .cal__title { font-size: var(--step-1); margin-block: var(--space-3xs); }
+  .cal__body { font-size: var(--step--1); color: var(--ink-muted); }
+  .cal__tag { position: absolute; top: calc(-0.5rem - 3px); right: 0; }
+
+  .packs { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-m); }
+  .pack { margin: 0; }
+  .pack figcaption { display: grid; gap: var(--space-3xs); margin-top: var(--space-2xs); font-size: var(--step--1); }
+  .pack figcaption span { color: var(--ink-muted); }
+  .packs__note { margin-top: var(--space-m); max-width: var(--measure); font-size: var(--step--1); color: var(--ink-muted); }
+
+  .steps { counter-reset: step; list-style: none; padding: 0; display: grid; gap: var(--space-m); max-width: var(--measure); }
+  .steps li { counter-increment: step; padding-left: var(--space-l); position: relative; }
+  .steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 0.1em;
+    width: 1.5rem;
+    height: 1.5rem;
+    display: grid;
+    place-items: center;
+    background: var(--accent);
+    color: var(--accent-ink);
+    font-size: var(--step--1);
+    font-weight: 700;
+  }
+  .steps h3 { font-size: var(--step-1); }
+  .steps p { color: var(--ink-muted); }
+
+  .link-row { display: flex; flex-wrap: wrap; gap: var(--space-m); margin-top: var(--space-s); font-size: var(--step--1); }
+
+  @media (max-width: 60rem) {
+    .cal { grid-template-columns: 1fr; }
+    .cal__step { border-top: 0; border-left: 3px solid var(--line); padding-left: var(--space-s); padding-top: 0; }
+    .cal__step.is-now { border-left-color: var(--accent); }
+    .cal__tag { position: static; display: inline-block; margin-top: var(--space-3xs); }
+    .packs { grid-template-columns: 1fr; }
+  }
+</style>

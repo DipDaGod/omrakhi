@@ -1,0 +1,188 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import EnquiryForm from '../../components/EnquiryForm.astro';
+import SpecTable from '../../components/SpecTable.astro';
+
+import { SITE, SEASON } from '../../config/site.ts';
+import { TERMS } from '../../config/trade.ts';
+import { useTranslations, LOCALES, DEFAULT_LOCALE, type Locale } from '../../i18n/ui.ts';
+import { href, ROUTES, localeFromParam } from '../../lib/routes.ts';
+import { num } from '../../lib/format.ts';
+
+export const getStaticPaths: GetStaticPaths = () =>
+  LOCALES.map((locale) => ({ params: { locale: locale === DEFAULT_LOCALE ? undefined : locale } }));
+
+const locale = localeFromParam(Astro.params.locale) as Locale;
+const t = useTranslations(locale);
+const hi = locale === 'hi';
+
+/**
+ * [POS] Under "specialist" this is a headline page and sits high in the nav;
+ * under "on-ramp" it is a quieter one and drops below About. The nav ordering
+ * in src/components/Header.astro is where that switch is applied — the page
+ * itself does not change, because a buyer who gets here wants the same facts
+ * either way.
+ */
+const bookBy = new Date(`${SEASON.year}-${TERMS.custom.bookByMonthDay}T00:00:00Z`).toLocaleDateString(
+  hi ? 'hi-IN' : 'en-IN',
+  { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' },
+);
+
+const CUSTOMISE_HI = [
+  'डिज़ाइन और पत्थर की जमावट',
+  'रंग और डोरी',
+  'कार्ड की छपाई, नाप और लेआउट',
+  'बॉक्स और कार्टन की ब्रांडिंग',
+  'कार्ड या बॉक्स पर आपका लोगो',
+  'मॉडर्न ट्रेड के लिए बारकोड और एमआरपी लेबल',
+];
+---
+
+<Base locale={locale}
+  title={hi ? `कस्टम और प्राइवेट लेबल राखी — ${SITE.name}` : `Custom & private label rakhi — ${SITE.name}`}
+  description={hi
+    ? `अपने डिज़ाइन, अपने कार्ड और अपने लोगो के साथ राखी। न्यूनतम ${num(TERMS.custom.minPiecesPerDesign, locale)} पीस प्रति डिज़ाइन। सैंपलिंग, लीड टाइम और बुकिंग की आख़िरी तारीख़।`
+    : `Rakhi made to your design, on your card, with your logo. Minimum ${TERMS.custom.minPiecesPerDesign} pieces per design. Sampling, lead times and the date to book by.`}
+  enquiryContext={hi ? 'कस्टम / प्राइवेट लेबल के बारे में पूछताछ' : 'Enquiry about custom and private label'}
+>
+  <div class="container section--tight">
+    <Breadcrumb locale={locale} items={[{ label: t('nav.home'), href: href(ROUTES.home, locale) }, { label: t('nav.custom') }]} />
+
+    <PageHeader
+      title={hi ? 'कस्टम और प्राइवेट लेबल' : 'Custom & private label'}
+      lede={hi
+        ? 'अपने डिज़ाइन पर, अपने कार्ड पर, अपने नाम के साथ। गिफ़्ट चेन, मॉडर्न ट्रेड और कॉर्पोरेट ऑर्डर के लिए।'
+        : 'Your design, your card, your name on it. For gift chains, modern trade and corporate orders.'}
+    />
+
+    {/* The minimum is stated in the first screen, deliberately. A custom
+        enquiry from someone who wants 200 pieces with a logo wastes everyone's
+        time; the number does the filtering. */}
+    <div class="min">
+      <div>
+        <span class="min__n">{num(TERMS.custom.minPiecesPerDesign, locale)}</span>
+        <span class="min__l">{hi ? 'पीस प्रति कस्टम डिज़ाइन, न्यूनतम' : 'pieces per custom design, minimum'}</span>
+      </div>
+      <div>
+        <span class="min__n">{num(TERMS.custom.minPiecesLogoCard, locale)}</span>
+        <span class="min__l">{hi ? 'पीस, आपके लोगो वाले छपे कार्ड के लिए' : 'pieces for a printed card carrying your logo'}</span>
+      </div>
+      <div>
+        <span class="min__n">{bookBy}</span>
+        <span class="min__l">{hi ? `${SEASON.year} सीज़न के लिए बुकिंग की आख़िरी व्यावहारिक तारीख़` : `the last sensible date to book for the ${SEASON.year} season`}</span>
+      </div>
+    </div>
+    <p class="min__why">{hi
+      ? 'ये न्यूनतम कैटलॉग के न्यूनतम से ज़्यादा हैं क्योंकि कस्टम काम में हर डिज़ाइन का अपना प्रोडक्शन रन, अपना सैंपल और अक्सर अपनी छपाई होती है। इससे कम मात्रा में सेटअप की लागत ऑर्डर से ज़्यादा पड़ जाती है, और हम ऑर्डर लेने के बजाय यह बता देंगे।'
+      : 'These minimums are higher than catalogue MOQ because custom work means a production run, a sample and usually a print run of its own. Below them the setup costs more than the order is worth, and we will tell you so rather than take it.'}</p>
+
+    <section class="section--tight">
+      <h2>{hi ? 'क्या-क्या बदला जा सकता है' : 'What can be customised'}</h2>
+      <ul class="cu__list">
+        {(hi ? CUSTOMISE_HI : TERMS.custom.canCustomise).map((item) => <li>{item}</li>)}
+      </ul>
+    </section>
+
+    <section class="section--tight prose">
+      <h2>{hi ? 'सैंपलिंग' : 'Sampling'}</h2>
+      <p>{hi
+        ? 'पहले हम आपकी बात और आर्टवर्क से एक फ़िज़िकल सैंपल बनाते हैं। उसे देखे बिना कोई प्रोडक्शन शुरू नहीं होता — तस्वीर से पत्थर का रंग और कार्ड की छपाई का असली रूप तय नहीं किया जा सकता।'
+        : 'We make a physical sample from your brief and artwork first. Nothing goes into production until you have held it — stone colour and card printing cannot be judged from a photograph.'}</p>
+      <p>{TERMS.custom.sampling.lead}</p>
+      <p>{TERMS.custom.sampling.cost}</p>
+    </section>
+
+    <section class="section--tight">
+      <h2>{hi ? 'लीड टाइम' : 'Lead times'}</h2>
+      <SpecTable
+        head={[hi ? 'चरण' : 'Stage', hi ? 'समय' : 'Time']}
+        rows={[
+          [hi ? 'आर्टवर्क से सैंपल तक' : 'Artwork to physical sample', TERMS.custom.sampling.lead],
+          [hi ? 'सैंपल मंज़ूरी से प्रोडक्शन' : 'Sample approval to production', TERMS.custom.leadWeeks.production],
+          [hi ? 'पैकिंग और डिस्पैच' : 'Packing and dispatch', TERMS.custom.leadWeeks.packing],
+        ]}
+      />
+      <p class="cu__note">{hi
+        ? `पीछे से गिनिए तो ${SEASON.year} के सीज़न के लिए ${bookBy} तक बुकिंग हो जानी चाहिए। इसके बाद भी हम कोशिश कर सकते हैं, पर तारीख़ का वादा नहीं करेंगे।`
+        : `Counting backwards, that means booking by ${bookBy} for the ${SEASON.year} season. We can still try after that, but we will not promise a date we cannot hold.`}</p>
+    </section>
+
+    <section class="section--tight prose">
+      <h2>{hi ? 'कॉर्पोरेट और बल्क गिफ़्टिंग' : 'Corporate and bulk gifting'}</h2>
+      <p>{hi
+        ? 'यह अलग तरह का काम है: राखी के साथ अक्सर एक छोटा बॉक्स, एक कार्ड और कभी-कभी मिठाई या ड्राई फ़्रूट का डिब्बा भी होता है, और डिलीवरी एक जगह नहीं, कई पतों पर करनी होती है। हम राखी और पैकिंग बनाते हैं; कई पतों पर भेजने की व्यवस्था आपको या आपके वेंडर को करनी होगी। मात्रा और तारीख़ बता दीजिए, हम साफ़ बता देंगे कि क्या संभव है।'
+        : 'This is a different job: the rakhi usually sits in a small box with a card, sometimes alongside sweets or dry fruit, and it ships to many addresses rather than one. We make the rakhi and the packing; multi-address fulfilment is yours or your vendor’s. Give us the quantity and the date and we will say plainly what is possible.'}</p>
+    </section>
+
+    {/* No gallery of custom work is shown, because there is none to show yet.
+        Describing the capability honestly beats inventing a portfolio. */}
+
+    <section class="section--tight">
+      <h2>{hi ? 'कस्टम पूछताछ' : 'Custom enquiry'}</h2>
+      <p class="cu__formnote">{hi
+        ? 'ये चार बातें बता दीजिए और पहले ही जवाब में आपको असली जानकारी मिलेगी — "कस्टमाइज़ेशन में दिलचस्पी है" जैसे दस संदेशों से यह एक ज़्यादा काम का है।'
+        : 'Answer these four and the first reply you get will have real numbers in it. One enquiry with them answered is worth ten that say "interested in customisation".'}</p>
+      <EnquiryForm
+        locale={locale}
+        subject={`Custom / private label enquiry — ${SITE.name}`}
+        submitLabel={hi ? 'कस्टम पूछताछ भेजें' : 'Send custom enquiry'}
+        fields={[
+          { kind: 'text', name: 'name', label: t('form.name'), required: true, autocomplete: 'name' },
+          { kind: 'text', name: 'firm', label: t('form.firm'), required: true, autocomplete: 'organization' },
+          { kind: 'text', name: 'city', label: t('form.city'), required: true, autocomplete: 'address-level2' },
+          { kind: 'tel', name: 'phone', label: t('form.phone'), required: true, autocomplete: 'tel' },
+          { kind: 'text', name: 'quantity', label: t('form.qty'), required: true, placeholder: hi ? 'जैसे 2,000 पीस' : 'e.g. 2,000 pieces' },
+          { kind: 'select', name: 'customisation', label: t('form.customType'), required: true, options: [
+            { value: 'design', label: hi ? 'डिज़ाइन' : 'Design' },
+            { value: 'card', label: hi ? 'छपा हुआ कार्ड' : 'Printed card' },
+            { value: 'logo', label: hi ? 'कार्ड या बॉक्स पर लोगो' : 'Logo on card or box' },
+            { value: 'box', label: hi ? 'बॉक्स और पैकिंग' : 'Box and packing' },
+            { value: 'barcode', label: hi ? 'बारकोड / एमआरपी लेबल' : 'Barcode / MRP labelling' },
+          ] },
+          { kind: 'date', name: 'deadline', label: t('form.deadline'), required: true },
+          { kind: 'select', name: 'artwork', label: t('form.artwork'), required: true, options: [
+            { value: 'yes', label: t('form.yes') },
+            { value: 'no', label: t('form.no') },
+          ] },
+          { kind: 'textarea', name: 'message', label: t('form.message'), rows: 4 },
+        ]}
+      />
+    </section>
+
+    <p class="link-row">
+      <a href={href(ROUTES.howToOrder, locale)}>{t('nav.order')}</a>
+      <a href={href(ROUTES.contact, locale)}>{t('nav.contact')}</a>
+    </p>
+  </div>
+</Base>
+
+<style>
+  .min {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-m);
+    padding: var(--space-m);
+    background: var(--plinth);
+    margin-bottom: var(--space-s);
+  }
+  .min div { display: grid; gap: var(--space-3xs); }
+  .min__n { font-family: var(--font-display); font-size: var(--step-3); line-height: 1.05; }
+  .min__l { font-size: var(--step--1); color: var(--ink-muted); }
+  .min__why { max-width: var(--measure); font-size: var(--step--1); color: var(--ink-muted); }
+
+  h2 { margin-bottom: var(--space-s); }
+  .cu__list { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-2xs); max-width: 46rem; }
+  .cu__list li { padding-left: var(--space-s); position: relative; }
+  .cu__list li::before { content: '·'; position: absolute; left: var(--space-2xs); color: var(--accent); font-weight: 700; }
+  .cu__note, .cu__formnote { max-width: var(--measure); font-size: var(--step--1); color: var(--ink-muted); margin-top: var(--space-s); }
+  .cu__formnote { margin-bottom: var(--space-m); }
+  .link-row { display: flex; gap: var(--space-m); margin-top: var(--space-xl); font-size: var(--step--1); }
+
+  @media (max-width: 40rem) {
+    .min { grid-template-columns: 1fr; }
+    .cu__list { grid-template-columns: 1fr; }
+  }
+</style>

@@ -1,0 +1,264 @@
+---
+import { POSITIONING } from '../config/site.ts';
+import { useTranslations, type Locale } from '../i18n/ui.ts';
+import { ROUTES, href, alternateHref } from '../lib/routes.ts';
+import { telHref, whatsappHref } from '../lib/whatsapp.ts';
+import { allCategories } from '../lib/catalogue.ts';
+import { SITE } from '../config/site.ts';
+import Wordmark from './Wordmark.astro';
+import Icon from './Icon.astro';
+
+interface Props { locale: Locale; path: string; bilingual?: boolean }
+const { locale, path, bilingual = true } = Astro.props;
+const t = useTranslations(locale);
+const categories = await allCategories();
+
+/* Collection first: a dealer's first instinct is to look at goods, not to read
+   about you. Order (= /how-to-order) second, which is unusual in this trade
+   and is itself a positioning signal — and moves to first under the "legible
+   supplier" frame, where the process page is the whole argument. [POS] */
+const base = [
+  { key: 'nav.collection', to: ROUTES.collections },
+  { key: 'nav.order', to: ROUTES.howToOrder },
+  { key: 'nav.custom', to: ROUTES.custom },
+  { key: 'nav.export', to: ROUTES.exportHub },
+  { key: 'nav.about', to: ROUTES.about },
+  { key: 'nav.visit', to: ROUTES.visit },
+] as const;
+
+function orderNav() {
+  const items = [...base];
+  if (POSITIONING === 'legible-supplier') return [items[1], items[0], ...items.slice(2)];
+  if (POSITIONING === 'on-ramp') return [items[0], items[1], items[4], items[3], items[2], items[5]];
+  return items;
+}
+const nav = orderNav();
+
+const isCurrent = (to: string) => path === to || (to !== '/' && path.startsWith(to + '/'));
+const other: Locale = locale === 'en' ? 'hi' : 'en';
+---
+
+<header class="hdr" data-header>
+  <div class="hdr__inner container">
+    <a class="hdr__brand" href={href(ROUTES.home, locale)} aria-label={SITE.name}>
+      <Wordmark />
+    </a>
+
+    <nav class="hdr__nav" aria-label={t('nav.menu')}>
+      {nav.map((item) => (
+        <a
+          class="hdr__link"
+          href={href(item.to, locale)}
+          aria-current={isCurrent(item.to) ? 'page' : undefined}
+        >{t(item.key)}</a>
+      ))}
+    </nav>
+
+    <div class="hdr__tools">
+      <button class="hdr__icon" type="button" data-search-open aria-label={t('action.search')}>
+        <Icon name="search" />
+      </button>
+
+      {/* Two states. Never a dropdown for two options. */}
+      {bilingual && (
+        <a class="hdr__lang" href={alternateHref(path, other)} hreflang={other} lang={other}>
+          {other === 'hi' ? 'हि' : 'EN'}
+        </a>
+      )}
+
+      {/* Hidden until the list has something in it — a zero badge is noise. */}
+      <button class="hdr__icon hdr__count" type="button" data-shortlist-open hidden
+        aria-label={t('action.reviewShortlist')}>
+        <Icon name="heart" />
+        <span class="hdr__badge" data-shortlist-count>0</span>
+      </button>
+
+      {/* Phone-first buyers exist in large numbers in this trade and are often
+          older. Forcing them through WhatsApp loses them; tel: is one tap. */}
+      <a class="btn btn--quiet hdr__call" href={telHref}>
+        <Icon name="phone" /> {t('action.call')}
+      </a>
+      <a class="btn btn--primary hdr__wa" href={whatsappHref()} rel="noopener">
+        <Icon name="whatsapp" /> {t('action.whatsapp')}
+      </a>
+    </div>
+
+    <button class="hdr__icon hdr__burger" type="button" data-menu-open aria-label={t('nav.menu')}
+      aria-expanded="false" aria-controls="mobile-menu">
+      <Icon name="menu" />
+    </button>
+  </div>
+</header>
+
+{/* Full-screen overlay, not a slide-in drawer. Carries the full category list
+    because dealers navigate by category and surfacing all of them saves a hop. */}
+<div class="mm" id="mobile-menu" hidden>
+  <div class="mm__bar container">
+    <Wordmark />
+    <button class="hdr__icon" type="button" data-menu-close aria-label={t('nav.close')}>
+      <Icon name="close" />
+    </button>
+  </div>
+  <div class="mm__body container">
+    <nav aria-label={t('nav.menu')}>
+      <ul class="mm__list">
+        {nav.map((item) => (
+          <li><a href={href(item.to, locale)}>{t(item.key)}</a></li>
+        ))}
+        <li><a href={href(ROUTES.catalogue, locale)}>{t('nav.catalogue')}</a></li>
+        <li><a href={href(ROUTES.contact, locale)}>{t('nav.contact')}</a></li>
+      </ul>
+    </nav>
+
+    <p class="eyebrow mm__eyebrow">{t('nav.collection')}</p>
+    <ul class="mm__cats">
+      {categories.map((c) => (
+        <li><a href={href(ROUTES.category(c.id), locale)}>{c.data.name[locale]}</a></li>
+      ))}
+    </ul>
+
+    <div class="mm__foot">
+      <a class="btn btn--primary btn--block" href={whatsappHref()} rel="noopener">
+        <Icon name="whatsapp" /> {t('action.whatsappUs')}
+      </a>
+      <a class="btn btn--secondary btn--block" href={telHref}>
+        <Icon name="phone" /> {SITE.phone.display}
+      </a>
+      {bilingual && (
+        <a class="btn btn--quiet btn--block" href={alternateHref(path, other)} lang={other}>
+          {other === 'hi' ? 'हिन्दी में देखें' : 'View in English'}
+        </a>
+      )}
+      <address class="mm__addr">
+        {SITE.address.line1}<br />
+        {SITE.address.line2}, {SITE.address.city} {SITE.address.postalCode}<br />
+        <span class="mm__landmark">{SITE.address.landmark}</span>
+      </address>
+      <a href={SITE.social.instagram} rel="noopener">{SITE.social.instagramHandle}</a>
+    </div>
+  </div>
+</div>
+
+<style>
+  .hdr {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-header);
+    background: var(--ground);
+    border-bottom: var(--hairline) solid var(--line);
+  }
+  .hdr__inner {
+    display: flex;
+    align-items: center;
+    gap: var(--space-m);
+    padding-block: var(--space-xs);
+    transition: padding var(--dur-base) var(--ease);
+  }
+  /* Collapses to a slim bar after 200px so it does not eat a phone screen.
+     Deliberately not hide-on-scroll-up: the contact buttons must stay reachable. */
+  .hdr[data-slim] .hdr__inner { padding-block: var(--space-3xs); }
+
+  .hdr__brand { text-decoration: none; margin-right: auto; }
+
+  .hdr__nav { display: flex; gap: var(--space-m); }
+  .hdr__link {
+    text-decoration: none;
+    font-size: var(--step-0);
+    padding-block: var(--space-3xs);
+    border-bottom: 2px solid transparent;
+  }
+  .hdr__link:hover { border-bottom-color: var(--accent-quiet); }
+  .hdr__link[aria-current='page'] { border-bottom-color: var(--accent); font-weight: 600; }
+
+  .hdr__tools { display: flex; align-items: center; gap: var(--space-2xs); }
+  .hdr__icon {
+    display: grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    position: relative;
+    color: var(--ink);
+  }
+  .hdr__icon:hover { color: var(--accent); }
+  .hdr__icon[hidden] { display: none; }
+
+  .hdr__lang {
+    font-size: var(--step--1);
+    font-weight: 600;
+    text-decoration: none;
+    padding: var(--space-3xs) var(--space-2xs);
+    border: var(--hairline) solid var(--line);
+  }
+  .hdr__lang:hover { border-color: var(--ink); }
+
+  .hdr__badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 1.1rem;
+    padding: 0 0.2rem;
+    background: var(--accent);
+    color: var(--accent-ink);
+    font-size: 0.7rem;
+    font-weight: 700;
+    line-height: 1.1rem;
+    text-align: center;
+    border-radius: 1rem;
+  }
+
+  .hdr__call, .hdr__wa { padding: 0.45em 0.8em; font-size: var(--step--1); }
+  .hdr__burger { display: none; }
+
+  @media (max-width: 60rem) {
+    .hdr__nav, .hdr__call, .hdr__wa, .hdr__lang { display: none; }
+    .hdr__burger { display: grid; }
+    .hdr__inner { gap: var(--space-2xs); }
+  }
+
+  /* --- Mobile menu -------------------------------------------------------- */
+  .mm {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-overlay);
+    background: var(--ground);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  .mm[hidden] { display: none; }
+  .mm__bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: var(--space-xs);
+    border-bottom: var(--hairline) solid var(--line);
+    position: sticky;
+    top: 0;
+    background: var(--ground);
+  }
+  .mm__body { padding-block: var(--space-m) var(--space-2xl); }
+  .mm__list { list-style: none; padding: 0; }
+  .mm__list a {
+    display: block;
+    padding: var(--space-xs) 0;
+    font-family: var(--font-display);
+    font-size: var(--step-2);
+    text-decoration: none;
+    border-bottom: var(--hairline) solid var(--line);
+  }
+  .mm__eyebrow { margin-top: var(--space-l); margin-bottom: var(--space-2xs); }
+  .mm__cats {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2xs) var(--space-s);
+  }
+  .mm__cats a { display: block; padding: var(--space-3xs) 0; text-decoration: none; font-size: var(--step-0); }
+  .mm__foot { margin-top: var(--space-l); display: grid; gap: var(--space-2xs); }
+  .mm__addr { font-style: normal; margin-top: var(--space-s); color: var(--ink-muted); font-size: var(--step--1); }
+  .mm__landmark { color: var(--accent); }
+</style>
+
+<script>
+  import '../islands/header.ts';
+</script>

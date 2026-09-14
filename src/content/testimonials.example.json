@@ -1,0 +1,11 @@
+[
+  {
+    "id": "example-only",
+    "name": "DEALER NAME",
+    "firm": "FIRM NAME",
+    "city": "CITY",
+    "buys": { "en": "what they actually buy, e.g. stone and lumba", "hi": "वे क्या ख़रीदते हैं" },
+    "years": 8,
+    "quote": { "en": "Their own words, with their permission.", "hi": "उनके अपने शब्द, उनकी अनुमति से।" }
+  }
+]

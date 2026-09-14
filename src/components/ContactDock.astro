@@ -1,0 +1,71 @@
+---
+import { SITE } from '../config/site.ts';
+import { useTranslations, type Locale } from '../i18n/ui.ts';
+import { telHref, whatsappHref, isOpenNow } from '../lib/whatsapp.ts';
+import Icon from './Icon.astro';
+
+/**
+ * A3 — the floating contact dock.
+ *
+ * The WhatsApp deep link carries a message built from the page it was tapped
+ * on, because the single biggest friction in a B2B enquiry is the buyer having
+ * to explain what he is looking at.
+ */
+interface Props { locale: Locale; context?: string }
+const { locale, context } = Astro.props;
+const t = useTranslations(locale);
+const message = context
+  ? `${SITE.name} — ${context}`
+  : `${SITE.name} — ${t('dock.enquiry')}`;
+const open = isOpenNow();
+---
+<div class="dock" data-dock data-open={open ? '' : undefined}>
+  <a class="dock__wa btn btn--primary" href={whatsappHref(message)} rel="noopener">
+    <Icon name="whatsapp" />
+    <span class="dock__label" data-dock-label>
+      {open ? t('action.whatsappUs') : t('dock.outOfHours')}
+    </span>
+  </a>
+  <a class="dock__call btn btn--secondary" href={telHref} aria-label={`${t('action.call')} ${SITE.phone.display}`}>
+    <Icon name="phone" />
+    <span class="dock__calltext">{t('action.call')}</span>
+  </a>
+</div>
+
+<style>
+  .dock {
+    position: fixed;
+    right: var(--space-m);
+    bottom: var(--space-m);
+    z-index: var(--z-dock);
+    display: flex;
+    gap: var(--space-2xs);
+    box-shadow: var(--shadow-float);
+  }
+  .dock .btn { border-radius: var(--radius); }
+  @media (max-width: 40rem) {
+    .dock {
+      right: 0;
+      left: 0;
+      bottom: 0;
+      gap: 0;
+      box-shadow: var(--shadow-float);
+    }
+    .dock .btn { flex: 1; justify-content: center; padding-block: 0.8em; }
+    .dock__call { flex: 0 0 35%; }
+    .dock__label { font-size: var(--step--1); }
+  }
+</style>
+
+<script is:inline define:vars={{ openLabel: t('action.whatsappUs'), shutLabel: t('dock.outOfHours') }}>
+  (function () {
+    // Rendered at build time, corrected in the visitor's present: a buyer at
+    // 11pm should not conclude he is being ignored.
+    var label = document.querySelector('[data-dock-label]');
+    if (!label) return;
+    var ist = new Date(Date.now() + (5 * 60 + 30) * 60000);
+    var h = ist.getUTCHours() + ist.getUTCMinutes() / 60;
+    var openNow = ist.getUTCDay() !== 0 && h >= 10 && h < 19;
+    label.textContent = openNow ? openLabel : shutLabel;
+  })();
+</script>

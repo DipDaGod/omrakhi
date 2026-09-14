@@ -1,0 +1,122 @@
+[
+  {
+    "id": "usa",
+    "draft": true,
+    "name": { "en": "United States", "hi": "संयुक्त राज्य अमेरिका" },
+    "intro": {
+      "en": "The largest single overseas market for Indian rakhi, and almost entirely a diaspora trade: the buying is done by Indian grocery chains, gift shops attached to temples, and a growing number of online sellers shipping domestically within the US. Orders are placed early because the goods have to clear a port and then move across a continent.",
+      "hi": "भारतीय राखी का सबसे बड़ा विदेशी बाज़ार, और लगभग पूरी तरह प्रवासी व्यापार: ख़रीद भारतीय ग्रॉसरी चेन, मंदिरों से जुड़ी गिफ़्ट शॉप और अमेरिका के भीतर डिलीवरी करने वाले ऑनलाइन सेलर करते हैं। ऑर्डर जल्दी दिए जाते हैं क्योंकि माल को पोर्ट पार करके फिर पूरे महाद्वीप में जाना होता है।"
+    },
+    "categories": ["ad-rakhi", "pendant-rakhi", "kids-rakhi"],
+    "whyThese": {
+      "en": "American diamond and pendant styles do the work here because the buyer is shopping the way he shops for everything else — the piece has to look like jewellery in a photograph and survive being posted in a padded envelope. Kids rakhi moves in volume through grocery chains. Thread and loose lines are not worth the freight.",
+      "hi": "एडी और पेंडेंट स्टाइल यहाँ चलते हैं क्योंकि ख़रीदार वैसे ही ख़रीदता है जैसे बाक़ी सब कुछ — पीस को फ़ोटो में ज्वेलरी जैसा दिखना है और पैडेड लिफ़ाफ़े में डाक झेलनी है। बच्चों की राखी ग्रॉसरी चेन से थोक में चलती है। धागा और खुली लाइन भाड़े के लायक़ नहीं।"
+    },
+    "shipping": { "mode": { "en": "Air freight for first orders, sea for repeat volume", "hi": "पहले ऑर्डर के लिए एयर, दोहराव पर समुद्री" }, "transit": { "en": "Air 6–9 days, sea 30–40 days door to door", "hi": "एयर 6–9 दिन, समुद्री 30–40 दिन" }, "port": "Kolkata (CCU) / Nhava Sheva" },
+    "customs": {
+      "en": "Rakhi is imported as costume jewellery or festive articles depending on materials; metal and stone content changes the line. US customs treats it as a low-duty consumer import, but a commercial invoice describing the goods accurately is what keeps a consignment moving.",
+      "hi": "सामग्री के अनुसार राखी कॉस्ट्यूम ज्वेलरी या त्योहारी वस्तु के रूप में आयात होती है; मेटल और स्टोन की मात्रा से लाइन बदलती है। अमेरिकी सीमा शुल्क इसे कम-शुल्क उपभोक्ता आयात मानता है, पर माल की सही जानकारी वाला कमर्शियल इनवॉइस ही खेप को चलाता रखता है।"
+    },
+    "minOrderValueInr": 150000
+  },
+  {
+    "id": "uk",
+    "draft": true,
+    "name": { "en": "United Kingdom", "hi": "यूनाइटेड किंगडम" },
+    "intro": {
+      "en": "A concentrated market — Leicester, Southall, Wembley and the Birmingham corridor account for most of the volume, which means a single well-chosen dealer covers a large share of the country. Buying starts later than the US because transit is shorter and buyers know it.",
+      "hi": "एक केंद्रित बाज़ार — ज़्यादातर वॉल्यूम लेस्टर, साउथॉल, वेम्बली और बर्मिंघम कॉरिडोर से आता है, यानी एक अच्छा डीलर देश के बड़े हिस्से को कवर कर लेता है। ख़रीद अमेरिका से देर में शुरू होती है क्योंकि ट्रांज़िट छोटा है और ख़रीदार यह जानते हैं।"
+    },
+    "categories": ["kundan-rakhi", "bhaiya-bhabhi-rakhi", "pearl-rakhi"],
+    "whyThese": {
+      "en": "The UK trade buys up-market. Kundan and bhaiya-bhabhi pairs carry the ticket that makes the freight worthwhile, and a Gujarati buyer in Leicester expects lumba in the pair rather than as an afterthought. Pearl fills the middle of the counter.",
+      "hi": "ब्रिटेन का व्यापार ऊपरी रेंज ख़रीदता है। कुंदन और भैया-भाभी जोड़ी की क़ीमत भाड़े को सही ठहराती है, और लेस्टर का गुजराती ख़रीदार जोड़ी में लुम्बा अलग से नहीं, साथ में चाहता है। मोती काउंटर का बीच भरता है।"
+    },
+    "shipping": { "mode": { "en": "Air freight, consolidated", "hi": "एयर फ़्रेट, कंसोलिडेटेड" }, "transit": { "en": "Air 5–8 days to Heathrow, plus inland", "hi": "हीथ्रो तक एयर 5–8 दिन, आगे अंदरूनी" }, "port": "Kolkata (CCU) → LHR" },
+    "customs": {
+      "en": "Post-Brexit the UK is its own customs territory, so an EU clearance does not carry over. Duty is low on festive articles; VAT at import is the number that actually affects your buyer's landed cost, and it is worth quoting FOB so he can compute it himself.",
+      "hi": "ब्रेक्ज़िट के बाद ब्रिटेन अपना अलग सीमा शुल्क क्षेत्र है, इसलिए ईयू क्लीयरेंस काम नहीं आता। त्योहारी वस्तुओं पर शुल्क कम है; आयात पर वैट ही वह आँकड़ा है जो ख़रीदार की लैंडेड लागत तय करता है — इसलिए एफ़ओबी भाव देना बेहतर है ताकि वह ख़ुद हिसाब लगा सके।"
+    },
+    "minOrderValueInr": 120000
+  },
+  {
+    "id": "uae",
+    "draft": true,
+    "name": { "en": "United Arab Emirates", "hi": "संयुक्त अरब अमीरात" },
+    "intro": {
+      "en": "The easiest export market to serve from Kolkata: short transit, an established re-export trade through Dubai that feeds Oman, Qatar and parts of East Africa, and buyers who are used to dealing with Indian manufacturers directly. Meena Bazaar and the Bur Dubai textile lanes are where the rakhi trade actually sits.",
+      "hi": "कोलकाता से सबसे आसान निर्यात बाज़ार: छोटा ट्रांज़िट, दुबई के ज़रिए जमा-जमाया री-एक्सपोर्ट व्यापार जो ओमान, क़तर और पूर्वी अफ़्रीका के हिस्सों तक जाता है, और ऐसे ख़रीदार जो सीधे भारतीय निर्माताओं से काम करने के आदी हैं। राखी का व्यापार मीना बाज़ार और बर दुबई की कपड़ा गलियों में है।"
+    },
+    "categories": ["metal-rakhi", "ad-rakhi", "kundan-rakhi"],
+    "whyThese": {
+      "en": "Gift-boxed metal motif rakhi sells to the corporate gifting trade that Dubai does at scale, and AD holds up in a market where presentation is everything. Humidity is the practical constraint — plated goods need the thicker finish, which is why we quote the metal range here and not the budget line.",
+      "hi": "गिफ़्ट-बॉक्स वाली मेटल मोटिफ़ राखी उस कॉर्पोरेट गिफ़्टिंग व्यापार को बिकती है जो दुबई बड़े पैमाने पर करता है, और एडी उस बाज़ार में टिकती है जहाँ प्रस्तुति ही सब कुछ है। असली अड़चन नमी है — प्लेटेड माल को मोटी फ़िनिश चाहिए, इसीलिए यहाँ हम मेटल रेंज देते हैं, सस्ती लाइन नहीं।"
+    },
+    "shipping": { "mode": { "en": "Air freight, or courier for sample and top-up orders", "hi": "एयर फ़्रेट, या सैंपल और टॉप-अप के लिए कूरियर" }, "transit": { "en": "Air 3–5 days to Dubai", "hi": "दुबई तक एयर 3–5 दिन" }, "port": "Kolkata (CCU) → DXB" },
+    "customs": {
+      "en": "GCC common customs tariff applies; festive and costume articles clear at the standard low rate. Dubai's free-zone re-export route is what most buyers use, and a buyer operating from a free zone will ask for documents made out differently — ask him before the invoice is cut, not after.",
+      "hi": "जीसीसी साझा सीमा शुल्क लागू होता है; त्योहारी और कॉस्ट्यूम वस्तुएँ सामान्य कम दर पर क्लियर होती हैं। ज़्यादातर ख़रीदार दुबई का फ़्री-ज़ोन री-एक्सपोर्ट रास्ता इस्तेमाल करते हैं, और फ़्री ज़ोन से काम करने वाला ख़रीदार दस्तावेज़ अलग तरह से बनवाता है — इनवॉइस काटने से पहले पूछ लें, बाद में नहीं।"
+    },
+    "minOrderValueInr": 80000
+  },
+  {
+    "id": "canada",
+    "draft": true,
+    "name": { "en": "Canada", "hi": "कनाडा" },
+    "intro": {
+      "en": "Smaller than the US and more concentrated — Brampton, Surrey and Scarborough are effectively the whole market. Buyers here often also import from the US rather than from India directly, so the question worth asking a new Canadian enquiry is whether he is buying for himself or re-selling to a US importer's customers.",
+      "hi": "अमेरिका से छोटा और ज़्यादा केंद्रित — ब्रैम्पटन, सरी और स्कारबोरो व्यावहारिक रूप से पूरा बाज़ार हैं। यहाँ के ख़रीदार अक्सर भारत के बजाय अमेरिका से आयात करते हैं, इसलिए नई कनाडाई पूछताछ से यह पूछना ज़रूरी है कि वह अपने लिए ख़रीद रहा है या किसी अमेरिकी आयातक के ग्राहकों को बेच रहा है।"
+    },
+    "categories": ["pendant-rakhi", "pearl-rakhi", "kids-rakhi"],
+    "whyThese": {
+      "en": "Canadian retail skews toward pieces that get worn after the day — the slider bracelet line does disproportionately well. Kids rakhi sells through the same grocery chains as in the US. Heavy kundan moves slowly here relative to its freight cost.",
+      "hi": "कनाडाई रिटेल उन पीस की ओर झुका है जो दिन के बाद भी पहने जाएँ — स्लाइडर ब्रेसलेट लाइन यहाँ ख़ास अच्छा करती है। बच्चों की राखी वहीं ग्रॉसरी चेन से चलती है जैसे अमेरिका में। भारी कुंदन यहाँ भाड़े के हिसाब से धीमा चलता है।"
+    },
+    "shipping": { "mode": { "en": "Air freight, usually consolidated with a US consignment", "hi": "एयर फ़्रेट, आम तौर पर अमेरिकी खेप के साथ" }, "transit": { "en": "Air 7–10 days to Toronto or Vancouver", "hi": "टोरंटो या वैंकूवर तक एयर 7–10 दिन" }, "port": "Kolkata (CCU) → YYZ / YVR" },
+    "customs": {
+      "en": "CBSA classification follows the material, as elsewhere. The practical difference from the US is bilingual labelling expectations at retail — a buyer selling into Quebec will raise it, and it is his responsibility, but knowing it exists saves a surprise.",
+      "hi": "सीबीएसए वर्गीकरण सामग्री के अनुसार होता है। अमेरिका से व्यावहारिक फ़र्क़ रिटेल पर द्विभाषी लेबलिंग की अपेक्षा है — क्यूबेक में बेचने वाला ख़रीदार यह उठाएगा; ज़िम्मेदारी उसी की है, पर पहले से पता होना अचरज से बचाता है।"
+    },
+    "minOrderValueInr": 120000
+  },
+  {
+    "id": "australia",
+    "draft": true,
+    "name": { "en": "Australia", "hi": "ऑस्ट्रेलिया" },
+    "intro": {
+      "en": "A late-booking market, which is the main thing to plan around: Australian buyers place orders closer to the festival than anyone else, and transit is long. An order confirmed after the second week of June is difficult to land in time, and saying so early is better than discovering it together in July.",
+      "hi": "देर से बुकिंग करने वाला बाज़ार, और यही सबसे बड़ी योजना की बात है: ऑस्ट्रेलियाई ख़रीदार सबसे देर से ऑर्डर देते हैं, और ट्रांज़िट लंबा है। जून के दूसरे हफ़्ते के बाद पक्का हुआ ऑर्डर समय पर पहुँचाना मुश्किल है — यह पहले कह देना बेहतर है, जुलाई में साथ मिलकर पता चलने से।"
+    },
+    "categories": ["stone-rakhi", "pendant-rakhi", "handicraft-rakhi"],
+    "whyThese": {
+      "en": "Stone covers the counter for the Indian grocery trade in Melbourne and Sydney. Handicraft has a real second audience here in craft and fair-trade retail, which is unusual — it is the one export market where the terracotta and wound-thread range sells outside the diaspora.",
+      "hi": "मेलबर्न और सिडनी के भारतीय ग्रॉसरी व्यापार का काउंटर स्टोन से भरता है। हस्तशिल्प का यहाँ क्राफ़्ट और फ़ेयर-ट्रेड रिटेल में असली दूसरा ख़रीदार है, जो असामान्य है — यह इकलौता निर्यात बाज़ार है जहाँ टेराकोटा और लपेटे धागे की रेंज प्रवासी समुदाय के बाहर बिकती है।"
+    },
+    "shipping": { "mode": { "en": "Air freight only, given the booking window", "hi": "बुकिंग विंडो को देखते हुए सिर्फ़ एयर फ़्रेट" }, "transit": { "en": "Air 7–12 days to Sydney or Melbourne", "hi": "सिडनी या मेलबर्न तक एयर 7–12 दिन" }, "port": "Kolkata (CCU) → SYD / MEL" },
+    "customs": {
+      "en": "Australian biosecurity is the real consideration, not duty. Anything with untreated wood or plant material — parts of the handicraft and rudraksha ranges — needs declaring properly and may be inspected. We will tell you which articles are affected before you book, not after.",
+      "hi": "असली मुद्दा शुल्क नहीं, ऑस्ट्रेलियाई जैव-सुरक्षा है। बिना उपचारित लकड़ी या वनस्पति सामग्री वाली चीज़ें — हस्तशिल्प और रुद्राक्ष रेंज के हिस्से — ठीक से घोषित करनी होती हैं और जाँची जा सकती हैं। कौन-से आर्टिकल इससे प्रभावित हैं, यह हम बुकिंग से पहले बताएँगे, बाद में नहीं।"
+    },
+    "minOrderValueInr": 150000
+  },
+  {
+    "id": "mauritius",
+    "draft": true,
+    "name": { "en": "Mauritius", "hi": "मॉरीशस" },
+    "intro": {
+      "en": "Small in absolute volume but unusually reliable — the Indo-Mauritian community observes Raksha Bandhan widely, and the same handful of importers buy every year without much variation. Orders are modest and repeat, which suits a first export relationship better than a large one-off.",
+      "hi": "मात्रा में छोटा पर असामान्य रूप से भरोसेमंद — भारतीय-मॉरीशियन समुदाय रक्षाबंधन व्यापक रूप से मनाता है, और वही गिने-चुने आयातक हर साल बिना ज़्यादा बदलाव के ख़रीदते हैं। ऑर्डर छोटे और दोहराव वाले होते हैं, जो पहले निर्यात रिश्ते के लिए बड़े एकमुश्त ऑर्डर से बेहतर है।"
+    },
+    "categories": ["thread-rakhi", "pearl-rakhi", "metal-rakhi"],
+    "whyThese": {
+      "en": "The buying here runs traditional: thread and simple pearl in quantity for temple and community distribution, with a small metal motif range for gifting. The heavily stoned designs that carry the US and UK counters do not turn over here at the same rate.",
+      "hi": "यहाँ की ख़रीद पारंपरिक है: मंदिर और सामुदायिक वितरण के लिए धागा और सादा मोती मात्रा में, साथ में गिफ़्टिंग के लिए छोटी मेटल मोटिफ़ रेंज। अमेरिका और ब्रिटेन के काउंटर चलाने वाले भारी पत्थर वाले डिज़ाइन यहाँ उस रफ़्तार से नहीं बिकते।"
+    },
+    "shipping": { "mode": { "en": "Air freight, or sea consolidated with a larger consignment", "hi": "एयर फ़्रेट, या बड़ी खेप के साथ समुद्री" }, "transit": { "en": "Air 4–7 days to Port Louis", "hi": "पोर्ट लुई तक एयर 4–7 दिन" }, "port": "Kolkata (CCU) → MRU" },
+    "customs": {
+      "en": "Mauritius applies low or nil duty on a wide range of festive and consumer imports, and clearance is generally quick. The constraint is flight capacity rather than paperwork — book freight space early in July or accept a sea schedule.",
+      "hi": "मॉरीशस त्योहारी और उपभोक्ता आयात की बड़ी श्रेणी पर कम या शून्य शुल्क लगाता है, और क्लीयरेंस आम तौर पर तेज़ है। अड़चन काग़ज़ात नहीं, उड़ान क्षमता है — जुलाई की शुरुआत में फ़्रेट जगह बुक करें या समुद्री शेड्यूल मानें।"
+    },
+    "minOrderValueInr": 60000
+  }
+]

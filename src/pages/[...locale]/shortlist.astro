@@ -1,0 +1,190 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import CategoryCard from '../../components/CategoryCard.astro';
+import Icon from '../../components/Icon.astro';
+
+import { SITE } from '../../config/site.ts';
+import { useTranslations, LOCALES, DEFAULT_LOCALE, type Locale } from '../../i18n/ui.ts';
+import { href, ROUTES, localeFromParam } from '../../lib/routes.ts';
+import { whatsappHref } from '../../lib/whatsapp.ts';
+import { allCategories, categoryCounts } from '../../lib/catalogue.ts';
+
+export const getStaticPaths: GetStaticPaths = () =>
+  LOCALES.map((locale) => ({ params: { locale: locale === DEFAULT_LOCALE ? undefined : locale } }));
+
+const locale = localeFromParam(Astro.params.locale) as Locale;
+const t = useTranslations(locale);
+const [categories, counts] = await Promise.all([allCategories(), categoryCounts()]);
+
+const labels = {
+  qty: t('label.quantity'),
+  remove: t('action.remove'),
+  pcs: t('label.perPiece'),
+  gone: t('label.notAvailable'),
+  copied: t('action.copied'),
+  copyAsText: t('action.copyAsText'),
+  copyLink: t('action.copyLink'),
+  confirmClear: t('shortlist.confirmClear'),
+  building: locale === 'hi' ? 'बन रहा है…' : 'Building…',
+  pdfFailed: locale === 'hi' ? 'पीडीएफ़ नहीं बन सका। सूची व्हाट्सएप पर भेज दीजिए।' : 'The PDF could not be built. Send the list on WhatsApp instead.',
+  enquiryHeading: `${SITE.name} ${locale === 'hi' ? 'पूछताछ' : 'enquiry'}`,
+  ratesPlease: locale === 'hi' ? 'कृपया दाम और उपलब्धता बताइए।' : 'Please send rates and availability.',
+  firmName: SITE.name,
+  firmAddress: `${SITE.address.line1}, ${SITE.address.line2}, ${SITE.address.city} ${SITE.address.postalCode}`,
+  firmPhone: SITE.phone.display,
+  firmSite: SITE.origin.replace(/^https?:\/\//, ''),
+  pdfTitle: 'Enquiry shortlist',
+  pdfFooter: 'Rates are sent on enquiry. Minimum order applies per design. Freight to the buyer’s account.',
+};
+
+const NEXT = locale === 'hi'
+  ? [
+      'हम एक कार्यदिवस के भीतर दाम और उपलब्धता भेज देते हैं।',
+      'न्यूनतम ऑर्डर हर डिज़ाइन पर अलग से लागू होता है, पूरे ऑर्डर पर नहीं।',
+      'माल सड़क ट्रांसपोर्ट से जाता है; भाड़ा आपके खाते में होता है और आपके शहर के गोदाम पर दिया जाता है।',
+    ]
+  : [
+      'We come back with rates and availability within one working day.',
+      'Minimum order applies per design, not across the order.',
+      `Goods go by road transport; freight is to your account and paid at your city's godown.`,
+    ];
+---
+
+<Base
+  locale={locale}
+  title={`${t('shortlist.title')} — ${SITE.name}`}
+  description={locale === 'hi' ? 'आपकी शॉर्टलिस्ट।' : 'Your shortlist.'}
+  noindex
+  hideDock
+>
+  <div class="container section--tight" data-shortlist-page
+    data-labels={JSON.stringify(labels)}
+    data-whatsapp={whatsappHref()}>
+
+    <PageHeader title={t('shortlist.title')}>
+      <p class="lede"><span data-count>0</span> {t('shortlist.count')}</p>
+    </PageHeader>
+
+    <div class="sl__shared" data-shared hidden>
+      <p><strong>{t('shortlist.sharedTitle')}</strong> — <span data-shared-count>0</span> {t('label.designs')}</p>
+      <div class="sl__sharedact">
+        <button class="btn btn--primary" type="button" data-shared-add>{t('shortlist.sharedAdd')}</button>
+        <button class="btn btn--quiet" type="button" data-shared-ignore>{t('shortlist.sharedIgnore')}</button>
+      </div>
+    </div>
+
+    {/* A skeleton covers the localStorage read; without it the page flashes
+        empty on every load, which reads as "your list was lost". */}
+    <div class="sl__skeleton" data-skeleton aria-hidden="true">
+      <p class="visually-hidden">{t('shortlist.loading')}</p>
+      <span></span><span></span><span></span>
+    </div>
+
+    <div data-filled hidden>
+      <ul class="sl__list" data-list></ul>
+
+      <p class="sl__cap" data-cap hidden>{t('shortlist.capWarning')}</p>
+
+      <div class="sl__actions">
+        <a class="btn btn--primary sl__primary" data-wa href={whatsappHref()} rel="noopener">
+          <Icon name="whatsapp" /> {t('action.sendOnWhatsapp')}
+        </a>
+        <button class="btn btn--secondary" type="button" data-pdf>
+          <Icon name="download" /> {t('action.downloadPdf')}
+        </button>
+        <button class="btn btn--quiet" type="button" data-copy>{t('action.copyAsText')}</button>
+        <button class="btn btn--quiet" type="button" data-share>{t('action.copyLink')}</button>
+        <button class="btn btn--quiet sl__clear" type="button" data-clearall>{t('action.clearAll')}</button>
+      </div>
+
+      <section class="sl__next">
+        <h2>{t('shortlist.next')}</h2>
+        <ol>{NEXT.map((line) => <li>{line}</li>)}</ol>
+        <p class="sl__links">
+          <a href={href(ROUTES.howToOrder, locale)}>{t('nav.order')}</a>
+          <a href={href(ROUTES.contact, locale)}>{t('nav.contact')}</a>
+        </p>
+      </section>
+    </div>
+
+    {/* An empty screen is an invitation to act, not an apology. */}
+    <div data-empty hidden>
+      <div class="sl__empty">
+        <h2>{t('empty.shortlistTitle')}</h2>
+        <p class="lede">{t('empty.shortlistBody')}</p>
+      </div>
+      <div class="sl__cats">
+        {categories.map((c) => (
+          <CategoryCard category={c} count={counts.get(c.id) ?? 0} locale={locale} />
+        ))}
+      </div>
+    </div>
+  </div>
+</Base>
+
+<script>
+  import '../../islands/shortlist-page.ts';
+</script>
+
+<style>
+  .sl__shared {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-s);
+    padding: var(--space-s);
+    background: var(--plinth);
+    margin-bottom: var(--space-m);
+  }
+  .sl__shared[hidden] { display: none; }
+  .sl__sharedact { display: flex; gap: var(--space-2xs); }
+
+  .sl__skeleton { display: grid; gap: var(--space-2xs); }
+  .sl__skeleton span { display: block; height: 4.5rem; background: var(--plinth); }
+  .sl__skeleton[hidden] { display: none; }
+
+  .sl__list { list-style: none; padding: 0; border-top: var(--hairline) solid var(--line); }
+  .sl__list :global(.sl__row) {
+    display: flex;
+    align-items: center;
+    gap: var(--space-s);
+    padding: var(--space-2xs) 0;
+    border-bottom: var(--hairline) solid var(--line);
+  }
+  .sl__list :global(.sl__row--gone) { opacity: 0.55; }
+  .sl__list :global(.sl__img) { width: 4rem; height: 4rem; object-fit: cover; background: var(--plinth); flex: none; }
+  .sl__list :global(.sl__body) { flex: 1; display: grid; gap: 0.1em; min-width: 0; }
+  .sl__list :global(.sl__code) { font-weight: 700; font-size: var(--step-0); text-decoration: none; }
+  .sl__list :global(.sl__name) { font-size: var(--step--1); }
+  .sl__list :global(.sl__meta), .sl__list :global(.sl__gone) { font-size: var(--step--1); color: var(--ink-muted); }
+  .sl__list :global(.sl__gone) { color: var(--warn); }
+  .sl__list :global(.sl__qty input) {
+    width: 5.5rem;
+    padding: var(--space-3xs) var(--space-2xs);
+    border: var(--hairline) solid var(--line);
+    text-align: right;
+  }
+  .sl__list :global(.sl__x) { font-size: 1.5rem; line-height: 1; padding: var(--space-3xs) var(--space-2xs); color: var(--ink-muted); }
+  .sl__list :global(.sl__x:hover) { color: var(--accent); }
+
+  .sl__cap { margin-top: var(--space-s); color: var(--warn); font-size: var(--step--1); max-width: var(--measure); }
+  .sl__actions { display: flex; flex-wrap: wrap; gap: var(--space-2xs); margin-top: var(--space-m); }
+  .sl__primary { flex: 1 1 16rem; }
+  .sl__clear { margin-left: auto; color: var(--ink-muted); }
+
+  .sl__next { margin-top: var(--space-2xl); max-width: var(--measure); }
+  .sl__next ol { margin-top: var(--space-2xs); padding-left: var(--space-m); }
+  .sl__next li + li { margin-top: var(--space-3xs); }
+  .sl__links { display: flex; gap: var(--space-m); margin-top: var(--space-s); font-size: var(--step--1); }
+
+  .sl__empty { max-width: var(--measure); margin-bottom: var(--space-xl); }
+  .sl__cats { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-xl) var(--grid-gutter); }
+  @media (max-width: 60rem) { .sl__cats { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 40rem) {
+    .sl__cats { grid-template-columns: repeat(2, 1fr); gap: var(--space-m) var(--space-s); }
+    .sl__clear { margin-left: 0; }
+  }
+</style>

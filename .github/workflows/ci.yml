@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - run: npm ci
+
+      # Type-checks .astro, .ts and .tsx together.
+      - run: npm run check
+
+      # prebuild → astro build → A9 budget check → internal link check.
+      # A page over its JS or weight budget fails here, as A9 requires.
+      - run: npm run build
+
+      - name: Browser smoke, no-JS and accessibility suite
+        run: |
+          npx playwright install --with-deps chromium
+          node scripts/serve-and-smoke.mjs

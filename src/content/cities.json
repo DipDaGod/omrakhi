@@ -1,0 +1,73 @@
+[
+  {
+    "id": "delhi", "draft": true, "name": "Delhi", "state": "Delhi",
+    "intro": "Sadar Bazar sets the rate for half the country, which makes Delhi a strange market to sell into from Kolkata — a buyer here can source locally in an afternoon. What brings him to us is range and finish on the upper lines, and pack configurations he can put straight onto a modern-trade shelf without repacking.",
+    "categories": ["kundan-rakhi", "ad-rakhi", "bhaiya-bhabhi-rakhi"],
+    "whyThese": "Delhi buys the top of the range and buys it early. Kundan and paired bhaiya-bhabhi sets carry the ticket that justifies bringing goods across the country, and the AD range competes on setting quality rather than price — which is the only way to compete here.",
+    "market": "Sadar Bazar",
+    "transport": { "mode": "Road transport, Kolkata–Delhi", "transitDays": "4–6 days" },
+    "dealerCount": 0
+  },
+  {
+    "id": "mumbai", "draft": true, "name": "Mumbai", "state": "Maharashtra",
+    "intro": "The Bhuleshwar and Crawford Market trade works on fast turns and short credit, and Mumbai retail is the most presentation-sensitive in the country. A design that photographs badly does not get a second order here regardless of what it costs.",
+    "categories": ["ad-rakhi", "pendant-rakhi", "stone-rakhi"],
+    "whyThese": "Pendant and slider styles do better in Mumbai than almost anywhere else in India — the wear-it-afterwards argument lands with an urban customer. AD covers the gifting counter and stone fills the rest.",
+    "market": "Bhuleshwar",
+    "transport": { "mode": "Road transport, Kolkata–Mumbai", "transitDays": "5–7 days" },
+    "dealerCount": 0
+  },
+  {
+    "id": "jaipur", "draft": true, "name": "Jaipur", "state": "Rajasthan",
+    "intro": "Jaipur is a manufacturing town as much as a buying one, so a supplier arriving from outside is judged on the one thing that cannot be made locally in a hurry — consistency across a large order. Johari Bazar buyers will check forty pieces against each other before placing anything.",
+    "categories": ["lumba-rakhi", "kundan-rakhi", "bhaiya-bhabhi-rakhi"],
+    "whyThese": "Lumba is not an add-on in Rajasthan; it is the category. Paired sets with a properly matched lumba sell through here at a rate that surprises suppliers from other states, and kundan holds because the market knows the difference between set and glued work.",
+    "market": "Johari Bazar",
+    "transport": { "mode": "Road transport, Kolkata–Jaipur", "transitDays": "4–6 days" },
+    "dealerCount": 0
+  },
+  {
+    "id": "hyderabad", "draft": true, "name": "Hyderabad", "state": "Telangana",
+    "intro": "Begum Bazar is a wholesale market that buys across South India, so a dealer here is often a distributor rather than a retailer, and his questions are about carton counts and dispatch dates rather than design. Answer those precisely and the relationship tends to hold for years.",
+    "categories": ["pearl-rakhi", "stone-rakhi", "handicraft-rakhi"],
+    "whyThese": "Pearl is the South Indian counter staple and Hyderabad buys it in depth. Handicraft moves through the craft-retail trade here in a way it does not further north, and stone covers everything in between.",
+    "market": "Begum Bazar",
+    "transport": { "mode": "Road transport, Kolkata–Hyderabad", "transitDays": "3–5 days" },
+    "dealerCount": 0
+  },
+  {
+    "id": "bengaluru", "draft": true, "name": "Bengaluru", "state": "Karnataka",
+    "intro": "Bengaluru splits cleanly in two: the Chickpet wholesale trade, which buys the way any wholesale market does, and a large online-seller base that buys small quantities of many articles and needs photographs, article numbers and pack counts in writing. The second group is why this site publishes the whole catalogue openly.",
+    "categories": ["pendant-rakhi", "ad-rakhi", "kids-rakhi"],
+    "whyThese": "Online sellers here need pieces that survive courier packing and photograph well against a white background — pendant and AD do both. Kids rakhi moves in volume through the general-store trade.",
+    "market": "Chickpet",
+    "transport": { "mode": "Road transport, Kolkata–Bengaluru", "transitDays": "4–6 days" },
+    "dealerCount": 0
+  },
+  {
+    "id": "ahmedabad", "draft": true, "name": "Ahmedabad", "state": "Gujarat",
+    "intro": "Gujarat buys lumba and paired sets more heavily than any other state, and buys them early — a Gujarati dealer is often booked by February for goods he will sell in August. Missing that window means waiting a year, so the calendar matters more here than the rate does.",
+    "categories": ["lumba-rakhi", "bhaiya-bhabhi-rakhi", "kundan-rakhi"],
+    "whyThese": "The bhaiya-bhabhi pair with a matched lumba is the default purchase in this market rather than an upsell. Kundan follows it. Single-piece thread lines are a small part of the counter here.",
+    "market": "Ratan Pole",
+    "transport": { "mode": "Road transport, Kolkata–Ahmedabad", "transitDays": "5–7 days" },
+    "dealerCount": 0
+  },
+  {
+    "id": "raipur", "draft": true, "name": "Raipur", "state": "Chhattisgarh",
+    "intro": "Raipur is a distribution point for a large rural catchment across Chhattisgarh and into Odisha, and a lot of first-time rakhi buyers start here — people adding a seasonal counter to an existing shop rather than running a rakhi business. Those buyers need the process explained, not just the range.",
+    "categories": ["thread-rakhi", "stone-rakhi", "kids-rakhi"],
+    "whyThese": "Volume lines carry this market. Thread and entry-band stone do the numbers, kids rakhi sells through general stores, and the upper price bands move slowly outside the city itself.",
+    "transport": { "mode": "Road transport, Kolkata–Raipur", "transitDays": "2–4 days" },
+    "dealerCount": 0
+  },
+  {
+    "id": "guwahati", "draft": true, "name": "Guwahati", "state": "Assam",
+    "intro": "The whole of the North East is supplied through Fancy Bazar, and Kolkata is its natural source — transit is short, the trade routes are long established, and a Guwahati distributor will often take a mixed consignment across many categories rather than depth in one.",
+    "categories": ["thread-rakhi", "pearl-rakhi", "rudraksha-rakhi"],
+    "whyThese": "Mixed, practical buying. Thread and pearl in quantity, rudraksha for the pooja trade, and a modest showing from the upper bands. Depth in any single category is unusual here; breadth is the requirement.",
+    "market": "Fancy Bazar",
+    "transport": { "mode": "Road transport, Kolkata–Guwahati", "transitDays": "2–3 days" },
+    "dealerCount": 0
+  }
+]

@@ -1,0 +1,180 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Base from '../../../layouts/Base.astro';
+import PageHeader from '../../../components/PageHeader.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
+import CategoryCard from '../../../components/CategoryCard.astro';
+import CtaBlock from '../../../components/CtaBlock.astro';
+import '../../../styles/catalogue.css';
+
+import { SITE } from '../../../config/site.ts';
+import { useTranslations, LOCALES, DEFAULT_LOCALE, type Locale } from '../../../i18n/ui.ts';
+import { href, ROUTES, localeFromParam } from '../../../lib/routes.ts';
+import { num } from '../../../lib/format.ts';
+import { allCategories, categoryCounts, allProducts } from '../../../lib/catalogue.ts';
+
+export const getStaticPaths: GetStaticPaths = () =>
+  LOCALES.map((locale) => ({ params: { locale: locale === DEFAULT_LOCALE ? undefined : locale } }));
+
+const locale = localeFromParam(Astro.params.locale) as Locale;
+const t = useTranslations(locale);
+
+const [categories, counts, products] = await Promise.all([
+  allCategories(),
+  categoryCounts(),
+  allProducts(),
+]);
+const total = products.length;
+
+const MATERIALS = [
+  ['thread', 'Thread', 'धागा'], ['stone', 'Stone', 'पत्थर'], ['metal', 'Metal', 'मेटल'],
+  ['pearl', 'Pearl', 'मोती'], ['rudraksha', 'Rudraksha', 'रुद्राक्ष'], ['resin', 'Resin', 'रेज़िन'],
+  ['terracotta', 'Terracotta', 'टेराकोटा'], ['wood', 'Wood', 'लकड़ी'], ['zari', 'Zari', 'ज़री'],
+] as const;
+const AUDIENCE = [
+  ['brother', 'Brother', 'भाई'], ['bhaiya-bhabhi', 'Bhaiya bhabhi', 'भैया भाभी'],
+  ['lumba', 'Lumba', 'लुम्बा'], ['kids', 'Kids', 'बच्चे'], ['god', 'God', 'भगवान'],
+] as const;
+const label = (row: readonly [string, string, string]) => (locale === 'hi' ? row[2] : row[1]);
+
+/* Computed here rather than in the template: the Astro compiler cannot parse a
+   `<` comparison inside a multi-statement template expression. */
+const isEager = (i: number) => i < 4;
+const bandValues = (from: number, to: number) => {
+  const out: string[] = [];
+  for (let n = from; n <= to; n++) out.push(String(n));
+  return out;
+};
+
+const title = `${locale === 'hi' ? 'राखी संग्रह' : 'Rakhi Collections'} — ${SITE.name}`;
+const description =
+  locale === 'hi'
+    ? `बड़ाबाज़ार, कोलकाता से ${categories.length} श्रेणियों में ${total} राखी डिज़ाइन। हर डिज़ाइन की तस्वीर, आर्टिकल नंबर, पैक और प्राइस बैंड खुले तौर पर।`
+    : `${total} rakhi designs across ${categories.length} collections, made in Burrabazar, Kolkata. Every design published with its article number, pack and price band.`;
+
+const intro =
+  locale === 'hi'
+    ? `हम ${categories.length} श्रेणियों में ${num(total, locale)} डिज़ाइन बनाते हैं। हर डिज़ाइन की तस्वीर, आर्टिकल नंबर, पैक कॉन्फ़िगरेशन और प्राइस बैंड यहीं मौजूद है — कुछ भी छिपा नहीं है और किसी फ़ॉर्म के पीछे बंद नहीं है। शॉर्टलिस्ट बनाइए और आर्टिकल नंबरों के साथ सीधे व्हाट्सएप पर भेज दीजिए।`
+    : `We make ${num(total, locale)} designs across ${categories.length} collections. Every one is published here with its article number, pack configuration and price band — nothing is held back and nothing sits behind a form. Shortlist what you want and send it to us with the article numbers already in it.`;
+---
+
+<Base locale={locale} title={title} description={description}
+  enquiryContext={locale === 'hi' ? 'संग्रह के बारे में पूछताछ' : 'Enquiry about your collection'}
+  schema={{
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: title,
+    description,
+    url: new URL(Astro.url.pathname, SITE.origin).href,
+  }}>
+  <div class="container section--tight">
+    <Breadcrumb locale={locale} items={[{ label: t('nav.home'), href: href(ROUTES.home, locale) }, { label: t('nav.collection') }]} />
+
+    <PageHeader
+      title={t('nav.collection')}
+      lede={intro}
+    />
+
+    <div data-collections>
+      {/* Chips rather than a sidebar: identical behaviour on both breakpoints,
+          and a full filter sidebar for twenty categories is over-engineering. */}
+      <div class="cx__filters">
+        <div class="fg">
+          <span class="fg__label eyebrow">{t('filter.material')}</span>
+          <div class="fg__row">
+            {MATERIALS.map((m) => (
+              <button class="chip" type="button" data-facet="material" data-value={m[0]} aria-pressed="false">{label(m)}</button>
+            ))}
+          </div>
+        </div>
+        <div class="fg">
+          <span class="fg__label eyebrow">{t('filter.for')}</span>
+          <div class="fg__row">
+            {AUDIENCE.map((a) => (
+              <button class="chip" type="button" data-facet="for" data-value={a[0]} aria-pressed="false">{label(a)}</button>
+            ))}
+          </div>
+        </div>
+        <div class="fg">
+          <span class="fg__label eyebrow">{t('filter.price')}</span>
+          <div class="fg__row">
+            {[1, 2, 3, 4].map((n) => (
+              <button class="chip" type="button" data-facet="price" data-value={String(n)} aria-pressed="false">{'₹'.repeat(n)}</button>
+            ))}
+          </div>
+        </div>
+        <p class="cx__status">
+          <span data-live>{categories.length}</span> {t('nav.collection').toLowerCase()}
+          <button class="pg__clear" type="button" data-clear hidden>{t('action.clearFilters')}</button>
+        </p>
+      </div>
+
+      <div class="cx__grid">
+        {categories.map((c, i) => (
+          <div
+            data-card
+            data-material={c.data.materials.join(' ')}
+            data-audience={c.data.audience.join(' ')}
+            data-price={bandValues(c.data.priceBand.from, c.data.priceBand.to).join(' ')}
+          >
+            <CategoryCard category={c} count={counts.get(c.id) ?? 0} locale={locale} detailed eager={isEager(i)} />
+          </div>
+        ))}
+      </div>
+
+      <div class="pg__empty" data-empty hidden>
+        <p><strong>{t('empty.noResults')}</strong></p>
+        <p>{t('empty.noResultsHelp')}</p>
+        <button class="btn btn--secondary" type="button" data-clear>{t('action.clearFilters')}</button>
+      </div>
+    </div>
+
+    <div class="cx__cta">
+      <CtaBlock
+        locale={locale}
+        title={locale === 'hi' ? 'तय नहीं कर पा रहे कि क्या चाहिए?' : 'Not sure what you need?'}
+        body={locale === 'hi'
+          ? 'बताइए आप किस शहर में बेचते हैं और आपका काउंटर किस तरह का है — हम तीन श्रेणियाँ सुझा देंगे जिनसे शुरुआत करनी चाहिए। पहला ऑर्डर कैसे काम करता है, यह भी पढ़ लीजिए।'
+          : 'Tell us which city you sell in and what your counter looks like, and we will name the three collections to start with. How ordering works is written out in full, too.'}
+      />
+      <p class="cx__ctalink"><a href={href(ROUTES.howToOrder, locale)}>{t('nav.order')}</a></p>
+    </div>
+  </div>
+</Base>
+
+<script>
+  import '../../../islands/collections-filter.ts';
+</script>
+
+<style>
+  .cx__filters {
+    display: grid;
+    gap: var(--space-s);
+    padding-block: var(--space-m);
+    border-block: var(--hairline) solid var(--line);
+    margin-bottom: var(--space-l);
+  }
+  .cx__status { font-size: var(--step--1); color: var(--ink-muted); display: flex; gap: var(--space-s); }
+  .cx__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-xl) var(--grid-gutter);
+  }
+  .cx__grid > [hidden] { display: none; }
+  .cx__cta { margin-top: var(--space-2xl); }
+  .cx__ctalink { margin-top: var(--space-s); font-size: var(--step--1); }
+  @media (max-width: 60rem) { .cx__grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 40rem) {
+    .cx__grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-m) var(--space-s); }
+    /* Chips scroll horizontally with an edge fade rather than wrapping to four rows. */
+    .fg { flex-wrap: nowrap; align-items: flex-start; flex-direction: column; }
+    .fg__row {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      width: 100%;
+      padding-bottom: var(--space-3xs);
+      -webkit-overflow-scrolling: touch;
+      mask-image: linear-gradient(to right, #000 92%, transparent);
+    }
+  }
+</style>

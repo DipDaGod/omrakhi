@@ -1,0 +1,16 @@
+node_modules/
+dist/
+.astro/
+.DS_Store
+*.log
+.env
+.env.*
+!.env.example
+
+# Generated stand-in photography (scripts/prepare-images.mjs).
+# Real photographs are committed as <ARTICLE>.jpg and are never overwritten.
+src/assets/products/**/*.placeholder*.jpg
+src/assets/site/*.placeholder*.jpg
+src/data/lqip.json
+# Open Graph cards are regenerated from the photographs on every build.
+public/og/

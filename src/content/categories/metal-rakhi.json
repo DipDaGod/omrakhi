@@ -1,0 +1,20 @@
+{
+  "name": { "en": "Metal Rakhi", "hi": "मेटल राखी" },
+  "order": 10,
+  "summary": {
+    "en": "Brass and silver-finish motifs — Om, Swastik, Ganesh, Shree.",
+    "hi": "ब्रास और चाँदी फ़िनिश — ॐ, स्वस्तिक, गणेश, श्री।"
+  },
+  "copy": {
+    "en": "Cast motif rakhi is the gift-box line: it photographs cleanly, it holds a finish, and it carries a higher rate than its weight suggests. The plating is what fails first in this category, so ours is done to a thickness that survives a season in humidity — Kolkata is a fair test of that. Motifs are cut in-house, which is why the Om and Swastik in our range are not the ones on everyone else's card. Gift chains and corporate.",
+    "hi": "ढली हुई मोटिफ़ राखी गिफ़्ट-बॉक्स लाइन है: फ़ोटो में साफ़ आती है, फ़िनिश टिकाती है, और वज़न से ज़्यादा दाम पाती है। इस श्रेणी में सबसे पहले प्लेटिंग ख़राब होती है, इसलिए हमारी प्लेटिंग उस मोटाई की होती है जो नमी में पूरा सीज़न झेल ले — कोलकाता इसकी अच्छी परीक्षा है। मोटिफ़ यहीं काटे जाते हैं, इसीलिए हमारी रेंज के ॐ और स्वस्तिक बाक़ी सबके कार्ड वाले नहीं हैं। गिफ़्ट चेन और कॉर्पोरेट।"
+  },
+  "materials": ["metal", "thread", "stone"],
+  "audience": ["brother", "god"],
+  "priceBand": { "from": 2, "to": 4 },
+  "moq": 100,
+  "packTypes": ["carded", "boxed"],
+  "region": { "en": "Gift chains, corporate gifting, modern trade", "hi": "गिफ़्ट चेन, कॉर्पोरेट गिफ़्टिंग, मॉडर्न ट्रेड" },
+  "heroCode": "OM-2801",
+  "related": ["rudraksha-rakhi", "pendant-rakhi", "kundan-rakhi"]
+}

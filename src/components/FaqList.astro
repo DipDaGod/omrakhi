@@ -1,0 +1,41 @@
+---
+import type { Locale } from '../i18n/ui.ts';
+import type { CollectionEntry } from 'astro:content';
+
+/**
+ * P7 — accordions only here, where the question text is itself the scannable
+ * index. Everything else on that page is prose and tables, because a buyer
+ * looking for the MOQ should not have to open eight panels to find it.
+ */
+interface Props { items: CollectionEntry<'faqs'>[]; locale: Locale }
+const { items, locale } = Astro.props;
+---
+<div class="faq">
+  {items.map((f) => (
+    <details>
+      <summary>{f.data.question[locale]}</summary>
+      <p>{f.data.answer[locale]}</p>
+    </details>
+  ))}
+</div>
+<style>
+  .faq details { border-bottom: var(--hairline) solid var(--line); }
+  .faq summary {
+    cursor: pointer;
+    padding: var(--space-s) var(--space-l) var(--space-s) 0;
+    font-weight: 600;
+    list-style: none;
+    position: relative;
+  }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after {
+    content: '+';
+    position: absolute;
+    right: 0;
+    top: var(--space-s);
+    font-weight: 400;
+    color: var(--accent);
+  }
+  .faq details[open] summary::after { content: '–'; }
+  .faq p { padding-bottom: var(--space-s); max-width: var(--measure); color: var(--ink-muted); }
+</style>

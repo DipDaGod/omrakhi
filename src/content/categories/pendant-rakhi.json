@@ -1,0 +1,20 @@
+{
+  "name": { "en": "Pendant Rakhi", "hi": "पेंडेंट राखी" },
+  "order": 11,
+  "summary": {
+    "en": "Chain-and-pendant styles that wear as a bracelet afterwards.",
+    "hi": "चेन-पेंडेंट स्टाइल, बाद में ब्रेसलेट की तरह पहनने लायक़।"
+  },
+  "copy": {
+    "en": "Pendant rakhi is bought because it does not get cut off on the third day. The chain is an adjustable slider rather than a tied dori, which is the whole reason the category exists and the first thing to check when comparing suppliers — a fixed chain in this style is a returned piece. Rates sit above thread but the sell-through is better, and a retailer can reorder mid-season. Urban retail and online sellers.",
+    "hi": "पेंडेंट राखी इसलिए ख़रीदी जाती है कि तीसरे दिन काटकर फेंकी नहीं जाती। इसमें बँधी डोरी की जगह एडजस्टेबल स्लाइडर चेन होती है — यही इस श्रेणी के होने की वजह है और सप्लायर मिलाते समय सबसे पहले यही देखना चाहिए; इस स्टाइल में फ़िक्स्ड चेन यानी वापस आया माल। दाम धागे से ऊपर हैं पर बिक्री बेहतर है, और रिटेलर सीज़न के बीच दोबारा ऑर्डर कर सकता है। शहरी रिटेल और ऑनलाइन सेलर।"
+  },
+  "materials": ["metal", "stone", "pearl"],
+  "audience": ["brother", "bhaiya-bhabhi"],
+  "priceBand": { "from": 2, "to": 4 },
+  "moq": 50,
+  "packTypes": ["carded", "boxed"],
+  "region": { "en": "Urban retail and online sellers", "hi": "शहरी रिटेल और ऑनलाइन सेलर" },
+  "heroCode": "OM-3001",
+  "related": ["ad-rakhi", "metal-rakhi", "stone-rakhi"]
+}

@@ -1,0 +1,20 @@
+{
+  "name": { "en": "Thread Rakhi", "hi": "धागा राखी" },
+  "order": 5,
+  "summary": {
+    "en": "Resham and cotton dori, plain and beaded.",
+    "hi": "रेशम और सूती डोरी, सादी और मोतीदार।"
+  },
+  "copy": {
+    "en": "Plain thread is the volume line: temple stalls, school gates, bulk community orders and anyone buying by the thousand rather than the dozen. Because the price is low the only things that matter are knot strength and colour consistency across a carton, and both are checked here before packing. Available loose by weight as well as carded, which most buyers of this category prefer. Moves everywhere, heaviest in eastern and central India.",
+    "hi": "सादा धागा वॉल्यूम लाइन है: मंदिर के स्टॉल, स्कूल गेट, सामुदायिक थोक ऑर्डर और वे सब जो दर्जन नहीं, हज़ार में ख़रीदते हैं। क़ीमत कम है, इसलिए सिर्फ़ दो चीज़ें मायने रखती हैं — गाँठ की मज़बूती और पूरे कार्टन में रंग की एकरूपता, और दोनों पैकिंग से पहले जाँची जाती हैं। कार्ड के अलावा वज़न के हिसाब से खुली भी मिलती है, जो इस श्रेणी के ज़्यादातर ख़रीदार पसंद करते हैं। हर जगह चलती है, पूर्वी और मध्य भारत में सबसे ज़्यादा।"
+  },
+  "materials": ["thread"],
+  "audience": ["brother", "kids"],
+  "priceBand": { "from": 1, "to": 2 },
+  "moq": 500,
+  "packTypes": ["loose", "carded"],
+  "region": { "en": "Heaviest in eastern and central India", "hi": "पूर्वी और मध्य भारत में सबसे ज़्यादा" },
+  "heroCode": "OM-1801",
+  "related": ["kids-rakhi", "rudraksha-rakhi", "pearl-rakhi"]
+}

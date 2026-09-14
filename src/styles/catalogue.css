@@ -1,0 +1,216 @@
+/* Grid, cards, filters, drawer. Loaded by the pages that show products, not
+   site-wide — most pages never render a card. */
+
+/* --- Grid ------------------------------------------------------------------
+   Four columns desktop, two mobile. Three is too sparse for scanning sixty
+   items; five makes photographs too small to judge stone quality.
+   No pagination and no infinite scroll: a dealer wants the whole range in one
+   scroll and wants Ctrl-F to work. */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-l) var(--grid-gutter);
+}
+/* Fewer than eight designs go 3-up so the row does not look abandoned. */
+.grid[data-count='few'] { grid-template-columns: repeat(3, 1fr); }
+
+@media (max-width: 60rem) { .grid, .grid[data-count='few'] { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 40rem) { .grid, .grid[data-count='few'] { grid-template-columns: repeat(2, 1fr); gap: var(--space-m) var(--space-s); } }
+
+/* --- Card ------------------------------------------------------------------
+   No individual shadows or borders: sixty bordered cards is visual static.
+   The photographs supply their own edges and whitespace does the separating.
+   No hover-zoom either — the drawer gives a proper detail view, and hover does
+   nothing at all on touch, which is most of this audience. */
+.pc { position: relative; }
+.pc__hit { display: block; text-decoration: none; color: inherit; }
+.pc__plinth { display: block; margin-bottom: var(--space-2xs); }
+.pc__plinth img { transition: opacity var(--dur-base) var(--ease); }
+.pc__hit:hover .pc__code { color: var(--accent); }
+
+.pc__code {
+  display: block;
+  font-size: var(--step-1);
+  font-weight: 700;
+  line-height: 1.1;
+}
+.pc__band { display: block; font-size: var(--step-0); color: var(--ink); }
+.pc__pack { display: block; font-size: var(--step--1); color: var(--ink-muted); }
+
+.pc__new { position: absolute; top: var(--space-2xs); left: var(--space-2xs); }
+
+.pc__heart {
+  position: absolute;
+  top: var(--space-2xs);
+  right: var(--space-2xs);
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  background: var(--ground-raised);
+  color: var(--ink-muted);
+  border: var(--hairline) solid var(--line);
+}
+.pc__heart:hover { color: var(--accent); border-color: var(--accent); }
+.pc__heart[aria-pressed='true'] { color: var(--accent); border-color: var(--accent); }
+
+/* --- Filters ---------------------------------------------------------------
+   Chips rather than a sidebar: on a set of twelve to twenty facets a sidebar
+   is over-engineering, and sidebars collapse badly to mobile. */
+.chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35em;
+  padding: 0.35em 0.75em;
+  border: var(--hairline) solid var(--line);
+  background: var(--ground-raised);
+  font-size: var(--step--1);
+  white-space: nowrap;
+}
+.chip:hover { border-color: var(--ink); }
+.chip.is-on { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.chip__n { font-variant-numeric: tabular-nums; opacity: 0.6; font-size: 0.85em; }
+
+.fg { display: flex; align-items: center; gap: var(--space-2xs); flex-wrap: wrap; }
+.fg__label { flex: none; }
+.fg__row { display: flex; gap: var(--space-3xs); flex-wrap: wrap; }
+
+.pg__bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-m);
+  flex-wrap: wrap;
+  padding-block: var(--space-s);
+  border-block: var(--hairline) solid var(--line);
+  margin-bottom: var(--space-l);
+}
+.pg__filters { display: flex; gap: var(--space-m); flex-wrap: wrap; flex: 1; }
+.pg__sheetbtn { display: none; }
+.pg__search { margin-left: auto; }
+.pg__search input {
+  padding: 0.45em 0.7em;
+  border: var(--hairline) solid var(--line);
+  background: var(--ground-raised);
+  min-width: 14rem;
+}
+.pg__count { margin-bottom: var(--space-s); color: var(--ink-muted); font-size: var(--step--1); }
+.pg__clear { text-decoration: underline; color: var(--accent); }
+.pg__empty {
+  padding: var(--space-2xl) 0;
+  text-align: center;
+  display: grid;
+  gap: var(--space-s);
+  justify-items: center;
+  color: var(--ink-muted);
+}
+
+@media (max-width: 60rem) {
+  .pg__filters { display: none; }
+  .pg__sheetbtn { display: inline-flex; }
+  .pg__search { margin-left: 0; flex: 1; }
+  .pg__search input { min-width: 0; width: 100%; }
+}
+
+/* --- Bottom sheet (mobile filters) ---------------------------------------- */
+.sheet { position: fixed; inset: 0; z-index: var(--z-overlay); display: flex; align-items: flex-end; }
+.sheet__scrim { position: absolute; inset: 0; background: rgb(27 23 20 / 0.4); }
+.sheet__panel {
+  position: relative;
+  width: 100%;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--ground);
+  box-shadow: var(--shadow-float);
+}
+.sheet__head, .sheet__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-s);
+  padding: var(--space-s);
+}
+.sheet__head { border-bottom: var(--hairline) solid var(--line); }
+.sheet__head button { font-size: 1.5rem; line-height: 1; }
+.sheet__body { overflow-y: auto; padding: var(--space-s); display: grid; gap: var(--space-m); }
+.sheet__foot { border-top: var(--hairline) solid var(--line); }
+
+/* --- Sticky shortlist bar -------------------------------------------------- */
+.stickybar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: var(--z-sticky);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-m);
+  padding: var(--space-2xs) var(--space-s);
+  background: var(--ink);
+  color: var(--ground);
+  box-shadow: var(--shadow-float);
+  font-size: var(--step--1);
+}
+@media (max-width: 40rem) {
+  /* Sits above the contact dock. */
+  .stickybar { bottom: 3.5rem; }
+}
+
+/* --- Design drawer --------------------------------------------------------- */
+.dd { position: fixed; inset: 0; z-index: var(--z-overlay); display: flex; justify-content: flex-end; }
+.dd__scrim { position: absolute; inset: 0; background: rgb(27 23 20 / 0.4); }
+.dd__panel {
+  position: relative;
+  width: min(34rem, 100%);
+  display: flex;
+  flex-direction: column;
+  background: var(--ground-raised);
+  box-shadow: var(--shadow-float);
+  overflow-y: auto;
+}
+.dd__head {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-2xs) var(--space-2xs) var(--space-2xs) var(--space-s);
+  background: var(--ground-raised);
+  border-bottom: var(--hairline) solid var(--line);
+}
+.dd__nav { display: flex; gap: var(--space-3xs); }
+.dd__nav button {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: var(--hairline) solid var(--line);
+}
+.dd__nav button:disabled { opacity: 0.35; cursor: default; }
+.dd__close { font-size: 1.75rem; line-height: 1; padding: 0 var(--space-2xs); color: var(--ink-muted); }
+.dd__body { padding: var(--space-s) var(--space-m) var(--space-2xl); }
+.dd__figure { margin: 0 0 var(--space-m); }
+.dd__shots { display: flex; gap: var(--space-2xs); margin-top: var(--space-2xs); }
+.dd__shots button { border: 2px solid transparent; padding: 0; line-height: 0; }
+.dd__shots button.is-on { border-color: var(--accent); }
+.dd__shots img { width: 3rem; height: 3rem; object-fit: cover; background: var(--plinth); }
+.dd__code { font-family: var(--font-mono); font-size: var(--step-3); font-weight: 700; }
+.dd__name { color: var(--ink-muted); margin-bottom: var(--space-m); }
+.dd__spec {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-3xs) var(--space-s);
+  font-size: var(--step--1);
+  margin-bottom: var(--space-m);
+}
+.dd__spec dt { color: var(--ink-muted); }
+.dd__spec dd { margin: 0; }
+.dd__actions { display: grid; gap: var(--space-2xs); }
+
+@media (max-width: 40rem) {
+  /* Bottom sheet on mobile, so the grid stays visible behind it. */
+  .dd { align-items: flex-end; justify-content: stretch; }
+  .dd__panel { width: 100%; max-height: 92vh; }
+}

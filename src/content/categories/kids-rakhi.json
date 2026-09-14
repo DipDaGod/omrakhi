@@ -1,0 +1,20 @@
+{
+  "name": { "en": "Kids Rakhi", "hi": "बच्चों की राखी" },
+  "order": 8,
+  "summary": {
+    "en": "Light resin figures on soft elastic, sized for small wrists.",
+    "hi": "मुलायम इलास्टिक पर हल्के रेज़िन फ़िगर, छोटी कलाई के नाप के।"
+  },
+  "copy": {
+    "en": "Children's rakhi is bought by the parent and chosen by the child, which means it has to survive being pulled at and still look like the picture on the card. Ours use light resin on soft elastic rather than rigid thread, and nothing in the range has a loose part small enough to come off. Sells through general stores and stationery counters as much as through rakhi shops. Peaks late, in the last ten days.",
+    "hi": "बच्चों की राखी ख़रीदते माता-पिता हैं और चुनता बच्चा है — यानी उसे खींचातानी झेलनी है और कार्ड की तस्वीर जैसी भी दिखनी है। हमारी राखियों में सख़्त धागे की जगह मुलायम इलास्टिक पर हल्का रेज़िन होता है, और पूरी रेंज में कोई ऐसा ढीला हिस्सा नहीं जो निकल सके। राखी की दुकानों जितनी ही जनरल स्टोर और स्टेशनरी काउंटर से भी बिकती है। माँग देर से, आख़िरी दस दिनों में चढ़ती है।"
+  },
+  "materials": ["resin", "thread"],
+  "audience": ["kids"],
+  "priceBand": { "from": 1, "to": 2 },
+  "moq": 200,
+  "packTypes": ["carded"],
+  "region": { "en": "Everywhere. Peaks in the last ten days", "hi": "हर जगह। आख़िरी दस दिनों में चरम पर" },
+  "heroCode": "OM-2401",
+  "related": ["thread-rakhi", "handicraft-rakhi", "pendant-rakhi"]
+}

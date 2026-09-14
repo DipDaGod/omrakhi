@@ -1,0 +1,165 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { Image } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import CtaBlock from '../../components/CtaBlock.astro';
+
+import { SITE } from '../../config/site.ts';
+import { STORY } from '../../config/about.ts';
+import { useTranslations, LOCALES, DEFAULT_LOCALE, type Locale } from '../../i18n/ui.ts';
+import { href, ROUTES, localeFromParam } from '../../lib/routes.ts';
+import { allProducts, allCategories } from '../../lib/catalogue.ts';
+import { siteImage } from '../../lib/images.ts';
+
+export const getStaticPaths: GetStaticPaths = () =>
+  LOCALES.map((locale) => ({ params: { locale: locale === DEFAULT_LOCALE ? undefined : locale } }));
+
+const locale = localeFromParam(Astro.params.locale) as Locale;
+const t = useTranslations(locale);
+const hi = locale === 'hi';
+
+const [products, categories] = await Promise.all([allProducts(), allCategories()]);
+const street = siteImage('street');
+const workshop = siteImage('workshop');
+const hands = siteImage('hands');
+const packing = siteImage('packing-table');
+---
+
+<Base locale={locale}
+  title={hi ? `हमारे बारे में — ${SITE.name}, कलाकार स्ट्रीट` : `About — ${SITE.name}, Kalakar Street`}
+  description={hi
+    ? 'कलाकार स्ट्रीट, बड़ाबाज़ार की एक राखी निर्माण इकाई — दुकान, कारख़ाना और जो लोग यह काम करते हैं।'
+    : 'A rakhi manufacturer on Kalakar Street, Burrabazar — the shop, the workshop, and the people who do the work.'}
+  enquiryContext={hi ? 'आपके बारे में जानना है' : 'A question about your firm'}
+>
+  <div class="container container--prose section--tight">
+    <Breadcrumb locale={locale} items={[{ label: t('nav.home'), href: href(ROUTES.home, locale) }, { label: t('nav.about') }]} />
+  </div>
+
+  {/* The one page on the site allowed to break the catalogue's grid
+      discipline, because it is the only page doing narrative work. */}
+  <article class="ab">
+    <header class="container container--prose">
+      <h1>{hi ? 'कलाकार स्ट्रीट, दूसरी मंज़िल' : 'Kalakar Street, second floor'}</h1>
+      <p class="lede">{hi
+        ? 'बड़ाबाज़ार की एक गली में, आईसीआईसीआई बैंक के पास, एक सीढ़ी चढ़कर। यहीं राखी बनती है, यहीं पैक होती है, और यहीं से पूरे भारत में जाती है।'
+        : 'A lane in Burrabazar, near the ICICI Bank, up one flight of stairs. This is where the rakhi is made, packed and sent from.'}</p>
+    </header>
+
+    {street && (
+      <figure class="ab__bleed">
+        <Image src={street} alt={hi ? 'कलाकार स्ट्रीट, बड़ाबाज़ार' : 'Kalakar Street, Burrabazar'}
+          widths={[768, 1200, 1400]} sizes="100vw" loading="lazy" />
+        <figcaption>{hi ? 'कलाकार स्ट्रीट' : 'Kalakar Street'}</figcaption>
+      </figure>
+    )}
+
+    <div class="container container--prose prose">
+      <h2>{hi ? 'यह जगह' : 'The street'}</h2>
+      <p>{hi
+        ? 'बड़ाबाज़ार ऐसा बाज़ार नहीं है जिसे कोई योजना बनाकर बनाया गया हो। गलियाँ माल के हिसाब से बँटी हैं, न कि पतों के हिसाब से — एक लेन में धागा, दूसरी में पत्थर, तीसरी में डिब्बे। कलाकार स्ट्रीट उन्हीं में से एक है, और यहाँ तीन मिनट की दूरी पर वह सब मिल जाता है जिससे एक राखी बनती है। यही वजह है कि यह काम यहीं होता है, और कहीं और नहीं।'
+        : 'Burrabazar was not planned. Its lanes are organised by goods rather than by address — thread in one, stone in another, boxes in a third. Kalakar Street is one of them, and everything a rakhi is made from is within three minutes of the door. That is why this work happens here and not somewhere with better parking.'}</p>
+      <p>{hi
+        ? 'किसी बाहरी ख़रीदार के लिए यह इलाक़ा उलझन भरा है। हमें यह पता है, इसलिए हमने पूरा एक पेज इसी पर रखा है — कहाँ से मुड़ना है, इमारत कैसी दिखती है, सीढ़ी कहाँ है।'
+        : 'For a visiting buyer the area is genuinely confusing. We know that, which is why there is a whole page on how to find the door, what the building looks like, and where the stairs are.'}
+        {' '}<a href={href(ROUTES.visit, locale)}>{hi ? 'रास्ता देखिए' : 'See the directions'}</a>.</p>
+
+      <h2>{hi ? 'यह कैसे बनती है' : 'How a rakhi is actually made'}</h2>
+      <p>{hi
+        ? 'एक राखी एक चीज़ नहीं, कई चीज़ों का जोड़ है: एक डोरी, एक बेस, एक या ज़्यादा पत्थर या मनके, अक्सर एक मेटल कप, और एक कार्ड। हर टुकड़ा अलग स्रोत से आता है और उसकी अपनी लीड टाइम होती है — यही वजह है कि सीज़न के बीच में कोई डिज़ाइन जल्दी नहीं बनाया जा सकता।'
+        : 'A rakhi is not one thing, it is an assembly: a dori, a base, one or more stones or beads, usually a metal cup, and a card. Every piece comes from a different source with its own lead time, which is why a design cannot simply be made faster in the middle of a season.'}</p>
+      <p>{hi
+        ? 'जड़ाई और फ़िनिशिंग का काम यहीं होता है। लपेटने, पिरोने और कार्ड पर लगाने का बड़ा हिस्सा घर से काम करने वाले कारीगर करते हैं — यह इस व्यापार का सामान्य तरीक़ा है और इसी से बड़ी मात्रा संभव होती है। तैयार माल यहीं लौटता है, यहीं जाँचा और पैक होता है।'
+        : 'Setting and finishing are done here. Much of the winding, threading and carding is done by artisans working from home in and around the neighbourhood — this is how the trade works and it is what makes volume possible at all. Finished pieces come back here to be checked and packed.'}</p>
+
+      {STORY.artisans && (
+        <p>{hi
+          ? `इस समय ${STORY.artisans.count} कारीगर हमारे साथ काम करते हैं, जिनमें ${STORY.artisans.homeBased} घर से काम करते हैं। काम: ${STORY.artisans.work}।`
+          : `${STORY.artisans.count} artisans work with us, ${STORY.artisans.homeBased} of them from home. The work: ${STORY.artisans.work}.`}</p>
+      )}
+    </div>
+
+    {(workshop || hands) && (
+      <div class="ab__pair container">
+        {workshop && (
+          <figure>
+            <Image src={workshop} alt={hi ? 'कारख़ाना' : 'The workshop'} widths={[480, 768, 1200]} sizes="(max-width: 60rem) 100vw, 36rem" loading="lazy" />
+            <figcaption>{hi ? 'कारख़ाना' : 'The workshop'}</figcaption>
+          </figure>
+        )}
+        {hands && (
+          <figure>
+            <Image src={hands} alt={hi ? 'काम करते हाथ' : 'Hands at work'} widths={[480, 768, 1200]} sizes="(max-width: 60rem) 100vw, 36rem" loading="lazy" />
+            <figcaption>{hi ? 'जड़ाई का काम' : 'Setting work'}</figcaption>
+          </figure>
+        )}
+      </div>
+    )}
+
+    <div class="container container--prose prose">
+      <h2>{hi ? 'हम अलग क्या करने की कोशिश कर रहे हैं' : 'What we are trying to do differently'}</h2>
+      <p>{hi
+        ? `इस व्यापार में ज़्यादातर सप्लायर अपनी रेंज छिपाकर रखते हैं। आपको फ़ोन करना पड़ता है, फिर व्हाट्सएप पर तस्वीरें आती हैं, फिर आप पूछते हैं कि और क्या है। हमने उलटा किया है: ${categories.length} श्रेणियों के ${products.length} डिज़ाइन, हर एक का आर्टिकल नंबर, पैक और प्राइस बैंड, इसी साइट पर खुले तौर पर।`
+        : `Most suppliers in this trade keep their range behind a phone call. You ring, photographs arrive on WhatsApp, and you ask what else there is. We have done the opposite: ${products.length} designs across ${categories.length} collections, each with its article number, pack and price band, published openly on this site.`}</p>
+      <p>{hi
+        ? 'इसका नुक़सान साफ़ है — प्रतिस्पर्धी भी देख सकते हैं कि हम क्या बनाते हैं। फ़ायदा यह है कि जो ख़रीदार कॉल करता है, वह जानकर कॉल करता है, और बातचीत सीधे दाम और तारीख़ पर शुरू होती है।'
+        : 'The cost of that is obvious — anyone can see what we make, competitors included. The benefit is that a buyer who calls has already decided what he wants, and the conversation starts at rates and dates rather than at "what do you have?".'}</p>
+      <p>{hi
+        ? 'दूसरी बात लिखकर रखना है। न्यूनतम, बुकिंग की शर्तें, ट्रांसपोर्ट, और टूट-फूट पर क्या होगा — सब एक पेज पर लिखा है। फ़ोन पर बताई गई पॉलिसी उसी दिन तक याद रहती है।'
+        : 'The second is writing things down. Minimums, booking terms, transport, and what happens when something arrives broken — all on one page. A policy that only exists in a phone call lasts as long as the phone call.'}
+        {' '}<a href={href(ROUTES.howToOrder, locale)}>{hi ? 'ऑर्डर कैसे दें' : 'How to order'}</a>.</p>
+    </div>
+
+    {packing && (
+      <figure class="ab__bleed">
+        <Image src={packing} alt={hi ? 'पैकिंग टेबल' : 'The packing table'} widths={[768, 1200, 1400]} sizes="100vw" loading="lazy" />
+        <figcaption>{hi ? 'पैकिंग टेबल' : 'The packing table'}</figcaption>
+      </figure>
+    )}
+
+    {STORY.team.length > 0 && (
+      <div class="container container--prose prose">
+        <h2>{hi ? 'यहाँ कौन है' : 'Who you will be dealing with'}</h2>
+        <ul class="ab__team">
+          {STORY.team.map((m) => <li><strong>{m.name}</strong> — {m.role[locale]}</li>)}
+        </ul>
+      </div>
+    )}
+
+    <div class="container section--tight">
+      <CtaBlock
+        locale={locale}
+        title={hi ? 'आइए, ख़ुद देख लीजिए' : 'Come and see for yourself'}
+        body={hi
+          ? 'सीज़न में यहाँ आना सबसे अच्छा तरीक़ा है — पूरी रेंज हाथ में देखिए। आने से पहले एक संदेश भेज दीजिए।'
+          : 'In season, coming here is the best way to see the range in the hand. Send a message before you set out.'}
+        context={hi ? 'मैं दुकान आना चाहता हूँ' : 'I would like to visit the shop'}
+      />
+      <p class="link-row">
+        <a href={href(ROUTES.visit, locale)}>{t('nav.visit')}</a>
+        <a href={href(ROUTES.collections, locale)}>{t('nav.collection')}</a>
+      </p>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .ab header { margin-bottom: var(--space-l); }
+  .ab header h1 { margin-bottom: var(--space-2xs); }
+  .ab__bleed { margin: var(--space-2xl) 0; }
+  .ab__bleed :global(img) { width: 100%; }
+  .ab__bleed figcaption, .ab__pair figcaption {
+    max-width: var(--container);
+    margin: var(--space-2xs) auto 0;
+    padding-inline: var(--space-m);
+    font-size: var(--step--1);
+    color: var(--ink-muted);
+  }
+  .ab__pair { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-m); margin-block: var(--space-2xl); }
+  .ab__pair figure { margin: 0; }
+  .ab__pair figcaption { padding-inline: 0; }
+  .ab__team { list-style: none; padding: 0; display: grid; gap: var(--space-2xs); }
+  .link-row { display: flex; gap: var(--space-m); margin-top: var(--space-s); font-size: var(--step--1); }
+  @media (max-width: 60rem) { .ab__pair { grid-template-columns: 1fr; } }
+</style>

@@ -1,0 +1,54 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import { SITE } from '../../config/site.ts';
+import { LOCALES, DEFAULT_LOCALE, type Locale } from '../../i18n/ui.ts';
+import { href, ROUTES, localeFromParam } from '../../lib/routes.ts';
+
+export const getStaticPaths: GetStaticPaths = () =>
+  LOCALES.map((locale) => ({ params: { locale: locale === DEFAULT_LOCALE ? undefined : locale } }));
+
+const locale = localeFromParam(Astro.params.locale) as Locale;
+const hi = locale === 'hi';
+---
+
+<Base locale={locale}
+  title={hi ? `शर्तें — ${SITE.name}` : `Terms — ${SITE.name}`}
+  description={hi ? 'इस साइट के इस्तेमाल की शर्तें।' : 'Terms for using this site.'}>
+  <div class="container container--prose section--tight">
+    <PageHeader title={hi ? 'शर्तें' : 'Terms'} />
+    <div class="prose">
+      <h2>{hi ? 'यह साइट क्या है' : 'What this site is'}</h2>
+      <p>{hi
+        ? `यह ${SITE.name} का कैटलॉग है। यहाँ से कुछ ख़रीदा नहीं जा सकता। तस्वीरें, आर्टिकल नंबर, पैक की जानकारी और प्राइस बैंड इसलिए दिए गए हैं कि आप पूछताछ कर सकें — यह बिक्री का प्रस्ताव नहीं है।`
+        : `This is the catalogue of ${SITE.name}. Nothing can be bought here. The photographs, article numbers, pack details and price bands are published so you can make an enquiry; they are not an offer of sale.`}</p>
+
+      <h2>{hi ? 'दाम और उपलब्धता' : 'Rates and availability'}</h2>
+      <p>{hi
+        ? 'प्राइस बैंड (₹ से ₹₹₹₹) सिर्फ़ रेंज बताते हैं, दाम नहीं। असली दाम पूछताछ पर दिए जाते हैं, मात्रा के साथ बदलते हैं, और जिस सीज़न में दिए गए हैं उसी के लिए मान्य हैं। किसी डिज़ाइन का यहाँ दिखना यह गारंटी नहीं कि वह स्टॉक में है।'
+        : 'Price bands (₹ to ₹₹₹₹) indicate a range, not a rate. Actual rates are quoted on enquiry, vary with quantity, and hold for the season in which they were quoted. A design appearing here is not a guarantee that it is in stock.'}</p>
+
+      <h2>{hi ? 'ऑर्डर' : 'Orders'}</h2>
+      <p>{hi
+        ? 'ऑर्डर तब बनता है जब हम लिखित में उसकी पुष्टि करते हैं और एडवांस मिल जाता है — शॉर्टलिस्ट भेजना या फ़ॉर्म भरना ऑर्डर नहीं है। बिक्री की पूरी शर्तें ऑर्डर पेज पर हैं और यही लागू होती हैं।'
+        : 'An order exists when we confirm it in writing and the advance is received — sending a shortlist or filling in the form is not an order. The full terms of sale are on the ordering page and those are what apply.'}
+        {' '}<a href={href(ROUTES.howToOrder, locale)}>{hi ? 'ऑर्डर कैसे दें' : 'How to order'}</a>.</p>
+
+      <h2>{hi ? 'तस्वीरें' : 'Photographs'}</h2>
+      <p>{hi
+        ? 'इस साइट की सभी तस्वीरें और सामग्री हमारी हैं। कोई डीलर जो हमारा माल बेचता है, उन्हें अपने माल के प्रचार में इस्तेमाल कर सकता है। इसके अलावा किसी और को दोबारा इस्तेमाल करने की अनुमति नहीं है।'
+        : 'The photographs and copy on this site are ours. A dealer who stocks our goods is welcome to use them to sell those goods. Any other reuse is not permitted.'}</p>
+      <p>{hi
+        ? 'हाथ से बने माल में, ख़ासकर हस्तशिल्प रेंज में, बैच के बीच थोड़ा फ़र्क़ आना सामान्य है। तस्वीर एक प्रतिनिधि पीस की होती है।'
+        : 'In handmade goods, particularly the handicraft range, some variation between batches is normal. A photograph shows a representative piece.'}</p>
+
+      <h2>{hi ? 'ज़िम्मेदारी' : 'Liability'}</h2>
+      <p>{hi
+        ? 'हम इस साइट की जानकारी सही रखने की कोशिश करते हैं, पर किसी टाइपिंग की ग़लती या पुरानी रह गई जानकारी के लिए ज़िम्मेदार नहीं हैं। संदेह हो तो ऑर्डर से पहले पूछ लीजिए — यही सबसे सही तरीक़ा है।'
+        : 'We keep this site accurate to the best of our ability but are not liable for a typing error or a detail that has gone out of date. If something matters to your order, confirm it with us before booking.'}</p>
+
+      <p><a href={href(ROUTES.privacy, locale)}>{hi ? 'गोपनीयता' : 'Privacy'}</a></p>
+    </div>
+  </div>
+</Base>

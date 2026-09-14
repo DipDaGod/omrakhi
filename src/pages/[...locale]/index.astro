@@ -1,0 +1,298 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { Image } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import CategoryCard from '../../components/CategoryCard.astro';
+import ProductCardStatic from '../../components/ProductCardStatic.astro';
+import StatBar from '../../components/StatBar.astro';
+import TestimonialCard from '../../components/TestimonialCard.astro';
+import StaticMap from '../../components/StaticMap.astro';
+import HoursTable from '../../components/HoursTable.astro';
+import Icon from '../../components/Icon.astro';
+import '../../styles/catalogue.css';
+
+import { getCollection } from 'astro:content';
+import { SITE, PROOF, CLAIMS, POSITIONING } from '../../config/site.ts';
+import { useTranslations, LOCALES, DEFAULT_LOCALE, type Locale } from '../../i18n/ui.ts';
+import { href, ROUTES, localeFromParam } from '../../lib/routes.ts';
+import { whatsappHref, telHref } from '../../lib/whatsapp.ts';
+import { allCategories, categoryCounts, allProducts, seasonHighlights } from '../../lib/catalogue.ts';
+import { siteImage } from '../../lib/images.ts';
+import { num } from '../../lib/format.ts';
+
+export const getStaticPaths: GetStaticPaths = () =>
+  LOCALES.map((locale) => ({ params: { locale: locale === DEFAULT_LOCALE ? undefined : locale } }));
+
+const locale = localeFromParam(Astro.params.locale) as Locale;
+const t = useTranslations(locale);
+
+const [categories, counts, products, highlights, testimonials] = await Promise.all([
+  allCategories(),
+  categoryCounts(),
+  allProducts(),
+  seasonHighlights(10),
+  getCollection('testimonials'),
+]);
+
+const hero = siteImage('hero');
+const isEager = (i: number) => i < 4;
+
+/* [POS] The headline is where positioning lives. */
+const HEADLINES = {
+  specialist: {
+    en: { h: 'Pearl, kundan and designer rakhi. Made on Kalakar Street.', p: 'A Burrabazar manufacturer supplying retailers, distributors and exporters across India. Every design we make is on this site.' },
+    hi: { h: 'मोती, कुंदन और डिज़ाइनर राखी। कलाकार स्ट्रीट पर बनी।', p: 'बड़ाबाज़ार का निर्माता, जो पूरे भारत में रिटेलर, डिस्ट्रीब्यूटर और एक्सपोर्टर को सप्लाई करता है। हमारा बनाया हर डिज़ाइन इस साइट पर है।' },
+  },
+  'legible-supplier': {
+    en: { h: 'Every design, every pack size, every price band. Before you call.', p: 'Rakhi manufacturer and wholesale supplier, Burrabazar, Kolkata. The whole catalogue is published here with article numbers — shortlist what you want and send it to us.' },
+    hi: { h: 'हर डिज़ाइन, हर पैक साइज़, हर प्राइस बैंड। कॉल करने से पहले।', p: 'राखी निर्माता और थोक आपूर्तिकर्ता, बड़ाबाज़ार, कोलकाता। पूरा कैटलॉग आर्टिकल नंबरों के साथ यहीं है — जो चाहिए शॉर्टलिस्ट कीजिए और हमें भेज दीजिए।' },
+  },
+  'on-ramp': {
+    en: { h: 'Start a rakhi counter. Low minimums, from a Burrabazar manufacturer.', p: 'Minimums start at fifty pieces a design. How ordering, packing and transport actually work is written out in full, so a first order is not a guess.' },
+    hi: { h: 'राखी का काउंटर शुरू कीजिए। कम न्यूनतम, सीधे बड़ाबाज़ार के निर्माता से।', p: 'न्यूनतम पचास पीस प्रति डिज़ाइन से शुरू। ऑर्डर, पैकिंग और ट्रांसपोर्ट असल में कैसे चलते हैं, सब लिखा है — ताकि पहला ऑर्डर अंदाज़े पर न हो।' },
+  },
+} as const;
+const headline = HEADLINES[POSITIONING][locale];
+
+const BUYERS = [
+  { en: 'Retailers', hi: 'रिटेलर', to: ROUTES.collections },
+  { en: 'Distributors', hi: 'डिस्ट्रीब्यूटर', to: ROUTES.howToOrder },
+  { en: 'Exporters', hi: 'एक्सपोर्टर', to: ROUTES.exportHub },
+  { en: 'Online sellers', hi: 'ऑनलाइन सेलर', to: ROUTES.howToOrder },
+  { en: 'Gift chains', hi: 'गिफ़्ट चेन', to: ROUTES.custom },
+] as const;
+
+/* Real numbers only, and every one of them derived or verified — nothing here
+   is a round number chosen because it sounded impressive. */
+const stats = [
+  { value: num(products.length, locale), label: locale === 'hi' ? 'इस सीज़न के डिज़ाइन' : 'designs this season' },
+  { value: num(categories.length, locale), label: locale === 'hi' ? 'श्रेणियाँ' : 'collections' },
+  ...(PROOF.yearsInTrade ? [{ value: num(PROOF.yearsInTrade, locale), label: locale === 'hi' ? 'साल इस व्यापार में' : 'years in the trade' }] : []),
+  ...(PROOF.dealers && PROOF.states
+    ? [{ value: num(PROOF.dealers, locale), label: locale === 'hi' ? `डीलर, ${num(PROOF.states, locale)} राज्यों में` : `dealers across ${PROOF.states} states` }]
+    : []),
+];
+
+const title = `${SITE.name} — ${locale === 'hi' ? 'राखी निर्माता और थोक आपूर्तिकर्ता, कोलकाता' : 'Rakhi Manufacturer & Wholesale Supplier, Kolkata'}`;
+const description =
+  locale === 'hi'
+    ? `बड़ाबाज़ार, कोलकाता के राखी निर्माता। रिटेलर, डिस्ट्रीब्यूटर और एक्सपोर्टर के लिए ${products.length} डिज़ाइन का पूरा थोक कैटलॉग, आर्टिकल नंबर और पैक साइज़ सहित।`
+    : `Rakhi manufacturer in Burrabazar, Kolkata. The full wholesale catalogue — ${products.length} designs with article numbers, pack sizes and price bands — for retailers, distributors and exporters.`;
+
+const localBusiness = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  '@id': `${SITE.origin}#business`,
+  name: SITE.name,
+  description,
+  url: SITE.origin,
+  telephone: SITE.phone.display,
+  email: SITE.email,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: `${SITE.address.line1}, ${SITE.address.line2}`,
+    addressLocality: SITE.address.city,
+    addressRegion: SITE.address.state,
+    postalCode: SITE.address.postalCode,
+    addressCountry: SITE.address.country,
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: SITE.address.geo.lat, longitude: SITE.address.geo.lng },
+  openingHoursSpecification: [{
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+    opens: SITE.hours.season[0].open,
+    closes: SITE.hours.season[0].close,
+  }],
+  sameAs: [SITE.social.instagram, SITE.social.indiamart],
+};
+---
+
+<Base locale={locale} title={title} description={description}
+  enquiryContext={locale === 'hi' ? 'वेबसाइट से पूछताछ' : 'Enquiry from your website'}
+  schema={[{ '@context': 'https://schema.org', '@type': 'Organization', name: SITE.name, url: SITE.origin, sameAs: [SITE.social.instagram, SITE.social.indiamart] }, localBusiness]}>
+
+  {/* 1 — Hero. One statement in real text, not seven baked into JPEG banners:
+      a carousel is unreadable on a phone, invisible to search, impossible to
+      translate, and a maintenance tax every December. */}
+  <section class="hero">
+    <div class="container hero__inner">
+      <div class="hero__text">
+        <h1>{headline.h}</h1>
+        <p class="lede">{headline.p}</p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href={href(ROUTES.collections, locale)}>{t('action.browse')}</a>
+          <a class="btn btn--secondary" href={whatsappHref(`${SITE.name} — ${locale === 'hi' ? 'वेबसाइट से पूछताछ' : 'enquiry from your website'}`)} rel="noopener">
+            <Icon name="whatsapp" /> {t('action.whatsappUs')}
+          </a>
+        </div>
+        <p class="hero__where">
+          <Icon name="mapPin" size={16} />
+          {SITE.address.line1}, {SITE.address.line2}, {SITE.address.city} — {SITE.address.landmark}
+        </p>
+      </div>
+      {hero && (
+        <div class="hero__img plinth">
+          <Image src={hero} alt={locale === 'hi' ? `${SITE.name} की राखियाँ` : `Rakhi made by ${SITE.name}`}
+            widths={[480, 768, 1200]} sizes="(max-width: 60rem) 100vw, 34rem" loading="eager" fetchpriority="high" />
+        </div>
+      )}
+    </div>
+  </section>
+
+  {/* 2 — Category grid sits directly under the hero, above the credibility
+      content. A dealer's first action is to look at goods; making him scroll
+      past an About paragraph to reach them is a self-inflicted wound. */}
+  <section class="section container">
+    <div class="sec__head">
+      <h2>{t('nav.collection')}</h2>
+      <a href={href(ROUTES.collections, locale)}>{t('action.seeAll')}</a>
+    </div>
+    <div class="cx__grid">
+      {categories.map((c, i) => (
+        <CategoryCard category={c} count={counts.get(c.id) ?? 0} locale={locale} eager={isEager(i)} />
+      ))}
+    </div>
+  </section>
+
+  {/* 3 — Proof bar. */}
+  <section class="section--tight container">
+    <StatBar stats={stats} />
+  </section>
+
+  {/* 4 — Who we supply. Lets a visitor self-identify in one glance. */}
+  <section class="section container">
+    <h2>{locale === 'hi' ? 'हम किन्हें सप्लाई करते हैं' : 'Who we supply'}</h2>
+    <ul class="buyers">
+      {BUYERS.map((b) => (
+        <li><a href={href(b.to, locale)}>{b[locale]} <Icon name="arrowRight" size={16} /></a></li>
+      ))}
+    </ul>
+  </section>
+
+  {/* 5 — This season. Proves the catalogue is real and current, and gives an
+      impatient visitor something to shortlist without navigating anywhere. */}
+  <section class="section container">
+    <div class="sec__head">
+      <h2>{locale === 'hi' ? 'इस सीज़न' : 'This season'}</h2>
+      <a href={href(ROUTES.collections, locale)}>{t('action.seeAll')}</a>
+    </div>
+    <div class="scroller">
+      {highlights.map((p) => <ProductCardStatic product={p} locale={locale} />)}
+    </div>
+  </section>
+
+  {/* 6 — Claims that each survive a phone call. */}
+  <section class="section container">
+    <h2>{locale === 'hi' ? 'डीलर हमारे साथ क्यों काम करते हैं' : 'Why dealers work with us'}</h2>
+    <ul class="claims">
+      {CLAIMS.map((c) => (
+        <li>
+          <h3>{c[locale].title}</h3>
+          <p>{c[locale].body}</p>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  {/* 7 — Testimonials. Omitted entirely when there are none: a placeholder
+      quote is worse than silence. */}
+  {testimonials.length > 0 && (
+    <section class="section container">
+      <h2>{locale === 'hi' ? 'हमारे डीलर' : 'Dealers who buy from us'}</h2>
+      <div class="tms">
+        {testimonials.slice(0, 3).map((item) => <TestimonialCard item={item} locale={locale} />)}
+      </div>
+    </section>
+  )}
+
+  {/* 8 — Visit us. Burrabazar is genuinely hard to navigate for a stranger;
+      treating that as a real problem is itself a trust signal. */}
+  <section class="section container">
+    <h2>{locale === 'hi' ? 'हमारे यहाँ आइए' : 'Visit us'}</h2>
+    <div class="visit">
+      <div class="visit__text">
+        <address>
+          {SITE.address.line1}<br />
+          {SITE.address.line2}, {SITE.address.city} {SITE.address.postalCode}<br />
+          <strong>{SITE.address.landmark}</strong>
+        </address>
+        <HoursTable locale={locale} />
+        <p class="visit__note">
+          {locale === 'hi'
+            ? 'आने से पहले एक संदेश भेज दीजिए — जो सैंपल आप देखना चाहते हैं, वे तैयार मिलेंगे।'
+            : 'Message before you come and the samples you want to see will be laid out when you arrive.'}
+        </p>
+        <div class="visit__actions">
+          <a class="btn btn--primary" href={whatsappHref(locale === 'hi' ? 'मैं दुकान आना चाहता हूँ' : 'I would like to visit the shop')} rel="noopener">
+            <Icon name="whatsapp" /> {t('action.whatsappUs')}
+          </a>
+          <a class="btn btn--secondary" href={telHref}><Icon name="phone" /> {SITE.phone.display}</a>
+          <a class="btn btn--quiet" href={href(ROUTES.visit, locale)}>{t('nav.visit')}</a>
+        </div>
+      </div>
+      <StaticMap locale={locale} class="visit__map" />
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* One motion moment on the page, at most: this reveal on load. Nothing fades
+     in on scroll — scroll-triggered section reveals are the most reliable tell
+     that a page was assembled rather than designed. */
+  .hero { padding-block: var(--space-2xl) var(--space-xl); }
+  .hero__inner { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-2xl); align-items: center; }
+  .hero__text { display: grid; gap: var(--space-s); animation: rise var(--dur-base) var(--ease) both; }
+  .hero__text h1 { max-width: 18ch; }
+  .hero__actions { display: flex; gap: var(--space-2xs); flex-wrap: wrap; margin-top: var(--space-2xs); }
+  .hero__where { display: flex; align-items: center; gap: var(--space-3xs); font-size: var(--step--1); color: var(--ink-muted); }
+  .hero__img { animation: rise var(--dur-base) var(--ease) 80ms both; }
+
+  @keyframes rise { from { opacity: 0; transform: translateY(0.5rem); } to { opacity: 1; transform: none; } }
+
+  .sec__head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-m); margin-bottom: var(--space-m); }
+  .sec__head a { font-size: var(--step--1); }
+
+  .cx__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-xl) var(--grid-gutter); }
+
+  .buyers { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-2xs); margin-top: var(--space-m); }
+  .buyers a {
+    display: inline-flex; align-items: center; gap: 0.4em;
+    padding: 0.5em 1em; border: var(--hairline) solid var(--line); text-decoration: none;
+  }
+  .buyers a:hover { border-color: var(--accent); color: var(--accent); }
+
+  .scroller { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--space-m); }
+
+  .claims { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-m); margin-top: var(--space-m); }
+  .claims h3 { font-size: var(--step-1); margin-bottom: var(--space-3xs); }
+  .claims p { font-size: var(--step--1); color: var(--ink-muted); }
+
+  .tms { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-l); margin-top: var(--space-m); }
+
+  .visit { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-l); margin-top: var(--space-m); align-items: start; }
+  .visit__text { display: grid; gap: var(--space-s); }
+  .visit address { font-style: normal; line-height: 1.6; }
+  .visit__note { font-size: var(--step--1); color: var(--ink-muted); }
+  .visit__actions { display: flex; gap: var(--space-2xs); flex-wrap: wrap; }
+
+  @media (max-width: 60rem) {
+    .hero__inner, .visit { grid-template-columns: 1fr; gap: var(--space-l); }
+    .cx__grid { grid-template-columns: repeat(3, 1fr); }
+    .claims { grid-template-columns: repeat(2, 1fr); }
+    .tms { grid-template-columns: 1fr; }
+    .scroller { grid-template-columns: repeat(4, 1fr); }
+  }
+  @media (max-width: 40rem) {
+    .cx__grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-m) var(--space-s); }
+    .claims { grid-template-columns: 1fr; }
+    /* Horizontal scroller with a visible hint that there is more to the right. */
+    .scroller {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: var(--space-s);
+      padding-bottom: var(--space-2xs);
+    }
+    .scroller > * { flex: 0 0 45%; scroll-snap-align: start; }
+  }
+</style>

@@ -1,0 +1,37 @@
+---
+/** Inline SVG. No icon font, no sprite request, no third-party set. */
+interface Props { name: keyof typeof PATHS; size?: number; class?: string; filled?: boolean }
+
+const PATHS = {
+  search: '<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>',
+  heart: '<path d="M12 20.5S3.5 15 3.5 9.2A4.7 4.7 0 0 1 12 6.6a4.7 4.7 0 0 1 8.5 2.6c0 5.8-8.5 11.3-8.5 11.3Z"/>',
+  phone: '<path d="M6.5 3.5h3l1.5 4-2 1.5a11 11 0 0 0 6 6l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4.5 5.7 2 2 0 0 1 6.5 3.5Z"/>',
+  whatsapp: '<path d="M20 12a8 8 0 0 1-11.9 7L4 20l1.1-4A8 8 0 1 1 20 12Z"/><path d="M9.2 9.2c0 3 2.6 5.6 5.6 5.6"/>',
+  menu: '<path d="M4 7h16M4 12h16M4 17h16"/>',
+  close: '<path d="m6 6 12 12M18 6 6 18"/>',
+  chevronLeft: '<path d="m14 6-6 6 6 6"/>',
+  chevronRight: '<path d="m10 6 6 6-6 6"/>',
+  chevronDown: '<path d="m6 10 6 6 6-6"/>',
+  plus: '<path d="M12 5v14M5 12h14"/>',
+  check: '<path d="m5 13 4 4 10-10"/>',
+  download: '<path d="M12 4v11m0 0 4-4m-4 4-4-4M4 19h16"/>',
+  copy: '<rect x="9" y="9" width="11" height="11" rx="1"/><path d="M15 5H5v10"/>',
+  arrowRight: '<path d="M5 12h14m0 0-5-5m5 5-5 5"/>',
+  mapPin: '<path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/>',
+  instagram: '<rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3.5"/><circle cx="17" cy="7" r="1"/>',
+  pdf: '<path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/><path d="M10 13h5M10 16h5"/>',
+} as const;
+
+const { name, size = 20, class: className, filled = false } = Astro.props;
+---
+<svg
+  class:list={['icon', className]}
+  width={size} height={size} viewBox="0 0 24 24"
+  fill={filled ? 'currentColor' : 'none'}
+  stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"
+  aria-hidden="true" focusable="false"
+  set:html={PATHS[name]}
+/>
+<style>
+  .icon { flex: none; }
+</style>

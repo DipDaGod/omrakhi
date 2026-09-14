@@ -1,0 +1,14 @@
+---
+interface Props { eyebrow?: string; title: string; lede?: string; class?: string }
+const { eyebrow, title, lede, class: className } = Astro.props;
+---
+<header class:list={['ph', className]}>
+  {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+  <h1>{title}</h1>
+  {lede && <p class="lede">{lede}</p>}
+  <slot />
+</header>
+<style>
+  .ph { display: grid; gap: var(--space-2xs); margin-bottom: var(--space-l); max-width: var(--measure); }
+  .ph h1 { margin-top: var(--space-3xs); }
+</style>

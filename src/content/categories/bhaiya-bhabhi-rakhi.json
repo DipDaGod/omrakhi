@@ -1,0 +1,20 @@
+{
+  "name": { "en": "Bhaiya Bhabhi Rakhi", "hi": "भैया भाभी राखी" },
+  "order": 6,
+  "summary": {
+    "en": "Matched pairs — one rakhi, one lumba, on a single card.",
+    "hi": "जोड़ी सेट — एक राखी, एक लुम्बा, एक ही कार्ड पर।"
+  },
+  "copy": {
+    "en": "Pairs carry a higher ticket than a single rakhi and take the same shelf space, which is why this category is worth giving a full card row to. The two pieces are matched at the design stage rather than paired at packing, so the stone colour and metal finish agree — buyers notice when they do not. Card layout is fixed across the range so a display looks ordered. Strong across North and West India.",
+    "hi": "जोड़ी की क़ीमत एक राखी से ज़्यादा होती है और शेल्फ़ पर जगह उतनी ही लगती है — इसीलिए इस श्रेणी को पूरी कार्ड रो देना फ़ायदे का सौदा है। दोनों पीस डिज़ाइन के समय ही मिलाए जाते हैं, पैकिंग के समय जोड़े नहीं जाते, इसलिए पत्थर का रंग और मेटल फ़िनिश मेल खाते हैं — ग्राहक फ़र्क़ पकड़ लेते हैं। पूरी रेंज में कार्ड लेआउट एक जैसा है, जिससे डिस्प्ले सजा हुआ दिखता है। उत्तर और पश्चिम भारत में मज़बूत।"
+  },
+  "materials": ["stone", "pearl", "metal", "thread"],
+  "audience": ["bhaiya-bhabhi", "lumba"],
+  "priceBand": { "from": 2, "to": 4 },
+  "moq": 50,
+  "packTypes": ["carded", "boxed"],
+  "region": { "en": "Strong across North and West India", "hi": "उत्तर और पश्चिम भारत में मज़बूत" },
+  "heroCode": "OM-2001",
+  "related": ["lumba-rakhi", "kundan-rakhi", "pendant-rakhi"]
+}

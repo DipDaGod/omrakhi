@@ -1,0 +1,29 @@
+---
+import type { Locale } from '../i18n/ui.ts';
+import type { CollectionEntry } from 'astro:content';
+
+/**
+ * Name, firm, city and what they buy. "Mahalakshmi Enterprise, Mysore — stone
+ * and lumba, eight years" is worth ten anonymous five-star quotes.
+ * No avatar: where there is no photograph, a generic silhouette is worse than
+ * nothing.
+ */
+interface Props { item: CollectionEntry<'testimonials'>; locale: Locale }
+const { item, locale } = Astro.props;
+const d = item.data;
+---
+<figure class="tm">
+  <blockquote><p>{d.quote[locale]}</p></blockquote>
+  <figcaption>
+    <span class="tm__name">{d.name}</span>
+    <span class="tm__firm">{d.firm}, {d.city}</span>
+    <span class="tm__buys">{d.buys[locale]} · {d.years} {locale === 'hi' ? 'साल' : 'years'}</span>
+  </figcaption>
+</figure>
+<style>
+  .tm { margin: 0; display: grid; gap: var(--space-s); }
+  .tm blockquote { margin: 0; font-family: var(--font-display); font-size: var(--step-1); line-height: 1.4; }
+  .tm figcaption { display: grid; gap: 0.1em; font-size: var(--step--1); }
+  .tm__name { font-weight: 600; }
+  .tm__firm, .tm__buys { color: var(--ink-muted); }
+</style>

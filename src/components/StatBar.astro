@@ -1,0 +1,31 @@
+---
+/**
+ * P1 §3 — real numbers only, and no animated count-ups: they delay the number,
+ * they are a generated-page cliché, and they break for reduced-motion users.
+ */
+interface Props { stats: { value: string; label: string }[] }
+const { stats } = Astro.props;
+---
+<ul class="stats">
+  {stats.map((s) => (
+    <li>
+      <span class="stats__value">{s.value}</span>
+      <span class="stats__label">{s.label}</span>
+    </li>
+  ))}
+</ul>
+<style>
+  .stats {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+    gap: var(--space-m);
+    border-block: var(--hairline) solid var(--line);
+    padding-block: var(--space-m);
+  }
+  .stats li { display: grid; gap: var(--space-3xs); }
+  .stats__value { font-family: var(--font-display); font-size: var(--step-3); line-height: 1; }
+  .stats__label { font-size: var(--step--1); color: var(--ink-muted); }
+  @media (max-width: 40rem) { .stats { grid-template-columns: 1fr 1fr; } }
+</style>

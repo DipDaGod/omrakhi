@@ -1,0 +1,155 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import EnquiryForm from '../../components/EnquiryForm.astro';
+import Icon from '../../components/Icon.astro';
+import HoursTable from '../../components/HoursTable.astro';
+
+import { SITE } from '../../config/site.ts';
+import { useTranslations, LOCALES, DEFAULT_LOCALE, type Locale } from '../../i18n/ui.ts';
+import { href, ROUTES, localeFromParam } from '../../lib/routes.ts';
+import { telHref, whatsappHref } from '../../lib/whatsapp.ts';
+
+export const getStaticPaths: GetStaticPaths = () =>
+  LOCALES.map((locale) => ({ params: { locale: locale === DEFAULT_LOCALE ? undefined : locale } }));
+
+const locale = localeFromParam(Astro.params.locale) as Locale;
+const t = useTranslations(locale);
+const hi = locale === 'hi';
+
+const buyerTypes = [
+  { value: 'retailer', label: t('form.buyer.retailer') },
+  { value: 'distributor', label: t('form.buyer.distributor') },
+  { value: 'exporter', label: t('form.buyer.exporter') },
+  { value: 'online', label: t('form.buyer.online') },
+  { value: 'new', label: t('form.buyer.new') },
+];
+---
+
+<Base
+  locale={locale}
+  title={`${t('nav.contact')} — ${SITE.name}`}
+  description={hi
+    ? `फ़ोन, व्हाट्सएप, ईमेल और पता — ${SITE.name}, कलाकार स्ट्रीट, बड़ाबाज़ार, कोलकाता।`
+    : `Phone, WhatsApp, email and address for ${SITE.name}, Kalakar Street, Burrabazar, Kolkata.`}
+  enquiryContext={hi ? 'पूछताछ' : 'Enquiry'}
+>
+  <div class="container section--tight">
+    <Breadcrumb locale={locale} items={[{ label: t('nav.home'), href: href(ROUTES.home, locale) }, { label: t('nav.contact') }]} />
+
+    <PageHeader
+      title={t('nav.contact')}
+      lede={hi
+        ? 'सबसे तेज़ जवाब व्हाट्सएप पर मिलता है — आर्टिकल नंबर लिख दीजिए, उसी कार्यदिवस में दाम मिल जाएँगे। फ़ोन उतना ही अच्छा है। फ़ॉर्म उनके लिए है जो दोनों इस्तेमाल नहीं करते।'
+        : 'WhatsApp gets the fastest answer — send the article numbers and you will have rates the same working day. The phone is just as good. The form is there for the people who use neither.'}
+    />
+
+    {/* WhatsApp sits above the form, at greater weight. The form exists for a
+        minority; the majority should not have to scroll past it. */}
+    <div class="ch">
+      <a class="ch__card ch__card--wa" href={whatsappHref(hi ? 'नमस्ते, मुझे पूछताछ करनी है' : 'Hello, I have an enquiry')} rel="noopener">
+        <Icon name="whatsapp" size={24} />
+        <span><strong>{t('action.whatsapp')}</strong><span>{SITE.phone.display}</span></span>
+      </a>
+      <a class="ch__card" href={telHref}>
+        <Icon name="phone" size={24} />
+        <span><strong>{t('action.call')}</strong><span>{SITE.phone.display}</span></span>
+      </a>
+      <a class="ch__card" href={`mailto:${SITE.email}`}>
+        <Icon name="arrowRight" size={24} />
+        <span><strong>{t('label.email')}</strong><span>{SITE.email}</span></span>
+      </a>
+      <a class="ch__card" href={SITE.social.instagram} rel="noopener">
+        <Icon name="instagram" size={24} />
+        <span><strong>Instagram</strong><span>{SITE.social.instagramHandle}</span></span>
+      </a>
+      <a class="ch__card" href={SITE.social.indiamart} rel="noopener">
+        <Icon name="arrowRight" size={24} />
+        <span><strong>IndiaMART</strong><span>{hi ? 'सत्यापित लिस्टिंग' : 'Verified listing'}</span></span>
+      </a>
+      <a class="ch__card" href={href(ROUTES.visit, locale)}>
+        <Icon name="mapPin" size={24} />
+        <span><strong>{t('nav.visit')}</strong><span>{SITE.address.line1}, {SITE.address.landmark}</span></span>
+      </a>
+    </div>
+
+    <div class="ct">
+      <section class="ct__form">
+        <h2>{hi ? 'या फ़ॉर्म भर दीजिए' : 'Or fill in the form'}</h2>
+        <p class="ct__note">{hi
+          ? 'फ़र्म का नाम और शहर ज़रूरी हैं — इनसे हमें पता चलता है कि आपको क्या दिखाना है। ईमेल वैकल्पिक है।'
+          : 'Firm name and city are required — they tell us what to show you. Email is optional.'}</p>
+        <EnquiryForm
+          locale={locale}
+          subject={`Website enquiry — ${SITE.name}`}
+          fields={[
+            { kind: 'text', name: 'name', label: t('form.name'), required: true, autocomplete: 'name' },
+            { kind: 'text', name: 'firm', label: t('form.firm'), required: true, autocomplete: 'organization' },
+            { kind: 'text', name: 'city', label: t('form.city'), required: true, autocomplete: 'address-level2' },
+            { kind: 'tel', name: 'phone', label: t('form.phone'), required: true, autocomplete: 'tel' },
+            { kind: 'email', name: 'email', label: t('form.email'), autocomplete: 'email' },
+            { kind: 'select', name: 'buyer_type', label: t('form.buyerType'), required: true, options: buyerTypes },
+            { kind: 'textarea', name: 'message', label: t('form.message'), required: true, rows: 5 },
+          ]}
+        />
+      </section>
+
+      <aside class="ct__aside">
+        <h2>{hi ? 'जवाब कब मिलेगा' : 'When you will hear back'}</h2>
+        <p>{hi
+          ? 'कामकाजी घंटों में व्हाट्सएप और फ़ोन के जवाब उसी दिन मिलते हैं। फ़ॉर्म और ईमेल एक कार्यदिवस के भीतर देखे जाते हैं। रविवार को दुकान बंद रहती है।'
+          : 'WhatsApp and phone are answered the same day during working hours. The form and email are read within one working day. We are closed on Sunday.'}</p>
+        <HoursTable locale={locale} />
+        <address class="ct__addr">
+          {SITE.address.line1}<br />
+          {SITE.address.line2}, {SITE.address.city} {SITE.address.postalCode}<br />
+          <strong>{SITE.address.landmark}</strong>
+        </address>
+        <p class="ct__links">
+          <a href={href(ROUTES.visit, locale)}>{hi ? 'रास्ता और तस्वीरें' : 'Directions and photographs'}</a>
+          <a href={href(ROUTES.howToOrder, locale)}>{t('nav.order')}</a>
+        </p>
+      </aside>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .ch {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-2xs);
+    margin-bottom: var(--space-2xl);
+  }
+  .ch__card {
+    display: flex;
+    align-items: center;
+    gap: var(--space-s);
+    padding: var(--space-s);
+    border: var(--hairline) solid var(--line);
+    text-decoration: none;
+    background: var(--ground-raised);
+  }
+  .ch__card:hover { border-color: var(--accent); }
+  .ch__card span { display: grid; gap: 0.1em; min-width: 0; }
+  .ch__card span span { font-size: var(--step--1); color: var(--ink-muted); overflow-wrap: anywhere; }
+  .ch__card--wa { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); grid-column: span 2; }
+  .ch__card--wa span span { color: color-mix(in srgb, var(--accent-ink) 80%, transparent); }
+
+  .ct { display: grid; grid-template-columns: 1.4fr 1fr; gap: var(--space-2xl); }
+  .ct h2 { font-size: var(--step-2); margin-bottom: var(--space-2xs); }
+  .ct__note { font-size: var(--step--1); color: var(--ink-muted); margin-bottom: var(--space-m); max-width: var(--measure); }
+  .ct__aside { display: grid; gap: var(--space-s); align-content: start; }
+  .ct__aside p { max-width: var(--measure); }
+  .ct__addr { font-style: normal; line-height: 1.6; }
+  .ct__links { display: grid; gap: var(--space-3xs); font-size: var(--step--1); }
+
+  @media (max-width: 60rem) {
+    .ch { grid-template-columns: 1fr 1fr; }
+    .ch__card--wa { grid-column: span 2; }
+    .ct { grid-template-columns: 1fr; gap: var(--space-xl); }
+  }
+  @media (max-width: 40rem) { .ch { grid-template-columns: 1fr; } .ch__card--wa { grid-column: auto; } }
+</style>
