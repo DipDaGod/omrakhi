@@ -75,6 +75,17 @@
    4.5:1 in both: 7.0:1 resting, 5.1:1 selected. Lowering it fails contrast. */
 .chip__n { font-variant-numeric: tabular-nums; opacity: 0.75; font-size: 0.85em; }
 
+/* Sort sits with the search rather than among the chips: chips narrow the set,
+   sort only reorders it, and mixing the two reads as another filter. */
+.pg__sort select {
+  padding: 0.4em 0.6em;
+  border: var(--hairline) solid var(--line);
+  border-radius: var(--radius);
+  background: var(--ground-raised);
+  font-size: var(--step--1);
+}
+.pg__sort select:hover { border-color: var(--ink); }
+
 .fg { display: flex; align-items: center; gap: var(--space-2xs); flex-wrap: wrap; }
 .fg__label { flex: none; }
 .fg__row { display: flex; gap: var(--space-3xs); flex-wrap: wrap; }

@@ -17,6 +17,11 @@ if (root) {
   const empty = root.querySelector<HTMLElement>('[data-empty]');
   const clear = root.querySelector<HTMLElement>('[data-clear]');
   const live = root.querySelector<HTMLElement>('[data-live]');
+  const liveNoun = root.querySelector<HTMLElement>('[data-live-noun]');
+  const total = root.querySelector<HTMLElement>('[data-total]');
+  /* Read off the markup Astro rendered rather than re-translating in the
+     island: the singular is already on the page in the right language. */
+  const nouns = { one: liveNoun?.dataset.one ?? '', many: liveNoun?.textContent ?? '' };
 
   const active = new Map<string, Set<string>>();
 
@@ -64,6 +69,9 @@ if (root) {
     if (empty) empty.hidden = shown > 0;
     if (clear) clear.hidden = !any;
     if (live) live.textContent = String(shown);
+    if (liveNoun) liveNoun.textContent = shown === 1 ? nouns.one : nouns.many;
+    /* "4 of 12" only once a filter is on — "12 of 12" is noise. */
+    if (total) total.hidden = !any;
   };
 
   for (const chip of chips) {

@@ -1,7 +1,7 @@
 ---
 import type { Locale } from '../i18n/ui.ts';
 import { useTranslations } from '../i18n/ui.ts';
-import { bandRange } from '../lib/format.ts';
+import { priceLabel } from '../lib/format.ts';
 import { productImage } from '../lib/images.ts';
 import { href, ROUTES } from '../lib/routes.ts';
 import { LIMITED_RANGE_THRESHOLD, type Category } from '../lib/catalogue.ts';
@@ -37,7 +37,7 @@ const limited = c.limited || count < LIMITED_RANGE_THRESHOLD;
     <span class="cc__name">{c.name[locale]}</span>
     <span class="cc__count">
       {limited ? t('label.limitedRange') : `${count} ${count === 1 ? t('label.design') : t('label.designs')}`}
-      <span class="cc__band">{bandRange(c.priceBand.from, c.priceBand.to)}</span>
+      <span class="cc__band">{priceLabel(c.priceBand.from, c.priceBand.to, locale)}</span>
     </span>
     {detailed && (
       <>

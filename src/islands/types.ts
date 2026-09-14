@@ -28,6 +28,10 @@ export type ProductView = {
   detailAlt?: string;
 };
 
+export type SortLabels = {
+  default: string; newest: string; priceLow: string; priceHigh: string; code: string;
+};
+
 export type GridLabels = Record<string, string>;
 
 export type FilterOption = { value: string; label: string; count: number };

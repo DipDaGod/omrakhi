@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import type { ProductView, GridLabels } from './types.ts';
+import type { ProductView, GridLabels, SortLabels } from './types.ts';
 import ProductCard from './ProductCard.tsx';
 import DesignDrawer from './DesignDrawer.tsx';
 import { useShortlist } from './useShortlist.ts';
@@ -20,9 +20,29 @@ type FacetKey = 'band' | 'colour' | 'pack';
 
 const PARAM: Record<FacetKey, string> = { band: 'price', colour: 'colour', pack: 'pack' };
 
+/**
+ * Sort. 'default' is the catalogue's own order, which is curated rather than
+ * arbitrary, so it stays the default and is never written to the URL.
+ */
+const SORTS = ['default', 'newest', 'priceLow', 'priceHigh', 'code'] as const;
+type SortKey = (typeof SORTS)[number];
+const readSort = (v: string | null): SortKey =>
+  (SORTS as readonly string[]).includes(v ?? '') ? (v as SortKey) : 'default';
+
+/* Ties fall back to article number so a sort is never unstable between
+   renders — two designs in the same band would otherwise swap places. */
+const byCode = (a: ProductView, b: ProductView) => a.code.localeCompare(b.code);
+const COMPARE: Record<Exclude<SortKey, 'default'>, (a: ProductView, b: ProductView) => number> = {
+  newest: (a, b) => Number(b.isNew) - Number(a.isNew) || byCode(a, b),
+  priceLow: (a, b) => a.bandValue - b.bandValue || byCode(a, b),
+  priceHigh: (a, b) => b.bandValue - a.bandValue || byCode(a, b),
+  code: byCode,
+};
+
 export default function ProductGrid({
   products,
   labels,
+  sortLabels,
   categoryName,
   whatsappBase,
   colourLabels,
@@ -30,6 +50,7 @@ export default function ProductGrid({
 }: {
   products: ProductView[];
   labels: GridLabels;
+  sortLabels: SortLabels;
   categoryName: string;
   whatsappBase: string;
   colourLabels: Record<string, string>;
@@ -39,6 +60,7 @@ export default function ProductGrid({
   const [filters, setFilters] = useState<Record<FacetKey, string[]>>({ band: [], colour: [], pack: [] });
   const [newOnly, setNewOnly] = useState(false);
   const [query, setQuery] = useState('');
+  const [sort, setSort] = useState<SortKey>('default');
   const [open, setOpen] = useState<string | null>(null);
   const [sheet, setSheet] = useState(false);
   const { count } = useShortlist();
@@ -51,6 +73,7 @@ export default function ProductGrid({
     setFilters({ band: read(PARAM.band), colour: read(PARAM.colour), pack: read(PARAM.pack) });
     setNewOnly(url.searchParams.get('new') === '1');
     setQuery(url.searchParams.get('q') ?? '');
+    setSort(readSort(url.searchParams.get('sort')));
     setOpen(url.searchParams.get('d'));
     setReady(true);
     document.querySelector<HTMLElement>('[data-static-grid]')?.setAttribute('hidden', '');
@@ -64,6 +87,7 @@ export default function ProductGrid({
         pack: (u.searchParams.get(PARAM.pack) ?? '').split(',').filter(Boolean),
       });
       setNewOnly(u.searchParams.get('new') === '1');
+      setSort(readSort(u.searchParams.get('sort')));
     };
     addEventListener('popstate', onPop);
     return () => removeEventListener('popstate', onPop);
@@ -80,12 +104,13 @@ export default function ProductGrid({
     set(PARAM.pack, filters.pack.join(','));
     set('new', newOnly ? '1' : '');
     set('q', query.trim());
+    set('sort', sort === 'default' ? '' : sort);
     set('d', open ?? '');
     const next = url.pathname + (url.searchParams.toString() ? `?${url.searchParams}` : '');
     if (next === location.pathname + location.search) return;
     if (first.current) { first.current = false; history.replaceState(null, '', next); }
     else history[open ? 'pushState' : 'replaceState'](null, '', next);
-  }, [ready, filters, newOnly, query, open]);
+  }, [ready, filters, newOnly, query, sort, open]);
 
   const facets = useMemo(() => {
     const tally = (get: (p: ProductView) => string) => {
@@ -102,7 +127,7 @@ export default function ProductGrid({
 
   const shown = useMemo(() => {
     const q = query.trim().toUpperCase().replace(/[^A-Z0-9]/g, '');
-    return products.filter((p) => {
+    const kept = products.filter((p) => {
       if (filters.band.length && !filters.band.includes(String(p.bandValue))) return false;
       if (filters.colour.length && !filters.colour.includes(p.colourFamily)) return false;
       if (filters.pack.length && !filters.pack.includes(p.packType)) return false;
@@ -110,9 +135,13 @@ export default function ProductGrid({
       if (q && !p.code.replace(/[^A-Z0-9]/g, '').includes(q) && !p.name.toUpperCase().includes(query.trim().toUpperCase())) return false;
       return true;
     });
-  }, [products, filters, newOnly, query]);
+    return sort === 'default' ? kept : [...kept].sort(COMPARE[sort]);
+  }, [products, filters, newOnly, query, sort]);
 
-  const activeCount = filters.band.length + filters.colour.length + filters.pack.length + (newOnly ? 1 : 0);
+  const facetCount = filters.band.length + filters.colour.length + filters.pack.length + (newOnly ? 1 : 0);
+  /* The query counts. clearAll() resets it, so leaving it out hid the only
+     control that undoes a search behind "no facets are selected". */
+  const activeCount = facetCount + (query.trim() ? 1 : 0);
 
   const toggleFacet = useCallback((key: FacetKey, value: string) => {
     setFilters((f) => ({
@@ -121,7 +150,7 @@ export default function ProductGrid({
     }));
   }, []);
 
-  const clearAll = () => { setFilters({ band: [], colour: [], pack: [] }); setNewOnly(false); setQuery(''); };
+  const clearAll = () => { setFilters({ band: [], colour: [], pack: [] }); setNewOnly(false); setQuery(''); setSort('default'); };
 
   /* Prev/next respects the active filter, so stepping through a filtered set
      never jumps to items the buyer already excluded. */
@@ -171,8 +200,15 @@ export default function ProductGrid({
         <div className="pg__filters">{filterUI}</div>
 
         <button className="btn btn--quiet pg__sheetbtn" type="button" onClick={() => setSheet(true)}>
-          {labels.filter}{activeCount ? ` (${activeCount})` : ''}
+          {labels.filter}{facetCount ? ` (${facetCount})` : ''}
         </button>
+
+        <label className="pg__sort">
+          <span className="visually-hidden">{labels.sort}</span>
+          <select value={sort} onChange={(e) => setSort(readSort(e.target.value))}>
+            {SORTS.map((k) => <option key={k} value={k}>{sortLabels[k]}</option>)}
+          </select>
+        </label>
 
         {/* In-category search. A dealer who wrote "OM-24" in his notebook at
             your counter should find it in three keystrokes. */}

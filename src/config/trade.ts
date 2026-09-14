@@ -112,3 +112,21 @@ export const CATALOGUE = {
   full: { file: null as string | null, sizeMb: null as number | null, pages: null as number | null, updated: null as string | null },
   printedAvailable: true,
 } as const;
+
+/**
+ * What the price bands mean in rupees, per piece.
+ *
+ * The catalogue stores a band (1–4) rather than a rate, because rates in this
+ * trade are negotiated and a published rate card is a commitment. But a buyer
+ * who has never dealt with the firm cannot read "₹₹" at all — the symbols only
+ * mean something once you know the scale.
+ *
+ * Filling this in turns every band on the site into a real range and makes the
+ * legend appear, without touching a single article: bands stay the stored
+ * value, this is only how they are read out. `to: null` on the top band means
+ * "and above".
+ *
+ * ⚠ This is a commercial commitment. Confirm with the firm before filling it
+ * in. Left null, the site shows the symbols alone and claims no rate.
+ */
+export const PRICE_BANDS: Record<1 | 2 | 3 | 4, { from: number; to: number | null }> | null = null;

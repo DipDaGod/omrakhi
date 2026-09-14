@@ -10,7 +10,7 @@ import '../../../styles/catalogue.css';
 import { SITE } from '../../../config/site.ts';
 import { useTranslations, LOCALES, DEFAULT_LOCALE, type Locale } from '../../../i18n/ui.ts';
 import { href, ROUTES, localeFromParam } from '../../../lib/routes.ts';
-import { num } from '../../../lib/format.ts';
+import { num, bandLegend } from '../../../lib/format.ts';
 import { allCategories, categoryCounts, allProducts } from '../../../lib/catalogue.ts';
 
 export const getStaticPaths: GetStaticPaths = () =>
@@ -18,6 +18,7 @@ export const getStaticPaths: GetStaticPaths = () =>
 
 const locale = localeFromParam(Astro.params.locale) as Locale;
 const t = useTranslations(locale);
+const legend = bandLegend(locale);
 
 const [categories, counts, products] = await Promise.all([
   allCategories(),
@@ -103,8 +104,11 @@ const intro =
             ))}
           </div>
         </div>
+        {legend && <p class="cx__legend"><span class="eyebrow">{t('label.priceScale')}</span> {legend}</p>}
         <p class="cx__status">
-          <span data-live>{categories.length}</span> {t('nav.collection').toLowerCase()}
+          <span data-live>{categories.length}</span>
+          <span data-live-noun data-one={t('label.collection')}>{categories.length === 1 ? t('label.collection') : t('label.collections')}</span>
+          <span class="cx__of" data-total hidden>{locale === 'hi' ? `${categories.length} में से` : `of ${categories.length}`}</span>
           <button class="pg__clear" type="button" data-clear hidden>{t('action.clearFilters')}</button>
         </p>
       </div>
@@ -137,7 +141,7 @@ const intro =
           ? 'बताइए आप किस शहर में बेचते हैं और आपका काउंटर किस तरह का है — हम तीन श्रेणियाँ सुझा देंगे जिनसे शुरुआत करनी चाहिए। पहला ऑर्डर कैसे काम करता है, यह भी पढ़ लीजिए।'
           : 'Tell us which city you sell in and what your counter looks like, and we will name the three collections to start with. How ordering works is written out in full, too.'}
       />
-      <p class="cx__ctalink"><a href={href(ROUTES.howToOrder, locale)}>{t('nav.order')}</a></p>
+      <p class="cx__ctalink"><a href={href(ROUTES.howToOrder, locale)}>{locale === 'hi' ? 'ऑर्डर कैसे करें →' : 'How ordering works →'}</a></p>
     </div>
   </div>
 </Base>
@@ -160,7 +164,8 @@ const intro =
     grid-template-columns: repeat(4, 1fr);
     gap: var(--space-xl) var(--grid-gutter);
   }
-  .cx__grid > [hidden] { display: none; }
+  .cx__legend { font-size: var(--step--1); color: var(--ink-muted); display: flex; gap: var(--space-2xs); align-items: baseline; flex-wrap: wrap; }
+  .cx__of { color: var(--ink-muted); }
   .cx__cta { margin-top: var(--space-2xl); }
   .cx__ctalink { margin-top: var(--space-s); font-size: var(--step--1); }
   @media (max-width: 60rem) { .cx__grid { grid-template-columns: repeat(3, 1fr); } }

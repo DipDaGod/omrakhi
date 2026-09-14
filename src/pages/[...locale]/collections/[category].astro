@@ -10,7 +10,7 @@ import '../../../styles/catalogue.css';
 import { SITE } from '../../../config/site.ts';
 import { useTranslations, LOCALES, DEFAULT_LOCALE, type Locale } from '../../../i18n/ui.ts';
 import { href, ROUTES, localeFromParam } from '../../../lib/routes.ts';
-import { band, bandRange, packLine, productAlt, num } from '../../../lib/format.ts';
+import { band, bandRange, bandLegend, priceLabel, packLine, productAlt, num } from '../../../lib/format.ts';
 import { productImage, productDetailImage, GRID_WIDTHS, DRAWER_WIDTHS } from '../../../lib/images.ts';
 import { toImgView } from '../../../lib/imgview.ts';
 import { allCategories, productsInCategory, categoryCounts, LIMITED_RANGE_THRESHOLD } from '../../../lib/catalogue.ts';
@@ -30,6 +30,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 const slug = String(Astro.params.category);
 const locale = localeFromParam(Astro.params.locale) as Locale;
 const t = useTranslations(locale);
+const legend = bandLegend(locale);
 
 const [cats, products, counts] = await Promise.all([
   allCategories(),
@@ -74,6 +75,14 @@ const views: ProductView[] = await Promise.all(
   }),
 );
 
+const sortLabels = {
+  default: t('sort.default'),
+  newest: t('sort.newest'),
+  priceLow: t('sort.priceLow'),
+  priceHigh: t('sort.priceHigh'),
+  code: t('sort.code'),
+};
+
 const labels = {
   new: t('label.new'),
   newOnly: t('label.newOnly'),
@@ -90,6 +99,7 @@ const labels = {
   apply: t('action.apply'),
   close: t('nav.close'),
   inCategory: t('label.inCategory'),
+  sort: t('label.sort'),
   designs: t('label.designs'),
   design: t('label.design'),
   noResults: t('empty.noResults'),
@@ -194,8 +204,9 @@ const schema = [
         <p class="cat__figures">
           {limited ? t('label.limitedRange') : `${num(count, locale)} ${t('label.designs')}`}
           <span aria-hidden="true"> · </span>
-          {bandRange(c.priceBand.from, c.priceBand.to)}
+          {priceLabel(c.priceBand.from, c.priceBand.to, locale)}
         </p>
+        {legend && <p class="cat__legend">{legend}</p>}
       </div>
 
       {/* Eighty words that tell a dealer where this category sells and why
@@ -225,6 +236,7 @@ const schema = [
       client:load
       products={views}
       labels={labels}
+      sortLabels={sortLabels}
       categoryName={c.name[locale]}
       whatsappBase={`${whatsappHref()}?text=`}
       colourLabels={colourLabels}
@@ -268,6 +280,7 @@ const schema = [
   .cat__head { max-width: var(--measure); margin-block: var(--space-m) var(--space-s); }
   .cat__title { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-m); flex-wrap: wrap; }
   .cat__figures { color: var(--ink-muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .cat__legend { font-size: var(--step--1); color: var(--ink-muted); margin-top: var(--space-3xs); }
   .cat__copy { margin-top: var(--space-s); }
   .cat__terms { margin-top: var(--space-2xs); font-size: var(--step--1); color: var(--ink-muted); }
   .cat__related { margin-top: var(--space-2xl); padding-top: var(--space-m); border-top: var(--hairline) solid var(--line); }
