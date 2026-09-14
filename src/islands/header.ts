@@ -48,16 +48,28 @@ function focusables(root: HTMLElement) {
 }
 
 if (menu && menuOpen && menuClose) {
+  /* Matches --dur-base. The menu is toggled through the hidden attribute
+     rather than mounted, so closing has to hold the element for the length of
+     the exit and only then hide it. */
+  const EXIT_MS = 240;
+  const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let timer = 0;
+
   const close = () => {
-    menu.hidden = true;
+    menu.classList.remove('is-in');
     document.documentElement.style.removeProperty('overflow');
     menuOpen.setAttribute('aria-expanded', 'false');
     menuOpen.focus();
+    clearTimeout(timer);
+    if (reduced()) menu.hidden = true;
+    else timer = window.setTimeout(() => { menu.hidden = true; }, EXIT_MS);
   };
   menuOpen.addEventListener('click', () => {
+    clearTimeout(timer);
     menu.hidden = false;
     document.documentElement.style.setProperty('overflow', 'hidden');
     menuOpen.setAttribute('aria-expanded', 'true');
+    requestAnimationFrame(() => menu.classList.add('is-in'));
     focusables(menu)[0]?.focus();
   });
   menuClose.addEventListener('click', close);

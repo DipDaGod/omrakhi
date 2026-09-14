@@ -6,10 +6,20 @@ export type Overlay = { root: HTMLElement; close: () => void };
 
 const SELECTOR = 'a[href], button:not([disabled]), input:not([disabled]), select, textarea, [tabindex]:not([tabindex="-1"])';
 
+/* Must match --dur-base in tokens.css. The exit is driven by a timer rather
+   than transitionend because a transition that never runs — reduced motion, a
+   backgrounded tab, a panel the compositor skips — would never fire the event
+   and the overlay would stay in the DOM forever. */
+const EXIT_MS = 240;
+const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 export function openOverlay(root: HTMLElement, onClose?: () => void): Overlay {
   const returnTo = document.activeElement as HTMLElement | null;
   document.body.appendChild(root);
   document.documentElement.style.setProperty('overflow', 'hidden');
+  /* One frame on the closed state before the open one, or the browser
+     coalesces both into a single style resolution and nothing animates. */
+  requestAnimationFrame(() => root.classList.add('is-in'));
 
   const items = () => Array.from(root.querySelectorAll<HTMLElement>(SELECTOR)).filter((el) => el.offsetParent !== null);
 
@@ -24,12 +34,25 @@ export function openOverlay(root: HTMLElement, onClose?: () => void): Overlay {
     else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
   };
 
+  let closing = false;
   function close() {
+    if (closing) return;
+    closing = true;
     root.removeEventListener('keydown', onKey);
-    root.remove();
-    document.documentElement.style.removeProperty('overflow');
+    root.classList.remove('is-in');
+    root.classList.add('is-out');
+    /* Focus goes back immediately — a keyboard user should not wait out an
+       animation — but the scroll lock holds until the panel is gone, or the
+       page jumps behind the fade. */
     returnTo?.focus?.();
-    onClose?.();
+
+    const done = () => {
+      root.remove();
+      document.documentElement.style.removeProperty('overflow');
+      onClose?.();
+    };
+    if (reduced()) done();
+    else setTimeout(done, EXIT_MS);
   }
 
   root.addEventListener('keydown', onKey);

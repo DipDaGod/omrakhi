@@ -224,7 +224,15 @@ const other: Locale = locale === 'en' ? 'hi' : 'en';
     overflow-y: auto;
     overscroll-behavior: contain;
   }
-  .mm[hidden] { display: none; }
+  /* The attribute alone now hides it (see the [hidden] rule in global.css);
+     this is only the travel. header.ts holds the element for --dur-base on
+     close so the exit has somewhere to run. */
+  .mm {
+    opacity: 0;
+    transform: translateY(-0.5rem);
+    transition: opacity var(--dur-base) var(--ease), transform var(--dur-base) var(--ease);
+  }
+  .mm.is-in { opacity: 1; transform: none; }
   .mm__bar {
     display: flex;
     align-items: center;

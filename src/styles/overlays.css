@@ -14,6 +14,31 @@
   background: rgb(27 23 20 / 0.4);
 }
 
+/* --- Entrance and exit -----------------------------------------------------
+   openOverlay() mounts on the closed state, adds .is-in a frame later, and on
+   close swaps to .is-out and waits out --dur-base before removing. Transform
+   and opacity only: both run off the main thread, so a drawer opening never
+   competes with the catalogue rendering behind it.
+
+   prefers-reduced-motion is handled globally in tokens.css, which collapses
+   every duration here to 1ms — the overlay still appears and disappears, it
+   just stops travelling. */
+.so__scrim, .sd__scrim, .so__panel, .sd__panel {
+  transition: opacity var(--dur-base) var(--ease), transform var(--dur-base) var(--ease);
+}
+.so__scrim, .sd__scrim { opacity: 0; }
+.so.is-in .so__scrim, .sd.is-in .sd__scrim { opacity: 1; }
+
+.so__panel { opacity: 0; transform: translateY(-0.75rem) scale(0.99); }
+.so.is-in .so__panel { opacity: 1; transform: none; }
+
+/* The shortlist drawer comes from the edge it lives on. */
+.sd__panel { transform: translateX(100%); }
+.sd.is-in .sd__panel { transform: none; }
+
+/* Nothing is clickable while it leaves. */
+.so.is-out, .sd.is-out { pointer-events: none; }
+
 /* --- Search overlay -------------------------------------------------------- */
 .so { align-items: flex-start; justify-content: center; }
 .so__panel {

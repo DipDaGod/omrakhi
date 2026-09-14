@@ -142,7 +142,9 @@ await mob.waitForTimeout(300);
 ok('mobile: menu opens full-screen', await mob.locator('#mobile-menu:not([hidden])').count() === 1);
 ok('mobile: menu carries the full category list', await mob.locator('.mm__cats li').count() === 12);
 await mob.locator('[data-menu-close]').click();
-await mob.waitForTimeout(200);
+/* The menu animates out over --dur-base before the hidden attribute goes
+   back on, so this has to outlast the exit rather than race it. */
+await mob.waitForTimeout(500);
 ok('mobile: menu closes', await mob.locator('#mobile-menu[hidden]').count() === 1);
 ok('mobile: contact dock is a bottom bar', await mob.locator('.dock').isVisible());
 
